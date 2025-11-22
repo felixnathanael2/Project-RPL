@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8" />
+<html><head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login-Page</title>
     <link rel="shortcut icon" href="assets/MBTA.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleLogin.css">
+    <link rel="stylesheet" href="../font.css">
 </head>
 
 <body>
     <nav>
-        <div id="left-icon">
-            <div id="logo-unpar">
+        <div class="nav-left">
+            <div class="glass-box">
                 <img src="assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" alt="">
             </div>
-            <div id="logo-if">
+            <div class="glass-box">
                 <img src="assets/Logo IF.png" alt="">
             </div>
         </div>
+
+        <div class="nav-right">
+            <img src="assets/MBTA.png" alt="MBTA" class="mbta-logo">
         </div>
-        <div id="right-icon">
-            <div id="logo-MBTA">
-                <img src="assets/MBTA.png" alt="">
-            </div>
     </nav>
     <main>
-        <h1>Welcome!</h1>
-        <form action="">
+        <form action="" class="glass-box">
+            <h1>Welcome!</h1>
             <h2>Login</h2>
-            <div id="inp-email">
+            <div class="input-group">
                 <label for="emai">Email</label>
                 <input type="text" name="input-email" placeholder="username@student.unpar.ac.id">
             </div>
-            <div id="inp-pass">
+            <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" name="input-pass" placeholder="Password">
                 <a href="">Lupa Password?</a>
@@ -41,6 +38,6 @@
             <button type="submit">Masuk</button>
         </form>
     </main>
-</body>
 
-</html>
+
+</body></html>

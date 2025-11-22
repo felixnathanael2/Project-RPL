@@ -93,6 +93,14 @@ main form {
   gap: 16px;
 }
 
+main form h1 {
+  color: white;
+  font-size: clamp(40px, 4vw, 64px);
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+}
+
 main form h2 {
   color: white;
   font-size: clamp(24px, 4vw, 36px);
@@ -147,10 +155,7 @@ main form button{
   color: #333;
   transition: 0.2s;
   padding: 20px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 main form button[type="submit"] {
