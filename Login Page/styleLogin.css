@@ -70,11 +70,6 @@ main {
   justify-content: center;
   width: 100%;
   padding: 20px;
-  
-  background: transparent; 
-  box-shadow: none;
-  backdrop-filter: none;
-  border: none;
 }
 
 main form {
