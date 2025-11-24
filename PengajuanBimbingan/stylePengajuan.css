@@ -11,6 +11,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background-image: url("../assets/Background.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -263,11 +264,13 @@ input[type="date"] {
 .footer {
     display: flex;
     justify-content: space-between;
+    justify-self: end;
     align-items: center;
     padding: 0 2rem;
-    height: 60px;
+    height: 60px !important;
+    width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
-    margin-top: auto;
+    border-radius: 0px !important;
 }
 
 .footer p {
