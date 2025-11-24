@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard MBTA</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        padding: 2rem;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #333;
+      }
+      .btn-logout {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .btn-load {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      /* Styling Tabel */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f1f1f1;
+        font-weight: 600;
+      }
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      .status-msg {
+        margin-top: 10px;
+        font-style: italic;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h1>Dashboard MBTA</h1>
+          <span id="welcomeMsg">Selamat Datang!</span>
+        </div>
+        <button class="btn-logout" id="logoutBtn">Log Out</button>
+      </header>
+
+      <section>
+        <h3>Riwayat Bimbingan</h3>
+        <p>Klik tombol di bawah untuk mengambil data dari database:</p>
+        <button class="btn-load" id="loadBtn">Lihat Riwayat Saya</button>
+        <p id="statusMsg" class="status-msg"></p>
+
+        <div style="overflow-x: auto">
+          <table id="historyTable" style="display: none">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Lokasi</th>
+                <th>Catatan / Topik</th>
+                <th id="colPartner">Dosen/Mahasiswa</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Menampilkan nama user (Simulasi UX)
+      const userName = localStorage.getItem("userName") || "User";
+      const userRole = localStorage.getItem("userRole") || "";
+      document.getElementById(
+        "welcomeMsg"
+      ).textContent = `Halo, ${userRole} ${userName}`;
+
+      // --- LOGIKA LOGOUT ---
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+          try {
+            const res = await fetch("/logout", { method: "POST" });
+            if (res.ok) {
+              localStorage.clear(); // Bersihkan data lokal
+              window.location.href = "/index.html"; // Balik ke login
+            }
+          } catch (err) {
+            alert("Gagal logout");
+          }
+        });
+
+      // --- LOGIKA MEMUAT RIWAYAT ---
+      document.getElementById("loadBtn").addEventListener("click", async () => {
+        const statusMsg = document.getElementById("statusMsg");
+        const table = document.getElementById("historyTable");
+        const tbody = document.getElementById("tableBody");
+        const colPartner = document.getElementById("colPartner");
+
+        statusMsg.textContent = "Sedang memuat data...";
+        tbody.innerHTML = ""; // Kosongkan tabel dulu
+
+        try {
+          // Request ke Backend (Cookie sesi dikirim otomatis)
+          const response = await fetch("/riwayat");
+
+          if (response.status === 403) {
+            statusMsg.textContent =
+              "Sesi habis atau tidak valid. Silakan login ulang.";
+            statusMsg.style.color = "red";
+            return;
+          }
+
+          const result = await response.json();
+          const data = result.data; // Array riwayat
+
+          if (data.length === 0) {
+            statusMsg.textContent = "Belum ada riwayat bimbingan yang selesai.";
+          } else {
+            statusMsg.textContent = `Ditemukan ${data.length} sesi bimbingan.`;
+            table.style.display = "table"; // Munculkan tabel
+
+            // Sesuaikan judul kolom berdasarkan peran
+            if (userRole === "Mahasiswa")
+              colPartner.textContent = "Dosen Pembimbing";
+            else colPartner.textContent = "Mahasiswa";
+
+            // Loop data dan buat baris tabel (row)
+            data.forEach((item) => {
+              // Format tanggal biar cantik
+              const dateObj = new Date(item.tanggal);
+              const dateStr = dateObj.toLocaleDateString("id-ID", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+
+              // Tentukan nama siapa yang ditampilkan (Tergantung Dosen/Mhs)
+              const partnerName = item.nama_Dosen || item.namaMahasiswa || "-";
+
+              const row = `
+                            <tr>
+                                <td>${dateStr}</td>
+                                <td>${item.namaRuangan || "-"}</td>
+                                <td>${item.catatan || "-"}</td>
+                                <td>${partnerName}</td>
+                            </tr>
+                        `;
+              tbody.innerHTML += row;
+            });
+          }
+        } catch (err) {
+          console.error(err);
+          statusMsg.textContent = "Terjadi kesalahan saat mengambil data.";
+        }
+      });
+    </script>
+  </body>
+</html>

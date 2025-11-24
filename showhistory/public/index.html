@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login MBTA</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .login-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 350px;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 1.5rem;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #666;
+        font-size: 0.9rem;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box; /* Agar padding tidak melebarkan input */
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 10px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .error-msg {
+        color: #dc3545;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <h2>Masuk MBTA</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="role">Masuk Sebagai:</label>
+          <select id="role">
+            <option value="Mahasiswa">Mahasiswa</option>
+            <option value="Dosen">Dosen</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="id">NPM / NIK:</label>
+          <input
+            type="text"
+            id="id"
+            placeholder="Contoh: 6182301015"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Contoh: password123"
+            required
+          />
+        </div>
+
+        <button type="submit">Log In</button>
+        <p class="error-msg" id="message"></p>
+      </form>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("loginForm");
+      const messageEl = document.getElementById("message");
+
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Mencegah halaman reload
+        messageEl.textContent = "Sedang memproses...";
+
+        // 1. Ambil data dari input
+        const id = document.getElementById("id").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value;
+
+        try {
+          // 2. Kirim data ke Backend menggunakan Fetch API
+          const response = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, password, role }), // Ubah objek JS ke JSON string
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            // 3. Jika sukses (Status 200), pindah ke Dashboard
+            // Simpan nama user sementara di LocalStorage biar bisa disapa di dashboard (opsional)
+            localStorage.setItem("userName", result.user.name);
+            localStorage.setItem("userRole", result.user.role);
+
+            window.location.href = "/dashboard.html";
+          } else {
+            // 4. Jika gagal (Status 401), tampilkan pesan error
+            messageEl.textContent = result.message || "Login gagal.";
+          }
+        } catch (error) {
+          console.error(error);
+          messageEl.textContent = "Gagal menghubungi server.";
+        }
+      });
+    </script>
+  </body>
+</html>
