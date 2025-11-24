@@ -1,0 +1,275 @@
+:root {
+    --lightpink: #FFBDBD;
+    --slightlypink: #FFA4A4;
+    --cyan: #BADFDB;
+    --beige: #FCF9EA;
+    --lightpurple: #EBD6FB;
+    --textGrey: #808080;
+    --highlightGreen: #57b846;
+}
+
+/* Reset CSS agar Padding tidak menambah lebar elemen */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'GilBold';
+    src: url(../fonts/Gilroy-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'GilHeavy';
+    src: url(../fonts/Gilroy-Heavy.ttf);
+}
+
+@font-face {
+    font-family: 'GilLight';
+    src: url(../fonts/Gilroy-Light.ttf);
+}
+
+@font-face {
+    font-family: 'GilMedium';
+    src: url(../fonts/Gilroy-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'GilReg';
+    src: url(../fonts/Gilroy-Regular.ttf);
+}
+
+body {
+    background-color: var(--beige);
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    /* Reset margin default browser */
+}
+
+/* Pastikan Container Utama menjadi "Patokan Dunia Baru" bagi elemen di dalamnya */
+.main_container {
+    width: 800px;
+    /* Lebar tetap */
+    background-color: var(--cyan);
+    border-radius: 12px;
+    overflow: hidden;
+
+    font-size: 20px;
+}
+
+.header {
+    background-image: url('../image/sunset.jpg');
+    background-size: cover;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header>p {
+    font-family: 'GilBold';
+    font-size: 25pt;
+    color: white;
+}
+
+/* CALENDAR  */
+/* Pastikan class body lebarnya 100% dari main_container */
+.body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Hapus setting font-size aneh-aneh di sini, biarkan ikut .main_container */
+}
+
+
+.month_calendar {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    
+    /* Tinggi baris otomatis membesar sesuai isi, tapi minimal 100px */
+    grid-auto-rows: minmax(100px, auto); 
+    
+    gap: 0;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.date_labels {
+    /* Layout Grid */
+    display: flex;
+    flex-direction: column; /* Menumpuk ke bawah (Angka -> Event) */
+    
+    /* ALIGNMENT KIRI ATAS */
+    justify-content: flex-start; /* Vertikal: Mulai dari Atas */
+    align-items: flex-start;     /* Horizontal: Rata Kiri */
+    
+    /* Dekorasi Box */
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 8px; /* Beri jarak agar angka tidak nempel garis banget */
+    
+    /* Pastikan tinggi box mengikuti grid */
+    height: 100%; 
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+.date-number {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    
+    /* HAPUS align-self: flex-end (jika ada) */
+    /* GANTI MENJADI: */
+    align-self: flex-start; /* Paksa nempel Kiri */
+    justify-content: flex-start;
+    line-height: 1;
+}
+
+.events-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Jarak antar box acara jika ada > 1 acara */
+    z-index: 1;
+}
+
+.event-item {
+    margin-bottom: 4px; /* Jarak antar event */
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    
+    /* Agar teks panjang turun ke bawah, membuat kotak makin tinggi */
+    white-space: normal; 
+    word-wrap: break-word;
+}
+
+/* Style untuk Judul dan Nama di dalam acara */
+.event-title {
+    display: block;
+    font-weight: bold;
+    font-size: 0.84em;
+}
+
+.event-name {
+    display: block;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* --- WARNA BACKGROUND ACARA  --- */
+
+.joseph-bg {
+    background-color: #d4f7dc; /* Hijau muda */
+    color: #0a5c23;
+}
+
+.michael-bg {
+    background-color: #fcf0c9; /* Kuning muda */
+    color: #755900;
+}
+
+.calendar_title {
+    font-family: 'GilMed', sans-serif;
+    font-size: 1.8em;
+    /* Relatif ke .body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 3 / 6;
+    grid-row: 1;
+}
+
+.prev_container {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.next_container {
+    grid-column: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.4fr;
+    height: 0.4fr;
+}
+
+.today_container {
+    grid-column: 7 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.7fr;
+    height: 0.6fr;
+}
+
+.next_prev.today {
+    font-size: 0.8em;
+}
+
+.day_labels {
+    font-family: 'GilReg';
+    background-color: var(--slightlypink);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em 0;
+}
+
+.selected_date_labels {
+    background-color: rgba(113, 194, 209, 0.474);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.date_labels_others {
+    /* border: black solid 0.01em; */
+    color: rgba(141, 141, 141, 0.474);
+}
+
+.body>p {
+    font-family: 'GilReg';
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.next_prev {
+    font-family: 'GilMed';
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #fcf9ea75;
+    border-radius: 0.25em;
+    border: 0.01em solid black;
+    cursor: pointer;
+    width: 80%;
+    height: 50%
+}
+
+.next_prev_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1/1;
+}
+
+.date_labels_sunday {
+    color: red;
+}
+
+.date_labels_sunday_others {
+    color: rgba(255, 0, 0, 0.474);
+}
