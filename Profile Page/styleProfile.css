@@ -7,18 +7,18 @@
 }
 
 body {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-image: url("assets/Background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    color: white;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("assets/Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
 }
 
 /* Efek Blur */
@@ -116,15 +116,15 @@ body {
 }
 
 main{
-    align-self: center;
-    justify-content: center;
+  align-self: center;
+  justify-content: center;
 }
 
 #profileLogo{
-    font-size: 150px;
-    position: absolute;
-    top: -100px;
-    left: -65px;
+  font-size: 150px;
+  position: absolute;
+  top: -100px;
+  left: -65px;
 }
 
 #dummyText{
@@ -132,13 +132,13 @@ main{
 }
 
 .content {
-    flex-direction: column;
-    display: flex;
-    align-items: flex-start;
-    /* width: 100%;
-    height: 100%; */
-    max-width: 650px;
-    width: 60vw;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  /* width: 100%;
+  height: 100%; */
+  max-width: 650px;
+  width: 60vw;
 
     color: white;
     /* font-size: 50px; */
@@ -196,15 +196,15 @@ main{
 
 /* FOOTER */
 .footer {
-    display: flex;
-    justify-content: space-between;
-    justify-self: end;
-    align-items: center;
-    padding: 0 2rem;
-    height: 60px !important;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0px !important;
+  display: flex;
+  justify-content: space-between;
+justify-self: end;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px !important;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0px !important;
 }
 
 .footer p {
