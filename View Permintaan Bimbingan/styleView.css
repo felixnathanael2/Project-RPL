@@ -1,0 +1,289 @@
+/* =========================================
+   1. GLOBAL & RESET
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gilroy', 'Poppins', sans-serif;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Pastikan path gambar background benar */
+    background-image: url("../assets/Background.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* =========================================
+   2. GLASSMORPHISM UTILITY
+   ========================================= */
+.glass-box {
+    background: rgba(255, 255, 255, 0.15); /* Transparansi sedang */
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   3. HEADER / NAVIGASI
+   ========================================= */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+    
+    /* Navigasi tetap di atas (Sticky) opsional */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left, .nav-middle, .nav-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-left {
+    gap: 15px;
+    padding-right: 25px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-left img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Header Tengah */
+.nav-middle {
+    gap: 70px;
+}
+
+.nav-middle a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-middle a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- ACTIVE STATE UNTUK HALAMAN PERMINTAAN --- */
+/* Membuat kotak di sekitar menu "Permintaan" */
+#nav-permintaan { 
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#nav-permintaan a {
+    color: white;
+    font-weight: 700;
+}
+
+/* Header Kanan */
+.nav-right {
+    gap: 15px;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.nav-right a:hover {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   4. MAIN CONTENT (Permintaan Bimbingan)
+   ========================================= */
+main.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Tengah secara horizontal */
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Pembungkus Konten agar lebarnya rapi */
+.content-wrapper {
+    width: 85%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    align-self: flex-start; /* Judul rata kiri */
+}
+
+/* --- KOTAK BESAR PEMBUNGKUS LIST --- */
+.requests-container {
+    width: 100%;
+    min-height: 50vh; /* Tinggi minimal */
+    padding: 30px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar kartu */
+    
+    /* Background tipis agar tidak bikin sakit mata (White-out fix) */
+    background: rgba(255, 255, 255, 0.1) !important; 
+    align-items: stretch;
+}
+
+/* --- KARTU DATA (REQUEST CARD) --- */
+.request-card {
+    /* Layout Kiri (Info) & Kanan (Tombol) */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 20px 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    /* Transparansi sangat rendah agar teks terbaca jelas */
+    background: rgba(255, 255, 255, 0.05); 
+    transition: background 0.3s ease;
+}
+
+.request-card:hover {
+    background: rgba(255, 255, 255, 0.15); /* Terang sedikit saat hover */
+}
+
+/* Bagian Kiri: Informasi */
+.card-left {
+    flex: 1;
+}
+
+.lecturer-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: white;
+}
+
+/* GRID SYSTEM UNTUK LABEL : VALUE */
+/* Ini kunci agar titik dua sejajar rapi */
+.info-grid {
+    display: grid;
+    /* Kolom 1 (Label): 70px | Kolom 2 (:): 15px | Kolom 3 (Isi): Auto */
+    grid-template-columns: 70px 15px auto; 
+    row-gap: 6px; /* Jarak antar baris */
+}
+
+.info-grid span {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.label { font-weight: 400; }
+.separator { text-align: center; }
+.value { font-weight: 500; }
+
+/* Bagian Kanan: Tombol Action */
+.card-right {
+    display: flex;
+    gap: 12px;
+    margin-left: 20px;
+}
+
+.btn {
+    padding: 8px 24px;
+    border-radius: 50px; /* Bentuk kapsul */
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    outline: none;
+}
+
+/* Tombol Tolak (Merah) */
+.btn-reject {
+    background-color: #e63946;
+    color: white;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+}
+
+.btn-reject:hover {
+    background-color: #d62828;
+    transform: translateY(-2px);
+}
+
+/* Tombol Terima (Glass/Biru Muda) */
+.btn-accept {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-accept:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: auto;
+    border-radius: 0px !important;
+    
+    /* Gunakan class glass-box tapi override background biar ga numpuk */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px);
+}
+
+.footer p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.footer-left img {
+    height: 35px;
+    width: auto;
+}
