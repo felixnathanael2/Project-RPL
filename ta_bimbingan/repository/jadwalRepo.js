@@ -51,3 +51,20 @@ export async function getUnavailableJadwal(date, nik, npm) {
 
     return rowsJadwal[0];
 }
+
+export async function deleteJadwalByNPM (npm) {
+    const pool = await connectDB();
+    const query = "DELETE FROM Jadwal_User WHERE NPM = ?";
+    await pool.execute(query, npm);
+}
+
+export async function deleteJadwalByNIK (nik) {
+    const pool = await connectDB();
+    const query = "DELETE FROM Jadwal_User WHERE NIK = ?";
+    await pool.execute(query, nik);
+}
+
+// data - [hari, jam_mulai, jam_akhir_, npm]
+export async function uploadJadwalMahasiswa(data){
+    const query = "INSERT INTO Jadwal_User (Jam_Mulai, Jam_Akhir, Hari, NPM)";
+}

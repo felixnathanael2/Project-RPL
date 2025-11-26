@@ -7,142 +7,132 @@ USE ta_bimbingan;
 -- BAGIAN 1: TABEL PENGGUNA (USER)
 -- ==========================================
 
--- 2. Tabel Admin (Sesuai ERD)
-CREATE TABLE Admin (
-    idAdmin INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);
-
--- 3. Tabel Dosen Pembimbing (Sesuai ERD)
-CREATE TABLE Dosen_Pembimbing (
-    NIK VARCHAR(20) PRIMARY KEY,
-    nama_Dosen VARCHAR(100) NOT NULL,
-    email_Dosen VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
+CREATE TABLE users (
+	id_users VARCHAR(20) PRIMARY KEY,
+	email VARCHAR(100) NOT NULL UNIQUE,
+    nama VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role INT NOT NULL
 );
 
 -- 4. Tabel Mahasiswa TA (Sesuai ERD - Atribut Lengkap)
-CREATE TABLE Mahasiswa_TA (
-    NPM VARCHAR(20) PRIMARY KEY,
-    nama_Mahasiswa VARCHAR(100) NOT NULL,
-    email_Mahasiswa VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+CREATE TABLE data_ta (
+    id_data INT PRIMARY KEY AUTO_INCREMENT,
+    id_users VARCHAR(20) NOT NULL,
     
+	CONSTRAINT fk_user FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE,
+
     -- Atribut Khusus dari ERD
-    angkatan INT,
-    Topik TEXT,                -- Judul/Topik TA
-    TA1 BOOLEAN DEFAULT FALSE, -- Status ambil TA1
-    TA2 BOOLEAN DEFAULT FALSE, -- Status ambil TA2
-    status_Eligible BOOLEAN DEFAULT TRUE -- Apakah boleh sidang/bimbingan
+    semester INT,
+    Topik VARCHAR(250),     -- Judul/Topik TA
+	jenis_ta INT NOT NULL, 	-- sia ambil ta brp
+    status_eligible BOOLEAN DEFAULT FALSE -- Apakah boleh sidang/bimbingan
 );
 
 -- ==========================================
 -- BAGIAN 2: TABEL PENDUKUNG (MASTER DATA)
 -- ==========================================
 
--- 5. Tabel Lokasi (Sesuai ERD)
-CREATE TABLE Lokasi (
-    idLokasi INT PRIMARY KEY AUTO_INCREMENT,
-    namaRuangan VARCHAR(50) NOT NULL,
-    statusRuangan VARCHAR(20) DEFAULT 'Tersedia' -- Tersedia / Penuh / Maintenance
+-- 5. Tabel lokasi (Sesuai ERD)
+CREATE TABLE lokasi (
+    id_lokasi INT PRIMARY KEY AUTO_INCREMENT,
+    nama_ruangan VARCHAR(50) NOT NULL
 );
 
 -- 6. Tabel Rentang Semester (Sesuai ERD)
 -- Dikelola oleh Admin
-CREATE TABLE Rentang_Semester (
-    idSemester INT PRIMARY KEY AUTO_INCREMENT,
-    namaSemester VARCHAR(50), -- Contoh: "Ganjil 2024/2025"
-    tanggalAwalSemester DATE,
-    tanggalUTSSelesai DATE,
-    tanggalUASSelesai DATE
+CREATE TABLE rentang_semester (
+    id_semester INT PRIMARY KEY AUTO_INCREMENT,
+    nama_semester VARCHAR(50), -- Contoh: "Ganjil 2024/2025"
+    tanggal_awal_semester DATE,
+    tanggal_UTS_selesai DATE,
+    tanggal_UAS_selesai DATE
 );
 
 -- Tabel Plotting (Menentukan Siapa Pembimbing Tetap Mahasiswa)
-CREATE TABLE Plotting_Pembimbing (
-    idPlotting INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE plotting_pembimbing (
+    id_plotting INT PRIMARY KEY AUTO_INCREMENT,
     
-    NPM VARCHAR(20) NOT NULL, -- Siapa Mahasiswanya
-    NIK VARCHAR(20) NOT NULL, -- Siapa Dosennya
+    npm VARCHAR(20) NOT NULL, -- Siapa mhs nya
+	nik VARCHAR(20) NOT NULL, -- Siapa dosen nya
+
+    status_pembimbing INT NOT NULL, -- 1 'Pembimbing 1' atau 2 'Pembimbing 2'
     
-    status_pembimbing VARCHAR(20) NOT NULL, -- 'Pembimbing 1' atau 'Pembimbing 2'
-    
-    -- Mencegah Data Ganda
-    UNIQUE(NPM, NIK),
-    
-    CONSTRAINT FK_Plotting_Mhs FOREIGN KEY (NPM) REFERENCES Mahasiswa_TA(NPM) ON DELETE CASCADE,
-    CONSTRAINT FK_Plotting_Dosen FOREIGN KEY (NIK) REFERENCES Dosen_Pembimbing(NIK) ON DELETE CASCADE
+    CONSTRAINT FK_Plotting_Mhs FOREIGN KEY (npm) REFERENCES users(id_users) ON DELETE CASCADE,
+	CONSTRAINT FK_Plotting_Dosen FOREIGN KEY (nik) REFERENCES users(id_users) ON DELETE CASCADE
 );
 
 -- ==========================================
 -- BAGIAN 3: TABEL TRANSAKSI & RELASI
 -- ==========================================
 
--- 7. Tabel Bimbingan (Sesuai ERD)
--- Menghubungkan Mahasiswa, Dosen, dan Lokasi
-CREATE TABLE Bimbingan (
-    idBimbingan INT PRIMARY KEY AUTO_INCREMENT,
-    tanggal_Waktu_Bimbingan DATETIME NOT NULL,
-    catatan_Bimbingan TEXT, -- Notes dari dosen / Topik pengajuan
-    status VARCHAR(20) DEFAULT 'Menunggu', -- Menunggu, Disetujui, Selesai, Ditolak
+-- 7. Tabel bimbingan (Sesuai ERD)
+-- Menghubungkan Mahasiswa, Dosen, dan lokasi
+CREATE TABLE bimbingan (
+    id_bimbingan INT PRIMARY KEY AUTO_INCREMENT,
+    id_data INT NOT NULL, -- kolom buat konekin ke data punya siapa
     
-    -- Foreign Keys
-    NPM VARCHAR(20) NOT NULL,
-    idLokasi INT,
+    id_lokasi INT NULL, -- bimbingannya dimana
+    tanggal DATE NOT NULL,
+    waktu TIME NOT NULL,
+    catatan_bimbingan TEXT, -- Notes dari dosen / Topik pengajuan
+	status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
     
-    CONSTRAINT FK_Bimbingan_Mhs FOREIGN KEY (NPM) REFERENCES Mahasiswa_TA(NPM) ON DELETE CASCADE,
-    CONSTRAINT FK_Bimbingan_Lokasi FOREIGN KEY (idLokasi) REFERENCES Lokasi(idLokasi) ON DELETE SET NULL
+    CONSTRAINT FK_bimbingan_Mhs FOREIGN KEY (id_data) REFERENCES data_ta(id_data) ON DELETE CASCADE,
+    CONSTRAINT FK_bimbingan_lokasi FOREIGN KEY (id_lokasi) REFERENCES lokasi(id_lokasi) ON DELETE SET NULL
 );
 
--- B. Buat Tabel Baru: Peserta Dosen Bimbingan, sebuah bimbingan bisa dihadiri 2 orang dosbing
-CREATE TABLE Bimbingan_Dosen (
-    idBimbingan INT,
-    NIK VARCHAR(20),
+-- B. Buat Tabel Baru: Peserta Dosen bimbingan, sebuah bimbingan bisa dihadiri 2 orang dosbing
+CREATE TABLE bimbingan_dosen (
+    id_bimbingan INT,
     
-    PRIMARY KEY (idBimbingan, NIK), -- Kombinasi unik
+    nik VARCHAR(20),
     
-    CONSTRAINT FK_BD_Bimbingan FOREIGN KEY (idBimbingan) REFERENCES Bimbingan(idBimbingan) ON DELETE CASCADE,
-    CONSTRAINT FK_BD_Dosen FOREIGN KEY (NIK) REFERENCES Dosen_Pembimbing(NIK) ON DELETE CASCADE
+    PRIMARY KEY (id_bimbingan, nik), -- Kombinasi unik
+    
+    CONSTRAINT FK_BD_bimbingan FOREIGN KEY (id_bimbingan) REFERENCES bimbingan(id_bimbingan) ON DELETE CASCADE,
+    CONSTRAINT FK_BD_Dosen FOREIGN KEY (nik) REFERENCES users(id_users) ON DELETE CASCADE
 );
 
--- 8. Tabel Notifikasi (Sesuai ERD)
--- ERD menghubungkan Notifikasi ke Mahasiswa (has).
+-- 8. Tabel notifikasi (Sesuai ERD)
+-- ERD menghubungkan notifikasi ke Mahasiswa (has).
 -- Tapi secara logika SRS, Dosen juga butuh notif, jadi kita buat nullable FK dua-duanya.
-CREATE TABLE Notifikasi (
-    idNotif INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE notifikasi (
+    id_notif INT PRIMARY KEY AUTO_INCREMENT,
     isi TEXT NOT NULL,
+    is_read BOOLEAN DEFAULT FALSE, -- buat di UI, kalo misal blm di liat ada highlight ato smth
     tanggal_Waktu DATETIME DEFAULT CURRENT_TIMESTAMP,
     
-    -- Relasi Owner Notifikasi (FK)
-    NPM VARCHAR(20),
-    NIK VARCHAR(20),
+    -- Relasi Owner notifikasi (FK)
+    id_users VARCHAR(20),
     
-    CONSTRAINT FK_Notif_Mhs FOREIGN KEY (NPM) REFERENCES Mahasiswa_TA(NPM) ON DELETE CASCADE,
-    CONSTRAINT FK_Notif_Dosen FOREIGN KEY (NIK) REFERENCES Dosen_Pembimbing(NIK) ON DELETE CASCADE
+    CONSTRAINT FK_Notif_Mhs FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE
 );
 
 -- 9. Tabel Jadwal User (Sesuai ERD)
 -- Ini untuk jadwal ketersediaan/kuliah Mahasiswa DAN Dosen
-CREATE TABLE Jadwal_User (
+CREATE TABLE jadwal_user (
 idJadwal INT PRIMARY KEY AUTO_INCREMENT,
     
     -- Data Jadwalnya
     Hari VARCHAR(10), -- Senin, Selasa, dll
-    Jam_Mulai TIME,
-    Jam_Akhir TIME,
-    -- Keterangan VARCHAR(50), -- Misal: "Kuliah PBO" atau "Rapat Prodi" (optional)
+    Jam_mulai TIME,
+    Jam_akhir TIME,
     
     -- RELASI "BERTIGA" (Mahasiswa, Dosen, Jadwal)
     -- Kita pasang dua kolom ID, tapi boleh NULL (kosong)
-    NPM VARCHAR(20) NULL, 
-    NIK VARCHAR(20) NULL,
+    id_users VARCHAR(20) NOT NULL, 
     
     -- Foreign Keys (Menghubungkan ke tabel induk)
-    CONSTRAINT FK_Jadwal_Mhs FOREIGN KEY (NPM) REFERENCES Mahasiswa_TA(NPM) ON DELETE CASCADE,
-    CONSTRAINT FK_Jadwal_Dosen FOREIGN KEY (NIK) REFERENCES Dosen_Pembimbing(NIK) ON DELETE CASCADE,
+    CONSTRAINT FK_Jadwal_Mhs FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE
+);
+
+-- log buat admin
+CREATE TABLE log_aktivitas (
+    idLog INT PRIMARY KEY AUTO_INCREMENT,
+    id_users VARCHAR(20) NULL,
+    aksi VARCHAR(100) NOT NULL,      -- Jenis aksi (CREATE_JADWAL, LOGIN, AJUKAN_bimbingan)
+    waktu DATETIME DEFAULT CURRENT_TIMESTAMP,
     
-    -- Validasi (Opsional tapi bagus): 
-    -- Pastikan dalam satu baris, tidak boleh dua-duanya kosong
-    -- (Harus punya salah satu)
-    CONSTRAINT Cek_Pemilik CHECK (NPM IS NOT NULL OR NIK IS NOT NULL)
+    FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL
 );
