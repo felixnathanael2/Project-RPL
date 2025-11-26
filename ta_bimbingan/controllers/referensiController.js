@@ -11,6 +11,6 @@ export const pengajuanInit = async (req, res) => {
         res.json({ lokasi, dosen });
     } catch (e) {
         // statements
-        res.status(500).json({ message: 'Gagal ambil data' });
+        res.status(500).json({ message: "Gagal ambil data" });
     }
 };

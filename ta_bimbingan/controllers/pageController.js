@@ -21,6 +21,6 @@ export const dashboard = (req, res) => {
     }
 };
 
-export const pengajuan = () => {
-    res.sendFile(path.join(__dirname, "../private/PengajuanBimbingan"));
+export const pengajuan = (req, res) => {
+    res.sendFile(path.join(__dirname, "../private/PengajuanBimbingan.html"));
 };
