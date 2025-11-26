@@ -10,36 +10,43 @@ export async function getRiwayatBimbingan(userId, role) {
     let queryParams = [userId];
 
     // sesuaiin aja dah
-    if (role === "Mahasiswa") {
+    if (role === 1) {
+        // buat mhs
         // ... Query SELECT Mahasiswa JOIN Dosen dan Lokasi ...
         query = `
                 SELECT 
-                    B.tanggal_Waktu_Bimbingan AS tanggal, 
-                    B.catatan_Bimbingan AS catatan, 
-                    GROUP_CONCAT(D.nama_Dosen SEPARATOR ', ') AS nama_Dosen, 
-                    L.namaRuangan, B.status AS status
-                FROM Bimbingan B
-                LEFT JOIN Bimbingan_Dosen BD ON B.idBimbingan = BD.idBimbingan
-                LEFT JOIN Dosen_Pembimbing D ON BD.NIK = D.NIK
-                LEFT JOIN Lokasi L ON B.idLokasi = L.idLokasi
-                WHERE B.NPM = ?
-                GROUP BY B.idBimbingan
-                ORDER BY B.tanggal_Waktu_Bimbingan DESC;
+                    U.nama, 
+                    L.nama_ruangan, 
+                    B.tanggal, 
+                    B.waktu, 
+                    B.catatan_bimbingan, 
+                    B.status
+                FROM bimbingan B
+                JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+                JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+                JOIN data_ta DTA ON B.id_data = DTA.id_data
+                JOIN users U ON BD.nik = U.id_users
+                WHERE DTA.id_users = ?
+                ORDER BY B.tanggal DESC, B.waktu DESC;
             `;
-    } else if (role === "Dosen") {
+    } else if (role === 2) {
+        // buat dosen
         // ... Query SELECT Dosen JOIN Mahasiswa dan Lokasi ...
         query = `
                 SELECT 
-                    B.tanggal_Waktu_Bimbingan AS tanggal, 
-                    B.catatan_Bimbingan AS catatan, 
-                    M.nama_Mahasiswa, 
-                    L.namaRuangan, B.status AS status
-                FROM Bimbingan B
-                LEFT JOIN Mahasiswa_TA M ON B.NPM = M.NPM
-                LEFT JOIN Lokasi L ON B.idLokasi = L.idLokasi
-                LEFT JOIN Bimbingan_Dosen BD ON B.idBimbingan = BD.idBimbingan
-                WHERE BD.NIK = ?
-                ORDER BY B.tanggal_Waktu_Bimbingan DESC;
+                    B.tanggal, 
+                    B.waktu, 
+                    B.catatan_bimbingan AS catatan, 
+                    M.nama AS nama_mahasiswa, 
+                    L.nama_ruangan AS nama_ruangan, 
+                    B.status
+                FROM bimbingan B
+                JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+                JOIN data_ta DTA ON B.id_data = DTA.id_data
+                JOIN users M ON DTA.id_users = M.id_users
+                LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+                WHERE BD.nik = ?
+                ORDER BY B.tanggal DESC, B.waktu DESC;
             `;
     }
 
@@ -62,17 +69,22 @@ export async function createPengajuan(data) {
         // misal ada query yang gagal, maka query yang berhasil ga disimpen ke database (semisal ada bug di kode atau lainnya)
         await connection.beginTransaction();
 
-        // Gabungkan Tanggal dan Jam menjadi DateTime string
-        // data.tanggal = '2025-11-20', data.jam = '09:00' -> '2025-11-20 09:00:00'
-        const dateTime = `${data.tanggal} ${data.jam}:00`;
+        const queryDataTA = "SELECT id_data FROM data_ta WHERE id_users = ?";
+
+        const [id_data] = await connection.execute(queryDataTA, [data.npm]);
 
         // A. Insert Bimbingan
         const queryInsert = `
-          INSERT INTO Bimbingan (tanggal_Waktu_Bimbingan, catatan_Bimbingan, status, NPM, idLokasi)
-          VALUES (?, '-', 'Menunggu', ?, ?)
+          INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, status)
+          VALUES (?, ?, ?, ?, '-', 'Menunggu')
         `;
 
-        const res = await connection.execute(queryInsert, [dateTime, data.npm, data.lokasiId]);
+        const res = await connection.execute(queryInsert, [
+            id_data[0].id_data,
+            data.lokasiId,
+            data.tanggal,
+            data.waktu,
+        ]);
 
         // ambil id bimbingan, karena autoincrement jadi bisa ambil dari InsertId
         const newId = res[0].insertId;
@@ -80,8 +92,8 @@ export async function createPengajuan(data) {
         // B. Insert Dosen Peserta, pake id bimbingan nya pake id yang udah diambil tadi
         for (const nik of data.nik) {
             await connection.execute(
-                `INSERT INTO Bimbingan_Dosen (idBimbingan, NIK) VALUES (?, ?)`,
-                [newId, nik]
+                `INSERT INTO Bimbingan_Dosen (id_bimbingan, nik) VALUES (?, ?)`,
+                [newId, nik],
             );
         }
 

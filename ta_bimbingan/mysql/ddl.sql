@@ -24,7 +24,7 @@ CREATE TABLE data_ta (
 
     -- Atribut Khusus dari ERD
     semester INT,
-    Topik VARCHAR(250),     -- Judul/Topik TA
+    topik VARCHAR(250),     -- Judul/Topik TA
 	jenis_ta INT NOT NULL, 	-- sia ambil ta brp
     status_eligible BOOLEAN DEFAULT FALSE -- Apakah boleh sidang/bimbingan
 );
@@ -101,7 +101,7 @@ CREATE TABLE notifikasi (
     id_notif INT PRIMARY KEY AUTO_INCREMENT,
     isi TEXT NOT NULL,
     is_read BOOLEAN DEFAULT FALSE, -- buat di UI, kalo misal blm di liat ada highlight ato smth
-    tanggal_Waktu DATETIME DEFAULT CURRENT_TIMESTAMP,
+    tanggal_waktu DATETIME DEFAULT CURRENT_TIMESTAMP,
     
     -- Relasi Owner notifikasi (FK)
     id_users VARCHAR(20),
@@ -112,12 +112,12 @@ CREATE TABLE notifikasi (
 -- 9. Tabel Jadwal User (Sesuai ERD)
 -- Ini untuk jadwal ketersediaan/kuliah Mahasiswa DAN Dosen
 CREATE TABLE jadwal_user (
-idJadwal INT PRIMARY KEY AUTO_INCREMENT,
+	id_jadwal INT PRIMARY KEY AUTO_INCREMENT,
     
     -- Data Jadwalnya
-    Hari VARCHAR(10), -- Senin, Selasa, dll
-    Jam_mulai TIME,
-    Jam_akhir TIME,
+    hari ENUM('Senin','Selasa','Rabu','Kamis','Jumat','Sabtu','Minggu'), -- Senin, Selasa, dll
+    jam_mulai TIME,
+    jam_akhir TIME,
     
     -- RELASI "BERTIGA" (Mahasiswa, Dosen, Jadwal)
     -- Kita pasang dua kolom ID, tapi boleh NULL (kosong)
@@ -129,7 +129,7 @@ idJadwal INT PRIMARY KEY AUTO_INCREMENT,
 
 -- log buat admin
 CREATE TABLE log_aktivitas (
-    idLog INT PRIMARY KEY AUTO_INCREMENT,
+    id_log INT PRIMARY KEY AUTO_INCREMENT,
     id_users VARCHAR(20) NULL,
     aksi VARCHAR(100) NOT NULL,      -- Jenis aksi (CREATE_JADWAL, LOGIN, AJUKAN_bimbingan)
     waktu DATETIME DEFAULT CURRENT_TIMESTAMP,

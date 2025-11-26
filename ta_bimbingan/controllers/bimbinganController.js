@@ -1,6 +1,6 @@
 import {
     getRiwayatBimbingan,
-    createPengajuan
+    createPengajuan,
 } from "../services/bimbinganService.js";
 
 export const riwayat = async (req, res) => {
@@ -18,14 +18,20 @@ export const riwayat = async (req, res) => {
 export const ajukanBimbingan = async (req, res) => {
     try {
         // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
-        const { tanggal, jam, lokasiId, nik } = req.body;
+        const { tanggal, waktu, lokasiId, nik } = req.body;
 
-        await createPengajuan({ tanggal, jam, lokasiId, nik, npm: req.user.id });
+        await createPengajuan({
+            tanggal,
+            waktu,
+            lokasiId,
+            nik,
+            npm: req.user.id,
+        });
 
-        res.json({ message: 'Pengajuan berhasil' });
+        res.json({ message: "Pengajuan berhasil" });
     } catch (e) {
         // statements
         console.log(e);
-        res.status(500).json({ message: 'Gagal submit' });
+        res.status(500).json({ message: "Gagal submit" });
     }
 };
