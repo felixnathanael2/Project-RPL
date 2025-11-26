@@ -43,8 +43,7 @@
     </div>
 
     <main class="container">
-        
-        <div class="content-wrapper">
+        <div class="content-wrapper hidden">
             <h2 class="page-title">Permintaan Bimbingan Masuk</h2>
 
             <div class="glass-box requests-container">
@@ -116,15 +115,14 @@
             </div>
         </div>
 
-        <div class="popup hidden">
-            <h1>Alasan Menolak</h1>
-            <input type="text">
-            <div id="button-popup">
-                <div id="batal">
-                    <p>batal</p>
-                </div>
-                <div id="Kirim">
-                    <p>Kirim</p>
+        <div class="modal-overlay">
+            <div class="popup glass-box">
+                <h1 id="header-popup">Alasan Menolak</h1>
+                <textarea name="input-text" id="input-areatext" placeholder="..."></textarea>
+                
+                <div class="button-popup">
+                    <button type="button" class="btn btn-reject">Batal</button>
+                    <button type="submit" class="btn btn-accept">Kirim</button>
                 </div>
             </div>
         </div>
