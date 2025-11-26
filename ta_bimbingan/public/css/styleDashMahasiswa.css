@@ -1,151 +1,151 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Gilroy', 'Poppins', sans-serif;
-  font-weight: normal;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gilroy", "Poppins", sans-serif;
+    font-weight: normal;
 }
 
 body {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url("assets/Background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  color: white;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../assets/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
 }
 
 /* Efek Blur */
 .glass-box {
-  background: #A3C0EB45;
-  backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    background: #a3c0eb45;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
 
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* HEADER */
 .nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  height: 80px;
-  width: 100%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
 }
 
 .nav-left,
 .nav-middle,
 .nav-right {
-  display: flex;
-  align-items: center;
-  height: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 /* Logo (Ukuran, posisi, DLL) */
 .nav-left {
-  gap: 15px;
-  padding-right: 25px;
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
+    gap: 15px;
+    padding-right: 25px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .nav-left img {
-  height: 40px;
-  width: auto;
-  object-fit: contain;
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 }
 
 /* Header Tengah */
 .nav-middle {
-  gap: 70px;
+    gap: 70px;
 }
 
 .nav-middle a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 1);
-  font-size: 16px;
-  font-weight: 600;
-  transition: 0.3s;
-  position: relative;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+    position: relative;
 }
 
 .nav-middle a:hover {
-  color: white;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Header Kanan */
 .nav-right {
-  gap: 7px;
-  padding-left: 25px;
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
+    gap: 7px;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .nav-right a {
-  text-decoration: none;
-  color: white;
-  font-size: 22px;
-  transition: transform 0.2s;
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: transform 0.2s;
 }
 
 .nav-right a:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
-.nav-right div{
-  padding: 0px 6px;
+.nav-right div {
+    padding: 0px 6px;
 }
 
-main{
-  flex: 1;
-  width: 100%;
-  height: 80vh;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
+main {
+    flex: 1;
+    width: 100%;
+    height: 80vh;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
 }
 
-.main_container{
-  width: 40%;
-  height: 42rem;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
+.main_container {
+    width: 40%;
+    height: 42rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
 }
 
 /* --- RIWAYAT CONTAINER --- */
 .riwayat {
     /* 1. Pastikan tingginya sama dengan kalender */
-    height: 42rem; 
+    height: 42rem;
     width: 25rem;
 
     /* 2. Setup Flexbox agar susunannya Vertikal (Atas ke Bawah) */
     display: flex !important; /* Pakai !important jika perlu menimpa glass-box */
-    flex-direction: column; 
-    
+    flex-direction: column;
+
     /* 3. PENTING: Reset posisi agar mulai dari atas, bukan tengah */
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: stretch; /* Agar isinya lebar penuh */
-    
+
     /* Styling tambahan */
     padding: 1.5rem;
     gap: 10px;
-    
+
     /* Pastikan properti box model aman */
     box-sizing: border-box;
 }
@@ -179,10 +179,10 @@ main{
 /* --- LIST SCROLLABLE --- */
 /* Ini membuat list bisa di-scroll jika datanya banyak */
 .riwayat-list {
-    flex: 1; 
-    
-    overflow-y: auto; 
-    
+    flex: 1;
+
+    overflow-y: auto;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -203,10 +203,17 @@ main{
 
 /* --- KARTU ITEM RIWAYAT --- */
 .history-card {
-    background: rgba(255, 255, 255, 0.15); /* Latar sedikit lebih terang dari glass box utama */
+    background: rgba(
+        255,
+        255,
+        255,
+        0.15
+    ); /* Latar sedikit lebih terang dari glass box utama */
     border-radius: 12px;
     padding: 12px 15px;
-    transition: transform 0.2s, background 0.2s;
+    transition:
+        transform 0.2s,
+        background 0.2s;
     border-left: 4px solid var(--cyan); /* Aksen warna di kiri */
 }
 
@@ -271,7 +278,7 @@ main{
 .side {
     width: 10%;
     height: 70%;
-    
+
     /* Matikan background glass di container pembungkus */
     padding: 0;
 
@@ -279,7 +286,7 @@ main{
     flex-direction: column;
     /* Jarak antar 3 kotak anak */
     justify-content: space-between;
-    gap: 1rem; 
+    gap: 1rem;
 }
 
 /* Style umum untuk 3 kotak kecil di kanan */
@@ -326,7 +333,7 @@ main{
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 10px;
 }
 
@@ -375,23 +382,23 @@ main{
 
 /* FOOTER */
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  height: 60px;
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  margin-top: auto;
-  border-radius: 0px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 60px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: auto;
+    border-radius: 0px !important;
 }
 
 .footer p {
-  font-size: 12px;
-  opacity: 0.8;
+    font-size: 12px;
+    opacity: 0.8;
 }
 
 .footer-left img {
-  height: 35px;
-  width: auto;
+    height: 35px;
+    width: auto;
 }

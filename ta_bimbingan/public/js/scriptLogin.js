@@ -11,7 +11,7 @@ loginForm.addEventListener("submit", async (e) => {
     const password = userInput[1].value.trim();
 
     try {
-        const response = await fetch("/login", {
+        const response = await fetch("/api/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password }),
@@ -22,7 +22,7 @@ loginForm.addEventListener("submit", async (e) => {
         if (response.ok) {
             localStorage.setItem("userName", result.user.name);
             localStorage.setItem("userRole", result.user.role);
-            window.location.href = "/dashboard.html";
+            window.location.href = "/dashboard";
         } else {
             messageEl.textContent = result.message || "Login gagal.";
         }
