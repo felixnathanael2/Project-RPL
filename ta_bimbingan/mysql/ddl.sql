@@ -129,10 +129,11 @@ CREATE TABLE jadwal_user (
 
 -- log buat admin
 CREATE TABLE log_aktivitas (
-    idLog INT PRIMARY KEY AUTO_INCREMENT,
+    id_log INT PRIMARY KEY AUTO_INCREMENT,
     id_users VARCHAR(20) NULL,
     aksi VARCHAR(100) NOT NULL,      -- Jenis aksi (CREATE_JADWAL, LOGIN, AJUKAN_bimbingan)
     waktu DATETIME DEFAULT CURRENT_TIMESTAMP,
     
     FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL
 );
+
