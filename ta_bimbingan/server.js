@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // ... (Middleware Global & Session setup, sama seperti sebelumnya) ...
 app.use(express.json());
+
 app.use(express.static("public"));
 
 //secret: Ini adalah Tanda Tangan Digital. String rahasia yang digunakan untuk menyegel cookie sesi agar tidak bisa dipalsukan oleh hacker.
@@ -17,20 +18,22 @@ app.use(express.static("public"));
 //cookie: { maxAge: ... }: Kedaluwarsa Kartu Tamu. Menentukan berapa lama cookie sesi itu valid di browser user. Di sini diset 24 jam (1000 ms * 60 dtk * 60 mnt * 24 jam).
 app.use(
     session({
-        secret: process.env.SESSION_SECRET || "fallback_secret_key_yang_sangat_panjang",
+        secret:
+            process.env.SESSION_SECRET ||
+            "fallback_secret_key_yang_sangat_panjang",
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1000 * 60 * 60 * 24 },
-    })
+        cookie: { maxAge: 1000 * 60 },
+    }),
 );
-
-
-app.use(routes);
 
 // Route Utama & Start Server
 app.get("/", (req, res) => {
-    res.redirect("/index.html");
+    res.redirect("/page/LoginPage.html");
 });
+
+app.use(routes);
+
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server berjalan di http://localhost:${PORT}`);
 });

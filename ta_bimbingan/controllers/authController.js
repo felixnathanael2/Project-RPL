@@ -2,30 +2,18 @@ import { connectDB } from "../db/db.js";
 
 // controller ketika login
 export const login = async (req, res) => {
-	// ... (Logika login, mencari user, membandingkan password teks biasa, dan membuat req.session) ...
-    const { id, password, role } = req.body;
+    // ... (Logika login, mencari user, membandingkan password teks biasa, dan membuat req.session) ...
+    const { email, password } = req.body;
     let connection;
     try {
         const pool = await connectDB();
         connection = await pool.getConnection();
 
-        let tableName, idColumn, nameColumn;
-        if (role === "Mahasiswa") {
-            tableName = "Mahasiswa_TA";
-            idColumn = "NPM";
-            nameColumn = "nama_Mahasiswa";
-        } else if (role === "Dosen") {
-            tableName = "Dosen_Pembimbing";
-            idColumn = "NIK";
-            nameColumn = "nama_Dosen";
-        } else {
-            return res.status(400).json({ message: "Peran tidak valid." });
-        }
-
         const [rows] = await connection.execute(
-            `SELECT ${idColumn}, password, ${nameColumn} FROM ${tableName} WHERE ${idColumn} = ?`,
-            [id]
+            `SELECT id_users, password, nama, role FROM users WHERE email = ?`,
+            [email]
         );
+
         const user = rows[0];
 
         if (!user || password !== user.password) {
@@ -33,14 +21,16 @@ export const login = async (req, res) => {
         }
 
         req.session.isLoggedIn = true;
-        req.session.userId = user[idColumn];
-        req.session.role = role;
-        req.session.userName = user[nameColumn];
+        req.session.userId = user.id_users;
+        req.session.email = email;
+        req.session.role = user.role;
+        req.session.userName = user.nama;
 
         res.json({
             message: "Login berhasil!",
             user: {
                 id: req.session.userId,
+                email: req.session.email,
                 role: req.session.role,
                 name: req.session.userName,
             },

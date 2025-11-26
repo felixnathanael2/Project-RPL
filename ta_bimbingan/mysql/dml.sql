@@ -1,69 +1,81 @@
-INSERT INTO Admin (email, password) VALUES
-('admin@unpar.ac.id', 'admin123');
+-- ==========================================
+-- USERS
+-- ==========================================
+INSERT INTO users (id_users, email, nama, password, role) VALUES
+('kaprodi', 'kaprodi@unpar.ac.id', 'Lord Kaprodi', 'admin123', 3),
+(20250001, 'davin@unpar.ac.id', 'Davin Senat', 'pass123', 2),
+(6182301055, '6182301055@student.unpar.ac.id', 'Gregorius Jason Maresi', 'pass123', 1);
 
-INSERT INTO Dosen_Pembimbing (NIK, nama_Dosen, email_Dosen, password) VALUES
-('20100001', 'Dr. Andi Saputra', 'andi.saputra@unpar.ac.id', 'pass123'),
-('20120005', 'Dr. Maria Gunawan', 'maria.gunawan@unpar.ac.id', 'pass123'),
-('20130010', 'Dr. Budi Hartono', 'budi.hartono@unpar.ac.id', 'pass123'),
-('20150012', 'Dr. Clara Wijaya', 'clara.wijaya@unpar.ac.id', 'pass123');
+-- ==========================================
+-- DATA TA
+-- ==========================================
+INSERT INTO data_ta (id_users, semester, Topik, jenis_ta, status_eligible)
+VALUES
+('6182301055', 5, 'Sistem Penjadwalan Bimbingan TA berbasis Web', 1, TRUE),
+('6182301055', 6, 'Analisis Performa YOLO pada Deteksi Objek', 2, FALSE);
 
-INSERT INTO Mahasiswa_TA 
-(NPM, nama_Mahasiswa, email_Mahasiswa, password, angkatan, Topik, TA1, TA2) VALUES
-('6182101001', 'Jason Pratama', 'jason21@unpar.ac.id', 'pass1', 2021, 'Sistem Rekomendasi Film', TRUE, FALSE),
-('6182101002', 'Michelle Tan', 'michelle21@unpar.ac.id', 'pass1', 2021, 'Machine Learning untuk Deteksi Emosi', TRUE, FALSE),
-('6182101003', 'Rafi Santoso', 'rafi21@unpar.ac.id', 'pass1', 2021, 'Deep Learning for Traffic Sign Recognition', TRUE, FALSE),
-('6182201001', 'Kevin Aditya', 'kevin22@unpar.ac.id', 'pass1', 2022, 'Optimasi Jadwal Kuliah', FALSE, FALSE),
-('6182201002', 'Aurelia Chandra', 'aurelia22@unpar.ac.id', 'pass1', 2022, 'Chatbot dengan NLP', FALSE, FALSE);
+-- ==========================================
+-- LOKASI
+-- ==========================================
+INSERT INTO lokasi (nama_ruangan) VALUES
+('Lab TA'),
+('9015'),
+('9016'),
+('9017'),
+('9018');
 
-INSERT INTO Plotting_Pembimbing (NPM, NIK, status_pembimbing) VALUES
-('6182101001', '20100001', 'Pembimbing 1'),
-('6182101001', '20120005', 'Pembimbing 2'),
-('6182101002', '20130010', 'Pembimbing 1'),
-('6182101003', '20150012', 'Pembimbing 1');
-
-INSERT INTO Lokasi (namaRuangan, statusRuangan) VALUES
-('Ruang 9013', 'Tersedia'),
-('Ruang 9014', 'Tersedia'),
-('Ruang 9015', 'Penuh'),
-('Ruang 9016', 'Tersedia'),
-('Ruang 9017', 'Tersedia'),
-('Ruang 9018', 'Tersedia'),
-('Ruang Sidang', 'Penuh');
-
-INSERT INTO Rentang_Semester (namaSemester, tanggalAwalSemester, tanggalUTSSelesai, tanggalUASSelesai) VALUES
+-- ==========================================
+-- RENTANG SEMESTER
+-- ==========================================
+INSERT INTO rentang_semester (nama_semester, tanggal_awal_semester, tanggal_UTS_selesai, tanggal_UAS_selesai) VALUES
 ('Ganjil 2024/2025', '2024-08-01', '2024-10-15', '2024-12-20');
 
-INSERT INTO Bimbingan (
-    tanggal_Waktu_Bimbingan, catatan_Bimbingan, status, NPM, idLokasi
-) VALUES
-('2025-01-10 09:00:00', 'Bahas outline awal', 'Menunggu', '6182101001', 1),
-('2025-01-12 10:00:00', 'Revisi bab 1', 'Disetujui', '6182101002', 2),
-('2025-01-15 14:00:00', 'Diskusi dataset', 'Selesai', '6182101003', 4),
-('2025-01-18 08:00:00', 'Cek progress minggu ini', 'Menunggu', '6182201001', 1),
-('2025-01-20 13:00:00', 'Review NLP model', 'Disetujui', '6182201002', 2);
+-- ==========================================
+-- PLOTTING PEMBIMBING
+-- ==========================================
+INSERT INTO plotting_pembimbing (npm, nik, status_pembimbing) VALUES
+('6182301055', '20250001', 1);
 
-INSERT INTO Bimbingan_Dosen (idBimbingan, NIK) VALUES
-(1, '20100001'),
-(1, '20120005'),
-(2, '20130010'),
-(3, '20150012'),
-(4, '20100001'),
-(5, '20120005');
+-- ==========================================
+-- JADWAL USER
+-- ==========================================
+INSERT INTO jadwal_user (Hari, Jam_mulai, Jam_akhir, id_users) VALUES
+('Senin',  '08:00', '10:00', '20250001'),
+('Rabu',   '13:00', '15:00', '20250001'),
 
-INSERT INTO Notifikasi (isi, NPM, NIK) VALUES
-('Jadwal bimbingan Anda telah disetujui', '6182101002', NULL),
-('Mohon revisi Bab 1 sebelum bimbingan berikutnya', '6182101001', '20100001'),
-('Bimbingan selesai, silakan upload revisi', '6182101003', '20150012'),
-('Pengingat: Bimbingan minggu ini jam 08:00', '6182201001', '20100001');
+('Selasa', '09:00', '11:00', '6182301055'),
+('Kamis',  '10:00', '12:00', '6182301055');
 
-INSERT INTO Jadwal_User (Hari, Jam_Mulai, Jam_Akhir, NIK) VALUES
-('Senin', '08:00:00', '10:00:00', '20100001'),
-('Rabu', '13:00:00', '15:00:00', '20120005'),
-('Kamis', '09:00:00', '11:00:00', '20130010');
+-- ==========================================
+-- BIMBINGAN
+-- ==========================================
+INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, status)
+VALUES
+(1, 1, '2025-01-10', '09:00:00', 'Diskusi awal terkait judul & scope.', 'Disetujui'),
+(1, 2, '2025-01-20', '13:00:00', 'Review BAB 1 dan 2.', 'Selesai'),
+(1, NULL, '2025-02-05', '10:30:00', 'Pengajuan jadwal online.', 'Menunggu');
 
-INSERT INTO Jadwal_User (Hari, Jam_Mulai, Jam_Akhir, NPM) VALUES
-('Senin', '10:00:00', '12:00:00', '6182101001'),
-('Selasa', '08:00:00', '11:00:00', '6182101002'),
-('Jumat', '13:00:00', '15:00:00', '6182101003'),
-('Rabu', '07:00:00', '09:00:00', '6182201001'),
-('Kamis', '08:00:00', '10:00:00', '6182201002');
+
+-- ==========================================
+-- BIMBINGAN DOSEN
+-- ==========================================
+INSERT INTO bimbingan_dosen (id_bimbingan, nik) VALUES
+(1, '20250001');
+
+-- ==========================================
+-- NOTIFIKASI
+-- ==========================================
+INSERT INTO notifikasi (isi, id_users, is_read)
+VALUES
+('Pengajuan bimbingan Anda sedang diproses.', '6182301055', FALSE),
+('Mahasiswa mengajukan bimbingan baru.', '20250001', FALSE),
+('Jadwal bimbingan telah disetujui.', '6182301055', TRUE);
+
+
+-- ==========================================
+-- LOG AKTIVITAS
+-- ==========================================
+INSERT INTO log_aktivitas (id_users, aksi) VALUES
+(6182301055, 'AJUKAN_BIMBINGAN'),
+(20250001, 'SETUJUI_BIMBINGAN'),
+('kaprodi', 'LOGIN');
