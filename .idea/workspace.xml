@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/UIPBW.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/DasboardMahasiswa.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/FA - Logo BW Monokrom UNPAR - Horizontal - Wordmark Putih.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/FA - Logo Universitas Katolik Parahyangan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/Kalender Hasil Input.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/Logo IF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/logo if 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/calender.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/styleDashMahas.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login Page/LoginPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login Page/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login Page/assets/Logo IF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login Page/assets/MBTA-Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Login Page/styleLogin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lupa Password/LupaPasswordPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lupa Password/styleLupa.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification Page/NotificationPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification Page/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification Page/assets/Logo IF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification Page/assets/MBTA-Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification Page/styleNotif.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/PengajuanBimbingan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/PengajuanBimbingan.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/stylePengajuan.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile Page/ProfilePage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile Page/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile Page/assets/Logo IF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile Page/assets/MBTA-Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Profile Page/styleProfile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reset Password/ResetPasswordPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reset Password/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reset Password/assets/Logo IF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reset Password/assets/MBTA-Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reset Password/styleReset.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/RiwayatBImbinganPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/FA - Logo Berwarna UNPAR - Horizontal - Wordmark Putih 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/MBTA-Icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/styleRiwayat.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RiwayatBimbingan/RiwayatBimbingan.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RiwayatBimbingan/styleRiwayat.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/styleView.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/viewPermintaan.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Admin/catBim.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/PengajuanBimbingan/PengajuanBimbingan.html" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="35uLjcPlNSt6iIKBrrSJctyfWbq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;branchBaru&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/KULIAH/Sem 5/RPL/TUBES/UIPBW&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="" />
+      <created>1763955145713</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1763955145713</updated>
+      <workItem from="1763955146983" duration="3374000" />
+      <workItem from="1763959865622" duration="1248000" />
+      <workItem from="1764048018341" duration="5114000" />
+      <workItem from="1764156975178" duration="2284000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
