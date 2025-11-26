@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard Mahasiswa</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+            rel="stylesheet"
+        />
+        <link rel="shortcut icon" href="/assets/MBTA.png" type="image/x-icon" />
+        <link rel="stylesheet" href="/css/styleDashMahasiswa.css" />
+        <link rel="stylesheet" href="/css/calender.css" />
+
+        <link rel="stylesheet" href="/css/font.css" />
+        <script src="/js/scriptDashboardMahasiswa.js" defer></script>
+    </head>
+
+    <body>
+        <div class="nav glass-box">
+            <div class="nav-left">
+                <img src="/assets/LogoUnpar.png" alt id="unpar" />
+                <img src="/assets/IF.png" alt id="if" />
+                <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+            </div>
+            <div class="nav-middle">
+                <div id="nav-beranda">
+                    <a href>Beranda</a>
+                </div>
+                <div id="nav-riwayat">
+                    <a href>Riwayat</a>
+                </div>
+                <div id="nav-pengajuan">
+                    <a href>Pengajuan</a>
+                </div>
+                <div id="nav-permintaan">
+                    <a href>Permintaan</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div id="notif">
+                    <a href><i class="ri-notification-4-line"></i></a>
+                </div>
+                <div id="profile">
+                    <a href><i class="ri-account-circle-line"></i></a>
+                </div>
+                <div id="logout">
+                    <a href><i class="ri-logout-box-r-line"></i></a>
+                </div>
+            </div>
+        </div>
+        <main>
+            <div class="main_container glass-box">
+                <div id="header-kalender">
+                    <div id="left-header">
+                        <h3>Kalender</h3>
+                        <label class="custom-switch">
+                            <input type="checkbox" id="viewToggle" />
+                            <span class="slider">
+                                <span class="knob"></span>
+                                <span class="switch-label label-month"
+                                    >Bulan</span
+                                >
+                                <span class="switch-label label-week"
+                                    >Minggu</span
+                                >
+                            </span>
+                        </label>
+                    </div>
+                    <div id="right-header">
+                        <p>April 2025</p>
+                        <div id="button-arrow">
+                            <i class="ri-arrow-right-s-line"></i>
+                            <i class="ri-arrow-left-s-line"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="kalender">
+                    <div class="body">
+                        <div class="month_calendar"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="riwayat glass-box">
+                <div class="riwayat-header">
+                    <h3>Riwayat Bimbingan</h3>
+                    <a href="#" id="see-all">Lihat Semua</a>
+                </div>
+
+                <div class="riwayat-list">
+                    <div class="history-card">
+                        <div class="card-header">
+                            <h5>Bimbingan 4</h5>
+                            <span class="date-badge">21 Mar</span>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                <i class="ri-user-star-line"></i> Vania Natali,
+                                Raymond
+                            </p>
+                            <a href="#" class="detail-link"
+                                >Lihat Detail <i class="ri-arrow-right-line"></i
+                            ></a>
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <div class="card-header">
+                            <h5>Bimbingan 3</h5>
+                            <span class="date-badge">16 Mar</span>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                <i class="ri-user-star-line"></i> Vania Natali
+                            </p>
+                            <a href="#" class="detail-link"
+                                >Lihat Detail <i class="ri-arrow-right-line"></i
+                            ></a>
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <div class="card-header">
+                            <h5>Bimbingan 2</h5>
+                            <span class="date-badge">09 Mar</span>
+                        </div>
+                        <div class="card-body">
+                            <p><i class="ri-user-star-line"></i> Raymond</p>
+                            <a href="#" class="detail-link"
+                                >Lihat Detail <i class="ri-arrow-right-line"></i
+                            ></a>
+                        </div>
+                    </div>
+
+                    <div class="history-card">
+                        <div class="card-header">
+                            <h5>Bimbingan 1</h5>
+                            <span class="date-badge">02 Mar</span>
+                        </div>
+                        <div class="card-body">
+                            <p><i class="ri-user-star-line"></i> Raymond</p>
+                            <a href="#" class="detail-link"
+                                >Lihat Detail <i class="ri-arrow-right-line"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side">
+                <div class="side-box date-box glass-box">
+                    <div class="date-top">
+                        <span id="hari">Sen</span>
+                        <span id="bulan">Apr</span>
+                    </div>
+                    <h1 id="tanggal">01</h1>
+                </div>
+
+                <div class="side-box reminder-box glass-box">
+                    <div class="reminder-header">
+                        <span>Pengingat</span>
+                        <i class="ri-alarm-line"></i>
+                    </div>
+                    <div class="reminder-content">
+                        <p>Bimbingan 5 dimulai hari ini!</p>
+                    </div>
+                </div>
+
+                <div class="side-box upload-box glass-box">
+                    <button class="btn-upload">
+                        <i class="ri-upload-2-line"></i>
+                        <span>Unggah Jadwal Kuliah</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+        <div class="footer glass-box">
+            <div class="footer-left">
+                <img src="assets/LogoBWUnpar.png" alt />
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2025 Kelompok 8-A RPL</p>
+            </div>
+        </div>
+    </body>
+</html>
