@@ -20,3 +20,7 @@ export const dashboard = (req, res) => {
         return res.status(403).json({ message: "Role tidak valid." });
     }
 };
+
+export const pengajuan = () => {
+    res.sendFile(path.join(__dirname, "../private/PengajuanBimbingan"));
+};
