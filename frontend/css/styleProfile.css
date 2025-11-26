@@ -13,7 +13,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-image: url("assets/Background.png");
+  background-image: url("../assets/Background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
