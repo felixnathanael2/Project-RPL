@@ -10,7 +10,7 @@ import {
 } from "../controllers/bimbinganController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
 import { pengajuanInit } from "../controllers/referensiController.js";
-import { dashboard } from "../controllers/pageController.js";
+import { dashboard, pengajuan } from "../controllers/pageController.js";
 
 // router buat endpoint
 const router = express.Router();
@@ -27,5 +27,6 @@ router.post("/api/ajukan-bimbingan", ajukanBimbingan);
 router.get("/api/check-availability", checkAvailability);
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/dashboard", dashboard);
+router.get("/pengajuan", pengajuan);
 
 export default router;
