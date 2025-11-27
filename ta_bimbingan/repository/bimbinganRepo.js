@@ -10,36 +10,43 @@ export async function getRiwayatBimbingan(userId, role) {
     let queryParams = [userId];
 
     // sesuaiin aja dah
-    if (role === "Mahasiswa") {
+    if (role === 1) {
+        // buat mhs
         // ... Query SELECT Mahasiswa JOIN Dosen dan Lokasi ...
         query = `
                 SELECT 
-                    B.tanggal_Waktu_Bimbingan AS tanggal, 
-                    B.catatan_Bimbingan AS catatan, 
-                    GROUP_CONCAT(D.nama_Dosen SEPARATOR ', ') AS nama_Dosen, 
-                    L.namaRuangan, B.status AS status
-                FROM Bimbingan B
-                LEFT JOIN Bimbingan_Dosen BD ON B.idBimbingan = BD.idBimbingan
-                LEFT JOIN Dosen_Pembimbing D ON BD.NIK = D.NIK
-                LEFT JOIN Lokasi L ON B.idLokasi = L.idLokasi
-                WHERE B.NPM = ?
-                GROUP BY B.idBimbingan
-                ORDER BY B.tanggal_Waktu_Bimbingan DESC;
+                    U.nama, 
+                    L.nama_ruangan, 
+                    B.tanggal, 
+                    B.waktu, 
+                    B.catatan_bimbingan, 
+                    B.status
+                FROM bimbingan B
+                JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+                JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+                JOIN data_ta DTA ON B.id_data = DTA.id_data
+                JOIN users U ON BD.nik = U.id_users
+                WHERE DTA.id_users = ?
+                ORDER BY B.tanggal DESC, B.waktu DESC;
             `;
-    } else if (role === "Dosen") {
+    } else if (role === 2) {
+        // buat dosen
         // ... Query SELECT Dosen JOIN Mahasiswa dan Lokasi ...
         query = `
                 SELECT 
-                    B.tanggal_Waktu_Bimbingan AS tanggal, 
-                    B.catatan_Bimbingan AS catatan, 
-                    M.nama_Mahasiswa, 
-                    L.namaRuangan, B.status AS status
-                FROM Bimbingan B
-                LEFT JOIN Mahasiswa_TA M ON B.NPM = M.NPM
-                LEFT JOIN Lokasi L ON B.idLokasi = L.idLokasi
-                LEFT JOIN Bimbingan_Dosen BD ON B.idBimbingan = BD.idBimbingan
-                WHERE BD.NIK = ?
-                ORDER BY B.tanggal_Waktu_Bimbingan DESC;
+                    B.tanggal, 
+                    B.waktu, 
+                    B.catatan_bimbingan AS catatan, 
+                    M.nama AS nama_mahasiswa, 
+                    L.nama_ruangan AS nama_ruangan, 
+                    B.status
+                FROM bimbingan B
+                JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+                JOIN data_ta DTA ON B.id_data = DTA.id_data
+                JOIN users M ON DTA.id_users = M.id_users
+                LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+                WHERE BD.nik = ?
+                ORDER BY B.tanggal DESC, B.waktu DESC;
             `;
     }
 

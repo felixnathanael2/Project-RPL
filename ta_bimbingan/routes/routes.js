@@ -28,5 +28,6 @@ router.get("/api/check-availability", checkAvailability);
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/dashboard", dashboard);
 router.get("/pengajuan", pengajuan);
+router.get("/api/riwayat", riwayat);
 
 export default router;
