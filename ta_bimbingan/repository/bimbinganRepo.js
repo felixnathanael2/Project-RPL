@@ -62,17 +62,22 @@ export async function createPengajuan(data) {
         // misal ada query yang gagal, maka query yang berhasil ga disimpen ke database (semisal ada bug di kode atau lainnya)
         await connection.beginTransaction();
 
-        // Gabungkan Tanggal dan Jam menjadi DateTime string
-        // data.tanggal = '2025-11-20', data.jam = '09:00' -> '2025-11-20 09:00:00'
-        const dateTime = `${data.tanggal} ${data.jam}:00`;
+        const queryDataTA = "SELECT id_data FROM data_ta WHERE id_users = ?";
+
+        const [id_data] = await connection.execute(queryDataTA, [data.npm]);
 
         // A. Insert Bimbingan
         const queryInsert = `
-          INSERT INTO Bimbingan (tanggal_Waktu_Bimbingan, catatan_Bimbingan, status, NPM, idLokasi)
-          VALUES (?, '-', 'Menunggu', ?, ?)
+          INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, status)
+          VALUES (?, ?, ?, ?, '-', 'Menunggu')
         `;
 
-        const res = await connection.execute(queryInsert, [dateTime, data.npm, data.lokasiId]);
+        const res = await connection.execute(queryInsert, [
+            id_data[0].id_data,
+            data.lokasiId,
+            data.tanggal,
+            data.waktu,
+        ]);
 
         // ambil id bimbingan, karena autoincrement jadi bisa ambil dari InsertId
         const newId = res[0].insertId;
@@ -80,8 +85,8 @@ export async function createPengajuan(data) {
         // B. Insert Dosen Peserta, pake id bimbingan nya pake id yang udah diambil tadi
         for (const nik of data.nik) {
             await connection.execute(
-                `INSERT INTO Bimbingan_Dosen (idBimbingan, NIK) VALUES (?, ?)`,
-                [newId, nik]
+                `INSERT INTO Bimbingan_Dosen (id_bimbingan, nik) VALUES (?, ?)`,
+                [newId, nik],
             );
         }
 
