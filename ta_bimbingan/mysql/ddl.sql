@@ -136,3 +136,4 @@ CREATE TABLE log_aktivitas (
     
     FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL
 );
+
