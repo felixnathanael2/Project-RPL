@@ -9,8 +9,7 @@ export function protectRoute(req, res, next) {
         };
         next();
     } else {
-        res
-            .status(401)
-            .json({ message: "Akses ditolak. Silakan login terlebih dahulu." });
+        // Langsung pindahkan user ke halaman login
+        res.redirect("/page/LoginPage.html");
     }
 }

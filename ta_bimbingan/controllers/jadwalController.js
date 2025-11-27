@@ -1,5 +1,5 @@
-import { getUnavailable } from "../services/jadwalService.js";
 import { getDosen } from "../services/dosenService.js";
+import * as jadwalService from "../services/jadwalService.js";
 
 export const checkAvailability = async (req, res) => {
     // ambil tanggal dan dosen ybs dari query di browser nya
@@ -31,7 +31,7 @@ export const checkAvailability = async (req, res) => {
         ];
 
         // ambil slot yang udah keiisi (sibuk) dari db
-        const sibuk = await getUnavailable(date, dosenArray, req.user.id);
+        const sibuk = await jadwalService.getUnavailable(date, dosenArray, req.user.id);
 
         // di filter buat cari jam berapa aja yang available
         // konsep filter tuh jadi, coba loop dari semua rangeJam, terus masukin jam dengan kondisi => ...
@@ -45,3 +45,43 @@ export const checkAvailability = async (req, res) => {
         console.log(e);
     }
 };
+
+
+
+export const uploadJadwal = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ message: "File Excel tidak ditemukan" });
+        }
+
+        const id_users = req.user.id_users; 
+
+        const result = await jadwalService.processJadwalExcel(req.file.path, id_users);
+
+        res.status(200).json({
+            status: "success",
+            data: result
+        });
+
+    } catch (error) {
+        console.error("Upload Error:", error);
+        res.status(500).json({ 
+            message: "Gagal memproses file Excel", 
+            error: error.message 
+        });
+    }
+};
+
+// Fungsi GET Jadwal untuk ditampilkan di Frontend 
+export const getMyJadwal = async (req, res) => {
+    try {
+        const id_users = req.user.id_users;
+        
+        const data = await jadwalRepo.getJadwalByUser(id_users);
+        
+        res.json(data);
+        res.send("Implementasikan getJadwalRepo disini"); 
+    } catch (error) {
+        res.status(500).json({message: "Error mengambil data"});
+    }
+}
