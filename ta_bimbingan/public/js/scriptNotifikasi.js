@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("HASIL RESPONSE RAW:", res);
         console.log("HASIL JSON:", await res.clone().json());
 
-        const { data } = await res.json();
+        const {data} = await res.json();
 
         console.log("HASIL API:", data);
 
@@ -30,17 +30,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Render notifikasi
         container.innerHTML = data
             .map((notif) => {
-                return `
-            <div class="notifItem glass-box" style="opacity:${notif.is_read ? 0.6 : 1}">
-                <div>
-                    <p class="title">
-                        ${notif.is_read ? "Notifikasi" : "Notifikasi Baru"}
-                    </p>
-                    <p>${notif.isi}</p>
-                </div>
+                const d = new Date(notif.tanggal_waktu);
+                const timeStr = d.toLocaleTimeString("id-ID", {hour: "2-digit", minute: "2-digit"});
+                const dateStr = d.toLocaleDateString("id-ID", {day: "numeric", month: "long", year: "numeric"});
 
-                <div class="date">
-                    ${formatDate(notif.tanggal_waktu)}
+                // Cek belum dibaca (0 = belum, 1 = sudah)
+                const isUnread = notif.is_read == 0;
+                return `
+
+            <div class="notif-item" style="opacity:${notif.is_read ? 0.8 : 1}">
+                ${isUnread ? '<div class="unread-dot"></div>' : ''}
+                <div class="notif-content">
+                    ${notif.isi}
+                </div>
+                <div class="notif-meta">
+                    <span class="notif-time">${timeStr}</span>
+                    <span class="notif-date">${dateStr}</span>
                 </div>
             </div>
         `;
