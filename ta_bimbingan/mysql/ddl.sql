@@ -73,7 +73,7 @@ CREATE TABLE bimbingan (
     id_data INT NOT NULL, -- kolom buat konekin ke data punya siapa
     
     id_lokasi INT NULL, -- bimbingannya dimana
-    tanggal DATE NOT NULL,
+    tanggal DATE NOT NULL,	
     waktu TIME NOT NULL,
     catatan_bimbingan TEXT, -- Notes dari dosen / Topik pengajuan
 	status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
