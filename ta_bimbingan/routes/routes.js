@@ -15,7 +15,7 @@ import {
 	notifikasi,
 } from "../controllers/pageController.js";
 
-import { getNotifikasi } from "../controllers/notifikasiController.js";
+import { showNotifikasi } from "../controllers/notifikasiController.js";
 
 const router = express.Router();
 
@@ -28,10 +28,11 @@ router.get("/api/riwayat", protectAPI, riwayat);
 router.post("/api/ajukan-bimbingan", protectAPI, ajukanBimbingan);
 router.get("/api/check-availability", protectAPI, checkAvailability);
 router.get("/api/pengajuan-init", protectAPI, pengajuanInit);
+router.get("/api/get-notifikasi", protectAPI, showNotifikasi);
 
 // --- PAGE ROUTES (butuh redirect kalau session habis) ---
 router.get("/dashboard", protectRoute, dashboard);
 router.get("/pengajuan", protectRoute, pengajuan);
-router.get("/notifikasi", protectRoute, getNotifikasi);
+router.get("/notifikasi", protectRoute, notifikasi);
 
 export default router;

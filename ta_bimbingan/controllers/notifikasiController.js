@@ -1,6 +1,6 @@
 import { getNotifikasi } from "../services/notifikasiService.js";
 
-export const getNotifikasi = async (req, res) => {
+export const showNotifikasi = async (req, res) => {
 	try {
 		const id_users = req.user.id;
 
@@ -10,6 +10,6 @@ export const getNotifikasi = async (req, res) => {
 			data: data,
 		});
 	} catch (e) {
-		res.status(500).json({ error: error.message });
+		res.status(500).json({ error: e.message });
 	}
 };
