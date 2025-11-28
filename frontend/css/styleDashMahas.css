@@ -20,6 +20,11 @@ body {
   color: white;
 }
 
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+
 /* Efek Blur */
 .glass-box {
   background: #A3C0EB45;
@@ -110,25 +115,29 @@ main {
   flex: 1;
   width: 100%;
   height: 80vh;
-  margin-top: 50px;
-  margin-bottom: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 25px;
 }
 
+/* Kalender */
 .main_container {
-  width: 40%;
-  height: 42rem;
+  width: 38rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+
+  font-size: 20px;
 }
 
+/* Riwayat */
 .riwayat {
-  height: 42rem;
-  width: 25rem;
+  width: 20rem;
+  height: 35rem;
 
   display: flex !important;
   flex-direction: column;
@@ -194,7 +203,7 @@ main {
 .history-card {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 12px 15px;
+  padding: 6px 7%;
   transition: transform 0.2s, background 0.2s;
   border-left: 4px solid var(--cyan);
 }
@@ -257,8 +266,8 @@ main {
 }
 
 .side {
-  width: 10%;
-  height: 70%;
+  width: 10rem;
+  height: 35rem;
 
   padding: 0;
 
@@ -322,37 +331,62 @@ main {
   line-height: 1.4;
 }
 
+/* --- CONTAINER UTAMA (LABEL) --- */
 .upload-box {
-  height: 10rem;
-  transition: transform 0.2s;
+  /* Atur ukuran sesuai kebutuhan layout Anda */
+  height: 8rem; /* Sedikit dikecilkan agar proporsional */
+  width: 100%;  /* Mengikuti lebar parent */
+  
+  cursor: pointer; /* Ubah kursor jadi tangan */
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  position: relative;
 }
 
+/* Efek Hover: Naik sedikit & shadow makin terang */
 .upload-box:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 25px rgba(37, 140, 251, 0.6); /* Shadow biru */
 }
 
-.btn-upload {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
+/* --- LAYOUT KONTEN (ICON KIRI - TEKS KANAN) --- */
+.upload-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Horizontal */
   align-items: center;
+  gap: 20px; /* Jarak antara Icon dan Teks */
+  width: 100%;
   justify-content: center;
-  gap: 8px;
 }
 
-.btn-upload i {
-  font-size: 24px;
+.upload-content i {
+  font-size: 45px; /* Icon diperbesar */
+  color: white;
+  
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 
+               0 0 30px rgba(255, 255, 255, 0.4);
 }
 
-.btn-upload span {
+.text-group {
+  display: flex;
+  flex-direction: column; /* Teks disusun vertikal */
+  justify-content: center;
+  align-items: flex-start; /* Rata kiri */
+  color: white;
+}
+
+.text-group .title {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 1.2;
+}
+
+.text-group .subtitle {
+  line-height: 1.2;
+  font-size: 18px;
+  font-weight: 700; /* Teks bawah lebih tebal */
+  letter-spacing: 0.5px;
 }
 
 /* FOOTER */
