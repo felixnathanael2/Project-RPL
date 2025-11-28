@@ -117,10 +117,10 @@ input:checked~.slider .label-week {
   height: 30rem;
   background-color: white;
   border-radius: 20px;
-  /* Grid 7 Kolom */
+  
   grid-template-columns: repeat(7, 1.3fr);
-  /* 0.5fr diubah ke 1fr (standar) */
   grid-template-rows: 40px repeat(6, 1.2fr);
+  
   border-top: 1px solid #eee;
   border-left: 1px solid #eee;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -142,28 +142,25 @@ input:checked~.slider .label-week {
   border-bottom: 1px solid #eee;
 }
 
-/* --- UPDATE CSS UNTUK LOGIKA WARNA BARU --- */
-
 .date-cell {
   background-color: white;
   transition: background-color 0.2s;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Angka di atas, teks di bawah */
+  justify-content: flex-start;
   min-height: 90px;
   min-width: auto;
-  padding: 6px; /* Padding sedikit diperbesar */
+  padding: 6px;
   border: 1px solid #eee;
   overflow: hidden;
 }
 
-/* WARNA BACKGROUND CELL (Langsung pada kotak) */
-/* Tambahkan border-left agar terlihat estetik seperti referensi */
+/* WARNA BACKGROUND CELL */
 .date-cell.pink-bg {
   background-color: #ffeef1;
   border-left: 4px solid #ff4d6d;
-  color: #c01048; /* Warna teks default untuk cell ini */
+  color: #c01048;
 }
 
 .date-cell.green-bg {
@@ -178,19 +175,18 @@ input:checked~.slider .label-week {
   color: #1e40af;
 }
 
-/* Style Teks Detail (Bukan Bubble) */
 .event-details {
   font-size: 0.50rem;
-  margin-top: auto; /* Dorong ke bawah cell */
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
 .event-title {
-  font-weight: 800; /* Lebih tebal */
+  font-weight: 800;
   font-size: 0.6rem;
-  color: inherit; /* Mengikut warna teks parent (.pink-bg dll) */
+  color: inherit; /* Mengikut warna teks parent */
   line-height: 1.2;
 }
 
@@ -204,20 +200,18 @@ input:checked~.slider .label-week {
   text-overflow: ellipsis;
 }
 
-/* Pastikan angka tanggal tetap terlihat jelas di atas warna */
 .date-num {
   font-size: 14px;
   font-weight: bold;
   z-index: 2;
   margin-bottom: 4px;
-  color: #374151; /* Warna angka default */
+  color: #374151;
 }
 
-/* Jika cell berwarna, angka tanggal bisa dibuat sedikit lebih gelap/sesuai */
 .date-cell.pink-bg .date-num,
 .date-cell.green-bg .date-num,
 .date-cell.blue-bg .date-num {
-    opacity: 0.7; /* Sedikit transparan biar menyatu */
+    opacity: 0.7;
 }
 
 .other-month {
@@ -228,7 +222,6 @@ input:checked~.slider .label-week {
   color: #d1d5db;
 }
 
-/* Angka Tanggal */
 .date-num {
   font-size: 14px;
   color: #374151;
@@ -236,7 +229,6 @@ input:checked~.slider .label-week {
   z-index: 2;
 }
 
-/* Highlight Hari Ini (Opsional) */
 .today {
   background-color: #eff6ff;
 }
@@ -245,7 +237,6 @@ input:checked~.slider .label-week {
   color: #2563eb;
 }
 
-/* Warna-warna Event (Sesuaikan dengan gambar) */
 .green-bg {
   background-color: #d1fadf;
   color: #027a48;
@@ -268,23 +259,19 @@ input:checked~.slider .label-week {
 .schedule-container {
   width: 32rem;  
   height: 30rem; 
-  
-  /* 2. TAMPILAN VISUAL (Disamakan) */
+
   background: white;
-  border-radius: 20px; /* Sama dengan .month_calendar */
+  border-radius: 20px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eee; /* Border tipis biar identik */
+  border: 1px solid #eee;
   box-sizing: border-box;
 
-  /* 3. LAYOUT INTERNAL */
   padding: 0; 
-  display: none; /* Default hidden, nanti di-override saat aktif */
+  display: none;
   flex-direction: column;
   overflow: hidden; 
 }
 
-/* Saat wrapper .kalender-mingguan TIDAK ada class .hidden, tampilkan ini */
-/* Pastikan di HTML kamu menghapus class .hidden dari div pembungkus saat toggle */
 .kalender-mingguan:not(.hidden) .schedule-container,
 .schedule-container.active {
     display: flex;
@@ -293,7 +280,7 @@ input:checked~.slider .label-week {
 /* --- HEADER HARI (Sticky) --- */
 .days-header {
   display: grid;
-  /* Kolom pertama 50px saja biar space kanan lebih lega untuk matkul */
+  /* Kolom pertama 50px*/
   grid-template-columns: 50px repeat(5, 1fr);
   
   margin: 0;
@@ -304,16 +291,16 @@ input:checked~.slider .label-week {
   flex-shrink: 0;
   
   font-weight: bold;
-  font-size: 0.9rem; /* Font agak dikecilkan biar muat */
+  font-size: 0.9rem;
   color: #666;
   text-align: center;
 }
 
-/* --- GRID JAM (Scrollable Area) --- */
+/* --- GRID JAM --- */
 .schedule-grid {
   display: grid;
-  grid-template-columns: 50px repeat(5, 1fr); /* Samakan dengan header */
-  grid-template-rows: repeat(22, 0.25fr); /* Tinggi per baris 50px cukup */
+  grid-template-columns: 50px repeat(5, 1fr);
+  grid-template-rows: repeat(22, 0.25fr);
   gap: 0;
   position: relative;
   
@@ -327,7 +314,6 @@ input:checked~.slider .label-week {
   padding: 10px 0;
 }
 
-/* Elemen Waktu (07:00...) */
 .time-label {
   grid-column: 1;
   text-align: right;
@@ -347,10 +333,9 @@ input:checked~.slider .label-week {
   pointer-events: none;
 }
 
-/* --- BUBBLE MATKUL (Disesuaikan agar muat di 32rem) --- */
 .class-card {
   border-radius: 6px;
-  padding: 4px 6px; /* Padding diperkecil */
+  padding: 4px 6px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -359,9 +344,7 @@ input:checked~.slider .label-week {
   z-index: 1;
   cursor: pointer;
   transition: transform 0.2s;
-  margin: 1px 3px; /* Margin diperkecil */
-  
-  /* Agar teks tidak tumpah */
+  margin: 1px 3px;
   overflow: hidden; 
 }
 
@@ -372,25 +355,24 @@ input:checked~.slider .label-week {
 
 .class-title {
   font-weight: bold;
-  font-size: 0.7rem; /* Font Judul diperkecil */
+  font-size: 0.7rem;
   margin-bottom: 2px;
   line-height: 1.1;
   
-  /* Truncate text kalau kepanjangan */
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .class-info {
-  font-size: 0.6rem; /* Font Info diperkecil */
+  font-size: 0.6rem;
   opacity: 0.9;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Pilihan Warna (Sama) */
 .bg-teal { background-color: #4ECDC4; }
 .bg-red { background-color: #E06C75; }
 .bg-orange { background-color: #F79D65; }
