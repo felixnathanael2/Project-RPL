@@ -22,16 +22,12 @@ body {
 
 /* Efek Blur */
 .glass-box {
+    padding: 6px;
     background: #a3c0eb45;
     backdrop-filter: blur(10px);
     border: 1.5px solid rgba(255, 255, 255, 0.4);
     border-radius: 18px;
     box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
-
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* HEADER */
@@ -151,26 +147,58 @@ main.container {
 }
 
 .notifItem {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 18px;
-    border-radius: 14px;
-}
+    width: 100% !important; /* Biar full lebar container */
+    padding: 16px 20px !important;
 
-.notifItem p {
-    font-size: 16px;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important; /* BIKIN KONTEN KIRI RATA ATAS */
+    padding: 16px 20px !important;
+    width: 100% !important;
+
+    border-radius: 14px !important;
 }
 
 .notifItem .title {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.notifItem p {
+    font-size: 14px;
+}
+
+.unread-dot {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+}
+
+.notif-title {
+    font-size: 16px;
     font-weight: 700;
 }
 
-.notifItem .date {
-    font-size: 14px;
-    opacity: 0.7;
+.notif-body {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.notif-date {
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.read {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 /* FOOTER */

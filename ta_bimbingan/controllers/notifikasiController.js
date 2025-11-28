@@ -1,14 +1,23 @@
-import { getNotifikasi } from "../services/notifikasiService.js";
+import {
+	getNotifikasi,
+	updateNotifikasi,
+} from "../services/notifikasiService.js";
 
 export const showNotifikasi = async (req, res) => {
 	try {
-		const id_users = req.user.id;
-
-		const data = await getNotifikasi(id_users);
+		const data = await getNotifikasi(req.user.id);
 
 		res.json({
 			data: data,
 		});
+	} catch (e) {
+		res.status(500).json({ error: e.message });
+	}
+};
+
+export const updateNotifikasiRead = async (req, res) => {
+	try {
+		await updateNotifikasi(req.user.id);
 	} catch (e) {
 		res.status(500).json({ error: e.message });
 	}

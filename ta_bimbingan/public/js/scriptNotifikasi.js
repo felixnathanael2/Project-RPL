@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const container = document.querySelector(".notificationContainer");
-
-    // kalau container ga ketemu, berarti bukan di halaman notifikasi
     if (!container) return;
 
     try {
@@ -9,53 +7,72 @@ document.addEventListener("DOMContentLoaded", async () => {
             credentials: "include",
         });
 
-        console.log("HASIL RESPONSE RAW:", res);
-        console.log("HASIL JSON:", await res.clone().json());
-
         const { data } = await res.json();
-
-        console.log("HASIL API:", data);
-
         if (!res.ok) {
             container.innerHTML = `<p style="text-align:center; opacity:0.8">Gagal mengambil notifikasi.</p>`;
             return;
         }
 
-        // kalo tidak ada notifikasi
         if (data.length === 0) {
             container.innerHTML = `<p style="text-align:center; opacity:0.8">Tidak ada notifikasi.</p>`;
             return;
         }
 
-        // Render notifikasi
+        // --- RENDER NOTIF ---
         container.innerHTML = data
             .map((notif) => {
                 return `
-            <div class="notifItem glass-box" style="opacity:${notif.is_read ? 0.6 : 1}">
-                <div>
-                    <p class="title">
-                        ${notif.is_read ? "Notifikasi" : "Notifikasi Baru"}
-                    </p>
-                    <p>${notif.isi}</p>
-                </div>
+                <div class="notifItem glass-box" data-id="${notif.id}">
+                    <div class="left">
+                        <p class="notif-title">${notif.is_read ? "Notifikasi" : "Notifikasi Baru"}</p>
+                        <p class="notif-body">${notif.isi}</p>
+                    </div>
 
-                <div class="date">
-                    ${formatDate(notif.tanggal_waktu)}
+                    <div class="right">
+                        <span class="notif-date">${formatDate(notif.tanggal_waktu)}</span>
+                        ${notif.is_read ? "" : `<div class="unread-dot"></div>`}
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
             })
             .join("");
+
+        // --- EVENT CLICK UNTUK BACA NOTIF ---
+        document.querySelectorAll(".notifItem").forEach((box) => {
+            box.addEventListener("click", async () => {
+                const id = box.dataset.id;
+
+                try {
+                    const res = await fetch(`/api/notifikasi-read/${id}`, {
+                        method: "PUT",
+                    });
+                    const result = await res.json();
+
+                    if (result.success) {
+                        // ubah title
+                        box.querySelector(".notif-title").textContent =
+                            "Notifikasi";
+
+                        // hilangkan dot merah
+                        const dot = box.querySelector(".unread-dot");
+                        if (dot) dot.remove();
+
+                        // tandai sebagai read
+                        box.classList.add("read");
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            });
+        });
     } catch (error) {
         console.error(error);
-        container.innerHTML = `<p style="text-align:center; opacity:0.8">Terjadi kesalahan saat memuat notifikasi.</p>`;
+        container.innerHTML = `<p style="text-align:center; opacity:0.8">Terjadi kesalahan.</p>`;
     }
 });
 
-// 🔧 Format tanggal (opsional, biar rapi)
 function formatDate(dateString) {
     const d = new Date(dateString);
-
     return d.toLocaleString("id-ID", {
         day: "2-digit",
         month: "short",
