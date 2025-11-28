@@ -3,6 +3,8 @@ import { connectDB } from "../db/db.js";
 // controller ketika login
 export const login = async (req, res) => {
     // ... (Logika login, mencari user, membandingkan password teks biasa, dan membuat req.session) ...
+    console.log("REQ.BODY =", req.body);
+
     const { email, password } = req.body;
     let connection;
     try {

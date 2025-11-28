@@ -4,6 +4,7 @@ export function protectRoute(req, res, next) {
     if (req.session.isLoggedIn) {
         req.user = {
             id: req.session.userId,
+            email: req.session.email,
             role: req.session.role,
             name: req.session.userName,
         };
@@ -17,6 +18,7 @@ export function protectAPI(req, res, next) {
     if (req.session.isLoggedIn) {
         req.user = {
             id: req.session.userId,
+            email: req.session.email,
             role: req.session.role,
             name: req.session.userName,
         };

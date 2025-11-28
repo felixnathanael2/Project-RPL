@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("HASIL RESPONSE RAW:", res);
         console.log("HASIL JSON:", await res.clone().json());
 
-        const {data} = await res.json();
+        const { data } = await res.json();
 
         console.log("HASIL API:", data);
 
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         container.innerHTML = data
             .map((notif) => {
                 const d = new Date(notif.tanggal_waktu);
-                const timeStr = d.toLocaleTimeString("id-ID", {hour: "2-digit", minute: "2-digit"});
-                const dateStr = d.toLocaleDateString("id-ID", {day: "numeric", month: "long", year: "numeric"});
+                const timeStr = d.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" });
+                const dateStr = d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
 
                 // Cek belum dibaca (0 = belum, 1 = sudah)
                 const isUnread = notif.is_read == 0;

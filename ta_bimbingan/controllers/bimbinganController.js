@@ -6,6 +6,7 @@ import {
 export const riwayat = async (req, res) => {
     try {
         const riwayat = await getRiwayatBimbingan(req.user.id, req.user.role);
+        
         res.json({
             message: `Riwayat Bimbingan untuk ${req.user.role} (Auth Sesi)`,
             data: riwayat,
