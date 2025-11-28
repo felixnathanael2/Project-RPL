@@ -89,6 +89,7 @@ CREATE TABLE bimbingan_dosen (
     nik VARCHAR(20),
     
     PRIMARY KEY (id_bimbingan, nik), -- Kombinasi unik
+    status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
     
     CONSTRAINT FK_BD_bimbingan FOREIGN KEY (id_bimbingan) REFERENCES bimbingan(id_bimbingan) ON DELETE CASCADE,
     CONSTRAINT FK_BD_Dosen FOREIGN KEY (nik) REFERENCES users(id_users) ON DELETE CASCADE
@@ -136,3 +137,4 @@ CREATE TABLE log_aktivitas (
     
     FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL
 );
+
