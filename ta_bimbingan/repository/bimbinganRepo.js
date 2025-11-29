@@ -2,7 +2,9 @@ import { connectDB } from "../db/db.js";
 
 export async function getRiwayatBimbingan(userId, role) {
     const pool = await connectDB();
-
+    const ROLE_MAHASISWA = 1;
+    const ROLE_DOSEN = 2;
+    const ROLE_ADMIN = 3;
     // ambil query dari tabel database untuk dapetin history bimbingan
     let query;
 
@@ -10,7 +12,7 @@ export async function getRiwayatBimbingan(userId, role) {
     let queryParams = [userId];
 
     // sesuaiin aja dah
-    if (role === 1) {
+    if (role === ROLE_MAHASISWA) {
         // buat mhs
         // ... Query SELECT Mahasiswa JOIN Dosen dan Lokasi ...
         query = `
@@ -29,7 +31,7 @@ export async function getRiwayatBimbingan(userId, role) {
                 WHERE DTA.id_users = ?
                 ORDER BY B.tanggal DESC, B.waktu DESC;
             `;
-    } else if (role === 2) {
+    } else if (role === ROLE_DOSEN) {
         // buat dosen
         // ... Query SELECT Dosen JOIN Mahasiswa dan Lokasi ...
         query = `

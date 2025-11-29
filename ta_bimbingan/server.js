@@ -7,10 +7,16 @@ import routes from "./routes/routes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//setup view engine 
+app.set('view engine', 'ejs');
+app.set('views', './private');
+
 // ... (Middleware Global & Session setup, sama seperti sebelumnya) ...
 app.use(express.json());
 
 app.use(express.static("public"));
+
+
 
 //secret: Ini adalah Tanda Tangan Digital. String rahasia yang digunakan untuk menyegel cookie sesi agar tidak bisa dipalsukan oleh hacker.
 //resave: false: Efisiensi. Artinya: "Kalau sesi user gak ada yang berubah (dia cuma diem aja), gak usah simpan ulang ke database." Ini menghemat kinerja server.
