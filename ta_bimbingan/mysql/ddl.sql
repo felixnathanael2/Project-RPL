@@ -73,7 +73,7 @@ CREATE TABLE bimbingan (
     id_data INT NOT NULL, -- kolom buat konekin ke data punya siapa
     
     id_lokasi INT NULL, -- bimbingannya dimana
-    tanggal DATE NOT NULL,
+    tanggal DATE NOT NULL,	
     waktu TIME NOT NULL,
     catatan_bimbingan TEXT, -- Notes dari dosen / Topik pengajuan
 	status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
@@ -89,6 +89,7 @@ CREATE TABLE bimbingan_dosen (
     nik VARCHAR(20),
     
     PRIMARY KEY (id_bimbingan, nik), -- Kombinasi unik
+    status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
     
     CONSTRAINT FK_BD_bimbingan FOREIGN KEY (id_bimbingan) REFERENCES bimbingan(id_bimbingan) ON DELETE CASCADE,
     CONSTRAINT FK_BD_Dosen FOREIGN KEY (nik) REFERENCES users(id_users) ON DELETE CASCADE

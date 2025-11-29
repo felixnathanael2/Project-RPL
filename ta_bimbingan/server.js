@@ -29,7 +29,7 @@ app.use(
             "fallback_secret_key_yang_sangat_panjang",
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1000 * 60 * 60},
+        cookie: { maxAge: 1000 * 60 * 60 },
     }),
 );
 
