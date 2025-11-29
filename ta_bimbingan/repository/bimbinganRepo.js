@@ -110,3 +110,26 @@ export async function createPengajuan(data) {
         if (connection) connection.release();
     }
 }
+
+export async function getApprovedBimbinganByStudent(id_student) {
+    const pool = await connectDB();
+
+    const query = `
+        SELECT 
+            b.tanggal, 
+            b.waktu, 
+            -- Menggabungkan nama dosen jika ada 2 pembimbing
+            GROUP_CONCAT(u.nama SEPARATOR ', ') as nama_dosen
+        FROM bimbingan b
+        JOIN data_ta dt ON b.id_data = dt.id_data
+        JOIN bimbingan_dosen bd ON b.id_bimbingan = bd.id_bimbingan
+        JOIN users u ON bd.nik = u.id_users
+        WHERE 
+            dt.id_users = ? 
+            AND b.status = 'Disetujui'
+        GROUP BY b.id_bimbingan
+    `;
+
+    const [rows] = await pool.execute(query, [id_student]);
+    return rows;
+}

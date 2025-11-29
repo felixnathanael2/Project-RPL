@@ -93,10 +93,7 @@ export async function processJadwalExcel(filePath, id_users) {
         // hapus file excel biar ga penuh 
         if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
 
-        return { 
-            message: "Berhasil import jadwal dari Excel", 
-            total_processed: results.length 
-        };
+        return true;
 
     } catch (error) {
         // Hapus file jika error

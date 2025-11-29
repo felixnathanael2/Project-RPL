@@ -1,6 +1,7 @@
 import {
     getRiwayatBimbingan,
     createPengajuan,
+    getApprovedBimbingan
 } from "../services/bimbinganService.js";
 
 export const riwayat = async (req, res) => {
@@ -33,5 +34,32 @@ export const ajukanBimbingan = async (req, res) => {
         // statements
         console.log(e);
         res.status(500).json({ message: "Gagal submit" });
+    }
+};
+
+export const getJadwalBimbingan = async (req, res) => {
+    try {
+        const id_student = req.user.id; // Ambil ID dari session login
+        
+        // Panggil service
+        const data = await getApprovedBimbingan(id_student);
+
+        // Format data agar tanggalnya "YYYY-MM-DD" untuk frontend
+        const formattedData = data.map(item => {
+            const dateObj = new Date(item.tanggal);
+            // en-CA menghasilkan format YYYY-MM-DD
+            const dateStr = dateObj.toLocaleDateString('en-CA'); 
+            
+            return {
+                tanggal: dateStr,
+                waktu: item.waktu, 
+                nama_dosen: item.nama_dosen
+            };
+        });
+
+        res.json(formattedData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Gagal mengambil jadwal bimbingan" });
     }
 };
