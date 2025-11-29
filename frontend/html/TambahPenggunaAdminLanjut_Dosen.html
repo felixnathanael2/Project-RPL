@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/styleTambahAkun.css">
+    <link rel="stylesheet" href="../css/styleTambahAkunLanjutDosen.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
     <script src="script.js" defer></script>
@@ -52,19 +52,20 @@
             <h1 class="formTitle">Tambah Akun</h1>
             <form id="submissionForm" method="POST">
                 <div class="input-group">
-                    <label for="nama">Email</label>
-                    <input type="text" id="nama" class="input-field" placeholder="masukkan email anda" required>
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" class="input-field" placeholder="Masukkan nama dosen" required>
                 </div>
                 <div class="input-group">
-                    <label for="lokasi">Status</label>
-                    <select id="lokasi" class="input-field" required>
-                        <option value disabled selected>Masukan status pengguna</option>
-                        <option value="Mahasiswa">Mahasiswa</option>
-                        <option value="Dosen">Dosen</option>
-                    </select>
+                    <label for="topik">Topik</label>
+                    <input type="text" id="nama" class="input-field" placeholder="Masukkan topik dosen" required>
+                    <button type="button" id="plusButton">+</button>
                 </div>
 
-                <button type="button" class="btn-submit">Lanjut</button>
+                <div id="buttonContainer">
+                    <button type="button" id="batalButton" class="btn-submit">Batal</button>
+                    <button type="button" id="submitButton" class="btn-submit" onclick="showModal()">Kirim</button>
+                </div>
+
             </form>
         </div>
     </main>
