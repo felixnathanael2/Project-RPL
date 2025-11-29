@@ -15,10 +15,7 @@ import {
 	notifikasi,
 } from "../controllers/pageController.js";
 
-import {
-	showNotifikasi,
-	updateNotifikasiRead,
-} from "../controllers/notifikasiController.js";
+import { showNotifikasi } from "../controllers/notifikasiController.js";
 
 const router = express.Router();
 
@@ -32,8 +29,6 @@ router.post("/api/ajukan-bimbingan", protectAPI, ajukanBimbingan);
 router.get("/api/check-availability", protectAPI, checkAvailability);
 router.get("/api/pengajuan-init", protectAPI, pengajuanInit);
 router.get("/api/get-notifikasi", protectAPI, showNotifikasi);
-
-router.put("/api/notifikasi-read/:id", protectAPI, updateNotifikasiRead);
 
 // --- PAGE ROUTES (butuh redirect kalau session habis) ---
 router.get("/dashboard", protectRoute, dashboard);
