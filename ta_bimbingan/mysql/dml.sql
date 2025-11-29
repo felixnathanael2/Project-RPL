@@ -67,9 +67,16 @@ INSERT INTO bimbingan_dosen (id_bimbingan, nik) VALUES
 -- ==========================================
 INSERT INTO notifikasi (isi, id_users, is_read)
 VALUES
-('Pengajuan bimbingan Anda sedang diproses.', '6182301055', FALSE),
-('Mahasiswa mengajukan bimbingan baru.', '20250001', FALSE),
-('Jadwal bimbingan telah disetujui.', '6182301055', TRUE);
+('Bimbingan baru telah dijadwalkan oleh dosen.', '6182301055', FALSE),
+('Pengajuan bimbingan Anda telah ditolak. Silakan ajukan ulang.', '6182301055', FALSE),
+('Dosen telah memberikan catatan pada bimbingan terbaru Anda.', '6182301055', TRUE),
+('Terdapat revisi yang perlu Anda perbaiki pada dokumen bimbingan.', '6182301055', FALSE),
+('Bimbingan Anda telah selesai diverifikasi.', '6182301055', TRUE),
+('Anda memiliki pesan baru dari dosen pembimbing.', '6182301055', FALSE),
+('Pengingat: Anda memiliki jadwal bimbingan hari ini.', '6182301055', FALSE),
+('Progress bimbingan Anda telah diperbarui.', '6182301055', TRUE),
+('Dosen telah mengubah jadwal bimbingan Anda.', '6182301055', FALSE),
+('Pengajuan referensi Anda telah diterima.', '6182301055', TRUE);
 
 
 -- ==========================================

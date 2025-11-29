@@ -1,33 +1,43 @@
-// routes.js
 import express from "express";
-import { protectRoute } from "../middlewares/authMiddleware.js";
+import { protectAPI, protectRoute } from "../middlewares/authMiddleware.js";
 import { login, logout } from "../controllers/authController.js";
 
-// Import Controller yang sudah dipisah-pisah
 import {
 	riwayat,
 	ajukanBimbingan,
 } from "../controllers/bimbinganController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
 import { pengajuanInit } from "../controllers/referensiController.js";
-import { dashboard, pengajuan } from "../controllers/pageController.js";
 
-// router buat endpoint
+import {
+	dashboard,
+	pengajuan,
+	notifikasi,
+} from "../controllers/pageController.js";
+
+import {
+	showNotifikasi,
+	updateNotifikasiRead,
+} from "../controllers/notifikasiController.js";
+
 const router = express.Router();
 
-// route for auth
+// --- AUTH ---
 router.post("/api/login", login);
 router.post("/api/logout", logout);
 
-// biar si routernya pake middleware protectRoute
-router.use(protectRoute);
+// --- API ROUTES (butuh JSON kalau session habis) ---
+router.get("/api/riwayat", protectAPI, riwayat);
+router.post("/api/ajukan-bimbingan", protectAPI, ajukanBimbingan);
+router.get("/api/check-availability", protectAPI, checkAvailability);
+router.get("/api/pengajuan-init", protectAPI, pengajuanInit);
+router.get("/api/get-notifikasi", protectAPI, showNotifikasi);
 
-router.get("/api/riwayat", riwayat);
-router.post("/api/ajukan-bimbingan", ajukanBimbingan);
-router.get("/api/check-availability", checkAvailability);
-router.get("/api/pengajuan-init", pengajuanInit);
-router.get("/dashboard", dashboard);
-router.get("/pengajuan", pengajuan);
-router.get("/api/riwayat", riwayat);
+router.put("/api/notifikasi-read/:id", protectAPI, updateNotifikasiRead);
+
+// --- PAGE ROUTES (butuh redirect kalau session habis) ---
+router.get("/dashboard", protectRoute, dashboard);
+router.get("/pengajuan", protectRoute, pengajuan);
+router.get("/notifikasi", protectRoute, notifikasi);
 
 export default router;
