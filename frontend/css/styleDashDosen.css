@@ -1,6 +1,4 @@
-/* =========================================
-   GENERAL
-========================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -31,9 +29,7 @@ body {
     padding: 6px;
 }
 
-/* =========================================
-   HEADER  (JANGAN DIUTAK-ATIK)
-========================================= */
+
 
 /* NAVBAR */
 .nav {
@@ -101,9 +97,9 @@ body {
   color: white;
   font-size: 22px;
 }
-/* =========================================
-   MAIN LAYOUT (MATCH MAHASISWA)
-========================================= */
+/* ====================
+   MAIN LAYOUT 
+===================== */
 main {
     flex: 1;
     width: 100%;
@@ -140,9 +136,7 @@ main {
     height: 100%;
 }
 
-/* =========================================
-   RIGHT PANEL (PIXEL PERFECT)
-========================================= */
+
 
 .side_dosen {
     flex: 0.4 1 300px;
@@ -196,7 +190,7 @@ main {
     opacity: 0.8;
 }
 
-/* TEXT TIDAK KELUAR GLASS BLOCK LAGI */
+
 .see-all {
     margin-top: 4px;
     margin-bottom: 4px;
@@ -210,9 +204,7 @@ main {
     text-decoration: underline;
 }
 
-/* ================================
-   BOX 2 — Statistik (FIX)
-================================ */
+
 .box-dosen.stat {
     height: 16rem;
     border-radius: 18px;
@@ -314,9 +306,7 @@ custom-switch {
 }
 
 
-/* =========================================
-   FOOTER (JANGAN DIUTAK ATIK)
-========================================= */
+/*footer*/
 .footer {
   display: flex;
   justify-content: space-between;

@@ -252,9 +252,8 @@ input:checked~.slider .label-week {
   color: #1e40af;
 }
 
-/* ============================================================ */
-/* --- WEEKLY SCHEDULE (DIMENSI DISAMAKAN DENGAN BULANAN) --- */
-/* ============================================================ */
+
+/* --- WEEKLY SCHEDULE */
 
 .schedule-container {
   width: 100%;  
@@ -277,7 +276,7 @@ input:checked~.slider .label-week {
     display: flex;
 }
 
-/* --- HEADER HARI (Sticky) --- */
+
 .days-header {
   display: grid;
   /* Kolom pertama 50px*/
@@ -309,7 +308,7 @@ input:checked~.slider .label-week {
   height: 100%;
   padding-bottom: 10px;
   
-  /* Scrollbar halus */
+ 
   scrollbar-width: thin; 
   padding: 10px 0;
 }
@@ -324,7 +323,7 @@ input:checked~.slider .label-week {
   top: -8px;
 }
 
-/* Garis Bantu */
+
 .grid-line {
   grid-column: 2 / span 5;
   border-top: 1px solid #f0f0f0;
