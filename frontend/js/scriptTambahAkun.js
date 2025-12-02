@@ -5,9 +5,6 @@ function showModal() {
 
 // Tombol YA
 document.getElementById("yesBtn").onclick = function () {
-    // Lakukan aksi di sini, misalnya submit form:
-    // document.getElementById("submissionForm").submit();
-
     document.getElementById("confirmPopup").classList.remove("show");
 };
 
@@ -16,6 +13,6 @@ document.getElementById("noBtn").onclick = function () {
     document.getElementById("confirmPopup").classList.remove("show");
 };
 
-document.getElementById("batalButton").onclick = function() {
+document.getElementById("batalButton").onclick = function () {
     window.location.href = "TambahPenggunaAdmin.html";
 };
