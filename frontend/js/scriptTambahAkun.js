@@ -5,8 +5,6 @@ function showModal() {
 document.getElementById("yesBtn").onclick = function () {
     alert("Data berhasil dikirim!"); 
     document.getElementById("confirmPopup").style.display = "none";
-    // Jika ingin submit form:
-    // document.getElementById("submissionForm").submit();
 };
 
 document.getElementById("noBtn").onclick = function () {
