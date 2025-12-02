@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/styleTambahAkunLanjutDosen.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
-    <script src="script.js" defer></script>
+    <script src="../js/scriptTambahAkun.js" defer></script>
 </head>
 
 <body>
@@ -75,6 +75,17 @@
         </div>
         <div class="footer-right">
             <p>&copy; 2025 Kelompok 8-A RPL</p>
+        </div>
+    </div>
+
+    <!-- POPUP -->
+    <div id="confirmPopup" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Apakah kamu <br>yakin?</h3>
+            <div class="modal-buttons">
+                <button id="noBtn" class="btn-modal" style="background:#FF4C4C;">Tidak</button>
+                <button id="yesBtn" class="btn-modal" style="background:#32CD32;">Ya</button>
+            </div>
         </div>
     </div>
 </body>

@@ -1,12 +1,17 @@
+// Tampilkan popup
 function showModal() {
-    document.getElementById("confirmPopup").style.display = "flex";
+    document.getElementById("confirmPopup").classList.add("show");
 }
 
+// Tombol YA
 document.getElementById("yesBtn").onclick = function () {
-    alert("Data berhasil dikirim!"); 
-    document.getElementById("confirmPopup").style.display = "none";
+    // Lakukan aksi di sini, misalnya submit form:
+    // document.getElementById("submissionForm").submit();
+
+    document.getElementById("confirmPopup").classList.remove("show");
 };
 
+// Tombol TIDAK
 document.getElementById("noBtn").onclick = function () {
-    document.getElementById("confirmPopup").style.display = "none";
+    document.getElementById("confirmPopup").classList.remove("show");
 };
