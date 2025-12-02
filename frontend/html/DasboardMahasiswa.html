@@ -14,10 +14,11 @@
             rel="stylesheet" />
         <!-- CSS -->
         <link rel="stylesheet" href="../css/styleDashMahas.css">
-        <link rel="stylesheet" href="../css/calender.css">
         <link rel="stylesheet" href="../css/font.css">
+        <link rel="stylesheet" href="../css/calender.css">
         <link rel="shortcut icon" href="../assets/MBTA-Icon.png"
             type="image/x-icon">
+        <script src="../js/scriptCalender.js"></script>
     </head>
 
     <body>
@@ -78,28 +79,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="kalender-bulanan ">
+                <div class="kalender-bulanan hidden">
                     <div class="body">
                         <div class="month_calendar">
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="kalender-mingguan">
+                    <div class="schedule-container">
+                        <div class="days-header">
+                            <div></div>
+                            <div class="day-name">Senin</div>
+                            <div class="day-name">Selasa</div>
+                            <div class="day-name">Rabu</div>
+                            <div class="day-name">Kamis</div>
+                            <div class="day-name">Jumat</div>
+                        </div>
 
-            <!-- <div class="kalender-mingguan hidden">
-                <div class="schedule-container">
-                    <div class="days-header">
-                        <div></div> 
-                        <div class="day-name">Senin</div>
-                        <div class="day-name">Selasa</div>
-                        <div class="day-name">Rabu</div>
-                        <div class="day-name">Kamis</div>
-                        <div class="day-name">Jumat</div>
+                        <div class="schedule-grid" id="scheduleGrid">
+                        </div>
                     </div>
-
-                    <div class="schedule-grid" id="scheduleGrid">
-                    </div>
-                </div> -->
+                </div>
             </div>
             <div class="riwayat glass-box">
                 <div class="riwayat-header">
@@ -178,12 +178,19 @@
                     </div>
                 </div>
 
-                <div class="side-box upload-box glass-box">
-                    <button class="btn-upload">
-                        <i class="ri-upload-2-line"></i>
-                        <span>Unggah Jadwal Kuliah</span>
-                    </button>
-                </div>
+                <label for="file-input" class="side-box upload-box glass-box">
+                    <input type="file" id="file-input" hidden
+                        onchange="updateFileName(this)">
+
+                    <div class="upload-content">
+                        <i class="ri-upload-2-line glow-icon"></i>
+
+                        <div class="text-group">
+                            <span class="subtitle">Unggah Jadwal Kuliah</span>
+                        </div>
+                    </div>
+
+                </label>
 
             </div>
         </main>
