@@ -137,10 +137,97 @@ main.container {
     opacity: 0.9;
 }
 
+/* --- CONTAINER UTAMA (KOTAK KACA) --- */
 .notificationContainer {
     width: 60vw;
     height: 50vh;
+
+    /* Layout List: Vertikal dari atas ke bawah */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch; /* PENTING: Agar item melebar 100% ke samping */
+
+    overflow-y: auto; /* Scroll jika penuh */
+    padding: 0; /* Nol-kan padding agar garis border menyentuh ujung */
 }
+
+/* Scrollbar Custom */
+.notificationContainer::-webkit-scrollbar {
+    width: 8px;
+}
+.notificationContainer::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* --- ITEM NOTIFIKASI INDIVIDUAL --- */
+.notif-item {
+    /* Layout Item: Horizontal (Kiri Isi, Kanan Waktu) */
+    display: flex;
+    justify-content: space-between; /* Pisahkan kiri dan kanan mentok */
+    align-items: center; /* Vertikal center */
+
+    padding: 20px 30px; /* Spasi dalam item */
+    width: 100%; /* Pastikan lebar penuh */
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* Garis pemisah putih transparan */
+    color: white;
+    transition: background 0.3s;
+}
+
+/* Hover Effect */
+.notif-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+/* Hilangkan garis di item paling bawah */
+.notif-item:last-child {
+    border-bottom: none;
+}
+
+/* --- BAGIAN KIRI: KONTEN PESAN --- */
+.notif-content {
+    flex: 1; /* Ambil sisa ruang yang ada */
+    text-align: left; /* PENTING: Teks rata kiri */
+    font-size: 16px;
+    padding-right: 20px; /* Jarak agar tidak nempel ke waktu */
+    line-height: 1.5;
+}
+
+/* --- BAGIAN KANAN: WAKTU & TANGGAL --- */
+.notif-meta {
+    display: flex;
+    flex-direction: column; /* Jam di atas, Tanggal di bawah */
+    align-items: flex-end; /* Rata kanan */
+    justify-content: center;
+    min-width: 120px; /* Lebar minimum agar tanggal tidak turun baris */
+}
+
+.notif-time {
+    font-size: 14px;
+    font-weight: 700; /* Tebalkan jam */
+    margin-bottom: 4px;
+}
+
+.notif-date {
+    font-size: 12px;
+    opacity: 0.8; /* Sedikit transparan */
+}
+
+/* --- DOT INDIKATOR BELUM DIBACA --- */
+.unread-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #fff; /* Dot Putih */
+    border-radius: 50%;
+    margin-right: 20px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    flex-shrink: 0; /* Agar dot tidak gepeng */
+}
+
+
 
 /* FOOTER */
 .footer {

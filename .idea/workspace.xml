@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleNotif.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleNotif.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/LoginPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/NotificationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/NotificationPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +53,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FrontEnd/LogPage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;FrontEnd/ManajemenPengguna&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -97,7 +100,11 @@
       <workItem from="1763959865622" duration="1248000" />
       <workItem from="1764048018341" duration="5114000" />
       <workItem from="1764156975178" duration="8202000" />
-      <workItem from="1764202625940" duration="1669000" />
+      <workItem from="1764202625940" duration="2927000" />
+      <workItem from="1764251387467" duration="65000" />
+      <workItem from="1764291588708" duration="1718000" />
+      <workItem from="1764315774979" duration="2497000" />
+      <workItem from="1764326697166" duration="27000" />
     </task>
     <servers />
   </component>

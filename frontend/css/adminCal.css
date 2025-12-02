@@ -1,0 +1,397 @@
+:root {
+    --lightpink: #FFBDBD;
+    --slightlypink: #FFA4A4;
+    --cyan: #BADFDB;
+    --beige: #FCF9EA;
+    --lightpurple: #EBD6FB;
+    --textGrey: #808080;
+    --highlightGreen: #57b846;
+}
+
+/* --- TOGGLE SWITCH --- */
+.custom-switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+}
+
+.custom-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #2c3e50, #34495e);
+    border-radius: 30px;
+    transition: 0.4s;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.knob {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ecf0f1;
+    border-radius: 50%;
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.switch-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+    transition: opacity 0.3s;
+    user-select: none;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.label-month {
+    left: 8px;
+    opacity: 1;
+}
+
+.label-week {
+    right: 8px;
+    opacity: 0;
+    text-align: right;
+}
+
+input:checked ~ .slider .knob {
+    transform: translate(-40px, -50%);
+}
+
+input:checked ~ .slider .label-month {
+    opacity: 0;
+}
+
+input:checked ~ .slider .label-week {
+    opacity: 1;
+}
+
+/* --- HEADER --- */
+#header-kalender {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+#left-header, #right-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#button-arrow {
+    display: flex;
+    gap: 5px;
+}
+
+#button-arrow i {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.kalender-bulanan {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+.kalender-bulanan.hidden {
+    display: none !important;
+}
+
+.kalender-bulanan .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.month_calendar {
+    display: grid;
+    width: 100% !important;
+    height: 100% !important;
+
+    background-color: white;
+    border-radius: 12px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 30px repeat(6, 1fr);
+
+    border: none;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
+
+.day-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 0.5px;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+.date-cell {
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2px 4px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    height: 100%; /* Pastikan sel memenuhi grid */
+}
+
+/* Event Styles */
+.event-details {
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.event-title {
+    font-weight: 800;
+    font-size: 9px;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.event-name {
+    font-weight: 500;
+    font-size: 8px;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Colors */
+.date-cell.pink-bg {
+    background-color: #ffeef1;
+    border-left: 3px solid #ff4d6d;
+    color: #c01048;
+}
+
+.date-cell.green-bg {
+    background-color: #e6f9ed;
+    border-left: 3px solid #28c76f;
+    color: #027a48;
+}
+
+.date-cell.blue-bg {
+    background-color: #eef7ff;
+    border-left: 3px solid #00cfe8;
+    color: #1e40af;
+}
+
+.date-num {
+    font-size: 11px;
+    font-weight: bold;
+    color: #374151;
+    z-index: 2;
+    margin-bottom: 2px;
+}
+
+.other-month {
+    background-color: #fafafa;
+}
+
+.other-month .date-num {
+    color: #d1d5db;
+}
+
+.today {
+    background-color: #eff6ff;
+}
+
+.today .date-num {
+    color: #2563eb;
+}
+
+
+.kalender-mingguan {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+.kalender-mingguan.hidden {
+    display: none !important;
+}
+
+/* Container Mingguan */
+.schedule-container {
+    width: 100% !important;
+    height: 100% !important;
+    background: white;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Logic Tampil */
+.kalender-mingguan:not(.hidden) .schedule-container,
+.schedule-container.active {
+    display: flex;
+}
+
+/* HEADER HARI */
+.days-header {
+    display: grid;
+    grid-template-columns: 30px repeat(5, 1fr);
+    margin: 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    background: #f9fafb;
+    z-index: 5;
+    flex-shrink: 0;
+    font-weight: bold;
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+}
+
+/* GRID JAM */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 30px repeat(5, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 0;
+}
+
+/* Label Jam */
+.time-label {
+    grid-column: 1;
+    text-align: right;
+    padding-right: 4px;
+    font-size: 9px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Garis Horizontal */
+.grid-line {
+    grid-column: 2 / span 5;
+    border-top: 1px solid #f3f4f6;
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.class-card {
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 1px;
+    overflow: hidden;
+    height: 95%;
+}
+
+.class-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.class-title {
+    font-weight: bold;
+    font-size: 9px;
+    line-height: 1.2;
+    margin-bottom: 1px;
+    overflow: hidden;
+}
+
+.class-info {
+    font-size: 8px;
+    opacity: 0.9;
+    white-space: normal;
+    line-height: 1.1;
+}
+
+/* Warna Matkul */
+.bg-teal {
+    background-color: #4ECDC4;
+}
+
+.bg-red {
+    background-color: #E06C75;
+}
+
+.bg-orange {
+    background-color: #F79D65;
+}
+
+.bg-blue-dark {
+    background-color: #387D98;
+}
+
+.bg-blue-light {
+    background-color: #4DB6AC;
+}
+
+.bg-purple {
+    background-color: #B39DDB;
+}
+
+.bg-olive {
+    background-color: #9CCC65;
+}
+
+.bg-pink {
+    background-color: #EC87A1;
+}
