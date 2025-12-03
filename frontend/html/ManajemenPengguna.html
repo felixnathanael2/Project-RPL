@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Log Admin</title>
+    <title>Manajemen Pengguna</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/logAdmin.css">
+    <link rel="stylesheet" href="../css/ManajemenPengguna.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
-    <script src="../js/log.js" defer></script>
+    <script src="../js/ManajemenPengguna.js" defer></script>
 </head>
 
 <!-- HEADER -->
@@ -22,19 +22,19 @@
         <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo">
     </div>
     <div class="nav-middle">
-            <div id="nav-beranda">
-                <a href="DashboardAdmin.html">Beranda</a>
-            </div>
-            <div id="nav-area_admin">
-                <a href="ManajemenPengguna.html">Area Admin</a>
-            </div>
-            <div id="nav-log">
-                <a href="logAdmin.html">Log</a>
-            </div>
-            <div id="nav-riwayat">
-                <a href="Riwayat(Admin).html">Riwayat</a>
-            </div>
+        <div id="nav-beranda">
+            <a href>Beranda</a>
         </div>
+        <div id="nav-areaAdmin">
+            <a href>Area Admin</a>
+        </div>
+        <div id="nav-log">
+            <a href>Log</a>
+        </div>
+        <div id="nav-riwayat">
+            <a href>Riwayat</a>
+        </div>
+    </div>
     <div class="nav-right">
         <div id="notif">
             <a href><i class="ri-notification-4-line"></i></a>
@@ -51,27 +51,27 @@
 <!-- MAIN CONTENT -->
 <main class="container">
     <div class="glass-box table">
-        <div class="log-header">
-            <h2>Log</h2>
-            <button class="btn-download" onclick="downloadLog()">
-                <i class="ri-download-2-line"></i>
+        <div class="mp-header">
+            <h2>Manajemen Pengguna</h2>
+            <button class="btn-add">
+                <i class="ri-user-add-line"></i>
             </button>
         </div>
-            <div class="table-wrapper">
-                <table class="log-table">
-                    <thead>
-                    <tr>
-                        <th>Email Account</th>
-                        <th>Activity</th>
-                        <th>Date Time</th>
-                    </tr>
-                    </thead>
-                    <tbody id="logTableBody">
-                    </tbody>
-                </table>
-            </div>
-
+        <div class="table-wrapper">
+            <table class="mp-table">
+                <thead>
+                <tr>
+                    <th>Email Account</th>
+                    <th>Status</th>
+                    <th>Semester</th>
+                </tr>
+                </thead>
+                <tbody id="mpTableBody">
+                </tbody>
+            </table>
         </div>
+
+    </div>
 </main>
 
 <!-- FOOTER -->

@@ -24,16 +24,16 @@ body {
 
 /* Efek Blur */
 .glass-box {
-  background: #A3C0EB45;
-  backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    background: #A3C0EB45;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
 
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* HEADER */
@@ -103,7 +103,7 @@ body {
     transform: scale(1.1);
 }
 
-.nav-right div{
+.nav-right div {
     padding: 0px 6px;
 }
 
@@ -125,7 +125,7 @@ main.container {
     width: 100%;
 }
 
-#submissionForm{
+#submissionForm {
     width: 90%;
 }
 
@@ -170,7 +170,7 @@ main.container {
 }
 
 .input-field {
-    width: 100%;    
+    width: 100%;
     height: 30px;
     padding: 2px 2px 2px 5px;
     border-radius: 7px;
@@ -187,27 +187,27 @@ input[type="date"] {
     cursor: pointer;
 }
 
-#buttonContainer{
+#buttonContainer {
     display: flex;
     justify-content: space-between;
 }
 
-#batalButton{
+#batalButton {
     background-color: #F0252599;
     margin-left: 0;
 }
 
-#submitButton{
+#submitButton {
     background-color: #10BD0099;
     margin-right: 0;
 }
 
-#plusButton{
+#plusButton {
     background-color: #FFFFFF00;
     color: rgb(191, 191, 191);
     font-size: 20px;
     border: transparent;
-    position:absolute;
+    position: absolute;
     right: 60px;
     bottom: 95px;
 }
@@ -262,34 +262,60 @@ input[type="date"] {
     padding: 50px;
     border-radius: 20px;
     text-align: center;
-    width: 600px;
+    width: 30vw;
     max-width: 90%;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
     color: white;
 }
 
 .modal-box h3 {
-    font-size: 28px;
+    font-size: 37px;
     margin-bottom: 30px;
     font-weight: 700;
 }
 
 .modal-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 15px;
     margin-top: 20px;
 }
 
 .btn-modal {
-    padding: 12px 35px;
+    padding: 12px 0 12px 0;
+    width: 49%;
     font-size: 16px;
     border-radius: 10px;
     border: none;
     font-weight: 600;
+    color: white;
     cursor: pointer;
     transition: transform 0.2s;
+}
+
+#noBtn {
+    background-color: #F0252599;
+    margin-left: 0;
+    box-shadow: 0 1px 8px rgba(255, 255, 255, 0.5);
+}
+
+#noBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+#yesBtn {
+    background-color: #10BD0099;
+    margin-right: 0;
+    box-shadow: 0 1px 8px rgba(255, 255, 255, 0.5);
+}
+
+#yesBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
 }
 
 .btn-cancel {

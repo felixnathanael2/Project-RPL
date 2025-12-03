@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/styleTambahAkun.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
-    <script src="script.js" defer></script>
+    <script src="../js/scriptTambahAkunAwal.js" defer></script>
 </head>
 
 <body>
@@ -22,27 +22,24 @@
         </div>
         <div class="nav-middle">
             <div id="nav-beranda">
-                <a href>Beranda</a>
+                <a href="DashboardAdmin.html">Beranda</a>
             </div>
             <div id="nav-area_admin">
-                <a href>Area Admin</a>
+                <a href="ManajemenPengguna.html">Area Admin</a>
             </div>
             <div id="nav-log">
-                <a href>Log</a>
+                <a href="logAdmin.html">Log</a>
             </div>
             <div id="nav-riwayat">
-                <a href>Riwayat</a>
+                <a href="Riwayat(Admin).html">Riwayat</a>
             </div>
         </div>
         <div class="nav-right">
             <div id="notif">
-                <a href><i class="ri-notification-4-line"></i></a>
-            </div>
-            <div id="profile">
-                <a href><i class="ri-account-circle-line"></i></a>
+                <a href="DashboardAdmin.html"><i class="ri-notification-4-line"></i></a>
             </div>
             <div id="logout">
-                <a href><i class="ri-logout-box-r-line"></i></a>
+                <a href="LoginPage.html"><i class="ri-logout-box-r-line"></i></a>
             </div>
         </div>
     </div>
@@ -56,15 +53,15 @@
                     <input type="text" id="nama" class="input-field" placeholder="masukkan email anda" required>
                 </div>
                 <div class="input-group">
-                    <label for="lokasi">Status</label>
-                    <select id="lokasi" class="input-field" required>
+                    <label for="status">Status</label>
+                    <select id="status" class="input-field" required>
                         <option value disabled selected>Masukan status pengguna</option>
                         <option value="Mahasiswa">Mahasiswa</option>
                         <option value="Dosen">Dosen</option>
                     </select>
                 </div>
 
-                <button type="button" class="btn-submit">Lanjut</button>
+                <button id="lanjutButton" type="button" class="btn-submit">Lanjut</button>
             </form>
         </div>
     </main>
