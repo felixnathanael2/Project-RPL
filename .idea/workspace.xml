@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleNotif.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleNotif.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/html/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/LoginPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/html/NotificationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/NotificationPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/DashboardDosen.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/DashboardDosen.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,30 +50,31 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FrontEnd/ManajemenPengguna&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dosenfrontend&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/KULIAH/Sem 5/RPL/TUBES/UIPBW&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/M I C H A E L/SEM 5/RPL/TUBES&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
-      <module name="UIPBW" />
+      <module name="TUBES" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="UIPBW" />
+      <module name="TUBES" />
       <option name="filePath" />
       <method v="2" />
     </configuration>
@@ -99,12 +97,11 @@
       <workItem from="1763955146983" duration="3374000" />
       <workItem from="1763959865622" duration="1248000" />
       <workItem from="1764048018341" duration="5114000" />
-      <workItem from="1764156975178" duration="8202000" />
-      <workItem from="1764202625940" duration="2927000" />
-      <workItem from="1764251387467" duration="65000" />
-      <workItem from="1764291588708" duration="1718000" />
-      <workItem from="1764315774979" duration="2497000" />
-      <workItem from="1764326697166" duration="27000" />
+      <workItem from="1764156975178" duration="7957000" />
+      <workItem from="1764606297166" duration="100000" />
+      <workItem from="1764606480378" duration="141000" />
+      <workItem from="1764741934026" duration="1420000" />
+      <workItem from="1764743585054" duration="1967000" />
     </task>
     <servers />
   </component>
