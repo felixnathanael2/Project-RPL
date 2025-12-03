@@ -39,15 +39,13 @@ export const ajukanBimbingan = async (req, res) => {
 
 export const getJadwalBimbingan = async (req, res) => {
     try {
-        const id_student = req.user.id; // Ambil ID dari session login
+        const id_student = req.user.id; 
         
-        // Panggil service
         const data = await getApprovedBimbingan(id_student);
 
-        // Format data agar tanggalnya "YYYY-MM-DD" untuk frontend
+        // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
         const formattedData = data.map(item => {
             const dateObj = new Date(item.tanggal);
-            // en-CA menghasilkan format YYYY-MM-DD
             const dateStr = dateObj.toLocaleDateString('en-CA'); 
             
             return {

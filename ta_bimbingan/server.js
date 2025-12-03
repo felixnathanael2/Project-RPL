@@ -16,8 +16,6 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-
-
 //secret: Ini adalah Tanda Tangan Digital. String rahasia yang digunakan untuk menyegel cookie sesi agar tidak bisa dipalsukan oleh hacker.
 //resave: false: Efisiensi. Artinya: "Kalau sesi user gak ada yang berubah (dia cuma diem aja), gak usah simpan ulang ke database." Ini menghemat kinerja server.
 //saveUninitialized: false: Hemat Tempat & Privasi. Artinya: "Kalau ada orang asing lewat (visit) tapi belum login (belum ada data sesi yang disimpan), jangan buatkan dia sesi di database." Kita cuma buat sesi kalau dia sudah berhasil login.

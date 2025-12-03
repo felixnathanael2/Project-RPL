@@ -52,3 +52,6 @@ export const pengajuan = (req, res) => {
 };
 
 
+export const notifikasi = (req, res) => {
+    res.sendFile(path.join(__dirname, "../private/NotificationPage.html"));
+};

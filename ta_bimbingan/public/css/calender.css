@@ -257,15 +257,12 @@ input:checked~.slider .label-week {
     background-color: #fce7f3;
     color: #c01048;
 }
-
+    
 .blue-bg {
     background-color: #dbeafe;
     color: #1e40af;
 }
 
-/* ============================================================ */
-/* --- WEEKLY SCHEDULE (DIMENSI DISAMAKAN DENGAN BULANAN) --- */
-/* ============================================================ */
 
 .schedule-container {
     width: 32rem;

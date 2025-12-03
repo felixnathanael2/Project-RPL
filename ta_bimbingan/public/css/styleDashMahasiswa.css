@@ -127,8 +127,7 @@ main {
 }
 
 .main_container {
-  /* Flex: grow(3) shrink(1) basis(500px) */
-  /* Prioritas lebar 1x lipat, tapi minimal 500px sebelum turun baris */
+  
   flex: 1 1 500px; 
   min-height: 35rem;
   
@@ -140,17 +139,19 @@ main {
   font-size: 20px;
 }
 
-/* 2. Riwayat (Lebar Menengah) */
 .riwayat {
   flex: 1.5 1 300px;
   min-height: 35rem;
-
+  max-height: 35rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
   display: flex !important;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   padding: 1.5rem;
   gap: 10px;
+
 }
 
 .riwayat-header {
@@ -366,9 +367,9 @@ main {
 
 .text-group {
   display: flex;
-  flex-direction: column; /* Teks disusun vertikal */
+  flex-direction: column; 
   justify-content: center;
-  align-items: flex-start; /* Rata kiri */
+  align-items: flex-start;
   color: white;
 }
 
@@ -382,7 +383,7 @@ main {
 .text-group .subtitle {
   line-height: 1.2;
   font-size: 18px;
-  font-weight: 700; /* Teks bawah lebih tebal */
+  font-weight: 700; 
   letter-spacing: 0.5px;
 }
 

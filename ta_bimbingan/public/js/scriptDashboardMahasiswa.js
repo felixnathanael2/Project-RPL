@@ -1,237 +1,182 @@
-/* =========================================
-   BAGIAN 1: LOGIKA KALENDER BULANAN (FIXED)
-   ========================================= */
-const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+/* ====================================================
+   FILE 2: scriptDashboardMahasiswa.js
+   TUGAS: Controller (Fetch Data, Event Listeners, Init)
+   ==================================================== */
 
-let dataJadwal = {};
+// Variabel Global Lokal untuk file ini
+let globalDataJadwal = {}; 
 
-let thisDay = new Date();
-let currentYear = thisDay.getFullYear();
-let currentMonth = thisDay.getMonth();
+// --- 1. LOGIKA UPDATE SIDEBAR (Tanggal Hari Ini) ---
+function updateCurrentDate() {
+    const today = new Date();
+    const namaHariIndo = ['Ming', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+    const namaBulanIndo = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
 
-// --- 1. FUNGSI FETCH DATA ---
+    const hariID = document.getElementById('hari');
+    const bulanID = document.getElementById('bulan');
+    const tanggalID = document.getElementById('tanggal');
+
+    if (hariID && bulanID && tanggalID) {
+        hariID.textContent = namaHariIndo[today.getDay()];
+        bulanID.textContent = namaBulanIndo[today.getMonth()];
+        tanggalID.textContent = String(today.getDate()).padStart(2, '0');
+    }
+}
+
+// --- 2. FETCH DATA KALENDER (BULANAN) ---
 async function fetchJadwalBimbingan() {
     try {
         const response = await fetch('/api/jadwal-bimbingan');
         const rawData = await response.json();
 
-        dataJadwal = {};
+        globalDataJadwal = {}; // Reset
 
         rawData.forEach(item => {
             const jamDisplay = item.waktu.substring(0, 5);
-
+            
             // Logika Warna
             let colorType = "green-bg";
             if (parseInt(jamDisplay.substring(0, 2)) >= 12) {
                 colorType = "blue-bg";
             }
 
-            if (!dataJadwal[item.tanggal]) {
-                dataJadwal[item.tanggal] = [];
+            if (!globalDataJadwal[item.tanggal]) {
+                globalDataJadwal[item.tanggal] = [];
             }
 
-            dataJadwal[item.tanggal].push({
+            globalDataJadwal[item.tanggal].push({
                 title: jamDisplay,
                 name: item.nama_dosen,
                 type: colorType
             });
         });
 
-        // Render ulang setelah data masuk
-        updateHeaderAndGrid();
+        // Panggil fungsi render dari scriptCalender.js
+        updateCalendarHeader(); 
+        generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
 
     } catch (error) {
-        console.error("Gagal mengambil jadwal:", error);
+        console.error("Gagal mengambil jadwal kalender:", error);
     }
 }
 
-// --- 2. UPDATE HEADER & GRID ---
-function updateHeaderAndGrid() {
-    // Update Header Text
-    const headerText = document.querySelector('#right-header p');
-    if (headerText) {
-        headerText.textContent = `${monthNames[currentMonth]} ${currentYear}`;
-    }
+// --- 3. FETCH DATA JADWAL MINGGUAN ---
+async function fetchJadwalMingguan() {
+    try {
+        const response = await fetch('/api/my-schedule'); 
+        const result = await response.json();
+        
+        let formattedJadwal = [];
+        const colors = ['bg-teal', 'bg-pink', 'bg-blue-dark', 'bg-red', 'bg-orange', 'bg-olive', 'bg-purple'];
 
-    generateCalendarGrid(currentYear, currentMonth);
-}
-
-function generateCalendarGrid(year, month) {
-    const calendarContainer = document.querySelector('div.month_calendar');
-    if (!calendarContainer) return;
-
-    //render nama hari
-    dayNames.forEach(d => {
-        const dayLabel = document.createElement('div');
-        dayLabel.className = 'day-name';
-        dayLabel.textContent = d;
-        calendarContainer.appendChild(dayLabel);
-    });
-
-    // hitung logika tanggal
-    const firstDayIndex = new Date(year, month, 1).getDay(); // 0 = Minggu
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const prevMonthDays = new Date(year, month, 0).getDate(); 
-
-    // Grid 6 baris x 7 kolom = 42 sel
-    const totalCells = 42;
-
-    for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'date-cell';
-
-        let dateDisplay;
-        let isCurrentMonth = false;
-        let cellKey = null;
-
-        if (i < firstDayIndex) {
-            // --- BULAN LALU ---
-            dateDisplay = prevMonthDays - (firstDayIndex - 1) + i;
-            cell.classList.add('other-month');
-        } else if (i >= firstDayIndex && i < firstDayIndex + daysInMonth) {
-            // --- BULAN INI ---
-            dateDisplay = i - firstDayIndex + 1;
-            isCurrentMonth = true;
-
-            // Buat Key YYYY-MM-DD
-            const mStr = String(month + 1).padStart(2, '0');
-            const dStr = String(dateDisplay).padStart(2, '0');
-            cellKey = `${year}-${mStr}-${dStr}`;
-
-            // Cek Hari Ini
-            const today = new Date();
-            if (dateDisplay === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                cell.classList.add('today');
-            }
-        } else {
-            // --- BULAN DEPAN ---
-            dateDisplay = i - (firstDayIndex + daysInMonth) + 1;
-            cell.classList.add('other-month');
+        if (result.status === 'success' && Array.isArray(result.data)) {
+            formattedJadwal = result.data.map(item => ({
+                day: item.hari,
+                time: item.jam_mulai.substring(0, 5),
+                end: item.jam_akhir.substring(0, 5),
+                title: "Jadwal Kuliah", // Default karena DB belum ada
+                room: "R. Kuliah",      // Default
+                color: colors[Math.floor(Math.random() * colors.length)]
+            }));
         }
 
-        // Render Angka Tanggal
-        const dateNumSpan = document.createElement('span');
-        dateNumSpan.className = 'date-num';
-        dateNumSpan.textContent = dateDisplay;
-        cell.appendChild(dateNumSpan);
+        // Panggil fungsi render dari scriptCalender.js
+        renderSchedule(formattedJadwal);
 
-        // Render Event (Hanya jika bulan ini dan datanya ada)
-        if (isCurrentMonth && cellKey && dataJadwal[cellKey]) {
-            dataJadwal[cellKey].forEach(ev => {
-                // 1. Tambah warna background ke cell utama
-                cell.classList.add(ev.type);
-
-                // 2. Tambah detail teks di bawah angka
-                const infoDiv = document.createElement('div');
-                infoDiv.className = 'event-details';
-                infoDiv.innerHTML = `
-                    <div class="event-title">${ev.title}</div>
-                    <div class="event-name">${ev.name}</div>
-                `;
-                cell.appendChild(infoDiv);
-            });
-        }
-
-        calendarContainer.appendChild(cell);
+    } catch (error) {
+        console.error("Gagal mengambil jadwal mingguan:", error);
     }
 }
 
+// --- 4. FETCH RIWAYAT BIMBINGAN (SIDEBAR) ---
+async function fetchRiwayatBimbingan() {
+    try {
+        const response = await fetch("/api/riwayat");
+        const result = await response.json();
 
-/* 
-    Logika Jadwal Mingguan
-    */
+        const riwayatContainer = document.querySelector('.riwayat-list');
+        if (!riwayatContainer) return;
 
-const jadwalKuliah = [
-    { day: 'Senin', title: 'Pemrograman Berbasis Web', time: '07:00', end: '10:00', room: 'R. Kuliah • 09.00.0018', color: 'bg-teal' },
-    { day: 'Senin', title: 'Artificial Intelligence', time: '13:00', end: '15:00', room: 'R. Kuliah', color: 'bg-pink' },
-    { day: 'Senin', title: 'Rekayasa Perangkat Lunak', time: '15:00', end: '17:00', room: 'R. Kuliah', color: 'bg-blue-dark' },
-    { day: 'Selasa', title: 'Manajemen Proyek', time: '08:00', end: '10:00', room: 'R. Kuliah', color: 'bg-red' },
-    { day: 'Rabu', title: 'Pengantar dan Aplikasi', time: '10:00', end: '12:30', room: 'Lab • 09.00.0018', color: 'bg-orange' },
-    { day: 'Rabu', title: 'Rekayasa Perangkat Lunak', time: '13:00', end: '15:00', room: 'Lab', color: 'bg-blue-dark' },
-    { day: 'Rabu', title: 'Desain Antarmuka Grafis', time: '15:00', end: '17:00', room: 'R. Kuliah', color: 'bg-olive' },
-    { day: 'Kamis', title: 'Pemrograman Berbasis Web', time: '10:00', end: '12:00', room: 'Lab', color: 'bg-blue-light' },
-    { day: 'Kamis', title: 'Artificial Intelligence', time: '15:00', end: '17:00', room: 'R. Kuliah', color: 'bg-pink' },
-    { day: 'Jumat', title: 'Rekayasa Perangkat Lunak', time: '07:00', end: '09:00', room: '-', color: 'bg-blue-dark' },
-    { day: 'Jumat', title: 'Sistem Big Data', time: '09:00', end: '11:30', room: 'R. Kuliah • 09.07.0010', color: 'bg-purple' }
-];
+        riwayatContainer.innerHTML = ''; // Bersihkan dummy
 
-const dayMap = { 'Senin': 2, 'Selasa': 3, 'Rabu': 4, 'Kamis': 5, 'Jumat': 6 };
+        const data = result.data; 
 
-function getRowFromTime(timeString) {
-    const [hour, minute] = timeString.split(':').map(Number);
-    const startHour = 7;
-    let row = (hour - startHour) * 2 + 1;
-    if (minute >= 30) row += 1;
-    return row;
+        if (!data || data.length === 0) {
+            riwayatContainer.innerHTML = `
+                <div style="text-align: center; padding: 20px; opacity: 0.7;">
+                    <p>Belum ada riwayat bimbingan.</p>
+                </div>`;
+            return;
+        }
+
+        data.forEach((item, index) => {
+            const dateObj = new Date(item.tanggal);
+            const dateBadge = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+
+            let statusColor = "var(--cyan)";
+            if (item.status === "Menunggu") statusColor = "#f59e0b";
+            if (item.status === "Ditolak") statusColor = "#ef4444";
+            if (item.status === "Disetujui") statusColor = "#10b981";
+
+            const cardHTML = `
+                <div class="history-card">
+                    <div class="card-header">
+                        <h5>Bimbingan ${data.length - index}</h5> 
+                        <span class="date-badge">${dateBadge}</span>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="ri-user-star-line"></i> ${item.nama || "Dosen"}</p>
+                        <p style="font-size: 11px; margin-top: -5px; opacity: 0.8;">
+                           <i class="ri-map-pin-line"></i> ${item.nama_ruangan || "-"} • ${item.waktu ? item.waktu.substring(0, 5) : "--:--"}
+                        </p>
+                        <a href="#" class="detail-link" style="color: ${statusColor}">
+                            Status: ${item.status} <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            riwayatContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
+    } catch (error) {
+        console.error("Gagal mengambil riwayat:", error);
+    }
 }
 
-function renderSchedule() {
-    const container = document.getElementById('scheduleGrid');
-    if (!container) return;
-
-    const hours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-    hours.forEach(h => {
-        const timeLabel = document.createElement('div');
-        timeLabel.className = 'time-label';
-        timeLabel.textContent = `${h.toString().padStart(2, '0')}:00`;
-        timeLabel.style.gridRow = getRowFromTime(`${h}:00`);
-        container.appendChild(timeLabel);
-
-        const line = document.createElement('div');
-        line.className = 'grid-line';
-        line.style.gridRow = getRowFromTime(`${h}:00`);
-        container.appendChild(line);
-    });
-
-    jadwalKuliah.forEach(item => {
-        const startRow = getRowFromTime(item.time);
-        const endRow = getRowFromTime(item.end);
-        const duration = endRow - startRow;
-        const column = dayMap[item.day];
-
-        const card = document.createElement('div');
-        card.className = `class-card ${item.color}`;
-        card.style.gridColumn = column;
-        card.style.gridRow = `${startRow} / span ${duration}`;
-        card.innerHTML = `
-            <div class="class-title">${item.title}</div>
-            <div class="class-info">${item.time} - ${item.end}</div>
-            <div class="class-info">${item.room}</div>
-        `;
-        container.appendChild(card);
-    });
-}
-
-// =========================================
-// INITIALIZATION
-// =========================================
-
+// --- 5. INITIALIZATION (RUN ONCE) ---
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Fetch & Render (Otomatis generate grid setelah fetch selesai)
+    // A. Init Data
+    updateCurrentDate();
     fetchJadwalBimbingan();
+    fetchJadwalMingguan();
+    fetchRiwayatBimbingan();
 
-    // 2. Render Jadwal Mingguan
-    renderSchedule();
-
-    // 3. Logic Toggle
+    // B. Logic Toggle View (Bulanan <-> Mingguan)
     const viewToggle = document.getElementById('viewToggle');
     const monthlyView = document.querySelector('.kalender-bulanan');
+    const rightHeader = document.querySelector('#right-header');
     const weeklyView = document.querySelector('.kalender-mingguan');
+
+    // Default State
+    if (monthlyView) monthlyView.classList.remove('hidden');
+    if (rightHeader) rightHeader.classList.remove('hidden');
+    if (weeklyView) weeklyView.classList.add('hidden');
 
     if (viewToggle && monthlyView && weeklyView) {
         viewToggle.addEventListener('change', function () {
-            if (this.checked) {
+            if (this.checked) { // Switch ke Mingguan
                 monthlyView.classList.add('hidden');
+                rightHeader.classList.add('hidden');
                 weeklyView.classList.remove('hidden');
-            } else {
+            } else { // Switch ke Bulanan
                 monthlyView.classList.remove('hidden');
+                rightHeader.classList.remove('hidden');
                 weeklyView.classList.add('hidden');
             }
         });
     }
 
-    // 4. Logic Tombol Panah (Prev/Next)
+    // C. Navigation Logic (Next/Prev Month)
     const btnNext = document.querySelector('.ri-arrow-right-s-line');
     const btnPrev = document.querySelector('.ri-arrow-left-s-line');
 
@@ -239,9 +184,10 @@ document.addEventListener("DOMContentLoaded", () => {
         btnNext.addEventListener('click', () => {
             currentMonth++;
             if (currentMonth > 11) { currentMonth = 0; currentYear++; }
-            // [FIX] Kita update grid saja, karena dataJadwal sudah di-fetch di awal
-            // Kalau API mendukung filter per bulan, panggil fetchJadwalBimbingan() di sini.
-            updateHeaderAndGrid();
+            
+            // Update UI dengan fungsi dari scriptCalender.js
+            updateCalendarHeader(); 
+            generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
         });
     }
 
@@ -249,7 +195,10 @@ document.addEventListener("DOMContentLoaded", () => {
         btnPrev.addEventListener('click', () => {
             currentMonth--;
             if (currentMonth < 0) { currentMonth = 11; currentYear--; }
-            updateHeaderAndGrid();
+            
+            // Update UI dengan fungsi dari scriptCalender.js
+            updateCalendarHeader();
+            generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
         });
     }
 });

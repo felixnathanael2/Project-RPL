@@ -4,12 +4,28 @@ export function protectRoute(req, res, next) {
     if (req.session.isLoggedIn) {
         req.user = {
             id: req.session.userId,
+            email: req.session.email,
             role: req.session.role,
             name: req.session.userName,
         };
         next();
     } else {
-        // Langsung pindahkan user ke halaman login
-        res.redirect("/page/LoginPage.html");
+        return res.redirect("/");
     }
+}
+
+export function protectAPI(req, res, next) {
+    if (req.session.isLoggedIn) {
+        req.user = {
+            id: req.session.userId,
+            email: req.session.email,
+            role: req.session.role,
+            name: req.session.userName,
+        };
+        return next();
+    }
+
+    return res.status(401).json({
+        message: "Akses ditolak. Silakan login terlebih dahulu.",
+    });
 }

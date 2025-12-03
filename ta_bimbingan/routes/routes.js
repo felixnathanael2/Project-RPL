@@ -1,42 +1,49 @@
 // routes.js
 import express from "express";
 import fs from "fs";
+import multer from "multer";
 import { protectRoute } from "../middlewares/authMiddleware.js";
 import { login, logout } from "../controllers/authController.js";
-import multer from "multer";
 
-// Import Controller yang sudah dipisah-pisah
 import {
     riwayat,
-	ajukanBimbingan,
+    ajukanBimbingan,
+    getJadwalBimbingan,
 } from "../controllers/bimbinganController.js";
+
+import * as jadwalController from "../controllers/jadwalController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
 import { pengajuanInit } from "../controllers/referensiController.js";
-import { dashboard, pengajuan } from "../controllers/pageController.js";
-import * as jadwalController from "../controllers/jadwalController.js";
-import { getJadwalBimbingan } from "../controllers/bimbinganController.js";
 
-// router buat endpoint
+import {
+    dashboard,
+    pengajuan,
+    notifikasi
+} from "../controllers/pageController.js";
+
+import { showNotifikasi } from "../controllers/notifikasiController.js";
+
 const router = express.Router();
 
+// ==========================================
+// KONFIGURASI MULTER (UPLOAD EXCEL)
+// ==========================================
 if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads');
 }
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // File disimpan sementara di folder 'uploads/'
+        cb(null, 'uploads/');
     },
     filename: (req, file, cb) => {
-        // Beri nama unik: timestamp-namafile
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
-// Filter agar hanya menerima Excel 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype.includes("excel") || 
-        file.mimetype.includes("spreadsheetml") || 
+    if (file.mimetype.includes("excel") ||
+        file.mimetype.includes("spreadsheetml") ||
         file.originalname.match(/\.(xls|xlsx)$/)) {
         cb(null, true);
     } else {
@@ -46,27 +53,27 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-
-// route for auth
 router.post("/api/login", login);
 router.post("/api/logout", logout);
 
-// biar si routernya pake middleware protectRoute
 router.use(protectRoute);
 
+// --- API ROUTES (JSON Data) ---
 router.post("/api/upload-jadwal", upload.single("file_excel"), jadwalController.uploadJadwal);
-router.get("/api/riwayat", riwayat);
-router.post("/api/ajukan-bimbingan", ajukanBimbingan);
+router.get("/api/my-schedule", jadwalController.getMyJadwal);
 router.get("/api/check-availability", checkAvailability);
+
+router.get("/api/riwayat", riwayat); 
+
+router.post("/api/ajukan-bimbingan", ajukanBimbingan);
+router.get("/api/jadwal-bimbingan", getJadwalBimbingan);
 router.get("/api/pengajuan-init", pengajuanInit);
+router.get("/api/get-notifikasi", showNotifikasi);
+
+
+// --- PAGE ROUTES (Render HTML/EJS) ---
 router.get("/dashboard", dashboard);
 router.get("/pengajuan", pengajuan);
-router.get("/api/riwayat", riwayat);
-router.get("/api/jadwal-bimbingan", getJadwalBimbingan);
-
-
-// Route Get Jadwal (untuk ditampilkan di tabel frontend)
-router.get("/api/my-schedule",  jadwalController.getMyJadwal);
-// router.get("/api/my-schedule", getMyJadwal); // Route baru
+router.get("/notifikasi", notifikasi);
 
 export default router;
