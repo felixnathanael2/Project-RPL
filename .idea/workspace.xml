@@ -5,216 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/css/styleDashMahas.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/DasboardMahasiswa.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/LoginPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/LupaPasswordPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/NotificationPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/PengajuanBimbingan.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/ProfilePage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/ResetPasswordPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/RiwayatBImbinganPage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/html/viewPermintaan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/fonts/Gilroy-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/fonts/Gilroy-Bold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/fonts/Gilroy-Heavy.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/fonts/Gilroy-Heavy.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/fonts/Gilroy-Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/fonts/Gilroy-Light.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/fonts/Gilroy-Medium.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/fonts/Gilroy-Medium.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/fonts/Gilroy-Regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/fonts/Gilroy-Regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/image/sunset.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/image/sunset.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/assets/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/assets/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CALENDAR/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/CALENDAR/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/assets/Logo IF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/assets/LogoWarnaUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/css/styleCatBim.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/js/catBim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Catatan Bimbingan/page/CatatanBimbingan.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/Background.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/Background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/FA - Logo BW Monokrom UNPAR - Horizontal - Wordmark Putih.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/FA - Logo BW Monokrom UNPAR - Horizontal - Wordmark Putih.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/HeaderIF.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/HeaderIF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/HeaderUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/HeaderUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/Kalender.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/LogoBWUNPAR.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/LogoBWUNPAR.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/LogoIF.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/LogoIF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/MBTA.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/MBTA.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/MBTABlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/assets/MBTABlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/calender.css" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/calender.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/css/calender.css" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/css/calender.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/css/styleDashMahas.css" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/css/styleDashMahas.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/page/DasboardMahasiswa.html" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/page/DasboardMahasiswa.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DashboardMahasiswa/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/DashboardMahasiswa/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/Logo IF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/assets/Logo IF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/LogoIF.png" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/assets/LogoIF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/MBTA-Icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/assets/MBTA-Icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/MBTABlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/assets/MBTABlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/css/styleLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/css/styleLogin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/page/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/page/LoginPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login Page/styleLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/Login Page/styleLogin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/Logo IF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Lupa Password/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/MBTA-Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/MBTABlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Lupa Password/assets/MBTABlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/css/styleLupa.css" beforeDir="false" afterPath="$PROJECT_DIR$/Lupa Password/css/styleLupa.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/page/LupaPasswordPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Lupa Password/page/LupaPasswordPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lupa Password/styleLupa.css" beforeDir="false" afterPath="$PROJECT_DIR$/Lupa Password/styleLupa.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/HeaderIF.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/HeaderIF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/HeaderUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/HeaderUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notification Page/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/MBTABlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Notification Page/assets/MBTABlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/css/styleNotif.css" beforeDir="false" afterPath="$PROJECT_DIR$/Notification Page/css/styleNotif.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/page/NotificationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Notification Page/page/NotificationPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification Page/styleNotif.css" beforeDir="false" afterPath="$PROJECT_DIR$/Notification Page/styleNotif.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/Logo IF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/LogoWarnaUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/MBTA-Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/MBTABlue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/css/stylePengajuan.css" beforeDir="false" afterPath="$PROJECT_DIR$/PengajuanBimbingan/css/stylePengajuan.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/PengajuanBimbingan/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/page/PengajuanBimbingan.html" beforeDir="false" afterPath="$PROJECT_DIR$/PengajuanBimbingan/page/PengajuanBimbingan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/PengajuanBimbingan/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PengajuanBimbingan/stylePengajuan.css" beforeDir="false" afterPath="$PROJECT_DIR$/PengajuanBimbingan/stylePengajuan.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/Logo IF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/LogoWarnaUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/MBTA-Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/css/stylePersetujuanBim.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/js/scriptPersetujuanBim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Persetujuan Bimbingan/page/PersetujuanBim.html" beforeDir="false" afterPath="$PROJECT_DIR$/Persetujuan Bimbingan/page/PersetujuanBim.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Profile Page/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/MBTABlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/Profile Page/assets/MBTABlue.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/css/styleProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Profile Page/css/styleProfile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/page/ProfilePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Profile Page/page/ProfilePage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Profile Page/styleProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/Profile Page/styleProfile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Reset Password/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/MBTABlue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/css/styleReset.css" beforeDir="false" afterPath="$PROJECT_DIR$/Reset Password/css/styleReset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/page/ResetPasswordPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reset Password/page/ResetPasswordPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reset Password/styleReset.css" beforeDir="false" afterPath="$PROJECT_DIR$/Reset Password/styleReset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/Logo IF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/Riwayat Bimbingan/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/MBTABlue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/css/styleRiwayat.css" beforeDir="false" afterPath="$PROJECT_DIR$/Riwayat Bimbingan/css/styleRiwayat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/page/RiwayatBImbinganPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Riwayat Bimbingan/page/RiwayatBImbinganPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Riwayat Bimbingan/styleRiwayat.css" beforeDir="false" afterPath="$PROJECT_DIR$/Riwayat Bimbingan/styleRiwayat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/LogoIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/LogoWarnaUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/MBTABlue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/css/styleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/View Permintaan Bimbingan/css/styleView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/page/viewPermintaan.html" beforeDir="false" afterPath="$PROJECT_DIR$/View Permintaan Bimbingan/page/viewPermintaan.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View Permintaan Bimbingan/styleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/View Permintaan Bimbingan/styleView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Background.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/HeaderIF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/HeaderUnpar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Logo IF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/LogoBWUNPAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/LogoWarnaUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/LogoWarnaUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/MBTA-Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/MBTA.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/qrcode.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Black.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Black.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-BlackItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-BlackItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Bold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-BoldItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-BoldItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-ExtraBold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-ExtraBold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-ExtraBoldItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-ExtraBoldItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Heavy.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Heavy.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-HeavyItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-HeavyItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Light.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-LightItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-LightItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Medium.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Medium.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-MediumItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-MediumItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-RegularItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-RegularItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-SemiBold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-SemiBold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-SemiBoldItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-SemiBoldItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-Thin.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-Thin.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-ThinItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-ThinItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-UltraLight.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-UltraLight.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font assets/Gilroy-UltraLightItalic.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/font assets/Gilroy-UltraLightItalic.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/font.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/font.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/Kalender.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/Kalender.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/LogoIF.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/LogoIF.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/LogoMonokromUnpar.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/LogoMonokromUnpar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/MBTA-Icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/MBTA-Icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/assets/qrcode.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/assets/qrcode.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/calender.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/calender.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleLogin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleLupa.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleLupa.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/css/styleNotif.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleNotif.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/stylePengajuan.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/stylePengajuan.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleProfile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleReset.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleReset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleRiwayat.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleRiwayat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleView.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/scriptPengajuan.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/scriptPengajuan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/LoginPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/LoginPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/NotificationPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/NotificationPage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,28 +46,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "Merging FixFolder",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/KULIAH/Sem 5/RPL/TUBES/UIPBW",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;FrontEnd/ManajemenPengguna&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/KULIAH/Sem 5/RPL/TUBES/UIPBW&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="UIPBW" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="UIPBW" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -291,7 +99,12 @@
       <workItem from="1763955146983" duration="3374000" />
       <workItem from="1763959865622" duration="1248000" />
       <workItem from="1764048018341" duration="5114000" />
-      <workItem from="1764156975178" duration="7957000" />
+      <workItem from="1764156975178" duration="8202000" />
+      <workItem from="1764202625940" duration="2927000" />
+      <workItem from="1764251387467" duration="65000" />
+      <workItem from="1764291588708" duration="1718000" />
+      <workItem from="1764315774979" duration="2497000" />
+      <workItem from="1764326697166" duration="27000" />
     </task>
     <servers />
   </component>
