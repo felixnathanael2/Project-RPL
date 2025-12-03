@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Gilroy", "Poppins", sans-serif;
+    font-family: 'Gilroy', 'Poppins', sans-serif;
     font-weight: normal;
 }
 
@@ -20,9 +20,14 @@ body {
     color: white;
 }
 
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+
 /* Efek Blur */
 .glass-box {
-    background: #a3c0eb45;
+    background: #A3C0EB45;
     backdrop-filter: blur(10px);
     border: 1.5px solid rgba(255, 255, 255, 0.4);
     border-radius: 18px;
@@ -39,7 +44,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 5%;
     height: 80px;
     width: 100%;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -54,7 +59,6 @@ body {
     height: 100%;
 }
 
-/* Logo (Ukuran, posisi, DLL) */
 .nav-left {
     gap: 15px;
     padding-right: 25px;
@@ -67,9 +71,10 @@ body {
     object-fit: contain;
 }
 
-/* Header Tengah */
 .nav-middle {
-    gap: 70px;
+    gap: 4vw;
+    justify-content: center;
+    flex: 1;
 }
 
 .nav-middle a {
@@ -86,7 +91,6 @@ body {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Header Kanan */
 .nav-right {
     gap: 7px;
     padding-left: 25px;
@@ -108,55 +112,53 @@ body {
     padding: 0px 6px;
 }
 
+/* MAIN */
 main {
     flex: 1;
     width: 100%;
-    height: 80vh;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    min-height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
+
+    padding: 2rem 10%;
+    flex-wrap: wrap;
 }
 
 .main_container {
-    width: 40%;
-    height: 42rem;
+    /* Flex: grow(3) shrink(1) basis(500px) */
+    /* Prioritas lebar 1x lipat, tapi minimal 500px sebelum turun baris */
+    flex: 1 1 500px;
+    min-height: 35rem;
+
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 20px;
 }
 
-/* --- RIWAYAT CONTAINER --- */
+/* 2. Riwayat (Lebar Menengah) */
 .riwayat {
-    /* 1. Pastikan tingginya sama dengan kalender */
-    height: 42rem;
-    width: 25rem;
+    flex: 1.5 1 300px;
+    min-height: 35rem;
 
-    /* 2. Setup Flexbox agar susunannya Vertikal (Atas ke Bawah) */
-    display: flex !important; /* Pakai !important jika perlu menimpa glass-box */
+    display: flex !important;
     flex-direction: column;
-
-    /* 3. PENTING: Reset posisi agar mulai dari atas, bukan tengah */
     justify-content: flex-start;
-    align-items: stretch; /* Agar isinya lebar penuh */
-
-    /* Styling tambahan */
+    align-items: stretch;
     padding: 1.5rem;
     gap: 10px;
-
-    /* Pastikan properti box model aman */
-    box-sizing: border-box;
 }
 
-/* Header Judul "Riwayat Bimbingan" */
 .riwayat-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
-    flex-shrink: 0; /* Agar header tidak mengecil saat di-scroll */
+    flex-shrink: 0;
 }
 
 .riwayat-header h3 {
@@ -176,8 +178,6 @@ main {
     text-decoration: underline;
 }
 
-/* --- LIST SCROLLABLE --- */
-/* Ini membuat list bisa di-scroll jika datanya banyak */
 .riwayat-list {
     flex: 1;
 
@@ -188,41 +188,34 @@ main {
     gap: 10px;
 }
 
-/* Custom Scrollbar agar cantik */
 .riwayat-list::-webkit-scrollbar {
     width: 5px;
 }
+
 .riwayat-list::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
+
 .riwayat-list::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
 
-/* --- KARTU ITEM RIWAYAT --- */
 .history-card {
-    background: rgba(
-        255,
-        255,
-        255,
-        0.15
-    ); /* Latar sedikit lebih terang dari glass box utama */
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    padding: 12px 15px;
-    transition:
-        transform 0.2s,
-        background 0.2s;
-    border-left: 4px solid var(--cyan); /* Aksen warna di kiri */
+    padding: 6px 7%;
+    transition: transform 0.2s, background 0.2s;
+    border-left: 4px solid var(--cyan);
 }
 
 .history-card:hover {
     background: rgba(255, 255, 255, 0.25);
-    transform: translateX(5px); /* Efek geser sedikit saat hover */
+    transform: translateX(5px);
 }
 
-/* Bagian Atas Kartu (Judul & Tanggal) */
+
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -245,7 +238,6 @@ main {
     color: #eee;
 }
 
-/* Bagian Bawah Kartu (Dosen & Link) */
 .card-body p {
     font-size: 13px;
     opacity: 0.9;
@@ -256,7 +248,7 @@ main {
 }
 
 .card-body p i {
-    color: var(--lightpurple); /* Ikon warna ungu muda */
+    color: var(--lightpurple);
 }
 
 .detail-link {
@@ -271,25 +263,21 @@ main {
 }
 
 .detail-link:hover {
-    gap: 8px; /* Panah bergerak menjauh saat hover */
+    gap: 8px;
     color: white;
 }
 
 .side {
-    width: 10%;
-    height: 70%;
+    flex: 0.01 1 50px;
+    min-height: 35rem;
 
-    /* Matikan background glass di container pembungkus */
     padding: 0;
-
     display: flex;
     flex-direction: column;
-    /* Jarak antar 3 kotak anak */
     justify-content: space-between;
     gap: 1rem;
 }
 
-/* Style umum untuk 3 kotak kecil di kanan */
 .side-box {
     width: 100%;
     border-radius: 20px;
@@ -297,9 +285,8 @@ main {
     flex-direction: column;
 }
 
-/* --- KOTAK 1: TANGGAL --- */
 .date-box {
-    height: 10rem; /* Mengambil 30% tinggi kolom */
+    height: 10rem;
     align-items: center;
     justify-content: center;
 }
@@ -307,23 +294,22 @@ main {
 .date-top {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: -10px; /* Rapatkan dengan angka bawah */
+    margin-bottom: -10px;
     opacity: 0.9;
 }
 
 .date-box h1#tanggal {
-    font-size: 80px; /* Ukuran font tanggal SUPER BESAR */
+    font-size: 80px;
     font-weight: 700;
     margin: 0;
     line-height: 1;
 }
 
-/* --- KOTAK 2: PENGINGAT --- */
 .reminder-box {
-    height: 20rem; /* Lebih tinggi sedikit */
+    height: 16rem;
     padding: 20px;
-    align-items: flex-start; /* Rata kiri */
-    justify-content: flex-start; /* Mulai dari atas */
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .reminder-header {
@@ -346,38 +332,58 @@ main {
     line-height: 1.4;
 }
 
-/* --- KOTAK 3: UPLOAD --- */
 .upload-box {
-    height: 10rem;
-    transition: transform 0.2s;
+    height: 6rem;
+    width: 100%;
+
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    position: relative;
 }
 
 .upload-box:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(37, 140, 251, 0.6);
 }
 
-.btn-upload {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
+.upload-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: 20px;
+    width: 100%;
     justify-content: center;
-    gap: 8px;
 }
 
-.btn-upload i {
-    font-size: 24px;
+.upload-content i {
+    font-size: 45px;
+    color: white;
+
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.4);
 }
 
-.btn-upload span {
+.text-group {
+    display: flex;
+    flex-direction: column; /* Teks disusun vertikal */
+    justify-content: center;
+    align-items: flex-start; /* Rata kiri */
+    color: white;
+}
+
+.text-group .title {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
+    opacity: 0.9;
+    line-height: 1.2;
+}
+
+.text-group .subtitle {
+    line-height: 1.2;
+    font-size: 18px;
+    font-weight: 700; /* Teks bawah lebih tebal */
+    letter-spacing: 0.5px;
 }
 
 /* FOOTER */

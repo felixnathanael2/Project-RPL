@@ -65,7 +65,34 @@ export async function deleteJadwalByNIK(nik) {
     await pool.execute(query, nik);
 }
 
+export async function deleteJadwalByUser(id_users) {
+    const pool = await connectDB();
+    const query = "DELETE FROM jadwal_user WHERE id_users = ?";
+    
+    await pool.execute(query, [id_users]); 
+}
+
 // data - [hari, jam_mulai, jam_akhir_, npm]
 export async function uploadJadwalMahasiswa(data) {
     const query = "INSERT INTO Jadwal_User (Jam_Mulai, Jam_Akhir, Hari, NPM)";
+}
+
+export async function getJadwalByUser(id_users) {
+    const pool = await connectDB();
+    const query = "SELECT * FROM jadwal_user WHERE id_users = ?"
+    const [rows] = await pool.execute(query, [id_users]); 
+    return rows; 
+}
+
+export async function createBulkJadwal(jadwalList) {
+    if (jadwalList.length === 0) return;
+
+    const pool = await connectDB();
+
+    const query = `
+        INSERT INTO jadwal_user (id_users, hari, jam_mulai, jam_akhir) 
+        VALUES ?
+    `;
+
+    await pool.query(query, [jadwalList]);
 }

@@ -11,3 +11,7 @@ export async function getRiwayatBimbingan(userId, role) {
 export async function createPengajuan(data) {
         return bimbinganRepo.createPengajuan(data);
 }
+
+export async function getApprovedBimbingan(id_student) {
+    return bimbinganRepo.getApprovedBimbinganByStudent(id_student);
+}
