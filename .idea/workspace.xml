@@ -6,22 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/ManajemenPengguna.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/ManajemenPengguna.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/PengajuanBimbinganDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/PengajuanBimbinganDosen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/PersetujuanBimbinganDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/PersetujuanBimbinganDosen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/logAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/logAdmin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleDashAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleDashAdmin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleDashDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleDashDosen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleDashMahas.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleDashMahas.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleLogin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleLupa.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleLupa.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/stylePengajuan.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/stylePengajuan.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/css/styleProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleProfile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleReset.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleReset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleRiwayat.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleRiwayat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleRiwayatAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleRiwayatAdmin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleTambahAkun.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleTambahAkun.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleView.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/ProfilePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/ProfilePage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -58,29 +44,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dosenfrontend&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/M I C H A E L/SEM 5/RPL/TUBES&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "fixfooter",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/M I C H A E L/SEM 5/RPL/TUBES",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="TUBES" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="TUBES" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -105,6 +104,7 @@
       <workItem from="1764741934026" duration="1420000" />
       <workItem from="1764743585054" duration="2508000" />
       <workItem from="1764746206714" duration="968000" />
+      <workItem from="1764749594518" duration="926000" />
     </task>
     <servers />
   </component>
