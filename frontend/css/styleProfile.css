@@ -188,18 +188,17 @@ main{
     font-size: 7pt;
 }
 
-/* FOOTER */
-.footer {
-  display: flex;
-  justify-content: space-between;
-justify-self: end;
-  align-items: center;
-  padding: 0 2rem;
-  height: 60px !important;
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0px !important;
-}
+/* FOOTER */.footer {
+                display: flex;
+                justify-content: space-between;
+                justify-self: end;
+                align-items: center;
+                padding: 0 2rem;
+                height: 60px !important;
+                width: 100%;
+                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 0px !important;
+            }
 
 .footer p {
     font-size: 12px;
