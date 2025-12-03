@@ -1,32 +1,18 @@
-const modal = document.getElementById('confirmModal');
-const form = document.getElementById('submissionForm');
-
-// Membuka Pop-up
+// Tampilkan popup
 function showModal() {
-    const nama = document.getElementById('nama').value;
-    const lokasi = document.getElementById('lokasi').value;
-    const tanggal = document.getElementById('tanggal').value;
-
-    if (nama.trim() !== "" && lokasi !== "" && tanggal !== "") {
-        modal.classList.add('show');
-    } else {
-        alert("Mohon lengkapi Nama, Lokasi, dan Tanggal sebelum melanjutkan.");
-    }
+    document.getElementById("confirmPopup").classList.add("show");
 }
 
-// Tutup Pop-up
-function closePopUp() {
-    modal.classList.remove('show');
-}
+// Tombol YA
+document.getElementById("yesBtn").onclick = function () {
+    document.getElementById("confirmPopup").classList.remove("show");
+};
 
-function submitFinal() {
-    alert("Pengajuan berhasil dikirim ke sistem!");
-    closePopUp();
-    form.reset();
-}
+// Tombol TIDAK
+document.getElementById("noBtn").onclick = function () {
+    document.getElementById("confirmPopup").classList.remove("show");
+};
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-        closePopUp();
-    }
-}
+document.getElementById("batalButton").onclick = function () {
+    window.location.href = "TambahPenggunaAdmin.html";
+};
