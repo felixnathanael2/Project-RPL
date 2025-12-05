@@ -106,6 +106,13 @@ body {
     padding: 0px 6px;
 }
 
+#nav-area_admin {
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    padding: 5px;
+}
+
 /* Main */
 main.container {
     flex: 1;
@@ -117,9 +124,16 @@ main.container {
     width: 100%;
 }
 
+#submissionForm{
+    width: 90%;
+}
+
 .formTitle {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 32pt;
+    text-shadow: 0 0 4px white;
 }
 
 .formTitle h2 {
@@ -134,10 +148,12 @@ main.container {
 }
 
 .form {
-    padding: 40px;
+    padding: 25px;
     border-radius: 20px;
     width: 100%;
     max-width: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group {
@@ -154,6 +170,7 @@ main.container {
 
 .input-field {
     width: 100%;
+    height: 42px;
     padding: 12px 15px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -162,6 +179,7 @@ main.container {
     background: rgba(255, 255, 255, 0.9);
     color: #333;
     transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.8);
 }
 
 input[type="date"] {
@@ -179,7 +197,7 @@ input[type="date"] {
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
     transition: all 0.2s ease-in-out;
 }
 

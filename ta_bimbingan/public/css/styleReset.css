@@ -3,7 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Gilroy', sans-serif;
-  font-weight: normal;
+}
+
+label {
+  font-weight: 100;
 }
 
 body {
@@ -22,7 +25,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Header */
+/* Nav */
 nav {
   display: flex;
   justify-content: space-between;
@@ -53,10 +56,6 @@ nav {
     align-items: center;
     justify-content: center;
 }
-#loginForm {
-  padding: 20px 50px 20px 50px;
-  background: #A3C0EB45;
-}
 
 .glass-box img {
   height: clamp(25px, 3vw, 45px);
@@ -70,7 +69,7 @@ nav {
   object-fit: contain;
 }
 
-/* MAIN */
+/* Main */
 main {
   flex: 1;
   display: flex;
@@ -80,15 +79,9 @@ main {
   padding: 20px;
 }
 
-#forgotPassword {
-  color: white;
-  text-decoration: underline;
-  font-size: small;
-  margin-bottom: 10px;
-}
-
-.userInput {
-  height: 35px;
+#loginForm {
+  padding: 20px 50px 20px 50px;
+  background: #A3C0EB45;
 }
 
 main form {
@@ -100,15 +93,6 @@ main form {
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-
-}
-
-main form h1 {
-  color: white;
-  font-size: clamp(40px, 4vw, 64px);
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
 }
 
 main form h2 {
@@ -116,9 +100,8 @@ main form h2 {
   font-size: clamp(24px, 4vw, 36px);
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
   white-space: nowrap;
-  width: 100%;
-  text-align: left;
 }
 
 .input-group {
@@ -128,6 +111,7 @@ main form h2 {
   color: white;
   width: 100%;
   margin: 5px;
+  font-weight: 1;
 }
 
 input {
@@ -140,6 +124,14 @@ input {
 
 input::placeholder {
   color: #BCBEC0;
+}
+
+#button-form {
+  display: flex;
+  gap: 14px;
+  margin-top: 20px;
+  width: 100%;
+  flex-direction: row;
 }
 
 main form button {
@@ -158,6 +150,11 @@ main form button {
   width: 100%;
 
   margin-bottom: 20px;
+}
+
+#cancelButton {
+  background: #004CBD01;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
 }
 
 main form button:hover {
