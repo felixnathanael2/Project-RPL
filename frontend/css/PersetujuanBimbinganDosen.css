@@ -124,6 +124,7 @@ main {
 
 .persetujuan_container {
   width: 60%;
+  max-height: 60vh;
   height: 42rem;
   display: flex;
   flex-direction: column;

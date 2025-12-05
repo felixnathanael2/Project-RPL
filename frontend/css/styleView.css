@@ -28,16 +28,16 @@ body {
 
 /* Glass-box Effect*/
 .glass-box {
-    background: #A3C0EB45;
-    backdrop-filter: blur(10px);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-radius: 18px;
-    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+  background: #A3C0EB45;
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
 
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Nav */
@@ -135,7 +135,7 @@ main.container {
 }
 
 .content-wrapper {
-  width: 85%;
+  width: 65%;
   max-width: 1100px;
   display: flex;
   flex-direction: column;
@@ -153,7 +153,7 @@ main.container {
 
 .requests-container {
   width: 100%;
-  min-height: 50vh;
+  max-height: 60vh;
   padding: 30px;
 
   display: flex;
@@ -162,6 +162,9 @@ main.container {
 
   background: rgba(255, 255, 255, 0.1) !important;
   align-items: stretch;
+  justify-content: start;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .request-card {
@@ -313,23 +316,23 @@ main.container {
 }
 
 .footer {
-    display: flex;
-    justify-content: space-between;
-    justify-self: end;
-    align-items: center;
-    padding: 0 2rem;
-    height: 60px !important;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0px !important;
+  display: flex;
+  justify-content: space-between;
+  justify-self: end;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px !important;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0px !important;
 }
 
 .footer p {
-    font-size: 12px;
-    opacity: 0.8;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 .footer-left img {
-    height: 35px;
-    width: auto;
+  height: 35px;
+  width: auto;
 }
