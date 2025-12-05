@@ -6,7 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/html/DashboardDosen.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/DashboardDosen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/ManajemenPengguna.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/ManajemenPengguna.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/PengajuanBimbinganDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/PengajuanBimbinganDosen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/PersetujuanBimbinganDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/PersetujuanBimbinganDosen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/logAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/logAdmin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleDashAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleDashAdmin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleDashDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleDashDosen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleDashMahas.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleDashMahas.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleLogin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleLogin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleLupa.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleLupa.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/stylePengajuan.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/stylePengajuan.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleProfile.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleReset.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleReset.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleRiwayat.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleRiwayat.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleRiwayatAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleRiwayatAdmin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleTambahAkun.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleTambahAkun.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/styleView.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleView.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,19 +81,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="TUBES" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="TUBES" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -101,7 +103,8 @@
       <workItem from="1764606297166" duration="100000" />
       <workItem from="1764606480378" duration="141000" />
       <workItem from="1764741934026" duration="1420000" />
-      <workItem from="1764743585054" duration="1967000" />
+      <workItem from="1764743585054" duration="2508000" />
+      <workItem from="1764746206714" duration="968000" />
     </task>
     <servers />
   </component>
