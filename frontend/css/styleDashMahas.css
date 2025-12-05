@@ -27,16 +27,16 @@ body {
 
 /* Efek Blur */
 .glass-box {
-    background: #A3C0EB45;
-    backdrop-filter: blur(10px);
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-radius: 18px;
-    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+  background: #A3C0EB45;
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
 
-    padding: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* HEADER */
@@ -75,6 +75,13 @@ body {
   gap: 4vw;
   justify-content: center;
   flex: 1;
+}
+
+#nav-beranda {
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 13px;
+  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+  padding: 5px 15px 5px 15px;
 }
 
 .nav-middle a {
@@ -116,22 +123,22 @@ body {
 main {
   flex: 1;
   width: 100%;
-  min-height: 80vh; 
+  min-height: 80vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 20px;
-  
-  padding: 2rem 10%; 
-  flex-wrap: wrap; 
+
+  padding: 2rem 10%;
+  flex-wrap: wrap;
 }
 
 .main_container {
   /* Flex: grow(3) shrink(1) basis(500px) */
   /* Prioritas lebar 1x lipat, tapi minimal 500px sebelum turun baris */
-  flex: 1 1 500px; 
+  flex: 1 1 500px;
   min-height: 35rem;
-  
+
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -180,9 +187,6 @@ main {
 
 .riwayat-list {
   flex: 1;
-
-  overflow-y: auto;
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -205,7 +209,7 @@ main {
 .history-card {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 12px;
-  padding: 6px 7%;
+  padding: 8px 8px 10px 8px;
   transition: transform 0.2s, background 0.2s;
   border-left: 4px solid var(--cyan);
 }
@@ -335,7 +339,7 @@ main {
 .upload-box {
   height: 6rem;
   width: 100%;
-  
+
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
@@ -359,16 +363,18 @@ main {
 .upload-content i {
   font-size: 45px;
   color: white;
-  
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 
-               0 0 30px rgba(255, 255, 255, 0.4);
+
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 .text-group {
   display: flex;
-  flex-direction: column; /* Teks disusun vertikal */
+  flex-direction: column;
+  /* Teks disusun vertikal */
   justify-content: center;
-  align-items: flex-start; /* Rata kiri */
+  align-items: flex-start;
+  /* Rata kiri */
   color: white;
 }
 
@@ -382,29 +388,30 @@ main {
 .text-group .subtitle {
   line-height: 1.2;
   font-size: 18px;
-  font-weight: 700; /* Teks bawah lebih tebal */
+  font-weight: 700;
+  /* Teks bawah lebih tebal */
   letter-spacing: 0.5px;
 }
 
 /* FOOTER */
 .footer {
-    display: flex;
-    justify-content: space-between;
-    justify-self: end;
-    align-items: center;
-    padding: 0 2rem;
-    height: 60px !important;
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 0px !important;
+  display: flex;
+  justify-content: space-between;
+  justify-self: end;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px !important;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0px !important;
 }
 
 .footer p {
-    font-size: 12px;
-    opacity: 0.8;
+  font-size: 12px;
+  opacity: 0.8;
 }
 
 .footer-left img {
-    height: 35px;
-    width: auto;
+  height: 35px;
+  width: auto;
 }
