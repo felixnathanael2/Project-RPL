@@ -2,16 +2,14 @@ import { connectDB } from "../db/db.js";
 
 export async function getRiwayatBimbingan(userId, role) {
     const pool = await connectDB();
-    
+
     // 1. [FIX] Konversi role ke Number agar aman (Jaga-jaga kalau dari session string)
     const userRole = Number(role);
-    
+
     const ROLE_MAHASISWA = 1;
     const ROLE_DOSEN = 2;
-
     let query = ""; // Inisialisasi string kosong
 
-    // 2. [FIX] Gunakan userRole yang sudah dikonversi
     if (userRole === ROLE_MAHASISWA) {
         query = `
             SELECT 
@@ -54,7 +52,7 @@ export async function getRiwayatBimbingan(userId, role) {
     // 3. [FIX] Gunakan Destructuring Array [rows]
     // Ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
     const [rows] = await pool.execute(query, [userId]);
-    
+
     return rows;
 }
 

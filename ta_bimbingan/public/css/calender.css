@@ -116,7 +116,7 @@ input:checked~.slider .label-week {
     height: 30rem;
     overflow-y: scroll;
     overflow-x: hidden;
-
+    border-radius: 20px;
     scrollbar-width: none;
 }
 

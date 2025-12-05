@@ -1,184 +1,148 @@
-/* =========================================
-   BAGIAN 1: KALENDER BULANAN
-   ========================================= */
-
 const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-const dataJadwal = {
-    "2025-04-01": [
-        { title: "Bimbingan 5", name: "Joseph", type: "green-bg" }
-    ],
-    "2025-04-08": [
-        { title: "Bimbingan 6", name: "Joseph", type: "green-bg" }
-    ],
-    "2025-04-18": [
-        { title: "Bimbingan 7", name: "Joseph", type: "pink-bg" }
-    ],
-    "2025-04-19": [
-        { title: "Bimbingan 7", name: "Michael", type: "yellow-bg" }
-    ]
-};
+let thisDay = new Date();
+let currentYear = thisDay.getFullYear();
+let currentMonth = thisDay.getMonth();
 
-let currentYear = 2025;
-let currentMonth = 3; // April (0 = Jan)
 
-function generateCalendarGrid(year, month) {
-    const calendarContainer = document.querySelector("div.month_calendar");
+function updateCalendarHeader() {
+    const headerText = document.querySelector('#right-header p');
+    if (headerText) {
+        headerText.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    }
+}
+
+//method untuk render kalender sekarang 
+function generateCalendarGrid(year, month, dataJadwal) {
+    const calendarContainer = document.querySelector('div.month_calendar');
     if (!calendarContainer) return;
 
-    calendarContainer.innerHTML = "";
+    calendarContainer.style.height = "auto";
+    calendarContainer.style.minHeight = "30rem";
+    calendarContainer.innerHTML = '';
 
-    // Nama hari
-    dayNames.forEach(day => {
-        const d = document.createElement("div");
-        d.className = "day-name";
-        d.textContent = day;
-        calendarContainer.appendChild(d);
+    // tampilin nama hari (minggu - sabtu)
+    dayNames.forEach(d => {
+        const dayLabel = document.createElement('div');
+        dayLabel.className = 'day-name';
+        dayLabel.textContent = d;
+        Container.appendChild(dayLabel);
     });
 
-    // Hitung tanggal
+    // logika untuk tanggal
     const firstDayIndex = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const prevMonthDays = new Date(year, month, 0).getDate();
     const totalCells = 42;
 
     for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement("div");
-        cell.className = "date-cell";
+        const cell = document.createElement('div');
+        cell.className = 'date-cell';
 
-        let dateNumber;
+        let dateDisplay;
         let isCurrentMonth = false;
+        let cellKey = null;
 
         if (i < firstDayIndex) {
-            dateNumber = prevMonthDays - (firstDayIndex - 1) + i;
-            cell.classList.add("other-month");
-        }
-        else if (i >= firstDayIndex && i < firstDayIndex + daysInMonth) {
-            dateNumber = i - firstDayIndex + 1;
-            isCurrentMonth = true;
+            //generate tanggal di bulan sebelumnya
+            dateDisplay = prevMonthDays - (firstDayIndex - 1) + i;
+            cell.classList.add('other-month');
+        } else if (i >= firstDayIndex && i < firstDayIndex + daysInMonth) {
+            dateDisplay = i - firstDayIndex + 1;
+            isCurrentMonth = true;  
+            //generate tanggal di bulan ini
+            const mStr = String(month + 1).padStart(2, '0');
+            const dStr = String(dateDisplay).padStart(2, '0');
+            cellKey = `${year}-${mStr}-${dStr}`;
 
-            // tanda hari ini (opsional)
             const today = new Date();
-            if (
-                dateNumber === today.getDate() &&
-                month === today.getMonth() &&
-                year === today.getFullYear()
-            ) {
-                cell.classList.add("today");
+            if (dateDisplay === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                cell.classList.add('today');
             }
-        }
-        else {
-            dateNumber = i - (firstDayIndex + daysInMonth) + 1;
-            cell.classList.add("other-month");
-        }
-
-        // Angka tanggal
-        const span = document.createElement("span");
-        span.className = "date-num";
-        span.textContent = dateNumber;
-        cell.appendChild(span);
-
-        // Cek event
-        if (isCurrentMonth) {
-            const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(dateNumber).padStart(2, '0')}`;
-
-            if (dataJadwal[key]) {
-                dataJadwal[key].forEach(ev => {
-                    cell.classList.add(ev.type);
-
-                    const info = document.createElement("div");
-                    info.className = "event-details";
-                    info.innerHTML = `
-                        <div class="event-title">${ev.title}</div>
-                        <div class="event-name">${ev.name}</div>
-                    `;
-                    cell.appendChild(info);
-                });
-            }
+        } else {
+            //generate tanggal bulan depan
+            dateDisplay = i - (firstDayIndex + daysInMonth) + 1;
+            cell.classList.add('other-month');
         }
 
+        const dateNumSpan = document.createElement('span');
+        dateNumSpan.className = 'date-num';
+        dateNumSpan.textContent = dateDisplay;
+        cell.appendChild(dateNumSpan);
+
+        // render event (misal bimbingan ke 7 )
+        if (isCurrentMonth && cellKey && dataJadwal[cellKey]) {
+            dataJadwal[cellKey].forEach(ev => {
+                cell.classList.add(ev.type);
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'event-details';
+                infoDiv.innerHTML = `
+                    <div class="event-title">${ev.title}</div>
+                    <div class="event-name">${ev.name}</div>
+                `;
+                cell.appendChild(infoDiv);
+            });
+        }
         calendarContainer.appendChild(cell);
     }
 }
 
-/* =========================================
-   BAGIAN 2: JADWAL MINGGUAN
-   ========================================= */
-
-const jadwalKuliah = [
-    { day: 'Senin', title: 'Bimbingan TI', time: '09:00', end: '10:00', room: 'R. 10-1', color: 'bg-teal' },
-    { day: 'Rabu', title: 'Bimbingan KP', time: '13:00', end: '15:00', room: 'Lab 1', color: 'bg-blue-dark' },
-    { day: 'Jumat', title: 'Sidang Internal', time: '10:00', end: '12:00', room: 'R. AULA', color: 'bg-purple' },
-];
-
-const dayMap = { 'Senin': 2, 'Selasa': 3, 'Rabu': 4, 'Kamis': 5, 'Jumat': 6 };
-
+//untuk ngebantu penempatan event di grid mingguan
 function getRowFromTime(timeString) {
-    const [hour, minute] = timeString.split(":").map(Number);
-    const start = 7;
-    let row = (hour - start) * 2 + 1;
-    if (minute >= 30) row++;
+    if (!timeString) return 1;
+    const [hour, minute] = timeString.split(':').map(Number);
+    const startHour = 7;
+    let row = (hour - startHour) * 2 + 1;
+    if (minute >= 30) row += 1;
     return row;
 }
 
-function renderSchedule() {
-    const grid = document.getElementById("scheduleGrid");
-    if (!grid) return;
+const dayMap = { 'Senin': 2, 'Selasa': 3, 'Rabu': 4, 'Kamis': 5, 'Jumat': 6 };
 
-    grid.innerHTML = "";
+//menampilkan jadwal dari fetch db 
+function renderSchedule(jadwalKuliah) {
+    const container = document.getElementById('scheduleGrid');
+    if (!container) return;
 
+    container.innerHTML = '';
+
+    //untuk menamplkan baris waktu yang ada 
     const hours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
     hours.forEach(h => {
-        const label = document.createElement("div");
-        label.className = "time-label";
-        label.textContent = `${String(h).padStart(2, '0')}:00`;
-        label.style.gridRow = getRowFromTime(`${h}:00`);
-        grid.appendChild(label);
+        const timeLabel = document.createElement('div');
+        timeLabel.className = 'time-label';
+        timeLabel.textContent = `${h.toString().padStart(2, '0')}:00`;
+        timeLabel.style.gridRow = getRowFromTime(`${h}:00`);
+        container.appendChild(timeLabel);
 
-        const line = document.createElement("div");
-        line.className = "grid-line";
+        const line = document.createElement('div');
+        line.className = 'grid-line';
         line.style.gridRow = getRowFromTime(`${h}:00`);
-        grid.appendChild(line);
+        container.appendChild(line);
     });
 
-    jadwalKuliah.forEach(j => {
-        const start = getRowFromTime(j.time);
-        const end = getRowFromTime(j.end);
-        const col = dayMap[j.day];
+    // buat kartu jadwal 
+    if (jadwalKuliah && jadwalKuliah.length > 0) {
+        jadwalKuliah.forEach(item => {
+            if (!dayMap[item.day]) return;
 
-        const card = document.createElement("div");
-        card.className = `class-card ${j.color}`;
-        card.style.gridColumn = col;
-        card.style.gridRow = `${start} / span ${end - start}`;
+            const startRow = getRowFromTime(item.time);
+            const endRow = getRowFromTime(item.end);
+            const duration = endRow - startRow;
+            const column = dayMap[item.day];
 
-        card.innerHTML = `
-            <div class="class-title">${j.title}</div>
-            <div class="class-info">${j.time} - ${j.end}</div>
-            <div class="class-info">${j.room}</div>
-        `;
-
-        grid.appendChild(card);
-    });
+            const card = document.createElement('div');
+            card.className = `class-card ${item.color}`;
+            card.style.gridColumn = column;
+            card.style.gridRow = `${startRow} / span ${duration}`;
+            
+            card.innerHTML = `
+                <div class="class-title">${item.title}</div>
+                <div class="class-info">${item.time} - ${item.end}</div>
+                <div class="class-info">${item.room}</div>
+            `;
+            container.appendChild(card);
+        });
+    }
 }
-
-/* =========================================
-   TOGGLE SWITCH
-   ========================================= */
-document.addEventListener("DOMContentLoaded", () => {
-    generateCalendarGrid(currentYear, currentMonth);
-    renderSchedule();
-
-    const toggle = document.getElementById("viewToggle");
-    const monthView = document.querySelector(".kalender-bulanan");
-    const weekView = document.querySelector(".kalender-mingguan");
-
-    toggle.addEventListener("change", () => {
-        if (toggle.checked) {
-            weekView.classList.remove("hidden");
-            monthView.classList.add("hidden");
-        } else {
-            monthView.classList.remove("hidden");
-            weekView.classList.add("hidden");
-        }
-    });
-});

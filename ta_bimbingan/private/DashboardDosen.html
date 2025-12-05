@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dashboard Dosen</title>
-        <!-- ICON -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-            rel="stylesheet" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
-            rel="stylesheet" />
-        <!-- CSS -->
-        <link rel="stylesheet" href="../css/styleDashDosen.css">
-        <link rel="stylesheet" href="../css/font.css">
-        <link rel="stylesheet" href="../css/calenderDosen.css">
-        <link rel="shortcut icon" href="../assets/MBTA-Icon.png"
-            type="image/x-icon">
-        
-         <script src="../js/scriptCalenderDosen.js"></script>
-    </head>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Dosen</title>
+    <!-- ICON -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styleDashDosen.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/calender.css">
+    <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
+
+    <script src="../js/scriptLogout.js"></script>
+    <script src="../js/scriptCalender.js"></script>
+    <script src="../js/scriptDashboardDosen.js"></script>
+</head>
 
 <body>
 
-  <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <div class="nav glass-box">
         <div class="nav-left">
             <img src="../assets/HeaderUnpar.png" alt="" id="unpar">
@@ -32,10 +30,10 @@
         </div>
 
         <div class="nav-middle">
-            <a href="#"class ="active">Beranda</a>
+            <a href="#" class="active">Beranda</a>
             <a href="#">Riwayat</a>
             <a href="#">Persetujuan</a>
-            <a href="#" >Penjadwalan</a>
+            <a href="#">Penjadwalan</a>
         </div>
 
         <div class="nav-right">
@@ -44,7 +42,7 @@
             <a href="#"><i class="ri-logout-box-r-line"></i></a>
         </div>
     </div>
-   
+
     <main>
 
 
@@ -104,14 +102,8 @@
             <div class="box-dosen small">
                 <div class="box-title">Bimbingan Hari Ini</div>
 
-                <div class="bimbingan-line">
-                    <div class="dot"></div>
-                    <p><b>Joseph</b> — 10.00 (10–1)</p>
-                </div>
-
-                <div class="bimbingan-line">
-                    <div class="dot"></div>
-                    <p><b>Michael</b> — 13.00 (Lab-1)</p>
+                <div id="list-today">
+                    <p>Memuat data...</p>
                 </div>
 
                 <a href="#" class="see-all">Lihat Semua Bimbingan Mendatang</a>
@@ -161,4 +153,5 @@
     </div>
 
 </body>
+
 </html>

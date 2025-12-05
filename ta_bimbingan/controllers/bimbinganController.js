@@ -1,12 +1,11 @@
-import {
-    getRiwayatBimbingan,
-    createPengajuan,
-    getApprovedBimbingan
-} from "../services/bimbinganService.js";
+import * as bimbinganService from "../services/bimbinganService.js";
+
+const ROLE_MAHASISWA = 1;
+const ROLE_DOSEN = 2;
 
 export const riwayat = async (req, res) => {
     try {
-        const riwayat = await getRiwayatBimbingan(req.user.id, req.user.role);
+        const riwayat = await bimbinganService.getRiwayatBimbingan(req.user.id, req.user.role);
         res.json({
             message: `Riwayat Bimbingan untuk ${req.user.role} (Auth Sesi)`,
             data: riwayat,
@@ -21,7 +20,7 @@ export const ajukanBimbingan = async (req, res) => {
         // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
         const { tanggal, waktu, lokasiId, nik } = req.body;
 
-        await createPengajuan({
+        await bimbinganService.createPengajuan({
             tanggal,
             waktu,
             lokasiId,
@@ -39,25 +38,85 @@ export const ajukanBimbingan = async (req, res) => {
 
 export const getJadwalBimbingan = async (req, res) => {
     try {
-        const id_student = req.user.id; 
-        
-        const data = await getApprovedBimbingan(id_student);
+        const id_student = req.user.id;
+        const data = await bimbinganService.getRiwayatBimbingan(id_student);
 
         // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
         const formattedData = data.map(item => {
             const dateObj = new Date(item.tanggal);
-            const dateStr = dateObj.toLocaleDateString('en-CA'); 
-            
+            const dateStr = dateObj.toLocaleDateString('en-CA');
+
             return {
                 tanggal: dateStr,
-                waktu: item.waktu, 
+                waktu: item.waktu,
                 nama_dosen: item.nama_dosen
             };
         });
 
         res.json(formattedData);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Gagal mengambil jadwal bimbingan" });
     }
 };
+
+//method helper untuk ambil data dari repository (supaya ga dipanggil berkali kali pakai req dan res,soalnya ntar rencananya filtering data di js bukan di repo)
+const fetchJadwalDosen = async (req) => {
+    const id_dosen = req.user.id;
+    const role = req.user.role;
+
+    const data = await bimbinganService.getRiwayatBimbinganDosen(id_dosen, role);
+
+    return data.map(item => {
+        const t = new Date(item.tanggal);
+        const tahun = t.getFullYear();
+        const bulan = String(t.getMonth() + 1).padStart(2, "0");
+        const hari = String(t.getDate()).padStart(2, "0");
+
+        return {
+            tanggal: `${tahun}-${bulan}-${hari}`,
+            waktu: item.waktu,
+            nama_mahasiswa: item.nama_mahasiswa,
+            status: item.status,
+            ruangan: item.nama_ruangan
+        };
+    });
+};
+
+// panggil semua jadwal bimbingan dosen (termasuk history dan upcoming)
+export const getJadwalBimbinganDosen = async (req, res) => {
+    try {
+        const formattedData = await fetchJadwalDosen(req);
+        res.json(formattedData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
+    }
+};
+
+
+export const getJadwalBimbinganToday = async (req, res) => {
+    try {
+        const formattedData = await fetchJadwalDosen(req);
+
+        //tanggal hari ini
+        const now = new Date();
+        const tahun = now.getFullYear();
+        const bulan = String(now.getMonth() + 1).padStart(2, "0");
+        const hari = String(now.getDate()).padStart(2, "0");
+        const today = `${tahun}-${bulan}-${hari}`;
+
+        //cari yang tanggalnya sesuai dengan hari ini
+        const todayBimbingan = formattedData.filter(item => item.tanggal === today);
+
+        res.json(todayBimbingan);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Gagal menampilkan jadwal hari ini" });
+    }
+};
+
+
+

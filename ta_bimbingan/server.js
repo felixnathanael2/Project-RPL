@@ -27,13 +27,16 @@ app.use(
             "fallback_secret_key_yang_sangat_panjang",
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1000 * 60 * 60},
+        cookie: { maxAge: 1000 * 60 * 60 },
     }),
 );
 
 // Route Utama & Start Server
 app.get("/", (req, res) => {
-    res.redirect("/page/LoginPage.html");
+    if (req.session.isLoggedIn) {
+        return res.redirect("/dashboard");
+    }
+    return res.redirect("/login");
 });
 
 app.use(routes);
