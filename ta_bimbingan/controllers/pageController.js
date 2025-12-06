@@ -46,3 +46,40 @@ export const login = (req, res) => {
 export const notifikasi = (req, res) => {
     res.sendFile(path.join(__dirname, "../private/NotificationPage.html"));
 };
+
+export const manajemenPengguna = (req, res) => {
+    const role = req.user.role;
+    if(role === ROLE_ADMIN){
+        res.sendFile(path.join(__dirname, "../private/ManajemenPengguna.html"));
+    }else{
+        return res.status(403).json({ message: "Role tidak valid." });
+    }
+};
+
+export const addUser = (req, res) => {
+    const role = req.user.role;
+    if(role === ROLE_ADMIN){
+        res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdmin.html"));
+    }else{
+        return res.status(403).json({ message: "Role tidak valid." });
+    }
+};
+
+export const addDosen = (req, res) => {
+    const role = req.user.role;
+    if(role === ROLE_ADMIN){
+        res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Dosen.html"));
+    }else{
+        return res.status(403).json({ message: "Role tidak valid." });
+    }
+};
+export const addMahasiswa = (req, res) => {
+    const role = req.user.role;
+    if(role === ROLE_ADMIN){
+        res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Mahasiswa.html"));
+    }else{
+        return res.status(403).json({ message: "Role tidak valid." });
+    }
+};
+
+

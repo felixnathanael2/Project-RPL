@@ -1,5 +1,5 @@
 import * as dosenService from "../services/dosenService.js";
-import * as bimbinganService from "../services/bimbinganService.js"; // Import bimbinganService juga
+import * as bimbinganService from "../services/bimbinganService.js";
 
 
 export const getDashboardDosenStats = async (req, res) => {
@@ -45,7 +45,7 @@ export const getDashboardAdminStats = async (req, res) => {
         const totalPermintaan = dataBimbingan.filter(item => item.status === 'Menunggu').length;
         // total bimbingan yg udah beres
         const totalBimbingan = dataBimbingan.filter(item => item.status === 'Selesai').length;
-
+        
         //balikin dgn format json
         res.json({
             dosen: totalDosen,
@@ -55,9 +55,15 @@ export const getDashboardAdminStats = async (req, res) => {
             total_permintaan: totalPermintaan,
             total_bimbingan: totalBimbingan
         });
-
+        
     } catch (error) {
         console.error("Error Dashboard Stats:", error);
         res.status(500).json({ error: error.message });
     }
 };
+
+export const getAllDosen = async (req, res) => {
+    const totalDosen = await dosenService.getAllDosen();
+    res.json(totalDosen);
+    
+}

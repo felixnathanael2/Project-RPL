@@ -7,6 +7,7 @@ import { login, logout } from "../controllers/authController.js";
 
 import * as bimbinganController from "../controllers/bimbinganController.js";
 import * as dosenController from "../controllers/dosenController.js";
+import * as adminController from "../controllers/adminController.js";
 
 import * as jadwalController from "../controllers/jadwalController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
@@ -68,16 +69,22 @@ router.get("/api/jadwal-bimbingan-today", bimbinganController.getJadwalBimbingan
 router.get("/api/dashboard-dosen-stats", dosenController.getDashboardDosenStats);
 router.get("/api/dashboard-admin-stats", dosenController.getDashboardAdminStats);
 
+router.get("/api/get-all-dosen", dosenController.getAllDosen);
+
 //dashboard admin
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
-
-
+router.get("/api/manajemen-pengguna", adminController.getAllUsers)
+router.post("/api/create-user", adminController.createUser)
 
 // --- PAGE ROUTES (Render HTML/EJS) ---
 router.get("/dashboard", pageController.dashboard);
 router.get("/pengajuan", pageController.pengajuan);
 router.get("/notifikasi", pageController.notifikasi);
+router.get('/manajemenPengguna', pageController.manajemenPengguna)
+router.get('/addUser', pageController.addUser)
+router.get('/addUser/mahasiswa', pageController.addMahasiswa)
+router.get('/addUser/dosen', pageController.addDosen)
 
 
 export default router;
