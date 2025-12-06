@@ -5,9 +5,9 @@ export async function getRiwayatBimbingan(userId, role) {
 
     // 1. [FIX] Konversi role ke Number agar aman (Jaga-jaga kalau dari session string)
     const userRole = Number(role);
-
     const ROLE_MAHASISWA = 1;
     const ROLE_DOSEN = 2;
+    const ROLE_ADMIN = 3;
     let query = ""; // Inisialisasi string kosong
 
     if (userRole === ROLE_MAHASISWA) {
@@ -29,22 +29,43 @@ export async function getRiwayatBimbingan(userId, role) {
         `;
     } else if (userRole === ROLE_DOSEN) {
         query = `
-            SELECT 
+             SELECT 
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan AS catatan, 
                 M.nama AS nama_mahasiswa, 
+                D.nama AS nama_dosen,
                 L.nama_ruangan AS nama_ruangan, 
                 B.status
             FROM bimbingan B
             JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
             JOIN data_ta DTA ON B.id_data = DTA.id_data
             JOIN users M ON DTA.id_users = M.id_users
+            JOIN users D ON BD.nik = D.id_users
             LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
             WHERE BD.nik = ?
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
-    } else {
+    } else if (userRole === ROLE_ADMIN) {
+        query = `
+             SELECT 
+                B.tanggal, 
+                B.waktu, 
+                B.catatan_bimbingan AS catatan, 
+                M.nama AS nama_mahasiswa, 
+                D.nama AS nama_dosen,
+                L.nama_ruangan AS nama_ruangan, 
+                B.status
+            FROM bimbingan B
+            JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+            JOIN data_ta DTA ON B.id_data = DTA.id_data
+            JOIN users M ON DTA.id_users = M.id_users
+            JOIN users D ON BD.nik = D.id_users
+            LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+            ORDER BY B.tanggal DESC, B.waktu DESC;
+        `;
+    }
+    else {
         // [FIX] Jika role tidak dikenali, kembalikan array kosong (jangan biarkan query undefined)
         return [];
     }
@@ -239,3 +260,21 @@ export async function updateStatusBimbingan(data) {
 
     return true;
 }
+
+export async function getTotalBimbingan() {
+    const pool = await connectDB();
+    const query = 'SELECT COUNT(id_bimbingan) AS jumlah_bimbingan FROM bimbingan;';
+    const rows = await pool.execute(query)
+    return rows[0];
+}
+
+export async function getTotalBimbinganByDosen(nik) {
+    const pool = await connectDB();
+    const query = 'SELECT COUNT(id_bimbingan) AS jumlah_bimbingan FROM bimbingan_dosen WHERE nik = ?;';
+    const rows = await pool.execute(query, [nik])
+    return rows[0];
+}
+
+
+
+

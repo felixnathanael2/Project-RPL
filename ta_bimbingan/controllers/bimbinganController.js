@@ -1,8 +1,5 @@
 import * as bimbinganService from "../services/bimbinganService.js";
 
-const ROLE_MAHASISWA = 1;
-const ROLE_DOSEN = 2;
-
 export const riwayat = async (req, res) => {
     try {
         const riwayat = await bimbinganService.getRiwayatBimbingan(req.user.id, req.user.role);
@@ -65,9 +62,7 @@ export const getJadwalBimbingan = async (req, res) => {
 const fetchJadwalDosen = async (req) => {
     const id_dosen = req.user.id;
     const role = req.user.role;
-
-    const data = await bimbinganService.getRiwayatBimbinganDosen(id_dosen, role);
-
+    const data = await bimbinganService.getRiwayatBimbingan(id_dosen, role);
     return data.map(item => {
         const t = new Date(item.tanggal);
         const tahun = t.getFullYear();
@@ -78,6 +73,7 @@ const fetchJadwalDosen = async (req) => {
             tanggal: `${tahun}-${bulan}-${hari}`,
             waktu: item.waktu,
             nama_mahasiswa: item.nama_mahasiswa,
+            nama_dosen: item.nama_dosen,
             status: item.status,
             ruangan: item.nama_ruangan
         };
@@ -99,7 +95,6 @@ export const getJadwalBimbinganDosen = async (req, res) => {
 export const getJadwalBimbinganToday = async (req, res) => {
     try {
         const formattedData = await fetchJadwalDosen(req);
-
         //tanggal hari ini
         const now = new Date();
         const tahun = now.getFullYear();
@@ -117,6 +112,31 @@ export const getJadwalBimbinganToday = async (req, res) => {
         res.status(500).json({ message: "Gagal menampilkan jadwal hari ini" });
     }
 };
+
+//buat SIDEBAR KANAN 
+
+export const getTotalPermintaanByDosen = async (req, res) => {
+    try {
+        const formattedData = await fetchJadwalDosen(req);
+        const totalPermintaan = formattedData.filter(item => item.status === 'Menunggu')
+        const value = {total_permintaan: totalPermintaan}
+        res.json(value);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Gagal mengambil total permintaan by dosen" });
+    }
+}
+export const getTotalBimbinganByDosen = async (req, res) => {
+    try {
+        const formattedData = await fetchJadwalDosen(req);
+        const totalSelesai = formattedData.filter(item => item.status === 'Selesai')
+        res.json(totalSelesai.length);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Gagal mengambil total bimbingan by dosen" });
+    }
+}
+
 
 
 

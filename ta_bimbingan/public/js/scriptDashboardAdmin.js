@@ -37,33 +37,7 @@ async function fetchJadwalBimbingan() {
     }
 }
 
-//memanggil api dari backend untuk menampilkan ke frontend untuk stat di kanan
-async function fetchStatistik() {
-    try {
-        //panggil ke routes untuk membantu fetching
-        const response = await fetch('/api/dashboard-dosen-stats');
-        const data = await response.json();
-
-        console.log("Data Statistik Dosen:", data);
-
-        if (data) {
-            //masukin bedasarkan id htmlnya 
-            document.getElementById('stat-permintaan').textContent = data.total_permintaan || 0;
-            document.getElementById('stat-bimbingan').textContent = data.total_bimbingan || 0;
-            document.getElementById('stat-mahasiswa').textContent = data.total_mahasiswa || 0;
-            document.getElementById('stat-layak').textContent = data.layak_sidang || "0 / 0";
-        }
-
-    } catch (error) {
-        console.error("Gagal mengambil statistik:", error);
-        
-        document.getElementById('stat-permintaan').textContent = "-";
-        document.getElementById('stat-bimbingan').textContent = "-";
-        document.getElementById('stat-mahasiswa').textContent = "-";
-        document.getElementById('stat-layak').textContent = "-";
-
-    }
-}
+//memanggil api dari backend untuk menampilkan ke frontend untuk show jadwal mingguan(yang kek di stupor)
 async function fetchJadwalMingguan() {
     try {
         const response = await fetch('/api/my-schedule');
@@ -95,8 +69,8 @@ async function fetchTodayBimbingan() {
         const response = await fetch('/api/jadwal-bimbingan-today');
         const data = await response.json();
 
-        const container = document.getElementById('list-today');
-        if (!container) return;
+        const container = document.querySelector('.reminder-list');
+        // if (!container) return;
 
         container.innerHTML = ''; //bersihkan dummy atau data sebelumnya
 
@@ -109,6 +83,15 @@ async function fetchTodayBimbingan() {
             return;
         }
 
+        //TOOD : fetch dari db 
+        // <div class="reminder-list">
+        //     <div class="reminder-item">
+        //         <p><strong>VAN</strong> - Joseph - 10.00 (R.Tes-1)</p>
+        //     </div>
+        //     <div class="reminder-item">
+        //         <p><strong>RCP</strong> - Michael - 13.00 (R.Tes-2)</p>
+        //     </div>
+        // </div>
 
         data.forEach(item => {
             // ambil format waktu untuk jam dan menit saja (detik ga perlu)
@@ -117,9 +100,8 @@ async function fetchTodayBimbingan() {
 
             //tambahin item satu satu dah
             const htmlItem = `
-                <div class="bimbingan-line">
-                    <div class="dot"></div>
-                    <p><b>${item.nama_mahasiswa}</b> — ${jam} (${ruangan})</p>
+                <div class="reminder-item">
+                    <p><b>${item.nama_dosen} - ${item.nama_mahasiswa}</b> <br> ${ruangan} - (${jam})</p>
                 </div>
             `;
             container.insertAdjacentHTML('beforeend', htmlItem);
@@ -134,7 +116,6 @@ async function fetchTodayBimbingan() {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    fetchStatistik();
     fetchJadwalBimbingan();
     fetchJadwalMingguan();
     fetchTodayBimbingan();

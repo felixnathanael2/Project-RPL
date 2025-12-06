@@ -7,11 +7,6 @@ export async function getRiwayatBimbingan(userId, role) {
     return rows;
 }
 
-export async function getRiwayatBimbinganDosen(userId, role) {
-    const rows = await bimbinganRepo.getRiwayatBimbingan(userId, role);
-    return rows;
-}
-
 // method buat create pengajuan kalo klik submit
 export async function createPengajuan(data) {
     return bimbinganRepo.createPengajuan(data);

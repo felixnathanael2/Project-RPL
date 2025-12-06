@@ -5,13 +5,8 @@ import multer from "multer";
 import { protectRoute } from "../middlewares/authMiddleware.js";
 import { login, logout } from "../controllers/authController.js";
 
-import {
-    riwayat,
-    ajukanBimbingan,
-    getJadwalBimbingan,
-    getJadwalBimbinganDosen,
-    getJadwalBimbinganToday
-} from "../controllers/bimbinganController.js";
+import * as bimbinganController from "../controllers/bimbinganController.js";
+import * as dosenController from "../controllers/dosenController.js";
 
 import * as jadwalController from "../controllers/jadwalController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
@@ -63,14 +58,20 @@ router.post("/api/upload-jadwal", upload.single("file_excel"), jadwalController.
 router.get("/api/my-schedule", jadwalController.getMyJadwal);
 router.get("/api/check-availability", checkAvailability);
 
-router.get("/api/riwayat", riwayat);
+router.get("/api/riwayat", bimbinganController.riwayat);
+router.post("/api/ajukan-bimbingan", bimbinganController.ajukanBimbingan);
+router.get("/api/jadwal-bimbingan", bimbinganController.getJadwalBimbingan);
 
-router.post("/api/ajukan-bimbingan", ajukanBimbingan);
-router.get("/api/jadwal-bimbingan", getJadwalBimbingan);
-router.get("/api/jadwal-bimbingan-dosen", getJadwalBimbinganDosen);
-router.get("/api/jadwal-bimbingan-today", getJadwalBimbinganToday);
+//dashboard dosen
+router.get("/api/jadwal-bimbingan-dosen", bimbinganController.getJadwalBimbinganDosen);
+router.get("/api/jadwal-bimbingan-today", bimbinganController.getJadwalBimbinganToday);
+router.get("/api/dashboard-dosen-stats", dosenController.getDashboardStats);
+
+
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
+
+
 
 // --- PAGE ROUTES (Render HTML/EJS) ---
 router.get("/dashboard", pageController.dashboard);
