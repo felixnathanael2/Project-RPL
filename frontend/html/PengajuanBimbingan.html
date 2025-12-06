@@ -7,9 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/stylePengajuan.css">
-    <link rel="stylesheet" href="/css/font.css">
-    <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/stylePengajuan.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
 
 </head>
 
@@ -35,7 +35,7 @@
                 <a href="viewPermintaan.html">Permintaan</a>
             </div>
         </div>
-        
+
         <div class="nav-right">
             <div id="notif">
                 <a href="#"><i class="ri-notification-4-line"></i></a>
@@ -57,10 +57,37 @@
 
         <div class="form glass-box">
             <form id="submissionForm" onsubmit="return false;">
+
                 <div class="input-group">
-                    <label for="nama">Nama Lengkap</label>
-                    <input type="text" id="nama" class="input-field" placeholder="masukkan nama lengkap anda" required>
+                    <label>Dosen Pembimbing</label>
+
+                    <div class="checkbox-group">
+                        <div class="dosen-item">
+                            <label for="dosen1">
+                                <input 
+                                type="checkbox" 
+                                id="dosen1" 
+                                name="dosen" 
+                                value="Dosen Pembimbing 1">
+                                Dosen Pembimbing 1
+                            </label>
+
+                        </div>
+                        <div class="dosen-item">
+                            <label for="dosen2">
+                                <input 
+                                type="checkbox" 
+                                id="dosen2" 
+                                name="dosen" 
+                                value="Dosen Pembimbing 2"> 
+                                Dosen Pembimbing 2
+                            </label>
+                        </div>
+
+                    </div>
+                    
                 </div>
+
                 <div class="input-group">
                     <label for="lokasi">Lokasi</label>
                     <select id="lokasi" class="input-field" required>
@@ -73,6 +100,35 @@
                         <option value="Online">Online</option>
                     </select>
                 </div>
+
+                <div class="input-group">
+                    <label for="jam">Waktu Bimbingan</label>
+                    <div class="time-inputs">
+                        <select id="jam" class="input-field time-select" required>
+                            <option value disabled selected>Jam</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                        </select>
+                        <select id="menit" class="input-field time-select" required>
+                            <option value disabled selected>Menit</option>
+                            <option value="0">0</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="input-group">
                     <label for="tanggal">Tanggal</label>
                     <input type="date" id="tanggal" class="input-field" required>
