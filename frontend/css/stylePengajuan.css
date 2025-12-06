@@ -35,6 +35,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 /* HEADER */
 .nav {
     display: flex;
@@ -102,8 +103,15 @@ body {
     transform: scale(1.1);
 }
 
-.nav-right div{
+.nav-right div {
     padding: 0px 6px;
+}
+
+#nav-pengajuan {
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    padding: 5px 15px 5px 15px;
 }
 
 /* Main */

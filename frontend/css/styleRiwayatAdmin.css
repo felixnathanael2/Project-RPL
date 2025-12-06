@@ -134,6 +134,7 @@ main.container {
 .info{
     display: flex;
     margin-left: 20px;
+    
 }
 
 #filterButton{
@@ -169,6 +170,7 @@ main.container {
 .isiHistory {
     display: flex;
     flex-direction: column;
+    align-items: start !important;
 }
 
 .formTitle {
@@ -203,6 +205,8 @@ main.container {
     width: 60vw;
     height: 50vh;
     background: #A3C0EB15 !important;
+    align-items: start;
+
 }
 
 /* FOOTER */
