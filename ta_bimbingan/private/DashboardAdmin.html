@@ -146,17 +146,19 @@
             <select id="dosen" class="input-field" required>
                 <option value disabled selected>Masukkan jadwal dosen yang
                     anda inginkan</option>
-                <option value="Lab Skripsi">Lab Skripsi</option>
-                <option value="Ruang Tes 1">Ruang Tes 1</option>
-                <option value="Ruang Tes 2">Ruang Tes 2</option>
-                <option value="Ruang Dosen">Ruang Dosen</option>
-                <option value="Online">Online</option>
+                <option value="Davin">Davin</option>
+                <option value="Lord Kaprodi">Lord Kaprodi</option>
+                <option value="Axel">Axel</option>
+                <option value="Michael">Michael</option>
+                <option value="Philippe">Philippe</option>
             </select>
-            <label for="file-input" class="upload-btn-admin glass-box">
-                <input type="file" id="file-input" hidden>
-                <i class="ri-upload-2-line"></i>
-                <span>Upload Jadwal Dosen</span>
-            </label>
+            <form id="uploadFormAdmin">
+                <label for="file-input" class="upload-btn-admin glass-box" style="cursor: pointer;">
+                    <input type="file" id="file-input" name="file_excel" hidden onchange="uploadJadwalAdmin()">
+                    <i class="ri-upload-2-line"></i>
+                    <span>Upload Jadwal Dosen</span>
+                </label>
+            </form>
         </div>
     </main>
 

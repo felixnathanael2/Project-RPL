@@ -70,8 +70,9 @@ async function fetchStatistik() {
             const dosen = data.dosen;
             dosen.map(item => {
                 const nama_dosen = item.nama;
+                const nik = item.id_users;
                 const anak = document.createElement('option');
-                anak.value = nama_dosen;
+                anak.value = nik;
                 anak.textContent = nama_dosen;
                 dropdownDosen.appendChild(anak);
             })
@@ -155,11 +156,51 @@ async function fetchTodayBimbingan() {
     }
 }
 
+async function uploadJadwalAdmin() {
+    const dosenSelect = document.getElementById("dosen");
+    const fileInput = document.getElementById("file-input");
+    const selectedDosenId = dosenSelect.value;
+
+    if (!selectedDosenId) {
+        alert("Harap pilih Dosen terlebih dahulu sebelum mengupload file!");
+        fileInput.value = ""; 
+        return;
+    }
+
+    if (!fileInput.files[0]) return;
+
+    const formData = new FormData();
+    formData.append("file_excel", fileInput.files[0]); 
+    formData.append("target_user_id", selectedDosenId); 
+
+    try {
+        const response = await fetch("/api/upload-jadwal", {
+            method: "POST",
+            body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert("Berhasil upload jadwal untuk Dosen ID: " + selectedDosenId);
+            fileInput.value = "";
+            dosenSelect.value = "";
+        } else {
+            alert("Gagal: " + (result.message || "Terjadi kesalahan"));
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Terjadi kesalahan koneksi.");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     fetchStatistik();
     fetchJadwalBimbingan();
     fetchJadwalMingguan();
     fetchTodayBimbingan();
+    uploadJadwalAdmin();
     const viewToggle = document.getElementById('viewToggle');
     const monthlyView = document.querySelector('.kalender-bulanan');
     const rightHeader = document.querySelector('#right-header');
