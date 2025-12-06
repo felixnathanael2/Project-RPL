@@ -123,11 +123,12 @@ main.container {
     align-items: center;
     padding: 20px;
     width: 100%;
+    height: 100%;
 }
 
 .formTitle {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .formTitle h2 {

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/stylePengajuan.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
-
+    <script src="../js/scriptPengajuan.js" defer></script>
 </head>
 
 <body>
@@ -64,8 +64,7 @@
                     <div class="checkbox-group">
                         <div class="dosen-item">
                             <label for="dosen1">
-                                <input 
-                                type="checkbox" 
+                                <input type="checkbox" 
                                 id="dosen1" 
                                 name="dosen" 
                                 value="Dosen Pembimbing 1">
@@ -75,17 +74,16 @@
                         </div>
                         <div class="dosen-item">
                             <label for="dosen2">
-                                <input 
-                                type="checkbox" 
+                                <input type="checkbox" 
                                 id="dosen2" 
                                 name="dosen" 
-                                value="Dosen Pembimbing 2"> 
+                                value="Dosen Pembimbing 2">
                                 Dosen Pembimbing 2
                             </label>
                         </div>
 
                     </div>
-                    
+
                 </div>
 
                 <div class="input-group">
@@ -104,8 +102,8 @@
                 <div class="input-group">
                     <label for="jam">Waktu Bimbingan</label>
                     <div class="time-inputs">
-                        <select id="jam" class="input-field time-select" required>
-                            <option value disabled selected>Jam</option>
+                        <select id="jamStart" class="input-field time-select" required>
+                            <option value disabled selected>Mulai</option>
                             <option value="07">07</option>
                             <option value="08">08</option>
                             <option value="09">09</option>
@@ -116,16 +114,12 @@
                             <option value="14">14</option>
                             <option value="15">15</option>
                             <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
                         </select>
-                        <select id="menit" class="input-field time-select" required>
-                            <option value disabled selected>Menit</option>
-                            <option value="0">0</option>
-                            <option value="15">15</option>
-                            <option value="30">30</option>
-                            <option value="45">45</option>
-                        </select>
+
+
+                        <div id="jamEnd" class="input-field time-select">
+                            <p >Selesai</p>
+                        </div>
                     </div>
                 </div>
 
@@ -141,7 +135,7 @@
                 <h3>Are you sure?</h3>
                 <div class="modal-buttons">
                     <button class="btn-modal btn-cancel" onclick="closePopUp()">Cancel</button>
-                    <button class="btn-modal btn-confirm" onclick="submitFinal()">Confirm</button>
+                    <button class="btn-modal btn-confirm">Confirm</button>
                 </div>
             </div>
         </div>
