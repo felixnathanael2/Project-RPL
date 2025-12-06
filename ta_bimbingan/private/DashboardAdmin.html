@@ -90,11 +90,11 @@
                 </div>
             </div>
 
-            <label for="file-input" class="upload-btn-admin glass-box">
+            <!-- <label for="file-input" class="upload-btn-admin glass-box">
                 <input type="file" id="file-input" hidden>
                 <i class="ri-upload-2-line"></i>
                 <span>Upload Jadwal Dosen</span>
-            </label>
+            </label> -->
         </div>
 
         <div class="glass-box col-tengah">
@@ -117,16 +117,20 @@
             <div class="glass-box stats-box">
                 <div class="stat-grid">
                     <div class="stat-item">
-                        <h1>12</h1><span>Dosen</span>
+                        <h1 id="stat-dosen">...</h1>
+                        <span>Dosen</span>
                     </div>
                     <div class="stat-item">
-                        <h1>24</h1><span>Bimbingan</span>
+                        <h1 id="stat-bimbingan">...</h1>
+                        <span>Bimbingan</span>
                     </div>
                     <div class="stat-item">
-                        <h1>47</h1><span>Mahasiswa</span>
+                        <h1 id="stat-mahasiswa">...</h1>
+                        <span>Mahasiswa</span>
                     </div>
                     <div class="stat-item">
-                        <h1>12/47</h1><span>Eligible</span>
+                        <h1 id="stat-layak">...</h1>
+                        <span>Layak Sidang</span>
                     </div>
                 </div>
                 <div class="divider-v"></div>
@@ -138,6 +142,21 @@
                     <h3>Notifikasi</h3>
                 </div>
             </div>
+            <label for="dosen">Dosen</label>
+            <select id="dosen" class="input-field" required>
+                <option value disabled selected>Masukkan jadwal dosen yang
+                    anda inginkan</option>
+                <option value="Lab Skripsi">Lab Skripsi</option>
+                <option value="Ruang Tes 1">Ruang Tes 1</option>
+                <option value="Ruang Tes 2">Ruang Tes 2</option>
+                <option value="Ruang Dosen">Ruang Dosen</option>
+                <option value="Online">Online</option>
+            </select>
+            <label for="file-input" class="upload-btn-admin glass-box">
+                <input type="file" id="file-input" hidden>
+                <i class="ri-upload-2-line"></i>
+                <span>Upload Jadwal Dosen</span>
+            </label>
         </div>
     </main>
 

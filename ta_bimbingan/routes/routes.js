@@ -58,16 +58,17 @@ router.post("/api/upload-jadwal", upload.single("file_excel"), jadwalController.
 router.get("/api/my-schedule", jadwalController.getMyJadwal);
 router.get("/api/check-availability", checkAvailability);
 
-router.get("/api/riwayat", bimbinganController.riwayat);
 router.post("/api/ajukan-bimbingan", bimbinganController.ajukanBimbingan);
-router.get("/api/jadwal-bimbingan", bimbinganController.getJadwalBimbingan);
 
 //dashboard dosen
+router.get("/api/riwayat", bimbinganController.riwayat);
+router.get("/api/jadwal-bimbingan", bimbinganController.getJadwalBimbingan);
 router.get("/api/jadwal-bimbingan-dosen", bimbinganController.getJadwalBimbinganDosen);
 router.get("/api/jadwal-bimbingan-today", bimbinganController.getJadwalBimbinganToday);
-router.get("/api/dashboard-dosen-stats", dosenController.getDashboardStats);
+router.get("/api/dashboard-dosen-stats", dosenController.getDashboardDosenStats);
+router.get("/api/dashboard-admin-stats", dosenController.getDashboardAdminStats);
 
-
+//dashboard admin
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
 

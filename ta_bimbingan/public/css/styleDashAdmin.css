@@ -191,6 +191,18 @@ main.admin-layout {
     font-weight: 600;
 }
 
+.input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    transition: 0.3s;
+}
+
 /* Kolom Reminder */
 .col-tengah {
     flex-direction: column;

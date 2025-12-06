@@ -36,8 +36,7 @@ export const ajukanBimbingan = async (req, res) => {
 export const getJadwalBimbingan = async (req, res) => {
     try {
         const id_student = req.user.id;
-        const data = await bimbinganService.getRiwayatBimbingan(id_student);
-
+        const data = await bimbinganService.getRiwayatBimbingan(id_student, req.user.role);
         // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
         const formattedData = data.map(item => {
             const dateObj = new Date(item.tanggal);
@@ -46,7 +45,8 @@ export const getJadwalBimbingan = async (req, res) => {
             return {
                 tanggal: dateStr,
                 waktu: item.waktu,
-                nama_dosen: item.nama_dosen
+                nama_dosen: item.nama,
+                status: item.status
             };
         });
 
@@ -119,7 +119,7 @@ export const getTotalPermintaanByDosen = async (req, res) => {
     try {
         const formattedData = await fetchJadwalDosen(req);
         const totalPermintaan = formattedData.filter(item => item.status === 'Menunggu')
-        const value = {total_permintaan: totalPermintaan}
+        const value = { total_permintaan: totalPermintaan }
         res.json(value);
     } catch (error) {
         console.error(error);

@@ -7,9 +7,8 @@ export async function getRiwayatBimbingan(userId, role) {
     const userRole = Number(role);
     const ROLE_MAHASISWA = 1;
     const ROLE_DOSEN = 2;
-    const ROLE_ADMIN = 3;
+    const ROLE_ADMIN = 3;   
     let query = ""; // Inisialisasi string kosong
-
     if (userRole === ROLE_MAHASISWA) {
         query = `
             SELECT 
@@ -73,7 +72,6 @@ export async function getRiwayatBimbingan(userId, role) {
     // 3. [FIX] Gunakan Destructuring Array [rows]
     // Ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
     const [rows] = await pool.execute(query, [userId]);
-
     return rows;
 }
 
@@ -275,6 +273,28 @@ export async function getTotalBimbinganByDosen(nik) {
     return rows[0];
 }
 
+export async function getAllRiwayatBimbingan() {
+    const pool = await connectDB();
+    const query = `
+             SELECT 
+                B.tanggal, 
+                B.waktu, 
+                B.catatan_bimbingan AS catatan, 
+                M.nama AS nama_mahasiswa, 
+                D.nama AS nama_dosen,
+                L.nama_ruangan AS nama_ruangan, 
+                B.status
+            FROM bimbingan B
+            JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+            JOIN data_ta DTA ON B.id_data = DTA.id_data
+            JOIN users M ON DTA.id_users = M.id_users
+            JOIN users D ON BD.nik = D.id_users
+            LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+            ORDER BY B.tanggal DESC, B.waktu DESC;
+        `;
 
+        const [rows] = await pool.execute(query)
+        return rows;
+}
 
 

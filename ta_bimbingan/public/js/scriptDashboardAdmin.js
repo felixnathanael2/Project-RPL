@@ -11,10 +11,16 @@ async function fetchJadwalBimbingan() {
         rawData.forEach(item => {
             const jamDisplay = item.waktu.substring(0, 5);
 
-            //untuk warna bisa ditambah random ato mau gini aja juga gpp
+            /// kasih warna cell sesuai status
             let colorType = "green-bg";
-            if (parseInt(jamDisplay.substring(0, 2)) >= 12) {
+            if (item.status === "Menunggu") {
+                colorType = "yellow-bg";
+            } else if (item.status === "Disetujui") {
+                colorType = "green-bg";
+            } else if (item.status === "Selesai") {
                 colorType = "blue-bg";
+            } else if (item.status === "Ditolak") {
+                colorType = "pink-bg";
             }
 
             if (!globalDataJadwal[item.tanggal]) {
@@ -37,6 +43,50 @@ async function fetchJadwalBimbingan() {
     }
 }
 
+//memanggil api dari backend untuk menampilkan ke frontend untuk stat di kanan
+//ambil juga untuk buat option
+async function fetchStatistik() {
+    try {
+        //panggil ke routes untuk membantu fetching
+        const response = await fetch('/api/dashboard-admin-stats');
+        const data = await response.json();
+
+        console.log("Data Statistik Admin:", data);
+
+        if (data) {
+            //masukin bedasarkan id htmlnya 
+            document.getElementById('stat-dosen').textContent = data.total_permintaan || 0;
+            document.getElementById('stat-bimbingan').textContent = data.total_bimbingan || 0;
+            document.getElementById('stat-mahasiswa').textContent = data.total_mahasiswa || 0;
+            document.getElementById('stat-layak').textContent = data.layak_sidang || "0 / 0";
+
+            const dropdownDosen = document.querySelector('select#dosen');
+            dropdownDosen.innerHTML = ''; //kosongin semua option dummy
+            const cover = document.createElement('option');
+            cover.disabled;
+            cover.selected;
+            cover.textContent = 'Masukkan jadwal dosen yang anda inginkan';
+            dropdownDosen.appendChild(cover);
+            const dosen = data.dosen;
+            dosen.map(item => {
+                const nama_dosen = item.nama;
+                const anak = document.createElement('option');
+                anak.value = nama_dosen;
+                anak.textContent = nama_dosen;
+                dropdownDosen.appendChild(anak);
+            })
+        }
+
+    } catch (error) {
+
+        document.getElementById('stat-dosen').textContent = "-";
+        document.getElementById('stat-bimbingan').textContent = "-";
+        document.getElementById('stat-mahasiswa').textContent = "-";
+        document.getElementById('stat-layak').textContent = "-";
+
+        console.error("Gagal mengambil statistik:", error);
+    }
+}
 //memanggil api dari backend untuk menampilkan ke frontend untuk show jadwal mingguan(yang kek di stupor)
 async function fetchJadwalMingguan() {
     try {
@@ -83,15 +133,6 @@ async function fetchTodayBimbingan() {
             return;
         }
 
-        //TOOD : fetch dari db 
-        // <div class="reminder-list">
-        //     <div class="reminder-item">
-        //         <p><strong>VAN</strong> - Joseph - 10.00 (R.Tes-1)</p>
-        //     </div>
-        //     <div class="reminder-item">
-        //         <p><strong>RCP</strong> - Michael - 13.00 (R.Tes-2)</p>
-        //     </div>
-        // </div>
 
         data.forEach(item => {
             // ambil format waktu untuk jam dan menit saja (detik ga perlu)
@@ -115,7 +156,7 @@ async function fetchTodayBimbingan() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    fetchStatistik();
     fetchJadwalBimbingan();
     fetchJadwalMingguan();
     fetchTodayBimbingan();
