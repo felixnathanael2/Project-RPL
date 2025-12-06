@@ -1,0 +1,33 @@
+# 1. Dependency (Wajib di-ignore karena berat & bisa diinstall ulang)
+node_modules/
+
+# 2. Environment Variables (SANGAT PENTING: Berisi Password DB & Secret Key)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 3. Logs (Catatan error yang menuh-menuhin)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 4. Sistem Operasi (File sampah Windows/Mac)
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 5. Editor / IDE (Settingan personal VS Code dll)
+.vscode/
+.idea/
+/uploads
+*.sublime-workspace
+*.swp

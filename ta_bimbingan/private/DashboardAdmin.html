@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <!-- ICON -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styleDashAdmin.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/adminCal.css">
+    <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="/js/scriptCalender.js"></script>
+</head>
+
+<!-- Header -->
+
+<body>
+    <div class="nav glass-box">
+        <div class="nav-left">
+            <img src="/assets/HeaderUnpar.png" alt id="unpar">
+            <img src="/assets/HeaderIF.png" alt id="if">
+            <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo">
+        </div>
+        <div class="nav-middle">
+            <div id="nav-beranda"><a href="DashboardAdmin.html" class="nav-active">Beranda</a></div>
+            <div id="nav-area-admin"><a href="ManajemenPengguna.html">Area Admin</a></div>
+            <div id="nav-log"><a href="logAdmin.html">Log</a></div>
+            <div id="nav-riwayat"><a href="Riwayat(Admin).html">Riwayat</a></div>
+        </div>
+        <div class="nav-right">
+            <div id="notif"><a href="DashboardAdmin.html"><i class="ri-notification-4-line"></i></a></div>
+            <div id="logout"><a href="LoginPage.html"><i class="ri-logout-box-r-line"></i></a></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="admin-layout">
+        <div class="col-kiri">
+            <div class="glass-box calendar-box">
+                <div id="header-kalender">
+                    <div id="left-header">
+                        <h3>Kalender</h3>
+
+                        <label class="custom-switch">
+                            <input type="checkbox" id="viewToggle">
+                            <span class="slider">
+                                <span class="knob"></span>
+                                <span class="switch-label label-month">Bulan</span>
+                                <span class="switch-label label-week">Minggu</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <div id="right-header">
+                        <p>April 2025</p>
+                        <div id="button-arrow">
+                            <i class="ri-arrow-right-s-line"></i>
+                            <i class="ri-arrow-left-s-line"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kalender-bulanan hidden">
+                    <div class="body">
+                        <div class="month_calendar">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kalender-mingguan">
+                    <div class="schedule-container">
+                        <div class="days-header">
+                            <div></div>
+                            <div class="day-name">Senin</div>
+                            <div class="day-name">Selasa</div>
+                            <div class="day-name">Rabu</div>
+                            <div class="day-name">Kamis</div>
+                            <div class="day-name">Jumat</div>
+                        </div>
+
+                        <div class="schedule-grid" id="scheduleGrid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label for="file-input" class="upload-btn-admin glass-box">
+                <input type="file" id="file-input" hidden>
+                <i class="ri-upload-2-line"></i>
+                <span>Upload Jadwal Dosen</span>
+            </label>
+        </div>
+
+        <div class="glass-box col-tengah">
+            <div class="riwayat-header">
+                <h3>Today's Reminder <i class="ri-alarm-line"></i></h3>
+            </div>
+
+            <div class="reminder-list">
+                <div class="reminder-item">
+                    <p><strong>VAN</strong> - Joseph - 10.00 (R.Tes-1)</p>
+                </div>
+                <div class="reminder-item">
+                    <p><strong>RCP</strong> - Michael - 13.00 (R.Tes-2)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-kanan">
+
+            <div class="glass-box stats-box">
+                <div class="stat-grid">
+                    <div class="stat-item">
+                        <h1>12</h1><span>Dosen</span>
+                    </div>
+                    <div class="stat-item">
+                        <h1>24</h1><span>Bimbingan</span>
+                    </div>
+                    <div class="stat-item">
+                        <h1>47</h1><span>Mahasiswa</span>
+                    </div>
+                    <div class="stat-item">
+                        <h1>12/47</h1><span>Eligible</span>
+                    </div>
+                </div>
+                <div class="divider-v"></div>
+                <div class="divider-h"></div>
+            </div>
+
+            <div class="glass-box notif-box">
+                <div class="notif-header">
+                    <h3>Notifikasi</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div class="footer glass-box">
+        <div class="footer-left">
+            <img src="/assets/LogoMonokromUnpar.png" alt>
+        </div>
+        <div class="footer-right">
+            <p>&copy; 2025 Kelompok 8-A RPL</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

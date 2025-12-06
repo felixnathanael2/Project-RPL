@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Akun Pengguna Dosen</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styleTambahAkunLanjutDosen.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="/js/scriptTambahAkun.js" defer></script>
+</head>
+
+<body>
+    <div class="nav glass-box">
+        <div class="nav-left">
+            <img src="/assets/HeaderUnpar.png" alt id="unpar">
+            <img src="/assets/HeaderIF.png" alt id="if">
+            <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo">
+        </div>
+        <div class="nav-middle">
+            <div id="nav-beranda">
+                <a href="DashboardAdmin.html">Beranda</a>
+            </div>
+            <div id="nav-area_admin">
+                <a href="ManajemenPengguna.html">Area Admin</a>
+            </div>
+            <div id="nav-log">
+                <a href="logAdmin.html">Log</a>
+            </div>
+            <div id="nav-riwayat">
+                <a href="Riwayat(Admin).html">Riwayat</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div id="notif">
+                <a href="DashboardAdmin.html"><i class="ri-notification-4-line"></i></a>
+            </div>
+            <div id="logout">
+                <a href="LoginPage.html"><i class="ri-logout-box-r-line"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="form glass-box">
+            <h1 class="formTitle">Tambah Akun</h1>
+            <form id="submissionForm" method="POST">
+                <div class="input-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" class="input-field" placeholder="Masukkan nama dosen" required>
+                </div>
+                <div class="input-group">
+                    <label for="topik">Topik</label>
+                    <input type="text" id="nama" class="input-field" placeholder="Masukkan topik dosen" required>
+                    <button type="button" id="plusButton">+</button>
+                </div>
+
+                <div id="buttonContainer">
+                    <button type="button" id="batalButton" class="btn-submit">Batal</button>
+                    <button type="button" id="submitButton" class="btn-submit" onclick="showModal()">Kirim</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+    <div class="footer glass-box">
+        <div class="footer-left">
+            <img src="/assets/LogoMonokromUnpar.png" alt>
+        </div>
+        <div class="footer-right">
+            <p>&copy; 2025 Kelompok 8-A RPL</p>
+        </div>
+    </div>
+
+    <!-- POPUP -->
+    <div id="confirmPopup" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Apakah kamu <br>yakin?</h3>
+            <div class="modal-buttons">
+                <button id="noBtn" class="btn-modal">Tidak</button>
+                <button id="yesBtn" class="btn-modal">Ya</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
