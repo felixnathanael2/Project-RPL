@@ -11,10 +11,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/css/styleDashDosen.css">
     <link rel="stylesheet" href="/css/font.css">
-    <link rel="stylesheet" href="/css/calenderDosen.css">
+    <link rel="stylesheet" href="/css/calender.css">
     <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon">
 
-    <script src="/js/scriptCalenderDosen.js"></script>
+    <script src="/js/scriptLogout.js"></script>
+    <script src="/js/scriptCalender.js"></script>
+    <script src="/js/scriptDashboardDosen.js"></script>
 </head>
 
 <body>
@@ -28,30 +30,16 @@
         </div>
 
         <div class="nav-middle">
-            <div id="nav-beranda">
-                <a href="DashboardDosen.html">Beranda</a>
-            </div>
-            <div id="nav-riwayat">
-                <a href="CatatanBimbinganDosen.html">Riwayat</a>
-            </div>
-            <div id="nav-pengajuan">
-                <a href="PengajuanBimbinganDosen.html">Persetujuan</a>
-            </div>
-            <div id="nav-permintaan">
-                <a href="PengajuanBimbinganDosen.html">Penjadwalan</a>
-            </div>
+            <a href="DashboardDosen.html" class="active">Beranda</a>
+            <a href="CatatanBimbinganDosen.html">Riwayat</a>
+            <a href="PersetujuanBimbinganDosen.html">Persetujuan</a>
+            <a href="PengajuanBimbinganDosen.html">Penjadwalan</a>
         </div>
 
         <div class="nav-right">
-            <div id="notif">
-                <a href="NotificationPageDosen.html"><i class="ri-notification-4-line"></i></a>
-            </div>
-            <div id="profile">
-                <a href="ProfilePage.html"><i class="ri-account-circle-line"></i></a>
-            </div>
-            <div id="logout">
-                <a href="LoginPage.html"><i class="ri-logout-box-r-line"></i></a>
-            </div>
+            <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
+            <a href="ProfilePageDosen.html"><i class="ri-account-circle-line"></i></a>
+            <a href="LoginPage.html" id="btn-logout-action"><i class="ri-logout-box-r-line"></i></a>
         </div>
     </div>
 
@@ -114,14 +102,8 @@
             <div class="box-dosen small">
                 <div class="box-title">Bimbingan Hari Ini</div>
 
-                <div class="bimbingan-line">
-                    <div class="dot"></div>
-                    <p><b>Joseph</b> — 10.00 (10–1)</p>
-                </div>
-
-                <div class="bimbingan-line">
-                    <div class="dot"></div>
-                    <p><b>Michael</b> — 13.00 (Lab-1)</p>
+                <div id="list-today">
+                    <p>Memuat data...</p>
                 </div>
 
                 <a href="#" class="see-all">Lihat Semua Bimbingan Mendatang</a>
@@ -130,28 +112,28 @@
             <!-- BOX 2 -->
             <div class="box-dosen stat glass-box">
                 <div class="stat-item">
-                    <h1>3</h1>
+                    <h1 id="stat-permintaan">...</h1>
                     <span>Permintaan</span>
                 </div>
 
                 <div class="divider"></div>
 
                 <div class="stat-item">
-                    <h1>9</h1>
+                    <h1 id="stat-bimbingan">...</h1>
                     <span>Bimbingan</span>
                 </div>
 
                 <div class="divider wide"></div>
 
                 <div class="stat-item">
-                    <h1>7</h1>
+                    <h1 id="stat-mahasiswa">...</h1>
                     <span>Mahasiswa</span>
                 </div>
 
                 <div class="divider"></div>
 
                 <div class="stat-item">
-                    <h1>1 / 7</h1>
+                    <h1 id="stat-layak">...</h1>
                     <span>Layak Sidang</span>
                 </div>
             </div>
