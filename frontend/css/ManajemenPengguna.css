@@ -163,6 +163,13 @@ body {
     overflow-x: hidden;
 }
 
+#nav-area-admin{
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    padding: 5px 15px 5px 15px;
+}
+
 /* Styling Tabel */
 .mp-table {
     width: 100%;
