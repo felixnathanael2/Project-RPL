@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/styleView.css">
     <link rel="stylesheet" href="/css/font.css">
     <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="/js/scriptPermintaan.js" defer></script>
 </head>
 
 <body>
@@ -81,7 +82,7 @@
                     </div>
 
                     <div class="card-right">
-                        <button class="btn btn-reject">Tolak</button>
+                        <button class="btn btn-reject" onclick="showModal()">Tolak</button>
                         <button class="btn btn-accept">Terima</button>
                     </div>
                 </div>
@@ -114,7 +115,7 @@
                     </div>
 
                     <div class="card-right">
-                        <button class="btn btn-reject">Tolak</button>
+                        <button class="btn btn-reject" onclick="showModal()">Tolak</button>
                         <button class="btn btn-accept">Terima</button>
                     </div>
                 </div>
@@ -148,7 +149,7 @@
                     </div>
 
                     <div class="card-right">
-                        <button class="btn btn-reject">Tolak</button>
+                        <button class="btn btn-reject" onclick="showModal()">Tolak</button>
                         <button class="btn btn-accept">Terima</button>
                     </div>
                 </div>
@@ -156,14 +157,25 @@
             </div>
         </div>
 
-        <div class="modal-overlay hidden">
+        <!-- POPUP
+        <div id="confirmPopup" class="modal-overlay">
+            <div class="modal-box">
+                <h3>Alasan Menolak</h3>
+                <div class="modal-buttons">
+                    <button id="noBtn" class="btn-modal">Tidak</button>
+                    <button id="yesBtn" class="btn-modal">Ya</button>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="confirmPopup" class="modal-overlay hide">
             <div class="popup glass-box">
                 <h1 id="header-popup">Alasan Menolak</h1>
                 <textarea name="input-text" id="input-areatext" placeholder="..."></textarea>
 
                 <div class="button-popup">
-                    <button type="button" class="btn btn-reject">Batal</button>
-                    <button type="submit" class="btn btn-accept">Kirim</button>
+                    <button id="batal" type="button" class="btn">Batal</button>
+                    <button id="kirim" type="submit" class="btn">Kirim</button>
                 </div>
             </div>
         </div>
