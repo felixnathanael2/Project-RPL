@@ -145,3 +145,11 @@ CREATE TABLE log_aktivitas (
     FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL
 );
 
+SELECT TIME_FORMAT(B.waktu, '%H:00') as jamTerisi
+          FROM bimbingan B
+          JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+          JOIN data_ta DTA ON B.id_data = DTA.id_data
+          WHERE B.status != 'Ditolak' 
+
+
+SELECT * FROM lokasi
