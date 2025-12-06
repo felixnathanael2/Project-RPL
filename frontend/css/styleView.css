@@ -243,6 +243,17 @@ main.container {
   box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
 }
 
+#batal {
+  background-color: #e63946;
+  color: white;
+  box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+}
+
+#batal:hover {
+  background-color: #d62828;
+  transform: translateY(-2px);
+}
+
 .btn-reject:hover {
   background-color: #d62828;
   transform: translateY(-2px);
@@ -252,6 +263,17 @@ main.container {
   background: rgba(255, 255, 255, 0.25);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+#kirim {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+#kirim:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 .btn-accept:hover {
@@ -277,6 +299,15 @@ main.container {
   backdrop-filter: blur(2px);
 
   z-index: 999;
+}
+
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.hide{
+  display: none;
 }
 
 .popup {
