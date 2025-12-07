@@ -94,33 +94,34 @@ document.addEventListener("DOMContentLoaded", async function () {
           <i class="ri-arrow-down-s-line arrow"></i>
         </div>
         <div class="bimbingan-body">
-          <div class="body-content">
-            <div class="info">
-              <h3 class="subContent">Tanggal&nbsp;:  ${new Date(
-                bimbingan.tanggal
-              ).toLocaleDateString("id-ID")}</h3>
+            <div class="body-content">
+              <div class="info">
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Tanggal :</h3>
+                <span>${new Date(bimbingan.tanggal).toLocaleDateString(
+                  "id-ID"
+                )}</span>
+              </div>
+              <div class="info">
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Dosen :</h3>
+                <span>${bimbingan.nama_dosen || bimbingan.nama}</span>
+              </div>
+              <div class="info">
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Jam :</h3>
+                <span>${bimbingan.waktu}</span>
+              </div>
+              <div class="info">
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Lokasi :</h3>
+                <span>${bimbingan.nama_ruangan}</span>
+              </div>
+              <div class="info">
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Topik :</h3>
+                <span>${bimbingan.catatan_bimbingan}</span>
+              </div>
+              <div class="info">
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Status :</h3>
+                <span>${bimbingan.status}</span>
+              </div>
             </div>
-            <div class="info">
-              <h3 class="subContent">Dosen&nbsp;&nbsp;&nbsp;&nbsp;: ${
-                bimbingan.nama_dosen || bimbingan.nama
-              }</h3>
-            </div>
-            <div class="info">
-              <h3 class="subContent">Jam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${
-                bimbingan.waktu
-              }</h3>
-            </div>
-            <div class="info">
-              <h3 class="subContent">Lokasi&nbsp;&nbsp;&nbsp;&nbsp;: ${
-                bimbingan.nama_ruangan
-              }</h3>
-            </div>
-            <div class="info">
-              <h3 class="subContent">Topik&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ${
-                bimbingan.catatan_bimbingan
-              }</h3>
-            </div>
-          </div>
         </div>
       `;
 
