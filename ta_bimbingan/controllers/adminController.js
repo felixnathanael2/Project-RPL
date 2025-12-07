@@ -33,19 +33,18 @@ export const getAllUsers = async (req, res) => {
 
 export const createUser = async (req, res) => {
     try {
-        const { email, roleString, nama, topik, dosen1, dosen2 } = req.body;
-        await adminService.createNewUser({
-            email,
-            roleString,
-            nama,
-            topik,
-            dosen1,
-            dosen2
-        });
+
+        const inputData = req.body;
+
+        await adminService.createNewUser(inputData);
 
         res.status(201).json({ message: "User berhasil dibuat" });
     } catch (error) {
         console.error("Create User Error:", error);
-        res.status(500).json({ message: error.message });
+        // Cek jika error duplicate entry (kode SQL)
+        if(error.code === 'ER_DUP_ENTRY') {
+             return res.status(400).json({ message: "ID User atau Email sudah terdaftar!" });
+        }
+        res.status(500).json({ message: "Gagal membuat user: " + error.message });
     }
 };

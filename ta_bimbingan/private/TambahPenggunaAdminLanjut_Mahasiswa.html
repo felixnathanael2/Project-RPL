@@ -49,7 +49,15 @@
             <h1 class="formTitle">Tambah Akun</h1>
             <form id="submissionForm" method="POST">
                 <div class="input-group">
-                    <label for="nama">Dosen Pembimbing 1</label>
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" class="input-field" placeholder="Masukkan nama mahasiswa" required>
+                </div>
+                <div class="input-group">
+                    <label for="npm">NPM</label>
+                    <input type="text" id="npm" class="input-field" placeholder="Masukkan npm mahasiswa" required>
+                </div>
+                <div class="input-group">
+                    <label for="dosbing1">Dosen Pembimbing 1</label>
                     <select id="dosbing1" class="input-field" required>
                         <option value="Raymond Chandra">Raymond Chandra</option>
                         <option value="Vania Natali">Vania Natali</option>
@@ -65,7 +73,7 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="nama">Dosen Pembimbing 2</label>
+                    <label for="dosbing2">Dosen Pembimbing 2</label>
                     <select id="dosbing2" class="input-field" required>
                         <option value="Tidak ada">Tidak ada</option>
                         <option value="Raymond Chandra">Raymond Chandra</option>
@@ -82,8 +90,20 @@
                     </select>
                 </div>
                 <div class="input-group">
+                    <label for="semester">Semester</label>
+                    <input type="text" id="semester" class="input-field" placeholder="Masukkan semester mahasiswa" required>
+                </div>
+                <div class="input-group">
                     <label for="topik">Topik</label>
-                    <input type="text" id="nama" class="input-field" placeholder="Masukkan topik mahasiswa" required>
+                    <input type="text" id="topik" class="input-field" placeholder="Masukkan topik mahasiswa" required>
+                </div>
+                <div class="input-group">
+                    <label for="jenis_ta">Tugas Akhir ke </label>
+                    <select id="jenis_ta" class="input-field" required>
+                        <option value="1" selected>1</option>
+                        <option value="2">2 </option>
+                        <option value="3">1 dan 2</option>
+                    </select>
                 </div>
 
                 <div id="buttonContainer">

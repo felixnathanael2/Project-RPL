@@ -75,13 +75,15 @@ router.get("/api/get-all-dosen", dosenController.getAllDosen);
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
 router.get("/api/manajemen-pengguna", adminController.getAllUsers)
-router.post("/api/create-user", adminController.createUser)
 
-// --- PAGE ROUTES (Render HTML/EJS) ---
+router.post("/api/admin/create-user", adminController.createUser);
+
+// --- PAGE ROUTES (Render HTML) ---
 router.get("/dashboard", pageController.dashboard);
 router.get("/pengajuan", pageController.pengajuan);
 router.get("/notifikasi", pageController.notifikasi);
 router.get('/manajemenPengguna', pageController.manajemenPengguna)
+router.get('/debugging', pageController.debugging)
 router.get('/addUser', pageController.addUser)
 router.get('/addUser/mahasiswa', pageController.addMahasiswa)
 router.get('/addUser/dosen', pageController.addDosen)

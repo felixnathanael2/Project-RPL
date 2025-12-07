@@ -1,6 +1,5 @@
 document.getElementById("lanjutButton").onclick = function () {
 
-    console.log("APANDAHH")
     const email = document.getElementById("email").value;
     const status = document.getElementById("status").value;
 
