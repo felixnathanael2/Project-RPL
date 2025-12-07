@@ -13,6 +13,7 @@ export async function getRiwayatBimbingan(userId, role) {
   if (userRole === ROLE_MAHASISWA) {
     query = `
             SELECT 
+                B.id_bimbingan,
                 GROUP_CONCAT(U.nama SEPARATOR ', ') AS nama_dosen,
                 L.nama_ruangan, 
                 B.tanggal, 
@@ -26,7 +27,7 @@ export async function getRiwayatBimbingan(userId, role) {
             JOIN users U ON BD.nik = U.id_users
             WHERE DTA.id_users = ? 
             GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status
-            ORDER BY B.tanggal ASC, B.waktu ASC;
+            ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
   } else if (userRole === ROLE_DOSEN) {
     query = `

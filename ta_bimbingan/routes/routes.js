@@ -7,7 +7,7 @@ import { login, logout } from "../controllers/authController.js";
 
 import * as bimbinganController from "../controllers/bimbinganController.js";
 import * as dosenController from "../controllers/dosenController.js";
-
+import * as mahasiswaController from "../controllers/mahasiswaController.js";
 import * as jadwalController from "../controllers/jadwalController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
 import { pengajuanInit } from "../controllers/referensiController.js";
@@ -80,6 +80,13 @@ router.get("/api/dashboard-dosen-stats", dosenController.getDashboardStats);
 
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
+
+router.get("/api/get-mahasiswa", mahasiswaController.getMahasiswa);
+router.get("/api/bimbingan/:npm", bimbinganController.getRiwayatByNPM);
+router.post(
+  "/api/bimbingan/update-catatan",
+  bimbinganController.updateCatatanBimbingan
+);
 
 // --- PAGE ROUTES (Render HTML/EJS) ---
 router.get("/dashboard", pageController.dashboard);
