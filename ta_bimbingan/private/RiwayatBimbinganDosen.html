@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Riwayat Bimbingan</title>
+    <title>Catatan Bimbingan</title>
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
       rel="stylesheet"
@@ -16,9 +16,9 @@
       href="/assets/MBTA-Icon.png"
       type="image/x-icon"
     />
-    <link rel="stylesheet" href="/css/styleRiwayat.css" />
+    <link rel="stylesheet" href="/css/styleCatatan.css" />
     <link rel="stylesheet" href="/css/font.css" />
-    <script src="/js/scriptRiwayat.js" defer></script>
+    <script src="/js/scriptRiwayatDosen.js" defer></script>
   </head>
 
   <body>
@@ -59,10 +59,23 @@
     <!-- Main Content -->
     <main class="container">
       <div class="content-wrapper">
-        <h2 class="page-title">Riwayat Bimbingan</h2>
+        <h2 class="page-title">Catatan Bimbingan</h2>
 
         <div class="glass-container main-card">
-          <h2 style="font-weight: 600">Tugas Akhir 1</h2>
+          <div class="custom-select-wrapper">
+            <div class="custom-select" id="studentSelect">
+              <div class="select-trigger">
+                <span id="selectedStudent">6182301055 - Gregorius Jason M</span>
+                <i class="ri-arrow-down-s-line arrow"></i>
+              </div>
+              <div class="select-options">
+                <span class="option selected" data-value="6182301055"
+                  >6182301055 - Gregorius Jason M</span
+                >
+              </div>
+            </div>
+          </div>
+
           <div class="bimbingan-list">
             <div class="bimbingan-item" data-id="1">
               <div class="bimbingan-header" onclick="toggleAccordion(this)">
@@ -74,24 +87,17 @@
               </div>
               <div class="bimbingan-body">
                 <div class="body-content">
-                  <div class="info">
-                    <h3 class="subContent">Tanggal:</h3>
-                  </div>
-
-                  <div class="info">
-                    <h3 class="subContent">Dosen:</h3>
-                  </div>
-
-                  <div class="info">
-                    <h3 class="subContent">Jam:</h3>
-                  </div>
-
-                  <div class="info">
-                    <h3 class="subContent">Lokasi:</h3>
-                  </div>
-
-                  <div class="info">
-                    <h3 class="subContent">Topik:</h3>
+                  <label>Catatan</label>
+                  <textarea
+                    id="note-1"
+                    placeholder="Masukkan catatan bimbingan."
+                  >
+Judul terlalu luas, masih dapat diperdalam, buat menjadi lebih fokus pada goals yang ingin dicapai. Ganti sebelum bimbingan berikutnya.</textarea
+                  >
+                  <div class="action-btn">
+                    <button class="btn-update" onclick="updateCatatan(1)">
+                      Update
+                    </button>
                   </div>
                 </div>
               </div>

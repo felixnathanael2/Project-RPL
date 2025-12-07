@@ -57,5 +57,12 @@ export const notifikasi = (req, res) => {
 };
 
 export const riwayat = (req, res) => {
-  res.sendFile(path.join(__dirname, "../private/RiwayatBimbingan.html"));
+  const role = req.user.role;
+  if (role === ROLE_MAHASISWA) {
+    res.sendFile(path.join(__dirname, "../private/RiwayatBimbingan.html"));
+  } else if (role === ROLE_DOSEN) {
+    res.sendFile(path.join(__dirname, "../private/RiwayatBimbinganDosen.html"));
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
