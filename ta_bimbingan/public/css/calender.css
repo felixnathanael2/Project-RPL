@@ -1,283 +1,414 @@
-  :root {
-      --lightpink: #FFBDBD;
-      --slightlypink: #FFA4A4;
-      --cyan: #BADFDB;
-      --beige: #FCF9EA;
-      --lightpurple: #EBD6FB;
-      --textGrey: #808080;
-      --highlightGreen: #57b846;
-  }
+:root {
+    --lightpink: #FFBDBD;
+    --slightlypink: #FFA4A4;
+    --cyan: #BADFDB;
+    --beige: #FCF9EA;
+    --lightpurple: #EBD6FB;
+    --textGrey: #808080;
+    --highlightGreen: #57b846;
+}
 
-  .custom-switch {
-      position: relative;
-      display: inline-block;
-      width: 100px;
-      /* UPDATED: 130px -> 100px */
-      height: 34px;
-  }
+/* --- TOGGLE SWITCH --- */
+.custom-switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+}
 
-  /* Sembunyikan Checkbox Asli */
-  .custom-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-  }
+.custom-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
-  /* Slider (Background Kapsul) */
-  .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to bottom, #2c3e50, #34495e);
-      border-radius: 34px;
-      transition: 0.4s;
-      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-  }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #2c3e50, #34495e);
+    border-radius: 30px;
+    transition: 0.4s;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
 
-  /* Knob (Lingkaran Putih) */
-  .knob {
-      position: absolute;
-      content: "";
-      height: 28px;
-      width: 28px;
-      right: 3px;
-      /* Posisi awal (Kanan) */
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: #ecf0f1;
-      border-radius: 50%;
-      transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      z-index: 2;
-  }
+.knob {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    right: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ecf0f1;
+    border-radius: 50%;
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
 
-  /* Label Teks */
-  .switch-label {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      font-weight: bold;
-      font-size: 12px;
-      /* UPDATED: Font diperkecil agar muat */
-      transition: opacity 0.3s, transform 0.3s;
-      user-select: none;
-      z-index: 1;
-  }
+.switch-label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+    transition: opacity 0.3s;
+    user-select: none;
+    z-index: 1;
+    pointer-events: none;
+}
 
-  /* Posisi Label "Bulan" */
-  .label-month {
-      left: 12px;
-      /* UPDATED: Jarak disesuaikan */
-      opacity: 1;
-  }
+.label-month {
+    left: 8px;
+    opacity: 1;
+}
 
-  /* Posisi Label "Minggu" */
-  .label-week {
-      right: 12px;
-      /* UPDATED: Jarak disesuaikan */
-      opacity: 0;
-      transform: translateX(15px) translateY(-50%);
-  }
+.label-week {
+    right: 8px;
+    opacity: 0;
+    text-align: right;
+}
 
-  /* --- ANIMASI SAAT DI-KLIK (CHECKED) --- */
+/* Logika Animasi Switch */
+input:checked~.slider .knob {
+    transform: translate(-40px, -50%);
+}
 
-  /* Geser Knob ke Kiri */
-  input:checked~.slider .knob {
-      /* Perhitungan: 100px (lebar) - 6px (margin ki-ka) - 28px (knob) = 66px */
-      transform: translate(-66px, -50%);
-  }
+input:checked~.slider .label-month {
+    opacity: 0;
+}
 
-  /* Hilangkan teks Bulan */
-  input:checked~.slider .label-month {
-      opacity: 0;
-      transform: translateX(-20px) translateY(-50%);
-  }
+input:checked~.slider .label-week {
+    opacity: 1;
+}
 
-  /* Munculkan teks Minggu */
-  input:checked~.slider .label-week {
-      opacity: 1;
-      transform: translateX(0) translateY(-50%);
-  }
+/* --- HEADER --- */
+#header-kalender {
+    width: 90%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
 
-  #header-kalender {
-      width: 90%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-  }
+}
 
-  #left-header {
-      display: flex;
-      align-items: flex-end;
-      gap: 1em;
-  }
+#left-header,
+#right-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 1em;
+}
 
-  #right-header {
-      display: flex;
-      align-items: flex-end;
-      gap: 1em;
-  }
+#button-arrow {
+    gap: 0.5em;
+}
 
-  #button-arrow {
-      gap: 0.5em;
-  }
+/* CALENDAR  Month*/
+.kalender-bulanan {
+    width: 32rem;
+    height: 30rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 20px;
+    scrollbar-width: none;
+}
 
-  /* Pastikan Container Utama menjadi "Patokan Dunia Baru" bagi elemen di dalamnya */
-  .main_container {
-      width: 800px;
-      /* Lebar tetap */
-      /* background-color: #ffffff; */
-      border-radius: 12px;
-      overflow: hidden;
+.month_calendar {
+    display: grid;
+    width: 32rem;
+    height: auto;
+    min-height: 30rem;
+    background-color: white;
+    border-radius: 20px;
 
-      font-size: 20px;
-  }
+    grid-template-columns: repeat(7, 1.3fr);
+    grid-template-rows: 40px repeat(6, 1.2fr);
 
-  /* CALENDAR  */
-  /* Pastikan class body lebarnya 100% dari main_container */
-  /* Container Kalender (Card Putih) */
-  .month_calendar {
-      display: grid;
-      width: 100%;
-      height: 100%;
-      /* Memenuhi container induknya */
-      background-color: white;
-      border-radius: 20px;
-      /* Sudut membulat card */
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
 
-      /* DEFINISI GRID 7x7 (1 Row Header Hari + 6 Rows Tanggal) */
-      grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: 40px repeat(6, 1fr);
-      /* 40px untuk nama hari, sisanya bagi rata 6 */
+.day-name {
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 0.5px;
+    background-color: white;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
 
-      /* Garis Pinggir Luar (Kiri & Atas) */
-      border-top: 1px solid #eee;
-      border-left: 1px solid #eee;
+.date-cell {
+    background-color: white;
+    transition: background-color 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 90px;
+    min-width: auto;
+    padding: 6px;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
 
-      /* Shadow halus */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      overflow: hidden;
-      /* Agar sudut rounded tidak tertutup anak elemen */
-      font-family: 'Segoe UI', sans-serif;
-      box-sizing: border-box;
-  }
+/* WARNA BACKGROUND CELL */
+.date-cell.pink-bg {
+    background-color: #ffeef1;
+    border-left: 4px solid #ff4d6d;
+    color: #c01048;
+}
 
-  /* --- 1. Label Hari (SUN, MON, TUE...) --- */
-  .day-name {
-      display: flex;
-      align-items: center;
-      /* Vertikal tengah */
-      padding-left: 12px;
-      /* Jarak dari kiri */
-      font-size: 11px;
-      font-weight: 700;
-      color: #9ca3af;
-      /* Abu-abu teks label */
-      letter-spacing: 0.5px;
-      background-color: white;
+.date-cell.green-bg {
+    background-color: #e6f9ed;
+    border-left: 4px solid #28c76f;
+    color: #027a48;
+}
 
-      /* Garis batas sel */
-      border-right: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-  }
+.date-cell.blue-bg {
+    background-color: #eef7ff;
+    border-left: 4px solid #00cfe8;
+    color: #1e40af;
+}
 
-  /* --- 2. Kotak Tanggal --- */
-  .date-cell {
-      background-color: white;
-      padding: 8px 10px;
-      /* Padding dalam kotak */
-      display: flex;
-      flex-direction: column;
-      /* Susun Angka lalu Event ke bawah */
-      gap: 6px;
-      /* Jarak antara Angka dan Event */
+.event-details {
+    font-size: 0.50rem;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
 
-      /* Garis batas sel */
-      border-right: 1px solid #eee;
-      border-bottom: 1px solid #eee;
+.event-title {
+    font-weight: 800;
+    font-size: 0.6rem;
+    color: inherit;
+    /* Mengikut warna teks parent */
+    line-height: 1.2;
+}
 
-      /* Transisi hover */
-      transition: background-color 0.2s;
-      min-height: 90px;
-      /* Tinggi minimal agar terlihat lega */
-  }
+.event-name {
+    font-weight: 500;
+    font-size: 0.65rem;
+    color: inherit;
+    opacity: 0.8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-  /* Hover Effect pada tanggal */
-  .date-cell:hover {
-      background-color: #f9fafb;
-  }
+.date-num {
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 2;
+    margin-bottom: 4px;
+    color: #374151;
+}
 
-  /* Tanggal dari bulan lain (Warna abu-abu) */
-  .other-month {
-      background-color: #fafafa;
-      /* Sedikit lebih gelap dari putih */
-  }
+.date-cell.pink-bg .date-num,
+.date-cell.green-bg .date-num,
+.date-cell.blue-bg .date-num {
+    opacity: 0.7;
+}
 
-  .other-month .date-num {
-      color: #d1d5db;
-      /* Angka jadi samar */
-  }
+.other-month {
+    background-color: #fafafa;
+}
 
-  /* Angka Tanggal */
-  .date-num {
-      font-size: 14px;
-      font-weight: 600;
-      color: #374151;
-      /* Abu-abu gelap */
-  }
+.other-month .date-num {
+    color: #d1d5db;
+}
 
-  /* Highlight Hari Ini (Opsional) */
-  .today {
-      background-color: #eff6ff;
-      /* Biru sangat muda */
-  }
+.date-num {
+    font-size: 14px;
+    color: #374151;
+    font-weight: bold;
+    z-index: 2;
+}
 
-  .today .date-num {
-      color: #2563eb;
-      /* Biru terang */
-  }
+.today {
+    background-color: #eff6ff;
+}
 
-  /* --- 3. Event Pills (Desain Pastel) --- */
-  .event-pill {
-      padding: 6px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      line-height: 1.3;
-      display: flex;
-      flex-direction: column;
-      /* Judul atas, nama bawah */
-      cursor: pointer;
-  }
+.today .date-num {
+    color: #2563eb;
+}
 
-  .event-pill strong {
-      font-weight: 700;
-      margin-bottom: 2px;
-  }
+.green-bg {
+    background-color: #d1fadf;
+    color: #027a48;
+}
 
-  .event-pill span {
-      font-weight: 400;
-      font-size: 10px;
-      opacity: 0.9;
-  }
+.pink-bg {
+    background-color: #fce7f3;
+    color: #c01048;
+}
+    
+.blue-bg {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
 
-  /* Warna-warna Event (Sesuaikan dengan gambar) */
-  .green-bg {
-      background-color: #d1fadf;
-      color: #027a48;
-  }
 
-  .pink-bg {
-      background-color: #fce7f3;
-      color: #c01048;
-  }
+.schedule-container {
+    width: 32rem;
+    height: 30rem;
 
-  .blue-bg {
-      background-color: #dbeafe;
-      color: #1e40af;
-  }
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    box-sizing: border-box;
+
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.kalender-mingguan:not(.hidden) .schedule-container,
+.schedule-container.active {
+    display: flex;
+}
+
+/* --- HEADER HARI (Sticky) --- */
+.days-header {
+    display: grid;
+    /* Kolom pertama 50px*/
+    grid-template-columns: 50px repeat(5, 1fr);
+
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #eee;
+    background: white;
+    z-index: 5;
+    flex-shrink: 0;
+
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+/* --- GRID JAM --- */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: 50px repeat(5, 1fr);
+    grid-template-rows: repeat(22, 0.25fr);
+    gap: 0;
+    position: relative;
+
+    /* Scroll aktif vertikal */
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 10px;
+
+    /* Scrollbar halus */
+    scrollbar-width: thin;
+    padding: 10px 0;
+}
+
+.time-label {
+    grid-column: 1;
+    text-align: right;
+    padding-right: 10px;
+    color: #999;
+    font-size: 0.75rem;
+    position: relative;
+    top: -8px;
+}
+
+/* Garis Bantu */
+.grid-line {
+    grid-column: 2 / span 5;
+    border-top: 1px solid #f0f0f0;
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.class-card {
+    border-radius: 6px;
+    padding: 4px 6px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    cursor: pointer;
+    transition: transform 0.2s;
+    margin: 1px 3px;
+    overflow: hidden;
+}
+
+.class-card:hover {
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+.class-title {
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin-bottom: 2px;
+    line-height: 1.1;
+
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.class-info {
+    font-size: 0.6rem;
+    opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bg-teal {
+    background-color: #4ECDC4;
+}
+
+.bg-red {
+    background-color: #E06C75;
+}
+
+.bg-orange {
+    background-color: #F79D65;
+}
+
+.bg-blue-dark {
+    background-color: #387D98;
+}
+
+.bg-blue-light {
+    background-color: #4DB6AC;
+}
+
+.bg-purple {
+    background-color: #B39DDB;
+}
+
+.bg-olive {
+    background-color: #9CCC65;
+}
+
+.bg-pink {
+    background-color: #EC87A1;
+}

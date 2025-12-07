@@ -28,5 +28,6 @@ Desktop.ini
 # 5. Editor / IDE (Settingan personal VS Code dll)
 .vscode/
 .idea/
+/uploads
 *.sublime-workspace
 *.swp

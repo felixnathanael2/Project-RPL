@@ -7,6 +7,10 @@ import routes from "./routes/routes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+//setup view engine 
+app.set('view engine', 'ejs');
+app.set('views', './private');
+
 // ... (Middleware Global & Session setup, sama seperti sebelumnya) ...
 app.use(express.json());
 
@@ -29,7 +33,10 @@ app.use(
 
 // Route Utama & Start Server
 app.get("/", (req, res) => {
-    res.redirect("/page/LoginPage.html");
+    if (req.session.isLoggedIn) {
+        return res.redirect("/dashboard");
+    }
+    return res.redirect("/login");
 });
 
 app.use(routes);

@@ -39,7 +39,7 @@ INSERT INTO plotting_pembimbing (npm, nik, status_pembimbing) VALUES
 -- ==========================================
 -- JADWAL USER
 -- ==========================================
-INSERT INTO jadwal_user (Hari, Jam_mulai, Jam_akhir, id_users) VALUES
+INSERT INTO jadwal_user (Hari, jam_mulai, jam_akhir, id_users) VALUES
 ('Senin',  '08:00', '10:00', '20250001'),
 ('Rabu',   '13:00', '15:00', '20250001'),
 
@@ -51,9 +51,9 @@ INSERT INTO jadwal_user (Hari, Jam_mulai, Jam_akhir, id_users) VALUES
 -- ==========================================
 INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, status)
 VALUES
-(1, 1, '2025-01-10', '09:00:00', 'Diskusi awal terkait judul & scope.', 'Disetujui'),
+(1, 1, '2025-11-29', '09:00:00', 'Diskusi awal terkait judul & scope.', 'Disetujui'),
 (1, 2, '2025-01-20', '13:00:00', 'Review BAB 1 dan 2.', 'Selesai'),
-(1, NULL, '2025-02-05', '10:30:00', 'Pengajuan jadwal online.', 'Menunggu');
+(1, 4, '2025-02-05', '10:30:00', 'Pengajuan jadwal online.', 'Menunggu');
 
 
 -- ==========================================

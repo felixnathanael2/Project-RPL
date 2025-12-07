@@ -22,6 +22,7 @@ body {
   background-attachment: fixed;
 }
 
+/* Header */
 nav {
   display: flex;
   justify-content: space-between;
@@ -41,19 +42,18 @@ nav {
 }
 
 .glass-box {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    background: #A3C0EB45;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
 
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-#loginForm{
+#loginForm {
   padding: 20px 50px 20px 50px;
   background: #A3C0EB45;
 }
@@ -70,6 +70,7 @@ nav {
   object-fit: contain;
 }
 
+/* MAIN */
 main {
   flex: 1;
   display: flex;
@@ -79,14 +80,14 @@ main {
   padding: 20px;
 }
 
-#forgotPassword{
+#forgotPassword {
   color: white;
   text-decoration: underline;
   font-size: small;
   margin-bottom: 10px;
 }
 
-.userInput{
+.userInput {
   height: 35px;
 }
 
@@ -95,9 +96,6 @@ main form {
   width: fit-content;
   min-width: 350px;
   max-width: 90vw;
-/* 
-  width: 480px;
-  height: 486px; */
   display: flex;
   flex-direction: column;
   align-items: stretch;
