@@ -274,6 +274,7 @@ input[type="date"] {
   width: 50%;
   cursor: pointer;
 }
+
 .checkbox-group {
   display: flex;
   gap: 10px;

@@ -73,11 +73,7 @@ CREATE TABLE bimbingan (
     id_data INT NOT NULL, -- kolom buat konekin ke data punya siapa
     
     id_lokasi INT NULL, -- bimbingannya dimana
-<<<<<<< HEAD
-    tanggal DATE NOT NULL,
-=======
     tanggal DATE NOT NULL,	
->>>>>>> 0c72c90700e5ec4882503fed62b063707c470cf1
     waktu TIME NOT NULL,
     catatan_bimbingan TEXT, -- Notes dari dosen / Topik pengajuan
 	status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
@@ -93,10 +89,7 @@ CREATE TABLE bimbingan_dosen (
     nik VARCHAR(20),
     
     PRIMARY KEY (id_bimbingan, nik), -- Kombinasi unik
-<<<<<<< HEAD
-=======
     status ENUM('Menunggu','Disetujui','Selesai','Ditolak') DEFAULT 'Menunggu',
->>>>>>> 0c72c90700e5ec4882503fed62b063707c470cf1
     
     CONSTRAINT FK_BD_bimbingan FOREIGN KEY (id_bimbingan) REFERENCES bimbingan(id_bimbingan) ON DELETE CASCADE,
     CONSTRAINT FK_BD_Dosen FOREIGN KEY (nik) REFERENCES users(id_users) ON DELETE CASCADE
@@ -144,12 +137,3 @@ CREATE TABLE log_aktivitas (
     
     FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE SET NULL
 );
-
-SELECT TIME_FORMAT(B.waktu, '%H:00') as jamTerisi
-          FROM bimbingan B
-          JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
-          JOIN data_ta DTA ON B.id_data = DTA.id_data
-          WHERE B.status != 'Ditolak' 
-
-
-SELECT * FROM lokasi

@@ -5,10 +5,12 @@ const form = document.getElementById("submissionForm");
 function showModal() {
   const lokasi = document.getElementById("lokasi").value;
   const tanggal = document.getElementById("tanggal").value;
-  const waktu = document.getElementById("waktu").value;
-  const dosen = document.getElementById("dosen").value;
+  const waktu = document.getElementById("jamStart").value;
+  const dosenChecked = [
+    ...document.querySelectorAll('input[name="dosen"]:checked'),
+  ].map((d) => d.value);
 
-  if (lokasi && tanggal && waktu && dosen) {
+  if (lokasi && tanggal && waktu && dosenChecked.length > 0) {
     modal.classList.add("show");
   } else {
     alert("Mohon lengkapi semua data (Lokasi, Dosen, Tanggal, Waktu).");
@@ -26,8 +28,8 @@ window.onclick = function (event) {
   }
 };
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+document.getElementById("confirmBtn").addEventListener("click", () => {
+  submitFinal();
 });
 
 // DARI SINI KEBAWAH ITU UNTUK FORM NYA
@@ -52,24 +54,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ngambil data dosen 1 dan dosen 2
     listDosen = data.dosen;
 
+    // ganti label dosen jadi nama dosen, terus cari pembimbing1 siapa pembimbing2 siapa
     const pembimbing1 = document.getElementById("dosen1");
     const labelPembimbing1 = document.querySelector(
-      'label[for="dosen1"] .label-text',
+      'label[for="dosen1"] .label-text'
     );
     const labelPembimbing2 = document.querySelector(
-      'label[for="dosen2"] .label-text',
+      'label[for="dosen2"] .label-text'
     );
     const pembimbing2 = document.getElementById("dosen2");
     const d1 = listDosen.find((d) => d.status === 1);
     const d2 = listDosen.find((d) => d.status === 2);
 
-    pembimbing1.value = d1.nama;
+    pembimbing1.value = d1.nik;
     labelPembimbing1.textContent = d1.nama;
     if (!d2) {
       pembimbing2.disabled = true;
       labelPembimbing2.textContent = "-";
     } else {
-      pembimbing2.value = d2.nama;
+      pembimbing2.value = d2.nik;
       labelPembimbing2.textContent = d2.nama;
     }
   } catch (e) {
@@ -77,10 +80,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// --- CEK SLOT JAM YANG TERSEDIA BERDASARKAN JADWAL
+// --- CEK SLOT JAM YANG TERSEDIA BERDASARKAN JADWAL, NANTI JAM JAM YANG GABISA, GAKAN BISA MENGAJUKAN BIMBINGAN
 const tanggalInput = document.getElementById("tanggal");
 const jamMulai = document.getElementById("jamStart");
-const jamSelesai = document.getElementById("jamEnd");
+const jamSelesai = document.querySelector("#jamEnd p");
 const statusJam = document.getElementById("statusJam");
 async function updateSlots() {
   const date = tanggalInput.value;
@@ -89,6 +92,7 @@ async function updateSlots() {
   const d1 = listDosen.find((d) => d.status === 1);
   const d2 = listDosen.find((d) => d.status === 2);
 
+  // kalo dosen kedua ceklis juga
   const d2Checked = document.querySelector("#dosen2:checked");
   const ikut2 = d2Checked ? d2Checked.value === "yes" : false;
 
@@ -122,6 +126,27 @@ async function updateSlots() {
   data.jamAvailable.forEach((jam) => {
     jamMulai.innerHTML += `<option value="${jam}">${jam}</option>`;
   });
+
+  // buat ngubah jam selesai nya kalo ngeganti jam mulai
+  jamMulai.addEventListener("change", () => {
+    const start = jamMulai.value;
+    if (!start) {
+      jamSelesai.value = "";
+      return;
+    }
+
+    // Misal start = "09:00"
+    const [h, m] = start.split(":").map(Number);
+    const endHour = h + 1;
+
+    // Format biar tetap 2 digit
+    const formatted = `${String(endHour).padStart(2, "0")}:${String(m).padStart(
+      2,
+      "0"
+    )}`;
+
+    jamSelesai.textContent = "sampai " + formatted;
+  });
 }
 
 function getPembValue() {
@@ -138,6 +163,7 @@ function getPembValue() {
   return 1; // fallback (biar ga error)
 }
 
+// ini bakal update tiap kali ganti tanggal ato nambah dosen, misal pembimbing 1 aja ato 2 aja
 tanggalInput.addEventListener("change", updateSlots);
 document
   .querySelectorAll('input[name="dosen"]')
@@ -146,20 +172,23 @@ document
 async function submitFinal() {
   // 1. Ambil data dari form HTML
   const tanggalVal = document.getElementById("tanggal").value;
-  const waktuVal = document.getElementById("waktu").value; // Format HH:mm
+  const waktuVal = document.getElementById("jamStart").value; // Format HH:mm
   const lokasiIdVal = document.getElementById("lokasi").value;
-  const nikVal = document.getElementById("dosen").value;
+  const nikList = [
+    ...document.querySelectorAll('input[name="dosen"]:checked'),
+  ].map((d) => d.value);
 
   // 2. Siapkan data JSON sesuai req.body di Controller
   const payload = {
     tanggal: tanggalVal,
     waktu: waktuVal,
     lokasiId: lokasiIdVal,
-    nik: [nikVal],
+    nik: nikList,
   };
 
   try {
     const response = await fetch("/api/ajukan-bimbingan", {
+      credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,7 +202,7 @@ async function submitFinal() {
       alert("Pengajuan berhasil dikirim ke sistem!");
       closePopUp();
       form.reset();
-      window.location.href = "/api/riwayat";
+      window.location.href = "/pengajuan";
     } else {
       alert("Gagal mengajukan: " + (result.message || "Error server"));
     }

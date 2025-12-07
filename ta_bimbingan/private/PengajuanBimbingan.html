@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -121,16 +121,6 @@
             <div class="time-inputs">
               <select id="jamStart" class="input-field time-select" required>
                 <option value disabled selected>Mulai</option>
-                <option value="07">07</option>
-                <option value="08">08</option>
-                <option value="09">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
               </select>
 
               <div id="jamEnd" class="input-field time-select">
@@ -152,7 +142,9 @@
             <button class="btn-modal btn-cancel" onclick="closePopUp()">
               Cancel
             </button>
-            <button class="btn-modal btn-confirm">Confirm</button>
+            <button id="confirmBtn" class="btn-modal btn-confirm">
+              Confirm
+            </button>
           </div>
         </div>
       </div>
