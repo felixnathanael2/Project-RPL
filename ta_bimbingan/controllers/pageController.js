@@ -29,8 +29,20 @@ export const pengajuan = (req, res) => {
     res.sendFile(path.join(__dirname, "../private/PengajuanBimbingan.html"));
   } else if (role === ROLE_DOSEN) {
     res.sendFile(
-      path.join(__dirname, "../private/PengajuanBimbinganDosen.html"),
+      path.join(__dirname, "../private/PengajuanBimbinganDosen.html")
     );
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
+};
+
+export const profile = (req, res) => {
+  const role = req.user.role;
+
+  if (role === ROLE_MAHASISWA) {
+    res.sendFile(path.join(__dirname, "../private/ProfilePage.html"));
+  } else if (role === ROLE_DOSEN) {
+    res.sendFile(path.join(__dirname, "../private/ProfilePageDosen.html"));
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
   }

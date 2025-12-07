@@ -58,7 +58,7 @@ router.use(protectRoute);
 router.post(
   "/api/upload-jadwal",
   upload.single("file_excel"),
-  jadwalController.uploadJadwal,
+  jadwalController.uploadJadwal
 );
 router.get("/api/my-schedule", jadwalController.getMyJadwal);
 router.get("/api/check-availability", checkAvailability);
@@ -70,11 +70,11 @@ router.get("/api/jadwal-bimbingan", bimbinganController.getJadwalBimbingan);
 //dashboard dosen
 router.get(
   "/api/jadwal-bimbingan-dosen",
-  bimbinganController.getJadwalBimbinganDosen,
+  bimbinganController.getJadwalBimbinganDosen
 );
 router.get(
   "/api/jadwal-bimbingan-today",
-  bimbinganController.getJadwalBimbinganToday,
+  bimbinganController.getJadwalBimbinganToday
 );
 router.get("/api/dashboard-dosen-stats", dosenController.getDashboardStats);
 
@@ -86,5 +86,6 @@ router.get("/dashboard", pageController.dashboard);
 router.get("/pengajuan", pageController.pengajuan);
 router.get("/riwayat", pageController.riwayat);
 router.get("/notifikasi", pageController.notifikasi);
+router.get("/profile", pageController.profile);
 
 export default router;
