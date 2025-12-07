@@ -1,18 +1,11 @@
-/* ====================================================
-   FILE 1: scriptCalender.js
-   TUGAS: Menyediakan variabel config & fungsi render UI
-   ==================================================== */
-
-// --- KONFIGURASI GLOBAL ---
 const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-// State Tanggal (Diakses oleh scriptDashboardMahasiswa.js)
 let thisDay = new Date();
 let currentYear = thisDay.getFullYear();
 let currentMonth = thisDay.getMonth();
 
-// --- FUNGSI 1: UPDATE HEADER KALENDER ---
+
 function updateCalendarHeader() {
     const headerText = document.querySelector('#right-header p');
     if (headerText) {
@@ -20,18 +13,16 @@ function updateCalendarHeader() {
     }
 }
 
-// --- FUNGSI 2: RENDER GRID BULANAN ---
-// Menerima dataJadwal sebagai parameter agar tidak tergantung variabel global
+//method untuk render kalender sekarang 
 function generateCalendarGrid(year, month, dataJadwal) {
     const calendarContainer = document.querySelector('div.month_calendar');
     if (!calendarContainer) return;
 
-    // Reset style height agar baris ke-6 tidak terpotong
     calendarContainer.style.height = "auto";
     calendarContainer.style.minHeight = "30rem";
     calendarContainer.innerHTML = '';
 
-    // Render Nama Hari
+    // tampilin nama hari (minggu - sabtu)
     dayNames.forEach(d => {
         const dayLabel = document.createElement('div');
         dayLabel.className = 'day-name';
@@ -39,7 +30,7 @@ function generateCalendarGrid(year, month, dataJadwal) {
         calendarContainer.appendChild(dayLabel);
     });
 
-    // Hitung Logika Tanggal
+    // logika untuk tanggal
     const firstDayIndex = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const prevMonthDays = new Date(year, month, 0).getDate();
@@ -54,12 +45,13 @@ function generateCalendarGrid(year, month, dataJadwal) {
         let cellKey = null;
 
         if (i < firstDayIndex) {
+            //generate tanggal di bulan sebelumnya
             dateDisplay = prevMonthDays - (firstDayIndex - 1) + i;
             cell.classList.add('other-month');
         } else if (i >= firstDayIndex && i < firstDayIndex + daysInMonth) {
             dateDisplay = i - firstDayIndex + 1;
-            isCurrentMonth = true;
-
+            isCurrentMonth = true;  
+            //generate tanggal di bulan ini
             const mStr = String(month + 1).padStart(2, '0');
             const dStr = String(dateDisplay).padStart(2, '0');
             cellKey = `${year}-${mStr}-${dStr}`;
@@ -69,6 +61,7 @@ function generateCalendarGrid(year, month, dataJadwal) {
                 cell.classList.add('today');
             }
         } else {
+            //generate tanggal bulan depan
             dateDisplay = i - (firstDayIndex + daysInMonth) + 1;
             cell.classList.add('other-month');
         }
@@ -78,7 +71,7 @@ function generateCalendarGrid(year, month, dataJadwal) {
         dateNumSpan.textContent = dateDisplay;
         cell.appendChild(dateNumSpan);
 
-        // Render Event jika data ada
+        // render event (misal bimbingan ke 7 )
         if (isCurrentMonth && cellKey && dataJadwal[cellKey]) {
             dataJadwal[cellKey].forEach(ev => {
                 cell.classList.add(ev.type);
@@ -95,8 +88,7 @@ function generateCalendarGrid(year, month, dataJadwal) {
     }
 }
 
-// --- FUNGSI 3: RENDER JADWAL MINGGUAN ---
-// Helper untuk posisi grid
+//untuk ngebantu penempatan event di grid mingguan
 function getRowFromTime(timeString) {
     if (!timeString) return 1;
     const [hour, minute] = timeString.split(':').map(Number);
@@ -108,14 +100,14 @@ function getRowFromTime(timeString) {
 
 const dayMap = { 'Senin': 2, 'Selasa': 3, 'Rabu': 4, 'Kamis': 5, 'Jumat': 6 };
 
-// Menerima jadwalKuliah sebagai parameter
+//menampilkan jadwal yang datanya sudah dipanggil oleh scriptDashboard
 function renderSchedule(jadwalKuliah) {
     const container = document.getElementById('scheduleGrid');
     if (!container) return;
 
     container.innerHTML = '';
 
-    // Render Garis Waktu
+    //untuk menamplkan baris waktu yang ada 
     const hours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
     hours.forEach(h => {
         const timeLabel = document.createElement('div');
@@ -130,7 +122,7 @@ function renderSchedule(jadwalKuliah) {
         container.appendChild(line);
     });
 
-    // Render Kartu Jadwal
+    // buat kartu jadwal 
     if (jadwalKuliah && jadwalKuliah.length > 0) {
         jadwalKuliah.forEach(item => {
             if (!dayMap[item.day]) return;

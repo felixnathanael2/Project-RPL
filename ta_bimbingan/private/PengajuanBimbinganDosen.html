@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Pengajuan Bimbingan Rutin</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/PengajuanBimbinganDosen.css">
+    <link rel="stylesheet" href="../font.css">
+    <script src="../js/PengajuanBimbinganDosen.js" defer></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="nav glass-box">
+        <div class="nav-left">
+            <img src="../assets/HeaderUnpar.png" alt="" id="unpar">
+            <img src="../assets/HeaderIF.png" alt="" id="if">
+            <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo">
+        </div>
+
+        <div class="nav-middle">
+            <a href="#">Beranda</a>
+            <a href="#">Riwayat</a>
+            <a href="#">Persetujuan</a>
+            <a href="#" class="active">Penjadwalan</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="#"><i class="ri-notification-4-line"></i></a>
+            <a href="#"><i class="ri-account-circle-line"></i></a>
+            <a href="#"><i class="ri-logout-box-r-line"></i></a>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="glass-container main-card">
+                <h1 class="page-title">Form Pengajuan Bimbingan Rutin</h1>
+
+                <div class="description">Dosen dapat mengisi form ini untuk menjadwalkan bimbingan rutin dengan
+                    mahasiswa bimbingannya.</div>
+
+                <!-- INPUT 1 -->
+                <div class="custom-select-wrapper">
+                    <label>Nama Lengkap</label>
+                    <input type="text" class="input-field" placeholder="Masukkan nama lengkap anda">
+                </div>
+
+                <!-- INPUT 2 -->
+                <div class="custom-select-wrapper">
+                    <label>Email Mahasiswa</label>
+                    <input type="text" class="input-field" placeholder="Masukan email mahasiswa bimbingan">
+                </div>
+
+                <!-- DROPDOWN 1 -->
+                <div class="custom-select-wrapper">
+                    <label>Lokasi</label>
+                    <div class="custom-select" id="lokasiSelect">
+                        <div class="select-trigger">Lab Skripsi</div>
+                        <div class="select-options">
+                            <span class="option">Lab Skripsi</span>
+                            <span class="option">Ruang Tes 1</span>
+                            <span class="option">Ruang Tes 2</span>
+                            <span class="option">Ruang Dosen</span>
+                            <span class="option">Online</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DROPDOWN 2 -->
+                <div class="custom-select-wrapper">
+                    <label>Penjadwalan</label>
+                    <div class="custom-select" id="penjadwalanSelect">
+                        <div class="select-trigger">1 Minggu Sekali</div>
+                        <div class="select-options">
+                            <span class="option">1 Minggu Sekali</span>
+                            <span class="option">2 Minggu Sekali</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DROPDOWN 3 -->
+                <div class="custom-select-wrapper">
+                    <label>Hari Bimbingan</label>
+                    <div class="custom-select" id="hariSelect">
+                        <div class="select-trigger">Senin</div>
+                        <div class="select-options">
+                            <span class="option">Senin</span>
+                            <span class="option">Selasa</span>
+                            <span class="option">Rabu</span>
+                            <span class="option">Kamis</span>
+                            <span class="option">Jumat</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUTTON -->
+                <button class="btn-update">
+                    Kirim
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer glass-box">
+        <div class="footer-left">
+            <img src="../assets/LogoMonokromUnpar.png" alt>
+        </div>
+        <div class="footer-right">
+            <p>&copy; 2025 Kelompok 8-A RPL</p>
+        </div>
+    </div>
+</body>
+
+</html>

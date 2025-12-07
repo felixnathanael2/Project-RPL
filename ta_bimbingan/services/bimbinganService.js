@@ -9,7 +9,7 @@ export async function getRiwayatBimbingan(userId, role) {
 
 // method buat create pengajuan kalo klik submit
 export async function createPengajuan(data) {
-        return bimbinganRepo.createPengajuan(data);
+    return bimbinganRepo.createPengajuan(data);
 }
 
 export async function getApprovedBimbingan(id_student) {

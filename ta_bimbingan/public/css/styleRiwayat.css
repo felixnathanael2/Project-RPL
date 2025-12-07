@@ -1,0 +1,421 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gilroy', 'Poppins', sans-serif;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("../assets/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Efek Blur */
+.glass-box {
+    background: #A3C0EB45;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HEADER */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 80px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+}
+
+.nav-left,
+.nav-middle,
+.nav-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Logo (Ukuran, posisi, DLL) */
+.nav-left {
+    gap: 15px;
+    padding-right: 25px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-left img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Header Tengah */
+.nav-middle {
+    gap: 70px;
+}
+
+.nav-middle a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-middle a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Header Kanan */
+.nav-right {
+    gap: 7px;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.nav-right a:hover {
+    transform: scale(1.1);
+}
+
+.nav-right div {
+    padding: 0px 6px;
+}
+
+/* MAIN */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+#nav-riwayat {
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    padding: 5px 15px 5px 15px;
+}
+
+.info {
+    font-size: 12px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 800px;
+}
+
+.page-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+
+/* CONTAINER KACA BESAR */
+.glass-container.main-card {
+    background: rgba(255, 255, 255, 0.1);
+    /* Transparan kebiruan sesuai gambar */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-height: 60vh;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+/* --- DROPDOWN CUSTOM (Sesuai Gambar 1) --- */
+.custom-select-wrapper {
+    position: relative;
+    width: fit-content;
+    /* Lebar menyesuaikan isi */
+    z-index: 50;
+    margin-bottom: 10px;
+}
+
+.custom-select {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Trigger (Tombol yang terlihat awal) */
+.select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+
+    background: rgba(255, 255, 255, 0.15);
+    /* Glassy Pill */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    /* Bentuk Pill */
+
+    font-weight: 600;
+    font-size: 15px;
+    color: white;
+    transition: 0.3s;
+    min-width: 300px;
+}
+
+.select-trigger:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+}
+
+/* List Opsi (Saat dibuka) */
+.select-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Menumpuk di atas trigger */
+    width: 100%;
+
+    background: rgba(86, 154, 218, 0.9);
+    /* Warna biru kaca sesuai gambar */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    transform-origin: top left;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+/* State Open */
+.custom-select.open .select-options {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.option {
+    display: block;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.2s;
+    color: white;
+}
+
+.option:last-child {
+    border-bottom: none;
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.3);
+    padding-left: 25px;
+    /* Animasi geser sedikit */
+}
+
+.option.selected {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: 700;
+}
+
+/* Header di dalam dropdown opsi (agar terlihat seperti gambar) */
+.custom-select.open .select-trigger {
+    opacity: 0;
+    /* Sembunyikan trigger asli saat menu terbuka agar tidak double */
+}
+
+/* --- LIST BIMBINGAN (Accordion) --- */
+.bimbingan-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bimbingan-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    /* Rounded corner sesuai gambar General */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.bimbingan-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* HEADER ITEM */
+.bimbingan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    cursor: pointer;
+}
+
+.header-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.header-info .date {
+    font-size: 12px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.arrow {
+    transition: transform 0.3s;
+    font-size: 20px;
+}
+
+/* STATE ACTIVE (Saat item dibuka - Gambar 2) */
+.bimbingan-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    /* Lebih terang */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* Outline menyala */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.bimbingan-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* BODY (Konten Tersembunyi) */
+.bimbingan-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.3s ease;
+    background: rgba(0, 0, 0, 0.05);
+    /* Sedikit gelap di dalam */
+}
+
+.bimbingan-item.active .bimbingan-body {
+    max-height: 400px;
+    /* Cukup tinggi */
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.body-content {
+    padding: 20px 25px;
+}
+
+.body-content label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-left: 2px;
+}
+
+.body-content textarea {
+    width: 100%;
+    min-height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.body-content textarea:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+}
+
+.action-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn-update {
+    padding: 8px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-update:hover {
+    background: white;
+    color: #0055ff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    justify-self: end;
+    align-items: center;
+    padding: 0 2rem;
+    height: 60px !important;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+}
+
+.footer p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.footer-left img {
+    height: 35px;
+    width: auto;
+}
