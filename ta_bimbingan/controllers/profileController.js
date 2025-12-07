@@ -1,6 +1,6 @@
-import { getProfile } from "../services/x.js";
-import { getDosenPembimbing } from "../services/profileService.js";
 
+import { getDosenPembimbing } from "../services/profileService.js";
+import { getProfile } from "../services/profileService.js";
 const ROLE_MAHASISWA = 1;
 // const ROLE_DOSEN = 2;
 export const getMyProfileApi = async (req, res) => {
@@ -9,7 +9,7 @@ export const getMyProfileApi = async (req, res) => {
         const id_users = req.user.id; 
         const userRole = req.user.role;
         
-        const userData = await profileService.getProfile(id_users);
+        const userData = await getProfile(id_users);
         
         if (!userData) {
             return res.status(404).json({ message: "Data pengguna tidak ditemukan." });
@@ -21,7 +21,8 @@ export const getMyProfileApi = async (req, res) => {
         };
 
         if (userRole === ROLE_MAHASISWA) {
-            const dosen = await getDosenPembimbing(id_users);
+            const npm = userData.id_users;
+            const dosen = await getDosenPembimbing(npm);
             
             if (dosen && dosen.length > 0) {
                  responseData.pembimbing = {
