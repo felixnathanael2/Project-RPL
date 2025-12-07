@@ -278,3 +278,14 @@ export async function getTotalBimbinganByDosen(nik) {
   const rows = await pool.execute(query, [nik]);
   return rows[0];
 }
+
+export async function updateCatatanBimbingan(id, notes) {
+  const pool = await connectDB();
+  const query = `
+      UPDATE bimbingan
+      SET catatan_bimbingan = ?
+      WHERE id_bimbingan = ?;
+      `;
+  await pool.execute(query, [notes, id]);
+  return true;
+}

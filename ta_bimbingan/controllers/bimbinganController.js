@@ -17,9 +17,18 @@ export const riwayat = async (req, res) => {
 
 //update catatan bimbingan berdasarkan id bimbingan
 export const updateCatatanBimbingan = async (req, res) => {
+  const { id_bimbingan, catatan_bimbingan } = req.body;
+
   try {
+    const update = await bimbinganService.updateCatatanBimbingan(
+      id_bimbingan,
+      catatan_bimbingan
+    );
+    res.json({
+      message: `Berhasil update catatan untuk bimbingan ${id_bimbingan}}`,
+    });
   } catch (error) {
-    res.status(500).json();
+    res.status(500).json({ error: error.message });
   }
 };
 

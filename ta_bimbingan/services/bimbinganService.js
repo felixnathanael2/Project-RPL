@@ -13,6 +13,11 @@ export async function getRiwayatByNPM(npm) {
   return rows;
 }
 
+// ini buat update catatan bimbingan
+export async function updateCatatanBimbingan(id, notes) {
+  const success = await bimbinganRepo.updateCatatanBimbingan(id, notes);
+  return success;
+}
 // method buat create pengajuan kalo klik submit
 export async function createPengajuan(data) {
   return bimbinganRepo.createPengajuan(data);
