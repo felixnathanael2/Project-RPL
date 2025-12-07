@@ -15,8 +15,39 @@ export const riwayat = async (req, res) => {
   }
 };
 
+//update catatan bimbingan berdasarkan id bimbingan
+export const updateCatatanBimbingan = async (req, res) => {
+  const { id_bimbingan, catatan_bimbingan } = req.body;
+
+  try {
+    const update = await bimbinganService.updateCatatanBimbingan(
+      id_bimbingan,
+      catatan_bimbingan
+    );
+    res.json({
+      message: `Berhasil update catatan untuk bimbingan ${id_bimbingan}}`,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//mengambil riwayat bimbingan untuk mahasiswa tertentu berdasarkan params
+export const getRiwayatByNPM = async (req, res) => {
+  const npm = req.params.npm;
+  try {
+    const riwayat = await bimbinganService.getRiwayatByNPM(npm);
+
+    res.json({
+      message: `Riwayat bimbingan untuk mahasiswa dengan NPM: ${npm}`,
+      data: riwayat,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const ajukanBimbingan = async (req, res) => {
-  console.log("MASUK KE CONTROLLER");
   try {
     // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
     const { tanggal, waktu, lokasiId, nik } = req.body;

@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 <span>${bimbingan.nama_ruangan}</span>
               </div>
               <div class="info">
-                <h3 style="display:inline-block; width:80px; font-weight:bold;">Topik :</h3>
+                <h3 style="display:inline-block; width:80px; font-weight:bold;">Catatan :</h3>
                 <span>${bimbingan.catatan_bimbingan}</span>
               </div>
               <div class="info">
