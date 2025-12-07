@@ -36,7 +36,6 @@ export const pengajuan = (req, res) => {
   }
 };
 
-<<<<<<< HEAD
 export const profile = (req, res) => {
   const role = req.user.role;
 
@@ -66,8 +65,4 @@ export const riwayat = (req, res) => {
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
   }
-=======
-export const notifikasi = (req, res) => {
-    res.sendFile(path.join(__dirname, "../private/NotificationPage.html"));
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
 };

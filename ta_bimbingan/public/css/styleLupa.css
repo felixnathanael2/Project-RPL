@@ -20,10 +20,7 @@ body {
   background-attachment: fixed;
 }
 
-<<<<<<< HEAD
 /* Nav */
-=======
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
 nav {
   display: flex;
   justify-content: space-between;
@@ -43,7 +40,6 @@ nav {
 }
 
 .glass-box {
-<<<<<<< HEAD
     background: #A3C0EB45;
     backdrop-filter: blur(10px);
     border: 1.5px solid rgba(255, 255, 255, 0.4);
@@ -54,18 +50,6 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-=======
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
-
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
 }
 
 .glass-box img {
@@ -80,10 +64,7 @@ nav {
   object-fit: contain;
 }
 
-<<<<<<< HEAD
 /* Main */
-=======
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
 main {
   display: flex;
   align-items: center;
@@ -93,10 +74,6 @@ main {
 }
 
 #loginForm {
-<<<<<<< HEAD
-=======
-  /* margin-top: 200px; */
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
   border-radius: 20px;
   width: fit-content;
   min-width: 350px;

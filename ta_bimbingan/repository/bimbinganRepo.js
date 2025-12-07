@@ -100,7 +100,6 @@ export async function createPengajuan(data) {
           VALUES (?, ?, ?, ?, '-', 'Menunggu')
         `;
 
-<<<<<<< HEAD
     const queryNotif = `
             INSERT INTO notifikasi (isi, id_users) VALUES (?,?)
         `;
@@ -138,59 +137,6 @@ export async function createPengajuan(data) {
         `Mahasiswa ${namaMhs} mengajukan bimbingan pada ${data.tanggal} jam ${data.waktu}`,
         nik,
       ]);
-=======
-        const queryNotif = `
-            INSERT INTO notifikasi (isi, id_users) VALUES (?,?)
-        `;
-
-        const res = await connection.execute(queryInsert, [
-            id_data[0].id_data,
-            data.lokasiId,
-            data.tanggal,
-            data.waktu,
-        ]);
-
-        connection.execute(queryNotif, [
-            `Pengajuan bimbingan berhasil diajukan pada ${data.tanggal} jam ${data.jam}`,
-            data.npm,
-        ]);
-
-        const [namaMhsRows] = await connection.execute(
-            "SELECT nama from users WHERE id_users = ?",
-            [data.npm],
-        );
-
-        const namaMhs = namaMhsRows[0].nama;
-
-        // ambil id bimbingan, karena autoincrement jadi bisa ambil dari InsertId
-        const newId = res[0].insertId;
-
-        // B. Insert Dosen Peserta, pake id bimbingan nya pake id yang udah diambil tadi
-        for (const nik of data.nik) {
-            await connection.execute(
-                `INSERT INTO Bimbingan_Dosen (id_bimbingan, nik) VALUES (?, ?)`,
-                [newId, nik],
-            );
-
-            await connection.execute(queryNotif, [
-                `Mahasiswa ${namaMhs} mengajukan bimbingan pada ${data.tanggal} jam ${data.waktu}`,
-                nik,
-            ]);
-        }
-
-        // nah ini commit baru masukin data data tadi ke db
-        await connection.commit();
-
-        // masukin juga ke notifikasi, biar dapet notif pokoknya
-
-        return true;
-    } catch (err) {
-        // kalo ada gagal nah baru rollback
-        if (connection) await connection.rollback();
-        throw err;
-    } finally {
-        if (connection) connection.release();
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
     }
 
     // nah ini commit baru masukin data data tadi ke db
@@ -208,7 +154,6 @@ export async function createPengajuan(data) {
   }
 }
 
-<<<<<<< HEAD
 export async function getApprovedBimbinganByStudent(id_student) {
   const pool = await connectDB();
 
@@ -260,42 +205,11 @@ export async function updateStatusBimbingan(data) {
   const tanggal = tanggalRows[0].tanggal;
 
   const queryAlter = `
-=======
-export async function updateStatusBimbingan(data) {
-    // kalo misal dosen setujui/tolak, berarti nanti ganti status bimbingan jadi disetujui/ditolak,
-    // terus masukin notifikasi ke mahasiswa bahwa bimbingan udh disetujui/ditolak
-
-    const pool = await connectDB();
-    // data yang dibutuhin: bimbingan mana yang disetujui, npm, nik,
-    const { id_bimbingan, nik, button, notes } = data;
-
-    // cari npm
-    const queryNPM = `
-        SELECT id_users
-        FROM data_ta
-        WHERE id_data = (SELECT id_data FROM bimbingan WHERE id_bimbingan = ?)
-    `;
-
-    const [npmRows] = await pool.execute(queryNPM, [id_bimbingan]);
-    const npm = npmRows[0].id_users;
-
-    // cari tanggal bimbingan
-    const queryTanggal = `
-        SELECT tanggal FROM bimbingan WHERE id_bimbingan = ?
-    `;
-
-    const [tanggalRows] = await pool.execute(queryTanggal, [id_bimbingan]);
-
-    const tanggal = tanggalRows[0].tanggal;
-
-    const queryAlter = `
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
         UPDATE bimbingan_dosen
         SET status_bimbingan = ?
         WHERE id_bimbingan = ? AND nik = ?
     `;
 
-<<<<<<< HEAD
   if (button === 1) {
     await pool.execute(queryAlter, ["Disetujui", id_bimbingan, nik]);
   } else {
@@ -374,57 +288,4 @@ export async function updateCatatanBimbingan(id, notes) {
       `;
   await pool.execute(query, [notes, id]);
   return true;
-=======
-    if (button === 1) {
-        await pool.execute(queryAlter, ["Disetujui", id_bimbingan, nik]);
-    } else {
-        await pool.execute(queryAlter, ["Ditolak", id_bimbingan, nik]);
-        await pool.execute(
-            `UPDATE bimbingan SET status_bimbingan = ? WHERE id_bimbingan = ?`,
-            ["Ditolak", id_bimbingan],
-        );
-        await pool.execute(
-            `INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`,
-            [`Bimbingan anda untuk tanggal ${tanggal} telah ditolak`, npm],
-        );
-
-        await pool.execute(
-            `UPDATE bimbingan SET catatan_bimbingan = ? WHERE id_bimbingan = ?`,
-            [notes, id_bimbingan],
-        );
-        return true;
-    }
-
-    const queryNotif = `
-        INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)
-    `;
-
-    // notif buat dosen
-    await pool.execute(queryNotif, [
-        `Anda telah menyetujui bimbingan NPM: ${npm} untuk tanggal ${tanggal}`,
-        nik,
-    ]);
-
-    const queryCek = `
-        SELECT status_bimbingan FROM bimbingan_dosen WHERE id_bimbingan = ?
-    `;
-
-    const [doneRows] = await pool.execute(queryCek, [id_bimbingan]);
-
-    const allApproved = doneRows.every(
-        (row) => row.status_bimbingan === "Disetujui",
-    );
-    const anyRejected = doneRows.some(
-        (row) => row.status_bimbingan === "Ditolak",
-    );
-
-    if (allApproved) {
-        await pool.execute(queryNotif, [
-            `Bimbingan anda untuk tanggal ${tanggal} telah disetujui`,
-            npm,
-        ]);
-    }
-
-    return true;
->>>>>>> 19f811bb5f83c7ae8dbbd45cad9234ee6266ffef
 }
