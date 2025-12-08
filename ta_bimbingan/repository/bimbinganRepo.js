@@ -32,6 +32,7 @@ export async function getRiwayatBimbingan(userId, role) {
   } else if (userRole === ROLE_DOSEN) {
     query = `
              SELECT 
+                B.id_bimbingan,
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan AS catatan, 
@@ -51,6 +52,7 @@ export async function getRiwayatBimbingan(userId, role) {
   } else if (userRole === ROLE_ADMIN) {
     query = `
              SELECT 
+                B.id_bimbingan,
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan AS catatan, 
@@ -185,6 +187,8 @@ export async function updateStatusBimbingan(data) {
   // data yang dibutuhin: bimbingan mana yang disetujui, npm, nik,
   const { id_bimbingan, nik, button, notes } = data;
 
+  // console.log("BERHASIL MASUK KE REPO UPDATE", data);
+
   // cari npm
   const queryNPM = `
         SELECT id_users
@@ -206,7 +210,7 @@ export async function updateStatusBimbingan(data) {
 
   const queryAlter = `
         UPDATE bimbingan_dosen
-        SET status_bimbingan = ?
+        SET status = ?
         WHERE id_bimbingan = ? AND nik = ?
     `;
 
@@ -215,7 +219,7 @@ export async function updateStatusBimbingan(data) {
   } else {
     await pool.execute(queryAlter, ["Ditolak", id_bimbingan, nik]);
     await pool.execute(
-      `UPDATE bimbingan SET status_bimbingan = ? WHERE id_bimbingan = ?`,
+      `UPDATE bimbingan SET status = ? WHERE id_bimbingan = ?`,
       ["Ditolak", id_bimbingan]
     );
     await pool.execute(`INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`, [
@@ -241,19 +245,19 @@ export async function updateStatusBimbingan(data) {
   ]);
 
   const queryCek = `
-        SELECT status_bimbingan FROM bimbingan_dosen WHERE id_bimbingan = ?
+        SELECT status FROM bimbingan_dosen WHERE id_bimbingan = ?
     `;
 
   const [doneRows] = await pool.execute(queryCek, [id_bimbingan]);
 
-  const allApproved = doneRows.every(
-    (row) => row.status_bimbingan === "Disetujui"
-  );
-  const anyRejected = doneRows.some(
-    (row) => row.status_bimbingan === "Ditolak"
-  );
+  const allApproved = doneRows.every((row) => row.status === "Disetujui");
+  const anyRejected = doneRows.some((row) => row.status === "Ditolak");
 
   if (allApproved) {
+    await pool.execute(
+      `UPDATE bimbingan SET status = ? WHERE id_bimbingan = ?`,
+      ["Disetujui", id_bimbingan]
+    );
     await pool.execute(queryNotif, [
       `Bimbingan anda untuk tanggal ${tanggal} telah disetujui`,
       npm,
@@ -288,4 +292,28 @@ export async function updateCatatanBimbingan(id, notes) {
       `;
   await pool.execute(query, [notes, id]);
   return true;
+}
+
+export async function getAllRiwayatBimbingan() {
+  const pool = await connectDB();
+  const query = `
+             SELECT 
+                B.tanggal, 
+                B.waktu, 
+                B.catatan_bimbingan AS catatan, 
+                M.nama AS nama_mahasiswa, 
+                D.nama AS nama_dosen,
+                L.nama_ruangan AS nama_ruangan, 
+                B.status
+            FROM bimbingan B
+            JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+            JOIN data_ta DTA ON B.id_data = DTA.id_data
+            JOIN users M ON DTA.id_users = M.id_users
+            JOIN users D ON BD.nik = D.id_users
+            LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+            ORDER BY B.tanggal DESC, B.waktu DESC;
+        `;
+
+  const [rows] = await pool.execute(query);
+  return rows;
 }

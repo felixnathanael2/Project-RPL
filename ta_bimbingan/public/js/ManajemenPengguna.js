@@ -1,32 +1,51 @@
-document.addEventListener("DOMContentLoaded", function () {
+let dataUsers = [];
+async function fetchDataUsers() {
+  try {
+    const response = await fetch("/api/manajemen-pengguna");
+    dataUsers = await response.json();
 
-    // SIMULASI DATA
-    const mockLogs = [
-        { email: "6182301015@student.unpar.ac.id", status: "Mahasiswa", semester: "57" },
-        { email: "6182201001@student.unpar.ac.id", status: "Mahasiswa", semester: "57" },
-        { email: "6182101100@student.unpar.ac.id", status: "Mahasiswa", semester: "57" },
-        { email: "6182301003@student.unpar.ac.id", status: "Mahasiswa", semester: "57" },
-        { email: "6182301099@student.unpar.ac.id", status: "Mahasiswa", semester: "57" },
-        { email: "raymond.chandra@unpar.ac.id", status: "Dosen", semester: "-" },
-        { email: "g.karya@unpar.ac.id", status: "Dosen", semester: "-" },
-        { email: "6182301055@student.unpar.ac.id", status: "Mahasiswa", semester: "57" },
-        { email: "admin1@admin", status: "Administrator", semester: "-" },
-        { email: "vania.natali@unpar.ac.id", status: "Dosen", semester: "-" }
-    ];
+    console.log("DATA PENGGUNA : " + dataUsers);
 
-    const tableBody = document.getElementById("mpTableBody");
+    renderTabel();
+  } catch (error) {
+    console.error("Gagal mengambil data user");
+  }
+}
 
-    if (tableBody) {
-        tableBody.innerHTML = "";
-        mockLogs.forEach(log => {
-            const row = document.createElement("tr");
+async function renderTabel() {
+  const tableBody = document.getElementById("mpTableBody");
 
-            row.innerHTML = `
+  if (dataUsers.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='3'>Tidak ada data</td></tr>";
+    return;
+  }
+
+  if (tableBody) {
+    tableBody.innerHTML = "";
+    dataUsers.forEach((log) => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
                 <td>${log.email}</td>
                 <td>${log.status}</td>
                 <td>${log.semester}</td>
             `;
-            tableBody.appendChild(row);
-        });
-    }
+      tableBody.appendChild(row);
+    });
+  }
+}
+
+function addUsers() {
+  try {
+    window.location.href = "/addUser";
+  } catch (error) {
+    console.error("Error saat logout:", error);
+    alert("Terjadi kesalahan koneksi.");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetchDataUsers();
+  const addBtn = document.querySelector("button.btn-add");
+  addBtn.addEventListener("click", addUsers);
 });

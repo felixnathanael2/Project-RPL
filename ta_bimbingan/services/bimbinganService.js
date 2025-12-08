@@ -23,6 +23,16 @@ export async function createPengajuan(data) {
   return bimbinganRepo.createPengajuan(data);
 }
 
+// method buat ambil total riwayat dari semua dosen dan semua mahasiswa (bnuat di admin)
+export async function getAllRiwayatBimbingan() {
+  const rows = await bimbinganRepo.getAllRiwayatBimbingan();
+  return rows;
+}
+
 export async function getApprovedBimbingan(id_student) {
   return bimbinganRepo.getApprovedBimbinganByStudent(id_student);
+}
+
+export async function updateStatusBimbingan(data) {
+  return bimbinganRepo.updateStatusBimbingan(data);
 }

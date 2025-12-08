@@ -17,7 +17,7 @@ export async function getDosen(npm) {
 
 export async function getAllDosen() {
   const pool = await connectDB();
-  const query = `SELECT COUNT(id_users) AS total FROM users WHERE role = 2;`;
+  const query = `SELECT users.nama, users.id_users FROM users WHERE role = 2;`;
   const rows = await pool.execute(query);
   return rows[0].total;
 }

@@ -38,7 +38,7 @@ export const checkAvailability = async (req, res) => {
     const sibuk = await jadwalService.getUnavailable(
       date,
       dosenArray,
-      req.user.id,
+      req.user.id
     );
 
     // di filter buat cari jam berapa aja yang available
@@ -61,13 +61,24 @@ export const uploadJadwal = async (req, res) => {
       return res
         .status(400)
         .send(
-          '<script>alert("File belum dipilih!"); window.location.href="/dashboard";</script>',
+          '<script>alert("File belum dipilih!"); window.location.href="/dashboard";</script>'
         );
     }
 
-    const id_users = req.user.id;
+    let id_users = req.user.id;
+    const userRole = req.user.role;
 
-    await jadwalService.processJadwalExcel(req.file.path, id_users);
+    if (userRole === 3 && req.body.target_user_id) {
+      id_users = req.body.target_user_id;
+      console.log(
+        `Admin mengupload jadwal untuk dosen dengan NIK: ${id_users}`
+      );
+    }
+
+    const result = await jadwalService.processJadwalExcel(
+      req.file.path,
+      id_users
+    );
     res.redirect("/dashboard");
 
     // kalo file salah atau ada eror balikin ke dashboard dan kasi alert
@@ -76,7 +87,7 @@ export const uploadJadwal = async (req, res) => {
     res
       .status(500)
       .send(
-        `<script>alert("Gagal upload: ${error.message}"); window.location.href="/dashboard";</script>`,
+        `<script>alert("Gagal upload: ${error.message}"); window.location.href="/dashboard";</script>`
       );
   }
 };

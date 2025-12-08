@@ -104,6 +104,7 @@ const fetchJadwalDosen = async (req) => {
     const hari = String(t.getDate()).padStart(2, "0");
 
     return {
+      id_bimbingan: item.id_bimbingan,
       tanggal: `${tahun}-${bulan}-${hari}`,
       waktu: item.waktu,
       nama_mahasiswa: item.nama_mahasiswa,
@@ -119,6 +120,18 @@ export const getJadwalBimbinganDosen = async (req, res) => {
   try {
     const formattedData = await fetchJadwalDosen(req);
     res.json(formattedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
+  }
+};
+
+// panggil semua jadwal bimbingan dosen (termasuk history dan upcoming)
+export const getPersetujuanBimbingan = async (req, res) => {
+  try {
+    const formattedData = await fetchJadwalDosen(req);
+    const mapped = formattedData.filter((item) => item.status === "Menunggu");
+    res.json(mapped);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
@@ -176,5 +189,42 @@ export const getTotalBimbinganByDosen = async (req, res) => {
     res
       .status(500)
       .json({ message: "Gagal mengambil total bimbingan by dosen" });
+  }
+};
+
+export const updateStatus = async (req, res) => {
+  try {
+    const { id_bimbingan, button, notes } = req.body;
+
+    // console.log("INI MASUK CONTROLLER, APAKAH BODYNYA KOSONG?", req.body);
+    const nik = req.user.id; // Ambil ID Dosen dari session
+
+    if (!id_bimbingan) {
+      return res.status(400).json({
+        success: false,
+        message: "ID Bimbingan tidak valid.",
+      });
+    }
+
+    // Panggil Service (Service akan panggil Repo)
+    await bimbinganService.updateStatusBimbingan({
+      id_bimbingan,
+      nik,
+      button: parseInt(button), // Pastikan jadi integer (1 atau 0)
+      notes: notes || "",
+    });
+
+    const statusMsg = button == 1 ? "Disetujui" : "Ditolak";
+
+    return res.status(200).json({
+      success: true,
+      message: `Bimbingan berhasil ${statusMsg}`,
+    });
+  } catch (error) {
+    console.error("Error update bimbingan:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Terjadi kesalahan server",
+    });
   }
 };
