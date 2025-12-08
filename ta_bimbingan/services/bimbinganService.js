@@ -27,10 +27,12 @@ export async function createPengajuan(data) {
 export async function getAllRiwayatBimbingan() {
   const rows = await bimbinganRepo.getAllRiwayatBimbingan();
   return rows;
+}
+
+export async function getApprovedBimbingan(id_student) {
   return bimbinganRepo.getApprovedBimbinganByStudent(id_student);
 }
 
 export async function updateStatusBimbingan(data) {
   return bimbinganRepo.updateStatusBimbingan(data);
 }
-

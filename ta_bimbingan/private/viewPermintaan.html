@@ -3,13 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Permintaan Bimbingan</title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styleView.css">
-    <script src="../js/scriptPermintaan.js" defer></script>
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styleView.css" />
+    <link rel="stylesheet" href="/css/font.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/MBTA-Icon.png"
+      type="image/x-icon"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="nav glass-box">
       <div class="nav-left">
         <img src="/assets/HeaderUnpar.png" alt id="unpar" />
@@ -20,30 +28,19 @@
         <div id="nav-beranda">
           <a href="/">Beranda</a>
         </div>
-        <div class="nav-middle">
-            <div id="nav-beranda">
-                <a href="/dashboard">Beranda</a>
-            </div>
-            <div id="nav-riwayat">
-                <a href="/riwayat">Riwayat</a>
-            </div>
-            <div id="nav-pengajuan">
-                <a href="/pengajuan">Pengajuan</a>
-            </div>
-            <div id="nav-permintaan">
-                <a href="/persetujuan">Permintaan</a>
-            </div>
+        <div id="nav-riwayat">
+          <a href="/riwayat">Riwayat</a>
         </div>
-        <div class="nav-right">
-            <div id="notif">
-                <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
-            </div>
-            <div id="profile">
-                <a href=><i class="ri-account-circle-line"></i></a>
-            </div>
-            <div id="logout">
-                <a href="#" id="btn-logout-action"><i class="ri-logout-box-r-line"></i></a>
-            </div>
+        <div id="nav-pengajuan">
+          <a href="/pengajuan">Pengajuan</a>
+        </div>
+        <div id="nav-permintaan" class="active-nav">
+          <a href="/permintaan">Permintaan</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div id="notif">
+          <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
         </div>
         <div id="profile">
           <a href="/profile"><i class="ri-account-circle-line"></i></a>
@@ -55,11 +52,75 @@
     </div>
 
     <main class="container">
-        <div class="content-wrapper">
-            <h2 class="page-title">Permintaan Bimbingan Mahasiswa </h2>
+      <div class="content-wrapper hidden">
+        <h2 class="page-title">Permintaan Bimbingan Masuk</h2>
 
-            <div class="glass-box requests-container">
-                <p style="text-align:center; padding:2rem; opacity:0.6;">Memuat data...</p>
+        <div class="glass-box requests-container">
+          <div class="request-card">
+            <div class="card-left">
+              <h3 class="lecturer-name">Vania Natali</h3>
+              <div class="info-grid">
+                <span class="label">Tanggal</span>
+                <span class="separator">:</span>
+                <span class="value">31 April 2025</span>
+
+                <span class="label">Nama</span>
+                <span class="separator">:</span>
+                <span class="value">Michael Gunawan</span>
+
+                <span class="label">Jam</span>
+                <span class="separator">:</span>
+                <span class="value">10.00</span>
+
+                <span class="label">Lokasi</span>
+                <span class="separator">:</span>
+                <span class="value">Lab Skripsi</span>
+
+                <span class="label">Topik</span>
+                <span class="separator">:</span>
+                <span class="value"
+                  >Optimasi Pemilihan Umpan (Lure) Menggunakan AI</span
+                >
+              </div>
+            </div>
+
+            <div class="card-right">
+              <button class="btn btn-reject">Tolak</button>
+              <button class="btn btn-accept">Terima</button>
+            </div>
+          </div>
+
+          <div class="request-card">
+            <div class="card-left">
+              <h3 class="lecturer-name">Raymond Chandra, Vania Natali</h3>
+              <div class="info-grid">
+                <span class="label">Tanggal</span>
+                <span class="separator">:</span>
+                <span class="value">1 Mei 2025</span>
+
+                <span class="label">Dosen</span>
+                <span class="separator">:</span>
+                <span class="value">Michael Gunawan</span>
+
+                <span class="label">Jam</span>
+                <span class="separator">:</span>
+                <span class="value">15.00</span>
+
+                <span class="label">Lokasi</span>
+                <span class="separator">:</span>
+                <span class="value">Lab Skripsi</span>
+
+                <span class="label">Topik</span>
+                <span class="separator">:</span>
+                <span class="value"
+                  >Optimasi Pemilihan Umpan (Lure) Menggunakan AI</span
+                >
+              </div>
+            </div>
+
+            <div class="card-right">
+              <button class="btn btn-reject">Tolak</button>
+              <button class="btn btn-accept">Terima</button>
             </div>
           </div>
         </div>

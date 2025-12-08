@@ -38,72 +38,69 @@ function updateCurrentDate() {
 
 // --- 2. FETCH DATA KALENDER (BULANAN) ---
 async function fetchJadwalBimbingan() {
-    try {
-        const response = await fetch('/api/jadwal-bimbingan');
-        const rawData = await response.json();
+  try {
+    const response = await fetch("/api/jadwal-bimbingan");
+    const rawData = await response.json();
+    console.log("Raw data from API:", rawData); // ← ADD THIS
 
-        globalDataJadwal = {}; // Reset
+    globalDataJadwal = {}; // Reset
 
-        rawData.forEach(item => {
-            const jamDisplay = item.waktu.substring(0, 5);
+    rawData.forEach((item) => {
+      console.log("Tanggal from DB:", item.tanggal); // ← ADD THIS
 
-            // kasih warna cell sesuai status
-            let colorType = "green-bg";
-            if (item.status === "Menunggu") {
-                colorType = "yellow-bg";
-            } else if (item.status === "Disetujui") {
-                colorType = "green-bg";
-            } else if (item.status === "Selesai") {
-                colorType = "blue-bg";
-            } else if (item.status === "Ditolak") {
-                colorType = "pink-bg";
-            }
+      const jamDisplay = item.waktu.substring(0, 5);
 
-            if (!globalDataJadwal[item.tanggal]) {
-                globalDataJadwal[item.tanggal] = [];
-            }
+      // Logika Warna
+      let colorType = "green-bg";
+      if (parseInt(jamDisplay.substring(0, 2)) >= 12) {
+        colorType = "blue-bg";
+      }
 
-            globalDataJadwal[item.tanggal].push({
-                title: jamDisplay,
-                name: item.nama_dosen,
-                type: colorType
-            });
-        });
+      if (!globalDataJadwal[item.tanggal]) {
+        globalDataJadwal[item.tanggal] = [];
+      }
 
-        // Panggil fungsi render dari scriptCalender.js
-        updateCalendarHeader();
-        generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
+      globalDataJadwal[item.tanggal].push({
+        title: jamDisplay,
+        name: item.nama_dosen,
+        type: colorType,
+      });
+    });
 
-    } catch (error) {
-        console.error("Gagal mengambil jadwal kalender:", error);
-    }
+    // Panggil fungsi render dari scriptCalender.js
+    updateCalendarHeader();
+    generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
+  } catch (error) {
+    console.error("Gagal mengambil jadwal kalender:", error);
+  }
 }
 
 // --- 3. FETCH DATA JADWAL MINGGUAN ---
 async function fetchJadwalMingguan() {
-    try {
-        const response = await fetch('/api/my-schedule');
-        const result = await response.json();
+  try {
+    const response = await fetch("/api/my-schedule");
+    const result = await response.json();
 
-        let formattedJadwal = [];
-        const colors = ['bg-teal', 'bg-pink', 'bg-blue-dark', 'bg-red', 'bg-orange', 'bg-olive', 'bg-purple'];
+    let formattedJadwal = [];
+    const colors = [
+      "bg-teal",
+      "bg-pink",
+      "bg-blue-dark",
+      "bg-red",
+      "bg-orange",
+      "bg-olive",
+      "bg-purple",
+    ];
 
-        if (result.status === 'success' && Array.isArray(result.data)) {
-            formattedJadwal = result.data.map(item => ({
-                day: item.hari,
-                time: item.jam_mulai.substring(0, 5),
-                end: item.jam_akhir.substring(0, 5),
-                title: "Jadwal Kuliah", // Default karena DB belum ada
-                room: "R. Kuliah",      // Default
-                color: colors[Math.floor(Math.random() * colors.length)]
-            }));
-        }
-
-        // Panggil fungsi render dari scriptCalender.js
-        renderSchedule(formattedJadwal);
-
-    } catch (error) {
-        console.error("Gagal mengambil jadwal mingguan:", error);
+    if (result.status === "success" && Array.isArray(result.data)) {
+      formattedJadwal = result.data.map((item) => ({
+        day: item.hari,
+        time: item.jam_mulai.substring(0, 5),
+        end: item.jam_akhir.substring(0, 5),
+        title: "Jadwal Kuliah", // Default karena DB belum ada
+        room: "R. Kuliah", // Default
+        color: colors[Math.floor(Math.random() * colors.length)],
+      }));
     }
 
     // Panggil fungsi render dari scriptCalender.js
@@ -124,9 +121,7 @@ async function fetchRiwayatBimbingan() {
 
     riwayatContainer.innerHTML = ""; // Bersihkan dummy
 
-        const data = result.data.filter((item) => {
-            item.status == "Selesai"
-        });
+    const data = result.data;
 
     if (!data || data.length === 0) {
       riwayatContainer.innerHTML = `
@@ -143,7 +138,10 @@ async function fetchRiwayatBimbingan() {
         month: "short",
       });
 
-            let statusColor = "#10b981";
+      let statusColor = "var(--cyan)";
+      if (item.status === "Menunggu") statusColor = "#f59e0b";
+      if (item.status === "Ditolak") statusColor = "#ef4444";
+      if (item.status === "Disetujui") statusColor = "#10b981";
 
       const cardHTML = `
                 <div class="history-card">
@@ -163,7 +161,9 @@ async function fetchRiwayatBimbingan() {
       }
                         </p>
                         <a href="/riwayat" class="detail-link" style="color: ${statusColor}">
-                            Status: ${item.status} <i class="ri-arrow-right-line"></i>
+                            Status: ${
+                              item.status
+                            } <i class="ri-arrow-right-line"></i>
                         </a>
                     </div>
                 </div>
@@ -177,60 +177,68 @@ async function fetchRiwayatBimbingan() {
 
 // --- 5. INITIALIZATION (RUN ONCE) ---
 document.addEventListener("DOMContentLoaded", () => {
-    // A. Init Data
-    updateCurrentDate();
-    fetchJadwalBimbingan();
-    fetchJadwalMingguan();
-    fetchRiwayatBimbingan();
+  // A. Init Data
+  updateCurrentDate();
+  fetchJadwalBimbingan();
+  fetchJadwalMingguan();
+  fetchRiwayatBimbingan();
 
-    // B. Logic Toggle View (Bulanan <-> Mingguan)
-    const viewToggle = document.getElementById('viewToggle');
-    const monthlyView = document.querySelector('.kalender-bulanan');
-    const rightHeader = document.querySelector('#right-header');
-    const weeklyView = document.querySelector('.kalender-mingguan');
+  // B. Logic Toggle View (Bulanan <-> Mingguan)
+  const viewToggle = document.getElementById("viewToggle");
+  const monthlyView = document.querySelector(".kalender-bulanan");
+  const rightHeader = document.querySelector("#right-header");
+  const weeklyView = document.querySelector(".kalender-mingguan");
 
-    // Default State
-    if (monthlyView) monthlyView.classList.remove('hidden');
-    if (rightHeader) rightHeader.classList.remove('hidden');
-    if (weeklyView) weeklyView.classList.add('hidden');
+  // Default State
+  if (monthlyView) monthlyView.classList.remove("hidden");
+  if (rightHeader) rightHeader.classList.remove("hidden");
+  if (weeklyView) weeklyView.classList.add("hidden");
 
-    if (viewToggle && monthlyView && weeklyView) {
-        viewToggle.addEventListener('change', function () {
-            if (this.checked) { // Switch ke Mingguan
-                monthlyView.classList.add('hidden');
-                rightHeader.classList.add('hidden');
-                weeklyView.classList.remove('hidden');
-            } else { // Switch ke Bulanan
-                monthlyView.classList.remove('hidden');
-                rightHeader.classList.remove('hidden');
-                weeklyView.classList.add('hidden');
-            }
-        });
-    }
+  if (viewToggle && monthlyView && weeklyView) {
+    viewToggle.addEventListener("change", function () {
+      if (this.checked) {
+        // Switch ke Mingguan
+        monthlyView.classList.add("hidden");
+        rightHeader.classList.add("hidden");
+        weeklyView.classList.remove("hidden");
+      } else {
+        // Switch ke Bulanan
+        monthlyView.classList.remove("hidden");
+        rightHeader.classList.remove("hidden");
+        weeklyView.classList.add("hidden");
+      }
+    });
+  }
 
-    // C. Navigation Logic (Next/Prev Month)
-    const btnNext = document.querySelector('.ri-arrow-right-s-line');
-    const btnPrev = document.querySelector('.ri-arrow-left-s-line');
+  // C. Navigation Logic (Next/Prev Month)
+  const btnNext = document.querySelector(".ri-arrow-right-s-line");
+  const btnPrev = document.querySelector(".ri-arrow-left-s-line");
 
-    if (btnNext) {
-        btnNext.addEventListener('click', () => {
-            currentMonth++;
-            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  if (btnNext) {
+    btnNext.addEventListener("click", () => {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+      }
 
-            // Update UI dengan fungsi dari scriptCalender.js
-            updateCalendarHeader();
-            generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
-        });
-    }
+      // Update UI dengan fungsi dari scriptCalender.js
+      updateCalendarHeader();
+      generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
+    });
+  }
 
-    if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-            currentMonth--;
-            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  if (btnPrev) {
+    btnPrev.addEventListener("click", () => {
+      currentMonth--;
+      if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+      }
 
-            // Update UI dengan fungsi dari scriptCalender.js
-            updateCalendarHeader();
-            generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
-        });
-    }
+      // Update UI dengan fungsi dari scriptCalender.js
+      updateCalendarHeader();
+      generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
+    });
+  }
 });

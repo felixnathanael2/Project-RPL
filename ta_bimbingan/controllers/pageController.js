@@ -53,7 +53,14 @@ export const login = (req, res) => {
 };
 
 export const notifikasi = (req, res) => {
-  res.sendFile(path.join(__dirname, "../private/NotificationPage.html"));
+  const role = req.user.role;
+  if (role === ROLE_MAHASISWA) {
+    res.sendFile(path.join(__dirname, "../private/NotificationPage.html"));
+  } else if (role === ROLE_DOSEN) {
+    res.sendFile(path.join(__dirname, "../private/NotificationPageDosen.html"));
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 
 export const riwayat = (req, res) => {
@@ -68,67 +75,76 @@ export const riwayat = (req, res) => {
 };
 
 export const manajemenPengguna = (req, res) => {
-    const role = req.user.role;
-    if (role === ROLE_ADMIN) {
-        res.sendFile(path.join(__dirname, "../private/ManajemenPengguna.html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  const role = req.user.role;
+  if (role === ROLE_ADMIN) {
+    res.sendFile(path.join(__dirname, "../private/ManajemenPengguna.html"));
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 
 export const addUser = (req, res) => {
-    const role = req.user.role;
-    if (role === ROLE_ADMIN) {
-        res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdmin.html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  const role = req.user.role;
+  if (role === ROLE_ADMIN) {
+    res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdmin.html"));
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 
 export const addDosen = (req, res) => {
-    const role = req.user.role;
-    if (role === ROLE_ADMIN) {
-        res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Dosen.html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  const role = req.user.role;
+  if (role === ROLE_ADMIN) {
+    res.sendFile(
+      path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Dosen.html")
+    );
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 export const addMahasiswa = (req, res) => {
-    const role = req.user.role;
-    if (role === ROLE_ADMIN) {
-        res.sendFile(path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Mahasiswa.html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  const role = req.user.role;
+  if (role === ROLE_ADMIN) {
+    res.sendFile(
+      path.join(
+        __dirname,
+        "../private/TambahPenggunaAdminLanjut_Mahasiswa.html"
+      )
+    );
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 export const debugging = (req, res) => {
-    res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
+  res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
 };
 
 export const persetujuan = (req, res) => {
-    const role = req.user.role;
+  const role = req.user.role;
 
-    if (role === ROLE_MAHASISWA) {
-        res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
-    } else if (role === ROLE_DOSEN) {
-        res.sendFile(path.join(__dirname, "../private/PersetujuanBimbinganDosen.html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  if (role === ROLE_MAHASISWA) {
+    res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
+  } else if (role === ROLE_DOSEN) {
+    res.sendFile(
+      path.join(__dirname, "../private/PersetujuanBimbinganDosen.html")
+    );
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 export const logAdmin = (req, res) => {
-    const role = req.user.role;
-    if (role === ROLE_ADMIN) {
-        res.sendFile(path.join(__dirname, "../private/logAdmin.html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  const role = req.user.role;
+  if (role === ROLE_ADMIN) {
+    res.sendFile(path.join(__dirname, "../private/logAdmin.html"));
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };
 export const riwayatAdmin = (req, res) => {
-    const role = req.user.role;
-    if (role === ROLE_ADMIN) {
-        res.sendFile(path.join(__dirname, "../private/Riwayat(Admin).html"));
-    } else {
-        return res.status(403).json({ message: "Role tidak valid." });
-    }
+  const role = req.user.role;
+  if (role === ROLE_ADMIN) {
+    res.sendFile(path.join(__dirname, "../private/Riwayat(Admin).html"));
+  } else {
+    return res.status(403).json({ message: "Role tidak valid." });
+  }
 };

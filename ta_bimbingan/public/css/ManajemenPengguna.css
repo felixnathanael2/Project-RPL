@@ -161,7 +161,6 @@ body {
 .table-wrapper {
     width: 100%;
     overflow-x: hidden;
-    scrollbar-width: thin;
 }
 
 /* Styling Tabel */

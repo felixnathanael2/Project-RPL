@@ -3,7 +3,7 @@ import { connectDB } from "../db/db.js";
 export async function getAllUsers() {
   const pool = await connectDB();
   const query = `SELECT U.email, U.id_users, U.role ,MAX(DTA.semester) as semester FROM data_ta DTA RIGHT JOIN users U on U.id_users = DTA.id_users GROUP BY U.id_users;`;
-  const [rows] = await pool.execute(query)
+  const [rows] = await pool.execute(query);
   return rows;
 }
 
@@ -23,7 +23,7 @@ export async function insertUser(data) {
       data.email,
       data.nama,
       data.password,
-      data.role
+      data.role,
     ]);
     //kalau datanya adalah data mahasiswa
     if (data.role === 1) {
@@ -36,7 +36,7 @@ export async function insertUser(data) {
         data.semester || 7, //set defaultnya 7 tapi sebenernya udah ditangani
         data.topik || "-",
         data.jenis_ta || 1,
-        false
+        false,
       ]);
 
       if (data.dosen1) {
@@ -53,7 +53,6 @@ export async function insertUser(data) {
 
     await connection.commit();
     return true;
-
   } catch (error) {
     await connection.rollback();
     throw error; // Lempar error ke service/controller

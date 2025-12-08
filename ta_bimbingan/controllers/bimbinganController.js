@@ -69,65 +69,50 @@ export const ajukanBimbingan = async (req, res) => {
 };
 
 export const getJadwalBimbingan = async (req, res) => {
-    try {
-        const id_student = req.user.id;
-        const data = await bimbinganService.getRiwayatBimbingan(id_student, req.user.role);
-        // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
-        const formattedData = data.map(item => {
-            const dateObj = new Date(item.tanggal);
-            const dateStr = dateObj.toLocaleDateString('en-CA');
+  try {
+    const id_student = req.user.id;
+    const data = await bimbinganService.getRiwayatBimbingan(id_student, 1);
 
-            return {
-                tanggal: dateStr,
-                waktu: item.waktu,
-                nama_dosen: item.nama,
-                status: item.status
-            };
-        });
+    // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
+    const formattedData = data.map((item) => {
+      const dateObj = new Date(item.tanggal);
+      const dateStr = dateObj.toLocaleDateString("en-CA");
 
-        res.json(formattedData);
+      return {
+        tanggal: dateStr,
+        waktu: item.waktu,
+        nama_dosen: item.nama_dosen,
+      };
+    });
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Gagal mengambil jadwal bimbingan" });
-    }
+    res.json(formattedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Gagal mengambil jadwal bimbingan" });
+  }
 };
 
 //method helper untuk ambil data dari repository (supaya ga dipanggil berkali kali pakai req dan res,soalnya ntar rencananya filtering data di js bukan di repo)
 const fetchJadwalDosen = async (req) => {
-    const id_dosen = req.user.id;
-    const role = req.user.role;
-    const data = await bimbinganService.getRiwayatBimbingan(id_dosen, role);
-    return data.map(item => {
-        const t = new Date(item.tanggal);
-        const tahun = t.getFullYear();
-        const bulan = String(t.getMonth() + 1).padStart(2, "0");
-        const hari = String(t.getDate()).padStart(2, "0");
+  const id_dosen = req.user.id;
+  const role = req.user.role;
+  const data = await bimbinganService.getRiwayatBimbingan(id_dosen, role);
+  return data.map((item) => {
+    const t = new Date(item.tanggal);
+    const tahun = t.getFullYear();
+    const bulan = String(t.getMonth() + 1).padStart(2, "0");
+    const hari = String(t.getDate()).padStart(2, "0");
 
-        return {
-            id_bimbingan: item.id_bimbingan,
-            tanggal: `${tahun}-${bulan}-${hari}`,
-            waktu: item.waktu,
-            nama_mahasiswa: item.nama_mahasiswa,
-            nama_dosen: item.nama_dosen,
-            status: item.status,
-            ruangan: item.nama_ruangan
-        };
-    });
-};
-
-
-
-// panggil semua jadwal bimbingan dosen (termasuk history dan upcoming)
-export const getPersetujuanBimbingan = async (req, res) => {
-    try {
-        const formattedData = await fetchJadwalDosen(req);
-        const mapped = formattedData.filter((item) => item.status === "Menunggu")
-        res.json(mapped);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
-    }
+    return {
+      id_bimbingan: item.id_bimbingan,
+      tanggal: `${tahun}-${bulan}-${hari}`,
+      waktu: item.waktu,
+      nama_mahasiswa: item.nama_mahasiswa,
+      nama_dosen: item.nama_dosen,
+      status: item.status,
+      ruangan: item.nama_ruangan,
+    };
+  });
 };
 
 // panggil semua jadwal bimbingan dosen (termasuk history dan upcoming)
@@ -135,6 +120,18 @@ export const getJadwalBimbinganDosen = async (req, res) => {
   try {
     const formattedData = await fetchJadwalDosen(req);
     res.json(formattedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
+  }
+};
+
+// panggil semua jadwal bimbingan dosen (termasuk history dan upcoming)
+export const getPersetujuanBimbingan = async (req, res) => {
+  try {
+    const formattedData = await fetchJadwalDosen(req);
+    const mapped = formattedData.filter((item) => item.status === "Menunggu");
+    res.json(mapped);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
@@ -166,59 +163,68 @@ export const getJadwalBimbinganToday = async (req, res) => {
 //buat SIDEBAR KANAN
 
 export const getTotalPermintaanByDosen = async (req, res) => {
-    try {
-        const formattedData = await fetchJadwalDosen(req);
-        const totalPermintaan = formattedData.filter(item => item.status === 'Menunggu')
-        const value = { total_permintaan: totalPermintaan }
-        res.json(value);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Gagal mengambil total permintaan by dosen" });
-    }
-}
+  try {
+    const formattedData = await fetchJadwalDosen(req);
+    const totalPermintaan = formattedData.filter(
+      (item) => item.status === "Menunggu"
+    );
+    const value = { total_permintaan: totalPermintaan };
+    res.json(value);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Gagal mengambil total permintaan by dosen" });
+  }
+};
 export const getTotalBimbinganByDosen = async (req, res) => {
-    try {
-        const formattedData = await fetchJadwalDosen(req);
-        const totalSelesai = formattedData.filter(item => item.status === 'Selesai')
-        res.json(totalSelesai.length);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Gagal mengambil total bimbingan by dosen" });
-    }
-}
+  try {
+    const formattedData = await fetchJadwalDosen(req);
+    const totalSelesai = formattedData.filter(
+      (item) => item.status === "Selesai"
+    );
+    res.json(totalSelesai.length);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Gagal mengambil total bimbingan by dosen" });
+  }
+};
 
 export const updateStatus = async (req, res) => {
-    try {
-        const { id_bimbingan, button, notes } = req.body;
-        const nik = req.user.id; // Ambil ID Dosen dari session
+  try {
+    const { id_bimbingan, button, notes } = req.body;
 
-        if (!id_bimbingan) {
-            return res.status(400).json({
-                success: false,
-                message: "ID Bimbingan tidak valid.",
-            });
-        }
+    // console.log("INI MASUK CONTROLLER, APAKAH BODYNYA KOSONG?", req.body);
+    const nik = req.user.id; // Ambil ID Dosen dari session
 
-        // Panggil Service (Service akan panggil Repo)
-        await bimbinganService.updateStatusBimbingan({
-            id_bimbingan,
-            nik,
-            button: parseInt(button), // Pastikan jadi integer (1 atau 0)
-            notes: notes || "",
-        });
-
-        const statusMsg = button == 1 ? "Disetujui" : "Ditolak";
-
-        return res.status(200).json({
-            success: true,
-            message: `Bimbingan berhasil ${statusMsg}`,
-        });
-
-    } catch (error) {
-        console.error("Error update bimbingan:", error);
-        return res.status(500).json({
-            success: false,
-            message: error.message || "Terjadi kesalahan server",
-        });
+    if (!id_bimbingan) {
+      return res.status(400).json({
+        success: false,
+        message: "ID Bimbingan tidak valid.",
+      });
     }
+
+    // Panggil Service (Service akan panggil Repo)
+    await bimbinganService.updateStatusBimbingan({
+      id_bimbingan,
+      nik,
+      button: parseInt(button), // Pastikan jadi integer (1 atau 0)
+      notes: notes || "",
+    });
+
+    const statusMsg = button == 1 ? "Disetujui" : "Ditolak";
+
+    return res.status(200).json({
+      success: true,
+      message: `Bimbingan berhasil ${statusMsg}`,
+    });
+  } catch (error) {
+    console.error("Error update bimbingan:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message || "Terjadi kesalahan server",
+    });
+  }
 };
