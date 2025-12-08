@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/styleTambahAkunLanjutDosen.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="../js/scriptLogout.js"></script>
     <script src="../js/scriptTambahAkun.js" defer></script>
 </head>
 
@@ -21,26 +22,14 @@
             <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo">
         </div>
         <div class="nav-middle">
-            <div id="nav-beranda">
-                <a href="DashboardAdmin.html">Beranda</a>
-            </div>
-            <div id="nav-area_admin">
-                <a href="ManajemenPengguna.html">Area Admin</a>
-            </div>
-            <div id="nav-log">
-                <a href="logAdmin.html">Log</a>
-            </div>
-            <div id="nav-riwayat">
-                <a href="Riwayat(Admin).html">Riwayat</a>
-            </div>
+            <div id="nav-beranda"><a href="/dashboard" class="nav-active">Beranda</a></div>
+            <div id="nav-area-admin"><a href="/manajemenPengguna">Area Admin</a></div>
+            <div id="nav-log"><a href="/logAdmin">Log</a></div>
+            <div id="nav-riwayat"><a href="/riwayatAdmin">Riwayat</a></div>
         </div>
         <div class="nav-right">
-            <div id="notif">
-                <a href="DashboardAdmin.html"><i class="ri-notification-4-line"></i></a>
-            </div>
-            <div id="logout">
-                <a href="LoginPage.html"><i class="ri-logout-box-r-line"></i></a>
-            </div>
+            <div id="notif"><a href="/notifikasi"><i class="ri-notification-4-line"></i></a></div>
+            <div id="btn-logout-action"><a href="#"><i class="ri-logout-box-r-line"></i></a></div>
         </div>
     </div>
 
@@ -53,9 +42,8 @@
                     <input type="text" id="nama" class="input-field" placeholder="Masukkan nama dosen" required>
                 </div>
                 <div class="input-group">
-                    <label for="topik">Topik</label>
-                    <input type="text" id="nama" class="input-field" placeholder="Masukkan topik dosen" required>
-                    <button type="button" id="plusButton">+</button>
+                    <label for="nama">NIK</label>
+                    <input type="text" id="nik" class="input-field" placeholder="Masukkan nik dosen" required>
                 </div>
 
                 <div id="buttonContainer">

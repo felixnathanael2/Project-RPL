@@ -11,10 +11,16 @@ async function fetchJadwalBimbingan() {
         rawData.forEach(item => {
             const jamDisplay = item.waktu.substring(0, 5);
 
-            //untuk warna bisa ditambah random ato mau gini aja juga gpp
+            // kasih warna cell sesuai status
             let colorType = "green-bg";
-            if (parseInt(jamDisplay.substring(0, 2)) >= 12) {
+            if (item.status === "Menunggu") {
+                colorType = "yellow-bg";
+            } else if (item.status === "Disetujui") {
+                colorType = "green-bg";
+            } else if (item.status === "Selesai") {
                 colorType = "blue-bg";
+            } else if (item.status === "Ditolak") {
+                colorType = "pink-bg";
             }
 
             if (!globalDataJadwal[item.tanggal]) {
@@ -56,7 +62,7 @@ async function fetchStatistik() {
 
     } catch (error) {
         console.error("Gagal mengambil statistik:", error);
-        
+
         document.getElementById('stat-permintaan').textContent = "-";
         document.getElementById('stat-bimbingan').textContent = "-";
         document.getElementById('stat-mahasiswa').textContent = "-";

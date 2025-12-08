@@ -3,15 +3,14 @@ import { connectDB } from "../db/db.js";
 export async function getRiwayatBimbingan(userId, role) {
   const pool = await connectDB();
 
-  // 1. [FIX] Konversi role ke Number agar aman (Jaga-jaga kalau dari session string)
-  const userRole = Number(role);
-  const ROLE_MAHASISWA = 1;
-  const ROLE_DOSEN = 2;
-  const ROLE_ADMIN = 3;
-  let query = ""; // Inisialisasi string kosong
-
-  if (userRole === ROLE_MAHASISWA) {
-    query = `
+    // 1. [FIX] Konversi role ke Number agar aman (Jaga-jaga kalau dari session string)
+    const userRole = Number(role);
+    const ROLE_MAHASISWA = 1;
+    const ROLE_DOSEN = 2;
+    const ROLE_ADMIN = 3;
+    let query = ""; // Inisialisasi string kosong
+    if (userRole === ROLE_MAHASISWA) {
+        query = `
             SELECT 
                 B.id_bimbingan,
                 GROUP_CONCAT(U.nama SEPARATOR ', ') AS nama_dosen,
@@ -19,6 +18,7 @@ export async function getRiwayatBimbingan(userId, role) {
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan, 
+                B.id_bimbingan AS id_bimbingan,
                 B.status
             FROM bimbingan B
             JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
@@ -38,6 +38,7 @@ export async function getRiwayatBimbingan(userId, role) {
                 M.nama AS nama_mahasiswa, 
                 D.nama AS nama_dosen,
                 L.nama_ruangan AS nama_ruangan, 
+                B.id_bimbingan AS id_bimbingan,
                 B.status
             FROM bimbingan B
             JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
@@ -57,6 +58,7 @@ export async function getRiwayatBimbingan(userId, role) {
                 M.nama AS nama_mahasiswa, 
                 D.nama AS nama_dosen,
                 L.nama_ruangan AS nama_ruangan, 
+                B.id_bimbingan AS id_bimbingan,
                 B.status
             FROM bimbingan B
             JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
@@ -71,11 +73,10 @@ export async function getRiwayatBimbingan(userId, role) {
     return [];
   }
 
-  // 3. [FIX] Gunakan Destructuring Array [rows]
-  // Ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
-  const [rows] = await pool.execute(query, [userId]);
-
-  return rows;
+    // 3. [FIX] Gunakan Destructuring Array [rows]
+    // Ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
+    const [rows] = await pool.execute(query, [userId]);
+    return rows;
 }
 
 export async function createPengajuan(data) {
@@ -185,80 +186,43 @@ export async function updateStatusBimbingan(data) {
   // data yang dibutuhin: bimbingan mana yang disetujui, npm, nik,
   const { id_bimbingan, nik, button, notes } = data;
 
-  // cari npm
-  const queryNPM = `
-        SELECT id_users
-        FROM data_ta
-        WHERE id_data = (SELECT id_data FROM bimbingan WHERE id_bimbingan = ?)
+    // cari npm
+    const queryInfo = `
+        SELECT dt.id_users AS npm, b.tanggal, u.nama as nama_dosen
+        FROM bimbingan b
+        JOIN data_ta dt ON b.id_data = dt.id_data
+        JOIN users u ON u.id_users = ? 
+        WHERE b.id_bimbingan = ?
     `;
 
-  const [npmRows] = await pool.execute(queryNPM, [id_bimbingan]);
-  const npm = npmRows[0].id_users;
+    const [infoRows] = await pool.execute(queryInfo, [nik, id_bimbingan]);
+    const { npm, tanggal, nama_dosen } = infoRows[0];
 
-  // cari tanggal bimbingan
-  const queryTanggal = `
-        SELECT tanggal FROM bimbingan WHERE id_bimbingan = ?
-    `;
+    let statusBaru = "";
+    let isiNotif = "";
 
-  const [tanggalRows] = await pool.execute(queryTanggal, [id_bimbingan]);
+    if (button === 1) {
+        statusBaru = "Disetujui";
+        isiNotif = `Bimbingan tanggal ${tanggal} telah DISETUJUI oleh ${nama_dosen}.`;
+        const queryApprove = `
+            UPDATE bimbingan 
+            SET status = 'Disetujui' 
+            WHERE id_bimbingan = ?
+        `;
+        await pool.execute(queryApprove, [id_bimbingan]);
 
-  const tanggal = tanggalRows[0].tanggal;
-
-  const queryAlter = `
-        UPDATE bimbingan_dosen
-        SET status_bimbingan = ?
-        WHERE id_bimbingan = ? AND nik = ?
-    `;
-
-  if (button === 1) {
-    await pool.execute(queryAlter, ["Disetujui", id_bimbingan, nik]);
-  } else {
-    await pool.execute(queryAlter, ["Ditolak", id_bimbingan, nik]);
-    await pool.execute(
-      `UPDATE bimbingan SET status_bimbingan = ? WHERE id_bimbingan = ?`,
-      ["Ditolak", id_bimbingan]
-    );
-    await pool.execute(`INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`, [
-      `Bimbingan anda untuk tanggal ${tanggal} telah ditolak`,
-      npm,
-    ]);
-
-    await pool.execute(
-      `UPDATE bimbingan SET catatan_bimbingan = ? WHERE id_bimbingan = ?`,
-      [notes, id_bimbingan]
-    );
-    return true;
-  }
-
-  const queryNotif = `
-        INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)
-    `;
-
-  // notif buat dosen
-  await pool.execute(queryNotif, [
-    `Anda telah menyetujui bimbingan NPM: ${npm} untuk tanggal ${tanggal}`,
-    nik,
-  ]);
-
-  const queryCek = `
-        SELECT status_bimbingan FROM bimbingan_dosen WHERE id_bimbingan = ?
-    `;
-
-  const [doneRows] = await pool.execute(queryCek, [id_bimbingan]);
-
-  const allApproved = doneRows.every(
-    (row) => row.status_bimbingan === "Disetujui"
-  );
-  const anyRejected = doneRows.some(
-    (row) => row.status_bimbingan === "Ditolak"
-  );
-
-  if (allApproved) {
-    await pool.execute(queryNotif, [
-      `Bimbingan anda untuk tanggal ${tanggal} telah disetujui`,
-      npm,
-    ]);
-  }
+    } else {
+        statusBaru = "Ditolak";
+        isiNotif = `Bimbingan tanggal ${tanggal} DITOLAK oleh ${nama_dosen}. Alasan: ${notes}`;
+        const queryReject = `
+            UPDATE bimbingan 
+            SET status = 'Ditolak', catatan_bimbingan = ? 
+            WHERE id_bimbingan = ?
+        `;
+        await pool.execute(queryReject, [notes, id_bimbingan]);
+    }
+    const queryNotif = `INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`;
+    await pool.execute(queryNotif, [isiNotif, npm]);
 
   return true;
 }
@@ -278,6 +242,31 @@ export async function getTotalBimbinganByDosen(nik) {
   const rows = await pool.execute(query, [nik]);
   return rows[0];
 }
+
+export async function getAllRiwayatBimbingan() {
+    const pool = await connectDB();
+    const query = `
+             SELECT 
+                B.tanggal, 
+                B.waktu, 
+                B.catatan_bimbingan AS catatan, 
+                M.nama AS nama_mahasiswa, 
+                D.nama AS nama_dosen,
+                L.nama_ruangan AS nama_ruangan, 
+                B.status
+            FROM bimbingan B
+            JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
+            JOIN data_ta DTA ON B.id_data = DTA.id_data
+            JOIN users M ON DTA.id_users = M.id_users
+            JOIN users D ON BD.nik = D.id_users
+            LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
+            ORDER BY B.tanggal DESC, B.waktu DESC;
+        `;
+
+    const [rows] = await pool.execute(query)
+    return rows;
+}
+
 
 export async function updateCatatanBimbingan(id, notes) {
   const pool = await connectDB();

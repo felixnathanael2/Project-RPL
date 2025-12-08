@@ -183,6 +183,15 @@ main.container {
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.8);
 }
 
+.input-field > option:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: rgba(200, 200, 200, 0.6);
+    color: #777;
+    box-shadow: none;
+}
+
+
 input[type="date"] {
     cursor: pointer;
 }

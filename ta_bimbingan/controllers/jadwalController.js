@@ -55,14 +55,27 @@ export const checkAvailability = async (req, res) => {
 };
 
 export const uploadJadwal = async (req, res) => {
-  try {
-    if (!req.file) {
-      // kalo lupa upload file, balikin ke dashboard tapi kasih alert
-      return res
-        .status(400)
-        .send(
-          '<script>alert("File belum dipilih!"); window.location.href="/dashboard";</script>',
-        );
+    try {
+        if (!req.file) {
+            // kalo lupa upload file, balikin ke dashboard tapi kasih alert  
+            return res.status(400).send('<script>alert("File belum dipilih!"); window.location.href="/dashboard";</script>');
+        }
+
+        let id_users = req.user.id;
+        const userRole = req.user.role;
+
+        if (userRole === 3 && req.body.target_user_id) {
+            id_users = req.body.target_user_id;
+            console.log(`Admin mengupload jadwal untuk dosen dengan NIK: ${id_users}`);
+        }
+
+        const result = await jadwalService.processJadwalExcel(req.file.path, id_users);
+        res.redirect('/dashboard');
+        
+        // kalo file salah atau ada eror balikin ke dashboard dan kasi alert
+    } catch (error) {
+        console.error("Upload Error:", error);
+        res.status(500).send(`<script>alert("Gagal upload: ${error.message}"); window.location.href="/dashboard";</script>`);
     }
 
     const id_users = req.user.id;
