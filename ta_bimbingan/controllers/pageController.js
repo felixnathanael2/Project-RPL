@@ -89,7 +89,7 @@ export const persetujuan = (req, res) => {
     const role = req.user.role;
 
     if (role === ROLE_MAHASISWA) {
-        res.sendFile(path.join(__dirname, "../private/PengajuanBimbingan.html"));
+        res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
     } else if (role === ROLE_DOSEN) {
         res.sendFile(path.join(__dirname, "../private/PersetujuanBimbinganDosen.html"));
     } else {

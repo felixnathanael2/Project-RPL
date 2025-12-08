@@ -4,7 +4,7 @@
    ==================================================== */
 
 // Variabel Global Lokal untuk file ini
-let globalDataJadwal = {}; 
+let globalDataJadwal = {};
 
 // --- 1. LOGIKA UPDATE SIDEBAR (Tanggal Hari Ini) ---
 function updateCurrentDate() {
@@ -33,7 +33,7 @@ async function fetchJadwalBimbingan() {
 
         rawData.forEach(item => {
             const jamDisplay = item.waktu.substring(0, 5);
-            
+
             // kasih warna cell sesuai status
             let colorType = "green-bg";
             if (item.status === "Menunggu") {
@@ -58,7 +58,7 @@ async function fetchJadwalBimbingan() {
         });
 
         // Panggil fungsi render dari scriptCalender.js
-        updateCalendarHeader(); 
+        updateCalendarHeader();
         generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
 
     } catch (error) {
@@ -69,9 +69,9 @@ async function fetchJadwalBimbingan() {
 // --- 3. FETCH DATA JADWAL MINGGUAN ---
 async function fetchJadwalMingguan() {
     try {
-        const response = await fetch('/api/my-schedule'); 
+        const response = await fetch('/api/my-schedule');
         const result = await response.json();
-        
+
         let formattedJadwal = [];
         const colors = ['bg-teal', 'bg-pink', 'bg-blue-dark', 'bg-red', 'bg-orange', 'bg-olive', 'bg-purple'];
 
@@ -105,7 +105,9 @@ async function fetchRiwayatBimbingan() {
 
         riwayatContainer.innerHTML = ''; // Bersihkan dummy
 
-        const data = result.data; 
+        const data = result.data.filter((item) => {
+            item.status == "Selesai"
+        });
 
         if (!data || data.length === 0) {
             riwayatContainer.innerHTML = `
@@ -119,10 +121,7 @@ async function fetchRiwayatBimbingan() {
             const dateObj = new Date(item.tanggal);
             const dateBadge = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
 
-            let statusColor = "var(--cyan)";
-            if (item.status === "Menunggu") statusColor = "#f59e0b";
-            if (item.status === "Ditolak") statusColor = "#ef4444";
-            if (item.status === "Disetujui") statusColor = "#10b981";
+            let statusColor = "#10b981";
 
             const cardHTML = `
                 <div class="history-card">
@@ -135,7 +134,7 @@ async function fetchRiwayatBimbingan() {
                         <p style="font-size: 11px; margin-top: -5px; opacity: 0.8;">
                            <i class="ri-map-pin-line"></i> ${item.nama_ruangan || "-"} • ${item.waktu ? item.waktu.substring(0, 5) : "--:--"}
                         </p>
-                        <a href="#" class="detail-link" style="color: ${statusColor}">
+                        <a href="/riwayat" class="detail-link" style="color: ${statusColor}">
                             Status: ${item.status} <i class="ri-arrow-right-line"></i>
                         </a>
                     </div>
@@ -190,9 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
         btnNext.addEventListener('click', () => {
             currentMonth++;
             if (currentMonth > 11) { currentMonth = 0; currentYear++; }
-            
+
             // Update UI dengan fungsi dari scriptCalender.js
-            updateCalendarHeader(); 
+            updateCalendarHeader();
             generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
         });
     }
@@ -201,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnPrev.addEventListener('click', () => {
             currentMonth--;
             if (currentMonth < 0) { currentMonth = 11; currentYear--; }
-            
+
             // Update UI dengan fungsi dari scriptCalender.js
             updateCalendarHeader();
             generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
