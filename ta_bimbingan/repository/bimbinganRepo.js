@@ -1,7 +1,7 @@
 import { connectDB } from "../db/db.js";
 
 export async function getRiwayatBimbingan(userId, role) {
-    const pool = await connectDB();
+  const pool = await connectDB();
 
     // 1. [FIX] Konversi role ke Number agar aman (Jaga-jaga kalau dari session string)
     const userRole = Number(role);
@@ -12,7 +12,8 @@ export async function getRiwayatBimbingan(userId, role) {
     if (userRole === ROLE_MAHASISWA) {
         query = `
             SELECT 
-                U.nama, 
+                B.id_bimbingan,
+                GROUP_CONCAT(U.nama SEPARATOR ', ') AS nama_dosen,
                 L.nama_ruangan, 
                 B.tanggal, 
                 B.waktu, 
@@ -25,10 +26,11 @@ export async function getRiwayatBimbingan(userId, role) {
             JOIN data_ta DTA ON B.id_data = DTA.id_data
             JOIN users U ON BD.nik = U.id_users
             WHERE DTA.id_users = ? 
+            GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
-    } else if (userRole === ROLE_DOSEN) {
-        query = `
+  } else if (userRole === ROLE_DOSEN) {
+    query = `
              SELECT 
                 B.tanggal, 
                 B.waktu, 
@@ -47,8 +49,8 @@ export async function getRiwayatBimbingan(userId, role) {
             WHERE BD.nik = ?
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
-    } else if (userRole === ROLE_ADMIN) {
-        query = `
+  } else if (userRole === ROLE_ADMIN) {
+    query = `
              SELECT 
                 B.tanggal, 
                 B.waktu, 
@@ -66,11 +68,10 @@ export async function getRiwayatBimbingan(userId, role) {
             LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
-    }
-    else {
-        // [FIX] Jika role tidak dikenali, kembalikan array kosong (jangan biarkan query undefined)
-        return [];
-    }
+  } else {
+    // [FIX] Jika role tidak dikenali, kembalikan array kosong (jangan biarkan query undefined)
+    return [];
+  }
 
     // 3. [FIX] Gunakan Destructuring Array [rows]
     // Ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
@@ -79,84 +80,85 @@ export async function getRiwayatBimbingan(userId, role) {
 }
 
 export async function createPengajuan(data) {
-    let connection;
-    try {
-        // konek ke db kek sebelum nya
-        const pool = await connectDB();
-        connection = await pool.getConnection();
+  console.log(data);
+  let connection;
+  try {
+    // konek ke db kek sebelum nya
+    const pool = await connectDB();
+    connection = await pool.getConnection();
 
-        // nah ini tuh baru, jadi misal disini kan ada beberapa query, ini tuh jadi semacam buffer buat hasil query
-        // misal ada query yang gagal, maka query yang berhasil ga disimpen ke database (semisal ada bug di kode atau lainnya)
-        await connection.beginTransaction();
+    // nah ini tuh baru, jadi misal disini kan ada beberapa query, ini tuh jadi semacam buffer buat hasil query
+    // misal ada query yang gagal, maka query yang berhasil ga disimpen ke database (semisal ada bug di kode atau lainnya)
+    await connection.beginTransaction();
 
-        const queryDataTA = "SELECT id_data FROM data_ta WHERE id_users = ?";
+    const queryDataTA = "SELECT id_data FROM data_ta WHERE id_users = ?";
 
-        const [id_data] = await connection.execute(queryDataTA, [data.npm]);
+    const [id_data] = await connection.execute(queryDataTA, [data.npm]);
 
-        // A. Insert Bimbingan
-        const queryInsert = `
+    // A. Insert Bimbingan
+    const queryInsert = `
           INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, status)
           VALUES (?, ?, ?, ?, '-', 'Menunggu')
         `;
 
-        const queryNotif = `
+    const queryNotif = `
             INSERT INTO notifikasi (isi, id_users) VALUES (?,?)
         `;
 
-        const res = await connection.execute(queryInsert, [
-            id_data[0].id_data,
-            data.lokasiId,
-            data.tanggal,
-            data.waktu,
-        ]);
+    const res = await connection.execute(queryInsert, [
+      id_data[0].id_data,
+      data.lokasiId,
+      data.tanggal,
+      data.waktu,
+    ]);
 
-        connection.execute(queryNotif, [
-            `Pengajuan bimbingan berhasil diajukan pada ${data.tanggal} jam ${data.waktu}`,
-            data.npm,
-        ]);
+    await connection.execute(queryNotif, [
+      `Pengajuan bimbingan berhasil diajukan pada ${data.tanggal} jam ${data.waktu}`,
+      data.npm,
+    ]);
 
-        const [namaMhsRows] = await connection.execute(
-            "SELECT nama from users WHERE id_users = ?",
-            [data.npm],
-        );
+    const [namaMhsRows] = await connection.execute(
+      "SELECT nama from users WHERE id_users = ?",
+      [data.npm]
+    );
 
-        const namaMhs = namaMhsRows[0].nama;
+    const namaMhs = namaMhsRows[0].nama;
 
-        // ambil id bimbingan, karena autoincrement jadi bisa ambil dari InsertId
-        const newId = res[0].insertId;
+    // ambil id bimbingan, karena autoincrement jadi bisa ambil dari InsertId
+    const newId = res[0].insertId;
 
-        // B. Insert Dosen Peserta, pake id bimbingan nya pake id yang udah diambil tadi
-        for (const nik of data.nik) {
-            await connection.execute(
-                `INSERT INTO Bimbingan_Dosen (id_bimbingan, nik) VALUES (?, ?)`,
-                [newId, nik],
-            );
+    // B. Insert Dosen Peserta, pake id bimbingan nya pake id yang udah diambil tadi
+    for (const nik of data.nik) {
+      await connection.execute(
+        `INSERT INTO bimbingan_dosen (id_bimbingan, nik) VALUES (?, ?)`,
+        [newId, nik]
+      );
 
-            await connection.execute(queryNotif, [
-                `Mahasiswa ${namaMhs} mengajukan bimbingan pada ${data.tanggal} jam ${data.waktu}`,
-                nik,
-            ]);
-        }
-
-        // nah ini commit baru masukin data data tadi ke db
-        await connection.commit();
-
-        // masukin juga ke notifikasi, biar dapet notif pokoknya
-
-        return true;
-    } catch (err) {
-        // kalo ada gagal nah baru rollback
-        if (connection) await connection.rollback();
-        throw err;
-    } finally {
-        if (connection) connection.release();
+      await connection.execute(queryNotif, [
+        `Mahasiswa ${namaMhs} mengajukan bimbingan pada ${data.tanggal} jam ${data.waktu}`,
+        nik,
+      ]);
     }
+
+    // nah ini commit baru masukin data data tadi ke db
+    await connection.commit();
+
+    // masukin juga ke notifikasi, biar dapet notif pokoknya
+
+    return true;
+  } catch (err) {
+    // kalo ada gagal nah baru rollback
+    if (connection) await connection.rollback();
+    throw err;
+  } finally {
+    if (connection) connection.release();
+  }
 }
 
 export async function getApprovedBimbinganByStudent(id_student) {
-    const pool = await connectDB();
+  const pool = await connectDB();
 
-    const query = `
+  const query = `
         SELECT 
             b.tanggal, 
             b.waktu, 
@@ -172,17 +174,17 @@ export async function getApprovedBimbinganByStudent(id_student) {
         GROUP BY b.id_bimbingan
     `;
 
-    const [rows] = await pool.execute(query, [id_student]);
-    return rows;
+  const [rows] = await pool.execute(query, [id_student]);
+  return rows;
 }
 
 export async function updateStatusBimbingan(data) {
-    // kalo misal dosen setujui/tolak, berarti nanti ganti status bimbingan jadi disetujui/ditolak,
-    // terus masukin notifikasi ke mahasiswa bahwa bimbingan udh disetujui/ditolak
+  // kalo misal dosen setujui/tolak, berarti nanti ganti status bimbingan jadi disetujui/ditolak,
+  // terus masukin notifikasi ke mahasiswa bahwa bimbingan udh disetujui/ditolak
 
-    const pool = await connectDB();
-    // data yang dibutuhin: bimbingan mana yang disetujui, npm, nik,
-    const { id_bimbingan, nik, button, notes } = data;
+  const pool = await connectDB();
+  // data yang dibutuhin: bimbingan mana yang disetujui, npm, nik,
+  const { id_bimbingan, nik, button, notes } = data;
 
     // cari npm
     const queryInfo = `
@@ -222,21 +224,23 @@ export async function updateStatusBimbingan(data) {
     const queryNotif = `INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`;
     await pool.execute(queryNotif, [isiNotif, npm]);
 
-    return true;
+  return true;
 }
 
 export async function getTotalBimbingan() {
-    const pool = await connectDB();
-    const query = 'SELECT COUNT(id_bimbingan) AS jumlah_bimbingan FROM bimbingan;';
-    const rows = await pool.execute(query)
-    return rows[0];
+  const pool = await connectDB();
+  const query =
+    "SELECT COUNT(id_bimbingan) AS jumlah_bimbingan FROM bimbingan;";
+  const rows = await pool.execute(query);
+  return rows[0];
 }
 
 export async function getTotalBimbinganByDosen(nik) {
-    const pool = await connectDB();
-    const query = 'SELECT COUNT(id_bimbingan) AS jumlah_bimbingan FROM bimbingan_dosen WHERE nik = ?;';
-    const rows = await pool.execute(query, [nik])
-    return rows[0];
+  const pool = await connectDB();
+  const query =
+    "SELECT COUNT(id_bimbingan) AS jumlah_bimbingan FROM bimbingan_dosen WHERE nik = ?;";
+  const rows = await pool.execute(query, [nik]);
+  return rows[0];
 }
 
 export async function getAllRiwayatBimbingan() {
@@ -264,3 +268,13 @@ export async function getAllRiwayatBimbingan() {
 }
 
 
+export async function updateCatatanBimbingan(id, notes) {
+  const pool = await connectDB();
+  const query = `
+      UPDATE bimbingan
+      SET catatan_bimbingan = ?
+      WHERE id_bimbingan = ?;
+      `;
+  await pool.execute(query, [notes, id]);
+  return true;
+}

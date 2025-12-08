@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Permintaan Bimbingan</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
@@ -12,10 +11,14 @@
 
 <body>
     <div class="nav glass-box">
-        <div class="nav-left">
-            <img src="../assets/HeaderUnpar.png" alt id="unpar">
-            <img src="../assets/HeaderIF.png" alt id="if">
-            <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo">
+      <div class="nav-left">
+        <img src="/assets/HeaderUnpar.png" alt id="unpar" />
+        <img src="/assets/HeaderIF.png" alt id="if" />
+        <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+      </div>
+      <div class="nav-middle">
+        <div id="nav-beranda">
+          <a href="/">Beranda</a>
         </div>
         <div class="nav-middle">
             <div id="nav-beranda">
@@ -42,6 +45,13 @@
                 <a href="#" id="btn-logout-action"><i class="ri-logout-box-r-line"></i></a>
             </div>
         </div>
+        <div id="profile">
+          <a href="/profile"><i class="ri-account-circle-line"></i></a>
+        </div>
+        <div id="logout">
+          <a href="logout"><i class="ri-logout-box-r-line"></i></a>
+        </div>
+      </div>
     </div>
 
     <main class="container">
@@ -51,9 +61,34 @@
             <div class="glass-box requests-container">
                 <p style="text-align:center; padding:2rem; opacity:0.6;">Memuat data...</p>
             </div>
+          </div>
         </div>
+      </div>
+
+      <div class="modal-overlay">
+        <div class="popup glass-box">
+          <h1 id="header-popup">Alasan Menolak</h1>
+          <textarea
+            name="input-text"
+            id="input-areatext"
+            placeholder="."
+          ></textarea>
+
+          <div class="button-popup">
+            <button type="button" class="btn btn-reject">Batal</button>
+            <button type="submit" class="btn btn-accept">Kirim</button>
+          </div>
+        </div>
+      </div>
     </main>
 
-</body>
-
+    <div class="footer glass-box">
+      <div class="footer-left">
+        <img src="/assets/LogoMonokromUnpar.png" alt />
+      </div>
+      <div class="footer-right">
+        <p>&copy; 2025 Kelompok 8-A RPL</p>
+      </div>
+    </div>
+  </body>
 </html>

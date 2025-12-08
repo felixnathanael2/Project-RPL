@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard Dosen</title>
     <!-- ICON -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/styleDashDosen.css">
-    <link rel="stylesheet" href="../css/font.css">
-    <link rel="stylesheet" href="../css/calender.css">
-    <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/styleDashDosen.css" />
+    <link rel="stylesheet" href="/css/font.css" />
+    <link rel="stylesheet" href="/css/calender.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/MBTA-Icon.png"
+      type="image/x-icon"
+    />
 
-    <script src="../js/scriptLogout.js"></script>
-    <script src="../js/scriptCalender.js"></script>
-    <script src="../js/scriptDashboardDosen.js"></script>
-</head>
+    <script src="/js/scriptLogout.js"></script>
+    <script src="/js/scriptCalender.js"></script>
+    <script src="/js/scriptDashboardDosen.js"></script>
+  </head>
 
-<body>
-
+  <body>
     <!-- NAVBAR -->
     <div class="nav glass-box">
         <div class="nav-left">
@@ -44,114 +52,107 @@
     </div>
 
     <main>
+      <div class="main_container glass-box">
+        <div id="header-kalender">
+          <div id="left-header">
+            <h3>Kalender</h3>
 
+            <!-- TOGGLE -->
+            <label class="custom-switch">
+              <input type="checkbox" id="viewToggle" />
+              <span class="slider">
+                <span class="knob"></span>
+                <span class="switch-label label-month">Bulan</span>
+                <span class="switch-label label-week">Minggu</span>
+              </span>
+            </label>
+          </div>
 
-        <div class="main_container glass-box">
-            <div id="header-kalender">
-                <div id="left-header">
-                    <h3>Kalender</h3>
-
-                    <!-- TOGGLE -->
-                    <label class="custom-switch">
-                        <input type="checkbox" id="viewToggle">
-                        <span class="slider">
-                            <span class="knob"></span>
-                            <span class="switch-label label-month">Bulan</span>
-                            <span class="switch-label label-week">Minggu</span>
-                        </span>
-                    </label>
-                </div>
-
-                <div id="right-header">
-                    <p>April 2025</p>
-                    <div id="button-arrow">
-                        <i class="ri-arrow-left-s-line"></i>
-                        <i class="ri-arrow-right-s-line"></i>
-                    </div>
-                </div>
+          <div id="right-header">
+            <p>April 2025</p>
+            <div id="button-arrow">
+              <i class="ri-arrow-left-s-line"></i>
+              <i class="ri-arrow-right-s-line"></i>
             </div>
-
-            <!-- MONTH VIEW -->
-            <div class="kalender-bulanan hidden">
-                <div class="body">
-                    <div class="month_calendar"></div>
-                </div>
-            </div>
-
-            <!-- WEEK VIEW -->
-            <div class="kalender-mingguan">
-                <div class="schedule-container">
-                    <div class="days-header">
-                        <div></div>
-                        <div class="day-name">Senin</div>
-                        <div class="day-name">Selasa</div>
-                        <div class="day-name">Rabu</div>
-                        <div class="day-name">Kamis</div>
-                        <div class="day-name">Jumat</div>
-                    </div>
-
-                    <div class="schedule-grid" id="scheduleGrid"></div>
-                </div>
-            </div>
+          </div>
         </div>
 
-        <!-- RIGHT SIDE -->
-        <div class="side_dosen">
-
-            <!-- BOX 1 -->
-            <div class="box-dosen small">
-                <div class="box-title">Bimbingan Hari Ini</div>
-
-                <div id="list-today">
-                    <p>Memuat data...</p>
-                </div>
-
-                <a href="#" class="see-all">Lihat Semua Bimbingan Mendatang</a>
-            </div>
-
-            <!-- BOX 2 -->
-            <div class="box-dosen stat glass-box">
-                <div class="stat-item">
-                    <h1 id="stat-permintaan">...</h1>
-                    <span>Permintaan</span>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="stat-item">
-                    <h1 id="stat-bimbingan">...</h1>
-                    <span>Bimbingan</span>
-                </div>
-
-                <div class="divider wide"></div>
-
-                <div class="stat-item">
-                    <h1 id="stat-mahasiswa">...</h1>
-                    <span>Mahasiswa</span>
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="stat-item">
-                    <h1 id="stat-layak">...</h1>
-                    <span>Layak Sidang</span>
-                </div>
-            </div>
-
+        <!-- MONTH VIEW -->
+        <div class="kalender-bulanan hidden">
+          <div class="body">
+            <div class="month_calendar"></div>
+          </div>
         </div>
 
+        <!-- WEEK VIEW -->
+        <div class="kalender-mingguan">
+          <div class="schedule-container">
+            <div class="days-header">
+              <div></div>
+              <div class="day-name">Senin</div>
+              <div class="day-name">Selasa</div>
+              <div class="day-name">Rabu</div>
+              <div class="day-name">Kamis</div>
+              <div class="day-name">Jumat</div>
+            </div>
+
+            <div class="schedule-grid" id="scheduleGrid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="side_dosen">
+        <!-- BOX 1 -->
+        <div class="box-dosen small">
+          <div class="box-title">Bimbingan Hari Ini</div>
+
+          <div id="list-today">
+            <p>Memuat data.</p>
+          </div>
+
+          <a href="#" class="see-all">Lihat Semua Bimbingan Mendatang</a>
+        </div>
+
+        <!-- BOX 2 -->
+        <div class="box-dosen stat glass-box">
+          <div class="stat-item">
+            <h1 id="stat-permintaan">.</h1>
+            <span>Permintaan</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="stat-item">
+            <h1 id="stat-bimbingan">.</h1>
+            <span>Bimbingan</span>
+          </div>
+
+          <div class="divider wide"></div>
+
+          <div class="stat-item">
+            <h1 id="stat-mahasiswa">.</h1>
+            <span>Mahasiswa</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="stat-item">
+            <h1 id="stat-layak">.</h1>
+            <span>Layak Sidang</span>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- FOOTER -->
     <div class="footer glass-box">
-        <div class="footer-left">
-            <img src="../assets/LogoMonokromUnpar.png" alt>
-        </div>
-        <div class="footer-right">
-            <p>&copy; 2025 Kelompok 8-A RPL</p>
-        </div>
+      <div class="footer-left">
+        <img src="/assets/LogoMonokromUnpar.png" alt />
+      </div>
+      <div class="footer-right">
+        <p>&copy; 2025 Kelompok 8-A RPL</p>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>

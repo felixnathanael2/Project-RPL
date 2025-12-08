@@ -9,10 +9,10 @@ import * as bimbinganController from "../controllers/bimbinganController.js";
 import * as dosenController from "../controllers/dosenController.js";
 import * as adminController from "../controllers/adminController.js";
 
+import * as mahasiswaController from "../controllers/mahasiswaController.js";
 import * as jadwalController from "../controllers/jadwalController.js";
 import { checkAvailability } from "../controllers/jadwalController.js";
 import { pengajuanInit } from "../controllers/referensiController.js";
-
 
 import * as pageController from "../controllers/pageController.js";
 
@@ -23,27 +23,29 @@ const router = express.Router();
 // ==========================================
 // KONFIGURASI MULTER (UPLOAD EXCEL)
 // ==========================================
-if (!fs.existsSync('uploads')) {
-    fs.mkdirSync('uploads');
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
 }
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype.includes("excel") ||
+  if (
+    file.mimetype.includes("excel") ||
     file.mimetype.includes("spreadsheetml") ||
-    file.originalname.match(/\.(xls|xlsx)$/)) {
-        cb(null, true);
-    } else {
-        cb(new Error("Format file harus Excel (.xls / .xlsx)!"), false);
-    }
+    file.originalname.match(/\.(xls|xlsx)$/)
+  ) {
+    cb(null, true);
+  } else {
+    cb(new Error("Format file harus Excel (.xls / .xlsx)!"), false);
+  }
 };
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
@@ -55,7 +57,11 @@ router.post("/api/logout", logout);
 router.use(protectRoute);
 
 // --- API ROUTES (JSON Data) ---
-router.post("/api/upload-jadwal", upload.single("file_excel"), jadwalController.uploadJadwal);
+router.post(
+  "/api/upload-jadwal",
+  upload.single("file_excel"),
+  jadwalController.uploadJadwal
+);
 router.get("/api/my-schedule", jadwalController.getMyJadwal);
 router.get("/api/check-availability", checkAvailability);
 
@@ -82,10 +88,17 @@ router.put('/api/update-status-bimbingan', bimbinganController.updateStatus);
 
 router.post("/api/admin/create-user", adminController.createUser);
 
+router.get("/api/get-mahasiswa", mahasiswaController.getMahasiswa);
+router.get("/api/bimbingan/:npm", bimbinganController.getRiwayatByNPM);
+router.post(
+  "/api/bimbingan/update-catatan",
+  bimbinganController.updateCatatanBimbingan
+);
 
 // --- PAGE ROUTES (Render HTML) ---
 router.get("/dashboard", pageController.dashboard);
 router.get("/pengajuan", pageController.pengajuan);
+router.get("/riwayat", pageController.riwayat);
 router.get("/notifikasi", pageController.notifikasi);
 router.get('/manajemenPengguna', pageController.manajemenPengguna)
 router.get('/debugging', pageController.debugging)
@@ -95,5 +108,8 @@ router.get('/addUser/dosen', pageController.addDosen)
 router.get("/persetujuan", pageController.persetujuan);
 router.get("/logAdmin", pageController.logAdmin);
 router.get("/riwayatAdmin", pageController.riwayatAdmin);
+
+export default router;
+router.get("/profile", pageController.profile);
 
 export default router;

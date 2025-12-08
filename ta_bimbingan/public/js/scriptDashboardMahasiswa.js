@@ -8,19 +8,32 @@ let globalDataJadwal = {};
 
 // --- 1. LOGIKA UPDATE SIDEBAR (Tanggal Hari Ini) ---
 function updateCurrentDate() {
-    const today = new Date();
-    const namaHariIndo = ['Ming', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
-    const namaBulanIndo = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
+  const today = new Date();
+  const namaHariIndo = ["Ming", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+  const namaBulanIndo = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mei",
+    "Jun",
+    "Jul",
+    "Ags",
+    "Sep",
+    "Okt",
+    "Nov",
+    "Des",
+  ];
 
-    const hariID = document.getElementById('hari');
-    const bulanID = document.getElementById('bulan');
-    const tanggalID = document.getElementById('tanggal');
+  const hariID = document.getElementById("hari");
+  const bulanID = document.getElementById("bulan");
+  const tanggalID = document.getElementById("tanggal");
 
-    if (hariID && bulanID && tanggalID) {
-        hariID.textContent = namaHariIndo[today.getDay()];
-        bulanID.textContent = namaBulanIndo[today.getMonth()];
-        tanggalID.textContent = String(today.getDate()).padStart(2, '0');
-    }
+  if (hariID && bulanID && tanggalID) {
+    hariID.textContent = namaHariIndo[today.getDay()];
+    bulanID.textContent = namaBulanIndo[today.getMonth()];
+    tanggalID.textContent = String(today.getDate()).padStart(2, "0");
+  }
 }
 
 // --- 2. FETCH DATA KALENDER (BULANAN) ---
@@ -92,47 +105,62 @@ async function fetchJadwalMingguan() {
     } catch (error) {
         console.error("Gagal mengambil jadwal mingguan:", error);
     }
+
+    // Panggil fungsi render dari scriptCalender.js
+    renderSchedule(formattedJadwal);
+  } catch (error) {
+    console.error("Gagal mengambil jadwal mingguan:", error);
+  }
 }
 
 // --- 4. FETCH RIWAYAT BIMBINGAN (SIDEBAR) ---
 async function fetchRiwayatBimbingan() {
-    try {
-        const response = await fetch("/api/riwayat");
-        const result = await response.json();
+  try {
+    const response = await fetch("/api/riwayat");
+    const result = await response.json();
 
-        const riwayatContainer = document.querySelector('.riwayat-list');
-        if (!riwayatContainer) return;
+    const riwayatContainer = document.querySelector(".riwayat-list");
+    if (!riwayatContainer) return;
 
-        riwayatContainer.innerHTML = ''; // Bersihkan dummy
+    riwayatContainer.innerHTML = ""; // Bersihkan dummy
 
         const data = result.data.filter((item) => {
             item.status == "Selesai"
         });
 
-        if (!data || data.length === 0) {
-            riwayatContainer.innerHTML = `
+    if (!data || data.length === 0) {
+      riwayatContainer.innerHTML = `
                 <div style="text-align: center; padding: 20px; opacity: 0.7;">
                     <p>Belum ada riwayat bimbingan.</p>
                 </div>`;
-            return;
-        }
+      return;
+    }
 
-        data.forEach((item, index) => {
-            const dateObj = new Date(item.tanggal);
-            const dateBadge = dateObj.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+    data.forEach((item, index) => {
+      const dateObj = new Date(item.tanggal);
+      const dateBadge = dateObj.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "short",
+      });
 
             let statusColor = "#10b981";
 
-            const cardHTML = `
+      const cardHTML = `
                 <div class="history-card">
                     <div class="card-header">
                         <h5>Bimbingan ${data.length - index}</h5> 
                         <span class="date-badge">${dateBadge}</span>
                     </div>
                     <div class="card-body">
-                        <p><i class="ri-user-star-line"></i> ${item.nama || "Dosen"}</p>
+                        <p><i class="ri-user-star-line"></i> ${
+                          item.nama || "Dosen"
+                        }</p>
                         <p style="font-size: 11px; margin-top: -5px; opacity: 0.8;">
-                           <i class="ri-map-pin-line"></i> ${item.nama_ruangan || "-"} • ${item.waktu ? item.waktu.substring(0, 5) : "--:--"}
+                           <i class="ri-map-pin-line"></i> ${
+                             item.nama_ruangan || "-"
+                           } • ${
+        item.waktu ? item.waktu.substring(0, 5) : "--:--"
+      }
                         </p>
                         <a href="/riwayat" class="detail-link" style="color: ${statusColor}">
                             Status: ${item.status} <i class="ri-arrow-right-line"></i>
@@ -140,12 +168,11 @@ async function fetchRiwayatBimbingan() {
                     </div>
                 </div>
             `;
-            riwayatContainer.insertAdjacentHTML('beforeend', cardHTML);
-        });
-
-    } catch (error) {
-        console.error("Gagal mengambil riwayat:", error);
-    }
+      riwayatContainer.insertAdjacentHTML("beforeend", cardHTML);
+    });
+  } catch (error) {
+    console.error("Gagal mengambil riwayat:", error);
+  }
 }
 
 // --- 5. INITIALIZATION (RUN ONCE) ---

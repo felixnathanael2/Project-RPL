@@ -1,36 +1,71 @@
 import * as bimbinganService from "../services/bimbinganService.js";
 
 export const riwayat = async (req, res) => {
-    try {
-        const riwayat = await bimbinganService.getRiwayatBimbingan(req.user.id, req.user.role);
-        res.json({
-            message: `Riwayat Bimbingan untuk ${req.user.role} (Auth Sesi)`,
-            data: riwayat,
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+  try {
+    const riwayat = await bimbinganService.getRiwayatBimbingan(
+      req.user.id,
+      req.user.role
+    );
+    res.json({
+      message: `Riwayat Bimbingan untuk ${req.user.role} (Auth Sesi)`,
+      data: riwayat,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//update catatan bimbingan berdasarkan id bimbingan
+export const updateCatatanBimbingan = async (req, res) => {
+  const { id_bimbingan, catatan_bimbingan } = req.body;
+
+  try {
+    const update = await bimbinganService.updateCatatanBimbingan(
+      id_bimbingan,
+      catatan_bimbingan
+    );
+    res.json({
+      message: `Berhasil update catatan untuk bimbingan ${id_bimbingan}}`,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//mengambil riwayat bimbingan untuk mahasiswa tertentu berdasarkan params
+export const getRiwayatByNPM = async (req, res) => {
+  const npm = req.params.npm;
+  try {
+    const riwayat = await bimbinganService.getRiwayatByNPM(npm);
+
+    res.json({
+      message: `Riwayat bimbingan untuk mahasiswa dengan NPM: ${npm}`,
+      data: riwayat,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 export const ajukanBimbingan = async (req, res) => {
-    try {
-        // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
-        const { tanggal, waktu, lokasiId, nik } = req.body;
+  try {
+    // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
+    const { tanggal, waktu, lokasiId, nik } = req.body;
 
-        await bimbinganService.createPengajuan({
-            tanggal,
-            waktu,
-            lokasiId,
-            nik,
-            npm: req.user.id,
-        });
+    await bimbinganService.createPengajuan({
+      tanggal,
+      waktu,
+      lokasiId,
+      nik,
+      npm: req.user.id,
+    });
 
-        res.json({ message: "Pengajuan berhasil" });
-    } catch (e) {
-        // statements
-        console.log(e);
-        res.status(500).json({ message: "Gagal submit" });
-    }
+    res.json({ message: "Pengajuan berhasil" });
+  } catch (e) {
+    // statements
+    console.log(e);
+    res.status(500).json({ message: "Gagal submit" });
+  }
 };
 
 export const getJadwalBimbingan = async (req, res) => {
@@ -97,38 +132,38 @@ export const getPersetujuanBimbingan = async (req, res) => {
 
 // panggil semua jadwal bimbingan dosen (termasuk history dan upcoming)
 export const getJadwalBimbinganDosen = async (req, res) => {
-    try {
-        const formattedData = await fetchJadwalDosen(req);
-        res.json(formattedData);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
-    }
+  try {
+    const formattedData = await fetchJadwalDosen(req);
+    res.json(formattedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Gagal mengambil jadwal bimbingan dosen" });
+  }
 };
-
 
 export const getJadwalBimbinganToday = async (req, res) => {
-    try {
-        const formattedData = await fetchJadwalDosen(req);
-        //tanggal hari ini
-        const now = new Date();
-        const tahun = now.getFullYear();
-        const bulan = String(now.getMonth() + 1).padStart(2, "0");
-        const hari = String(now.getDate()).padStart(2, "0");
-        const today = `${tahun}-${bulan}-${hari}`;
+  try {
+    const formattedData = await fetchJadwalDosen(req);
+    //tanggal hari ini
+    const now = new Date();
+    const tahun = now.getFullYear();
+    const bulan = String(now.getMonth() + 1).padStart(2, "0");
+    const hari = String(now.getDate()).padStart(2, "0");
+    const today = `${tahun}-${bulan}-${hari}`;
 
-        //cari yang tanggalnya sesuai dengan hari ini
-        const todayBimbingan = formattedData.filter(item => item.tanggal === today);
+    //cari yang tanggalnya sesuai dengan hari ini
+    const todayBimbingan = formattedData.filter(
+      (item) => item.tanggal === today
+    );
 
-        res.json(todayBimbingan);
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Gagal menampilkan jadwal hari ini" });
-    }
+    res.json(todayBimbingan);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Gagal menampilkan jadwal hari ini" });
+  }
 };
 
-//buat SIDEBAR KANAN 
+//buat SIDEBAR KANAN
 
 export const getTotalPermintaanByDosen = async (req, res) => {
     try {

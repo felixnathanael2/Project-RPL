@@ -53,7 +53,7 @@ INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, st
 VALUES
 (1, 1, '2025-11-29', '09:00:00', 'Diskusi awal terkait judul & scope.', 'Disetujui'),
 (1, 2, '2025-01-20', '13:00:00', 'Review BAB 1 dan 2.', 'Selesai'),
-(1, NULL, '2025-02-05', '10:30:00', 'Pengajuan jadwal online.', 'Menunggu');
+(1, 4, '2025-02-05', '10:30:00', 'Pengajuan jadwal online.', 'Menunggu');
 
 
 -- ==========================================
