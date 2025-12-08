@@ -41,10 +41,13 @@ async function fetchJadwalBimbingan() {
   try {
     const response = await fetch("/api/jadwal-bimbingan");
     const rawData = await response.json();
+    console.log("Raw data from API:", rawData); // ← ADD THIS
 
     globalDataJadwal = {}; // Reset
 
     rawData.forEach((item) => {
+      console.log("Tanggal from DB:", item.tanggal); // ← ADD THIS
+
       const jamDisplay = item.waktu.substring(0, 5);
 
       // Logika Warna

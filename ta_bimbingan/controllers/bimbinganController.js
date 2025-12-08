@@ -71,7 +71,7 @@ export const ajukanBimbingan = async (req, res) => {
 export const getJadwalBimbingan = async (req, res) => {
   try {
     const id_student = req.user.id;
-    const data = await bimbinganService.getRiwayatBimbingan(id_student);
+    const data = await bimbinganService.getRiwayatBimbingan(id_student, 1);
 
     // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
     const formattedData = data.map((item) => {
