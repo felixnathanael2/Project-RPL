@@ -7,9 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/PersetujuanBimbinganDosen.css">
+    <link rel="stylesheet" href="../css/stylePersetujuanDosen.css">
     <link rel="stylesheet" href="../css/font.css">
-    <script src="../js/script.js" defer></script>
+    <script src="../js/scriptPersetujuanDosen.js" defer></script>
 </head>
 
 <body>
@@ -109,7 +109,17 @@
 
             </div>
         </div>
+        <div id= "rejectModal" class="modal-overlay hidden">
+            <div class="popup glass-box">
+                <h1 id="header-popup">Alasan Menolak</h1>
+                <textarea name="input-text" id="input-areatext" placeholder="..."></textarea>
 
+                <div class="button-popup">
+                    <button type="button" id = "btnCancelReject" class="btn btn-reject">Batal</button>
+                    <button type="submit" id = "btnConfirmReject"class="btn btn-accept">Kirim</button>
+                </div>
+            </div>
+        </div>
     </main>
 
 

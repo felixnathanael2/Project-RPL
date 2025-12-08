@@ -161,17 +161,19 @@ async function uploadJadwalAdmin() {
     const fileInput = document.getElementById("file-input");
     const selectedDosenId = dosenSelect.value;
 
-    if (!selectedDosenId) {
+    if (!selectedDosenId && fileInput.files[0]) {
         alert("Harap pilih Dosen terlebih dahulu sebelum mengupload file!");
-        fileInput.value = ""; 
+        fileInput.value = "";
         return;
     }
 
-    if (!fileInput.files[0]) return;
+    if (!fileInput.files[0]) {
+        return;
+    }
 
     const formData = new FormData();
-    formData.append("file_excel", fileInput.files[0]); 
-    formData.append("target_user_id", selectedDosenId); 
+    formData.append("file_excel", fileInput.files[0]);
+    formData.append("target_user_id", selectedDosenId);
 
     try {
         const response = await fetch("/api/upload-jadwal", {

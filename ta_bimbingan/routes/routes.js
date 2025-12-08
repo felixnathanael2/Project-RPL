@@ -76,7 +76,12 @@ router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
 router.get("/api/manajemen-pengguna", adminController.getAllUsers)
 
+//persetujuan
+router.get("/api/persetujuan-bimbingan", bimbinganController.getPersetujuanBimbingan)
+router.put('/api/update-status-bimbingan', bimbinganController.updateStatus);
+
 router.post("/api/admin/create-user", adminController.createUser);
+
 
 // --- PAGE ROUTES (Render HTML) ---
 router.get("/dashboard", pageController.dashboard);
@@ -87,6 +92,8 @@ router.get('/debugging', pageController.debugging)
 router.get('/addUser', pageController.addUser)
 router.get('/addUser/mahasiswa', pageController.addMahasiswa)
 router.get('/addUser/dosen', pageController.addDosen)
-
+router.get("/persetujuan", pageController.persetujuan);
+router.get("/logAdmin", pageController.logAdmin);
+router.get("/riwayatAdmin", pageController.riwayatAdmin);
 
 export default router;

@@ -17,3 +17,8 @@ export async function getAllRiwayatBimbingan() {
     const rows = await bimbinganRepo.getAllRiwayatBimbingan();
     return rows;
 }
+
+
+export async function updateStatusBimbingan(data) {
+    return bimbinganRepo.updateStatusBimbingan(data);
+}
