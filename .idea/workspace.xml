@@ -5,9 +5,144 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11c7561c-1213-4812-8732-0c514729a91b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/adminController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/authController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/bimbinganController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/dosenController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/jadwalController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/mahasiswaController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/notifikasiController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/pageController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/controllers/referensiController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/db/db.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/middlewares/authMiddleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/mysql/ddl.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/mysql/dml.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/CatatanBimbingan.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/CatatanBimbinganDosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/DashboardAdmin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/DashboardDosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/DashboardMahasiswa.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/LupaPasswordPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/ManajemenPengguna.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/NotificationPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/NotificationPageDosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/PengajuanBimbingan.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/PengajuanBimbinganDosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/PersetujuanBimbinganDosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/ProfilePage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/ResetPasswordPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/Riwayat(Admin).html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/RiwayatBimbingan.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/RiwayatBimbinganDosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/TambahPenggunaAdmin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/TambahPenggunaAdminLanjut_Dosen.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/TambahPenggunaAdminLanjut_Mahasiswa.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/logAdmin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/private/viewPermintaan.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/Background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/HeaderIF.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/HeaderUnpar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/IF.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/Kalender Hasil Input.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/Logo IF.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/LogoBWUNPAR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/LogoIF.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/LogoMonokromUnpar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/LogoUnpar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/LogoWarnaUnpar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/MBTA-Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/MBTA.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/MBTABlue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/assets/qrcode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/ManajemenPengguna.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/adminCal.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/calender.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/calenderDosen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-BlackItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-ExtraBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Heavy.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-HeavyItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-MediumItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-RegularItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-SemiBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-Thin.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-ThinItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-UltraLight.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font assets/Gilroy-UltraLightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/font.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/logAdmin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleCatBim.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleCatatan.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleDashAdmin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleDashDosen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleDashMahasiswa.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleLogin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleLupa.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleNotif.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/stylePengajuan.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/stylePersetujuanDosen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleProfile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleReset.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleRiwayat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleRiwayatAdmin.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleTambahAkun.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleTambahAkunLanjutDosen.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleTambahAkunLanjutMhs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/css/styleView.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/ManajemenPengguna.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/PengajuanBimbinganDosen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/catBim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/catatanDosen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/log.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptCalender.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptCalenderDosen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptDashboardAdmin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptDashboardDosen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptDashboardMahasiswa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptLogin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptLogout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptNotifikasi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptPengajuan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptPermintaan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptPersetujuanDosen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptRiwayat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptRiwayatDosen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptTambahAkun.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/js/scriptTambahAkunAwal.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/public/page/LoginPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/adminRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/bimbinganRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/dosenRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/jadwalRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/lokasiRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/mahasiswaRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/repository/notifikasiRepo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/routes/routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/adminService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/bimbinganService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/dosenService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/jadwalService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/lokasiService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/mahasiswaService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/services/notifikasiService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ta_bimbingan/utils/dateTimeFormatter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/styleProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/styleProfile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/html/ProfilePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/ProfilePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/PengajuanBimbinganDosen.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/PengajuanBimbinganDosen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/html/PengajuanBimbinganDosen.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/html/PengajuanBimbinganDosen.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,29 +179,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "fixfooter",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/M I C H A E L/SEM 5/RPL/TUBES",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fixfooter&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/M I C H A E L/SEM 5/RPL/TUBES&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="TUBES" />
@@ -105,6 +240,7 @@
       <workItem from="1764743585054" duration="2508000" />
       <workItem from="1764746206714" duration="968000" />
       <workItem from="1764749594518" duration="926000" />
+      <workItem from="1765283851838" duration="682000" />
     </task>
     <servers />
   </component>

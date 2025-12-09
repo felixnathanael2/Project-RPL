@@ -141,6 +141,8 @@ body {
   flex-direction: column;
   gap: 15px;
   overflow: visible !important;
+    justify-content: center;
+    align-content: center;
 }
 
 /* TEXTBOX */
