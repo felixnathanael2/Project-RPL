@@ -93,6 +93,7 @@ router.get("/api/get-all-dosen", dosenController.getAllDosen);
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
 router.get("/api/manajemen-pengguna", adminController.getAllUsers);
+router.get("/api/log-data", adminController.getLogData)
 
 //persetujuan
 router.get(

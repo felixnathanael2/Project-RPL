@@ -1,4 +1,4 @@
-async function fetchPermintaanSaya() {
+async function fetchPermintaan() {
   try {
     //ambil semua bimbingan dulu dari backend
     const response = await fetch("/api/riwayat");
@@ -75,4 +75,4 @@ async function fetchPermintaanSaya() {
 }
 
 // Jalankan saat load
-document.addEventListener("DOMContentLoaded", fetchPermintaanSaya);
+document.addEventListener("DOMContentLoaded", fetchPermintaan);

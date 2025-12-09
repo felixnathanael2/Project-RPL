@@ -58,7 +58,7 @@ export const getDashboardAdminStats = async (req, res) => {
     //balikin dgn format json
     res.json({
       dosen: totalDosen,
-      total_dosen: totalDosen.length,
+      total_dosen: totalDosen,
       total_mahasiswa: totalMahasiswa,
       layak_sidang: strLayakSidang,
       total_permintaan: totalPermintaan,

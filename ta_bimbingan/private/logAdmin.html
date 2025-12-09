@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/logAdmin.css">
     <link rel="stylesheet" href="../css/font.css">
     <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
     <script src="../js/log.js" defer></script>
 </head>
 
@@ -17,36 +18,29 @@
 
 <body>
     <div class="nav glass-box">
-        <div class="nav-left">
-            <img src="../assets/HeaderUnpar.png" alt id="unpar">
-            <img src="../assets/HeaderIF.png" alt id="if">
-            <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo">
+      <div class="nav-left">
+        <img src="../assets/HeaderUnpar.png" alt id="unpar" />
+        <img src="../assets/HeaderIF.png" alt id="if" />
+        <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+      </div>
+      <div class="nav-middle">
+        <div id="nav-beranda">
+          <a href="/dashboard" class="nav-active">Beranda</a>
         </div>
-        <div class="nav-middle">
-            <div id="nav-beranda">
-                <a href="DashboardAdmin.html">Beranda</a>
-            </div>
-            <div id="nav-area_admin">
-                <a href="ManajemenPengguna.html">Area Admin</a>
-            </div>
-            <div id="nav-log">
-                <a href="logAdmin.html">Log</a>
-            </div>
-            <div id="nav-riwayat">
-                <a href="Riwayat(Admin).html">Riwayat</a>
-            </div>
+        <div id="nav-area-admin">
+          <a href="/manajemenPengguna">Area Admin</a>
         </div>
-        <div class="nav-right">
-            <div id="notif">
-                <a href><i class="ri-notification-4-line"></i></a>
-            </div>
-            <div id="profile">
-                <a href><i class="ri-account-circle-line"></i></a>
-            </div>
-            <div id="logout">
-                <a href><i class="ri-logout-box-r-line"></i></a>
-            </div>
+        <div id="nav-log"><a href="/logAdmin">Log</a></div>
+        <div id="nav-riwayat"><a href="/riwayatAdmin">Riwayat</a></div>
+      </div>
+      <div class="nav-right">
+        <div id="notif">
+          <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
         </div>
+        <div id="btn-logout-action">
+          <a href="#"><i class="ri-logout-box-r-line"></i></a>
+        </div>
+      </div>
     </div>
 
     <!-- MAIN CONTENT -->
@@ -56,7 +50,7 @@
                 <h2>Log</h2>
                 <button class="btn-download" onclick="downloadLog()">
                     <i class="ri-download-2-line"></i>
-                </button>
+                <!-- </button> -->
             </div>
             <div class="table-wrapper">
                 <table class="log-table">

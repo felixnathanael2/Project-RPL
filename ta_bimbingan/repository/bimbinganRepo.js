@@ -13,8 +13,7 @@ export async function getRiwayatBimbingan(userId, role) {
   if (userRole === ROLE_MAHASISWA) {
     query = `
             SELECT 
-                B.id_bimbingan,
-                GROUP_CONCAT(U.nama SEPARATOR ', ') AS nama_dosen,
+                U.nama, 
                 L.nama_ruangan, 
                 B.tanggal, 
                 B.waktu, 
@@ -26,13 +25,11 @@ export async function getRiwayatBimbingan(userId, role) {
             JOIN data_ta DTA ON B.id_data = DTA.id_data
             JOIN users U ON BD.nik = U.id_users
             WHERE DTA.id_users = ? 
-            GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
   } else if (userRole === ROLE_DOSEN) {
     query = `
              SELECT 
-                B.id_bimbingan,
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan AS catatan, 
@@ -52,7 +49,6 @@ export async function getRiwayatBimbingan(userId, role) {
   } else if (userRole === ROLE_ADMIN) {
     query = `
              SELECT 
-                B.id_bimbingan,
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan AS catatan, 
@@ -81,7 +77,6 @@ export async function getRiwayatBimbingan(userId, role) {
 }
 
 export async function createPengajuan(data) {
-  console.log(data);
   let connection;
   try {
     // konek ke db kek sebelum nya
@@ -106,6 +101,9 @@ export async function createPengajuan(data) {
             INSERT INTO notifikasi (isi, id_users) VALUES (?,?)
         `;
 
+    const queryLog = `
+            INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+
     const res = await connection.execute(queryInsert, [
       id_data[0].id_data,
       data.lokasiId,
@@ -117,6 +115,8 @@ export async function createPengajuan(data) {
       `Pengajuan bimbingan berhasil diajukan pada ${data.tanggal} jam ${data.waktu}`,
       data.npm,
     ]);
+
+    await connection.execute(queryLog, [data.npm, `AJUKAN BIMBINGAN`]);
 
     const [namaMhsRows] = await connection.execute(
       "SELECT nama from users WHERE id_users = ?",
@@ -210,27 +210,40 @@ export async function updateStatusBimbingan(data) {
 
   const queryAlter = `
         UPDATE bimbingan_dosen
-        SET status = ?
+        SET status_bimbingan = ?
         WHERE id_bimbingan = ? AND nik = ?
     `;
 
   if (button === 1) {
     await pool.execute(queryAlter, ["Disetujui", id_bimbingan, nik]);
+
+    const queryLogSetuju = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await pool.execute(queryLogSetuju, [
+      nik,
+      `SETUJUI BIMBINGAN (ID: ${id_bimbingan})`,
+    ]);
   } else {
     await pool.execute(queryAlter, ["Ditolak", id_bimbingan, nik]);
     await pool.execute(
       `UPDATE bimbingan SET status = ? WHERE id_bimbingan = ?`,
       ["Ditolak", id_bimbingan]
     );
-    await pool.execute(`INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`, [
-      `Bimbingan anda untuk tanggal ${tanggal} telah ditolak`,
-      npm,
-    ]);
+    await pool.execute(
+      `INSERT INTO notifikasi (isi, id_users) VALUES (?, ?)`,
+      [`Bimbingan anda untuk tanggal ${tanggal} telah ditolak`, npm]
+    );
 
     await pool.execute(
       `UPDATE bimbingan SET catatan_bimbingan = ? WHERE id_bimbingan = ?`,
       [notes, id_bimbingan]
     );
+
+    const queryLogTolak = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await pool.execute(queryLogTolak, [
+      nik,
+      `TOLAK BIMBINGAN (ID: ${id_bimbingan})`,
+    ]);
+
     return true;
   }
 
@@ -245,13 +258,13 @@ export async function updateStatusBimbingan(data) {
   ]);
 
   const queryCek = `
-        SELECT status FROM bimbingan_dosen WHERE id_bimbingan = ?
+        SELECT status_bimbingan FROM bimbingan_dosen WHERE id_bimbingan = ?
     `;
 
   const [doneRows] = await pool.execute(queryCek, [id_bimbingan]);
 
-  const allApproved = doneRows.every((row) => row.status === "Disetujui");
-  const anyRejected = doneRows.some((row) => row.status === "Ditolak");
+  const allApproved = doneRows.every((row) => row.status_bimbingan === "Disetujui");
+  const anyRejected = doneRows.some((row) => row.status_bimbingan === "Ditolak");
 
   if (allApproved) {
     await pool.execute(
@@ -261,6 +274,12 @@ export async function updateStatusBimbingan(data) {
     await pool.execute(queryNotif, [
       `Bimbingan anda untuk tanggal ${tanggal} telah disetujui`,
       npm,
+    ]);
+
+    const queryLogFinal = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await pool.execute(queryLogFinal, [
+        nik, // Atau user system kalau ada
+        `BIMBINGAN FINAL DISETUJUI (ID: ${id_bimbingan})`
     ]);
   }
 

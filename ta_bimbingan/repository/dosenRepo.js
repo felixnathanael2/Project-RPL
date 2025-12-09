@@ -52,3 +52,4 @@ export async function getEligibleSidangByDosen(nik) {
   const [rows] = await pool.execute(query, [nik]);
   return rows[0].total;
 }
+

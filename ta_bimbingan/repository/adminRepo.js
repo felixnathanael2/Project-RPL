@@ -51,6 +51,12 @@ export async function insertUser(data) {
       }
     }
 
+    const queryLog = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await connection.execute(queryLog, [
+        adminId, 
+        `Menambahkan User Baru: ${data.nama} (${data.id_users})`
+    ]);
+
     await connection.commit();
     return true;
   } catch (error) {
@@ -59,4 +65,12 @@ export async function insertUser(data) {
   } finally {
     connection.release();
   }
+}
+
+
+export async function getLogData() {
+  const pool = await connectDB();
+  const query = `SELECT U.email, LA.aksi, LA.waktu FROM log_aktivitas LA JOIN users U ON LA.id_users = U.id_users;`;
+  const [rows] = await pool.execute(query);
+  return rows;
 }

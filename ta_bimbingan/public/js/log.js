@@ -1,37 +1,72 @@
+//buat data nya bisa dieksport ke plug in
+let globalLogData = [];
+
+async function fetchLogData() {
+    try {
+        const response = await fetch("/api/log-data");
+        const rawData = await response.json();
+        globalLogData = rawData
+        const tableBody = document.getElementById("logTableBody");
+
+        if (tableBody) {
+            if (rawData && rawData.length > 0) {
+                tableBody.innerHTML = "";
+                rawData.forEach(log => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${log.email}</td>
+                        <td>${log.aksi}</td>
+                        <td>${log.waktu}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                tableBody.innerHTML = `<tr><td colspan='3' style="text-align:center;">Tidak ada log aktivitas</td></tr>`;
+            }
+        }
+
+
+    } catch (error) {
+        console.error("Gagal mengambil log admin:", error);
+    }
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    // SIMULASI DATA
-    const mockLogs = [
-        { email: "6182301015@student.unpar.ac.id", activity: "Pengajuan Bimbingan - VAN", datetime: "11/03/25 : 09.21" },
-        { email: "6182201001@student.unpar.ac.id", activity: "Login", datetime: "10/03/25 : 20.34" },
-        { email: "6182101100@student.unpar.ac.id", activity: "Pengajuan Bimbingan - LNV", datetime: "08/03/25 : 11.11" },
-        { email: "6182301003@student.unpar.ac.id", activity: "Login", datetime: "07/03/25 : 13.21" },
-        { email: "6182301099@student.unpar.ac.id", activity: "Tolak Bimbingan - GDK", datetime: "06/03/25 : 08.41" },
-        { email: "raymond.chandra@unpar.ac.id", activity: "Accept Bimbingan - 23055", datetime: "06/03/25 : 08.40" },
-        { email: "g.karya@unpar.ac.id", activity: "Accept Bimbingan - 23055", datetime: "06/03/25 : 07.32" },
-        { email: "6182301055@student.unpar.ac.id", activity: "Pengajuan Bimbingan - GDK, RCP", datetime: "05/03/25 : 19.21" },
-        { email: "admin1@admin", activity: "Add Account 23003", datetime: "03/03/25 : 10.13" },
-        { email: "vania.natali@unpar.ac.id", activity: "Accept Bimbingan - 23099", datetime: "03/03/25 : 08.01" }
-    ];
-
-    const tableBody = document.getElementById("logTableBody");
-
-    if (tableBody) {
-        tableBody.innerHTML = "";
-        mockLogs.forEach(log => {
-            const row = document.createElement("tr");
-
-            row.innerHTML = `
-                <td>${log.email}</td>
-                <td>${log.activity}</td>
-                <td>${log.datetime}</td>
-            `;
-            tableBody.appendChild(row);
-        });
-    }
+    fetchLogData()
 });
 
-// FUNGSI DOWNLOAD
+// buat download excel 
 function downloadLog() {
-    alert("Mengunduh Log Activity...");
+    //cek apakah si global data ini udah ada lognya blm
+    if (globalLogData.length === 0) {
+        alert("Tidak ada data untuk diunduh!");
+        return;
+    }
+
+    //bikin header excel yang sesuai format
+    const dataToExport = globalLogData.map(item => ({
+        "Email Pengguna": item.email,
+        "Aktivitas": item.aksi,
+        "Waktu": item.waktu
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+
+    //atur ukuran tiap kolom
+    const wscols = [
+        { wch: 30 }, // lebar kolom Email
+        { wch: 40 }, // lebar kolom Aksi
+        { wch: 20 }  // lebar kolom Waktu
+    ];
+    worksheet['!cols'] = wscols;
+
+    //bkin workbook baru dengan nama Log Aktivitas
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Log Aktivitas");
+
+    //generate file excel dan download
+    XLSX.writeFile(workbook, "Log_Aktivitas_Admin.xlsx");
 }
