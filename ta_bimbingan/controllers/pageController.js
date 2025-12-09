@@ -42,7 +42,7 @@ export const profile = (req, res) => {
   if (role === ROLE_MAHASISWA) {
     res.sendFile(path.join(__dirname, "../private/ProfilePage.html"));
   } else if (role === ROLE_DOSEN) {
-    res.sendFile(path.join(__dirname, "../private/ProfilePageDosen.html"));
+    res.sendFile(path.join(__dirname, "../private/ProfilePage.html"));
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
   }

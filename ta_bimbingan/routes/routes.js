@@ -15,6 +15,7 @@ import { checkAvailability } from "../controllers/jadwalController.js";
 import { pengajuanInit } from "../controllers/referensiController.js";
 
 import * as pageController from "../controllers/pageController.js";
+import * as profileController from "../controllers/profileController.js";
 
 import { showNotifikasi } from "../controllers/notifikasiController.js";
 
@@ -127,5 +128,6 @@ router.get("/logAdmin", pageController.logAdmin);
 router.get("/riwayatAdmin", pageController.riwayatAdmin);
 router.get("/penjadwalan", pageController.penjadwalan);
 router.get("/profile", pageController.profile);
+router.get("/api/profile", profileController.getMyProfileApi); //
 
 export default router;
