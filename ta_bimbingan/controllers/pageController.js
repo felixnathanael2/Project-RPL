@@ -29,7 +29,7 @@ export const pengajuan = (req, res) => {
     res.sendFile(path.join(__dirname, "../private/PengajuanBimbingan.html"));
   } else if (role === ROLE_DOSEN) {
     res.sendFile(
-      path.join(__dirname, "../private/PengajuanBimbinganDosen.html")
+      path.join(__dirname, "../private/PengajuanBimbinganDosen.html"),
     );
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
@@ -96,7 +96,7 @@ export const addDosen = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
     res.sendFile(
-      path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Dosen.html")
+      path.join(__dirname, "../private/TambahPenggunaAdminLanjut_Dosen.html"),
     );
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
@@ -108,8 +108,8 @@ export const addMahasiswa = (req, res) => {
     res.sendFile(
       path.join(
         __dirname,
-        "../private/TambahPenggunaAdminLanjut_Mahasiswa.html"
-      )
+        "../private/TambahPenggunaAdminLanjut_Mahasiswa.html",
+      ),
     );
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
@@ -126,7 +126,7 @@ export const persetujuan = (req, res) => {
     res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
   } else if (role === ROLE_DOSEN) {
     res.sendFile(
-      path.join(__dirname, "../private/PersetujuanBimbinganDosen.html")
+      path.join(__dirname, "../private/PersetujuanBimbinganDosen.html"),
     );
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
@@ -147,4 +147,8 @@ export const riwayatAdmin = (req, res) => {
   } else {
     return res.status(403).json({ message: "Role tidak valid." });
   }
+};
+
+export const penjadwalan = (req, res) => {
+  res.sendFile(path.join(__dirname, "../private/PengajuanBimbinganDosen.html"));
 };

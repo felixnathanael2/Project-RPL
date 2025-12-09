@@ -134,6 +134,7 @@ main.container {
 .info{
     display: flex;
     margin-left: 20px;
+    width: 100% !important;
 }
 
 #filterButton{
@@ -145,12 +146,13 @@ main.container {
 }
 
 #downloadButton{
-    position: absolute;
+    /* position: absolute; */
     color: white;
-    width: 135px;
+    width: 155px;
     font-weight: 600;
-    bottom: 130px;
-    right: 100px;
+    /* justify-content: flex-end; */
+    /* bottom: 130px; */
+    /* right: 100px; */
 }
 
 .dotSpacing{
@@ -163,21 +165,25 @@ main.container {
     font-weight: 100 !important;
     font-size: 11pt;
     width: 10vw;
-    text-align: left;
+    text-align: left !important;
 }
 
 .isiHistory {
     display: flex;
     flex-direction: column;
+    /* width: 75%; */
+    align-items: start !important;
 }
 
 .formTitle {
     text-align: left;
     margin-bottom: 30px;
+
 }
 
 #titlefilter{
     display: flex;
+    margin-bottom: 15px;
 }
 
 .subTitle {
@@ -201,8 +207,14 @@ main.container {
 
 .notificationContainer {
     width: 60vw;
-    height: 50vh;
     background: #A3C0EB15 !important;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+
+    align-items:  center;
+    justify-content: start;
+    scrollbar-width: none;
 }
 
 /* FOOTER */

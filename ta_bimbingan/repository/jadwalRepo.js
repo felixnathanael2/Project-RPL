@@ -56,20 +56,28 @@ export async function getUnavailableJadwal(date, nik, npm) {
 export async function deleteJadwalByNPM(npm) {
   const pool = await connectDB();
   const query = "DELETE FROM Jadwal_User WHERE NPM = ?";
-  await pool.execute(query, npm);
+  await pool.execute(query, [npm]);
+
+  const queryLog = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+  await pool.execute(queryLog, [npm, "DELETE JADWAL"]);
 }
 
 export async function deleteJadwalByNIK(nik) {
   const pool = await connectDB();
   const query = "DELETE FROM Jadwal_User WHERE NIK = ?";
-  await pool.execute(query, nik);
+  await pool.execute(query, [nik]);
+
+  const queryLog = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+  await pool.execute(queryLog, [nik, "DELETE JADWAL"]);
 }
 
 export async function deleteJadwalByUser(id_users) {
   const pool = await connectDB();
   const query = "DELETE FROM jadwal_user WHERE id_users = ?";
-
   await pool.execute(query, [id_users]);
+
+  const queryLog = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+  await pool.execute(queryLog, [id_users, "DELETE JADWAL"]);
 }
 
 // data - [hari, jam_mulai, jam_akhir_, npm]
@@ -95,4 +103,8 @@ export async function createBulkJadwal(jadwalList) {
     `;
 
   await pool.query(query, [jadwalList]);
+
+  const id_users = jadwalList[0][0]; 
+  const queryLog = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+  await pool.execute(queryLog, [id_users, "UPLOAD JADWAL"]);
 }

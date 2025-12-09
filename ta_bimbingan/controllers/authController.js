@@ -28,6 +28,10 @@ export const login = async (req, res) => {
     req.session.role = user.role;
     req.session.userName = user.nama;
 
+    //masukkan ke log kalo berhasil
+    const queryLog = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await connection.execute(queryLog, [user.id_users, "LOGIN"]);
+
     res.json({
       message: "Login berhasil!",
       user: {

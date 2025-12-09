@@ -27,3 +27,7 @@ export const createNewUser = async (data) => {
 
   return await adminRepo.insertUser(userData);
 };
+
+export async function getLogData() {
+  return await adminRepo.getLogData();
+}

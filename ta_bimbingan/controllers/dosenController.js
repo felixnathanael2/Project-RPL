@@ -54,11 +54,12 @@ export const getDashboardAdminStats = async (req, res) => {
     const totalBimbingan = dataBimbingan.filter(
       (item) => item.status === "Selesai"
     ).length;
-
+    console.log("DOSESN")
+    console.log(totalDosen)
     //balikin dgn format json
     res.json({
       dosen: totalDosen,
-      total_dosen: totalDosen.length,
+      total_dosen: totalDosen,
       total_mahasiswa: totalMahasiswa,
       layak_sidang: strLayakSidang,
       total_permintaan: totalPermintaan,

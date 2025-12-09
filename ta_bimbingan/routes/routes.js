@@ -60,7 +60,7 @@ router.use(protectRoute);
 router.post(
   "/api/upload-jadwal",
   upload.single("file_excel"),
-  jadwalController.uploadJadwal
+  jadwalController.uploadJadwal,
 );
 router.get("/api/my-schedule", jadwalController.getMyJadwal);
 router.get("/api/check-availability", checkAvailability);
@@ -72,19 +72,19 @@ router.get("/api/riwayat", bimbinganController.riwayat);
 router.get("/api/jadwal-bimbingan", bimbinganController.getJadwalBimbingan);
 router.get(
   "/api/jadwal-bimbingan-dosen",
-  bimbinganController.getJadwalBimbinganDosen
+  bimbinganController.getJadwalBimbinganDosen,
 );
 router.get(
   "/api/jadwal-bimbingan-today",
-  bimbinganController.getJadwalBimbinganToday
+  bimbinganController.getJadwalBimbinganToday,
 );
 router.get(
   "/api/dashboard-dosen-stats",
-  dosenController.getDashboardDosenStats
+  dosenController.getDashboardDosenStats,
 );
 router.get(
   "/api/dashboard-admin-stats",
-  dosenController.getDashboardAdminStats
+  dosenController.getDashboardAdminStats,
 );
 
 router.get("/api/get-all-dosen", dosenController.getAllDosen);
@@ -93,11 +93,12 @@ router.get("/api/get-all-dosen", dosenController.getAllDosen);
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
 router.get("/api/manajemen-pengguna", adminController.getAllUsers);
+router.get("/api/log-data", adminController.getLogData)
 
 //persetujuan
 router.get(
   "/api/persetujuan-bimbingan",
-  bimbinganController.getPersetujuanBimbingan
+  bimbinganController.getPersetujuanBimbingan,
 );
 router.put("/api/update-status-bimbingan", bimbinganController.updateStatus);
 
@@ -107,7 +108,7 @@ router.get("/api/get-mahasiswa", mahasiswaController.getMahasiswa);
 router.get("/api/bimbingan/:npm", bimbinganController.getRiwayatByNPM);
 router.post(
   "/api/bimbingan/update-catatan",
-  bimbinganController.updateCatatanBimbingan
+  bimbinganController.updateCatatanBimbingan,
 );
 
 // --- PAGE ROUTES (Render HTML) ---
@@ -121,9 +122,10 @@ router.get("/addUser", pageController.addUser);
 router.get("/addUser/mahasiswa", pageController.addMahasiswa);
 router.get("/addUser/dosen", pageController.addDosen);
 router.get("/persetujuan", pageController.persetujuan);
+router.get("/permintaan", pageController.persetujuan);
 router.get("/logAdmin", pageController.logAdmin);
 router.get("/riwayatAdmin", pageController.riwayatAdmin);
-
+router.get("/penjadwalan", pageController.penjadwalan);
 router.get("/profile", pageController.profile);
 
 export default router;

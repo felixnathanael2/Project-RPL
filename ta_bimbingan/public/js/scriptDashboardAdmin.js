@@ -145,7 +145,7 @@ async function fetchTodayBimbingan() {
     data.forEach((item) => {
       // ambil format waktu untuk jam dan menit saja (detik ga perlu)
       const jam = item.waktu ? item.waktu.substring(0, 5) : "-";
-      const ruangan = item.nama_ruangan || "Lokasi Belum ditentukan";
+      const ruangan = item.ruangan || "Lokasi Belum ditentukan";
 
       //tambahin item satu satu dah
       const htmlItem = `
