@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Riwayat Bimbingan(Admin)</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styleRiwayatAdmin.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="shortcut icon" href="../assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="nav glass-box">
+      <div class="nav-left">
+        <img src="../assets/HeaderUnpar.png" alt id="unpar" />
+        <img src="../assets/HeaderIF.png" alt id="if" />
+        <img src="../assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+      </div>
+      <div class="nav-middle">
+        <div id="nav-beranda">
+          <a href="/dashboard" class="nav-active">Beranda</a>
+        </div>
+        <div id="nav-area-admin">
+          <a href="/manajemenPengguna">Area Admin</a>
+        </div>
+        <div id="nav-log"><a href="/logAdmin">Log</a></div>
+        <div id="nav-riwayat"><a href="/riwayatAdmin">Riwayat</a></div>
+      </div>
+      <div class="nav-right">
+        <div id="notif">
+          <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
+        </div>
+        <div id="btn-logout-action">
+          <a href="#"><i class="ri-logout-box-r-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <main class="container">
+        <div class="formTitle">
+            <div id="titlefilter">
+                <h2>Riwayat Bimbingan</h2>
+                <button class="glass-box" id="filterButton">Filter
+                    <pre> <i class="ri-filter-line"></i></pre>
+                </button>
+            </div>
+
+            <div class="glass-box notificationContainer">
+                <div class="formTitle subTitle">
+                    <div class="glass-box isiHistory">
+                        <h2 class="textContent">Joseph Davin Christian</h2>
+                        <div class="info">
+                            <h3 class="subContent">Tanggal</h3>
+                            <p class="dotSpacing">:</p>
+                            <h3 class="subContent"></h3>
+                        </div>
+                        <div class="info">
+                            <h3 class="subContent">Dosen</h3>
+                            <p class="dotSpacing">:</p>
+                            <h3 class="subContent"></h3>
+                        </div>
+                        <div class="info">
+                            <h3 class="subContent">Jam</h3>
+                            <p class="dotSpacing">:</p>
+                            <h3 class="subContent"></h3>
+                        </div>
+                        <div class="info">
+                            <h3 class="subContent">Lokasi</h3>
+                            <p class="dotSpacing">:</p>
+                            <h3 class="subContent"></h3>
+                        </div>
+                        <div class="info">
+                            <h3 class="subContent">Topik</h3>
+                            <p class="dotSpacing">:</p>
+                            <h3 class="subContent"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="glass-box" id="downloadButton">Unduh Riwayat
+            <pre>  <i class="ri-download-2-line"></i></pre>
+        </button>
+    </main>
+    <div class="footer glass-box">
+        <div class="footer-left">
+            <img src="../assets/LogoMonokromUnpar.png" alt>
+        </div>
+        <div class="footer-right">
+            <p>&copy; 2025 Kelompok 8-A RPL</p>
+        </div>
+    </div>
+</body>
+
+</html>

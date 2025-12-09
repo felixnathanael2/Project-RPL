@@ -1,0 +1,154 @@
+/* ---------------------------------- */
+/* 1. DEFINISI FONT FAMILY "GILROY"   */
+/* ---------------------------------- */
+/*
+  Kita akan mendaftarkan setiap file font
+  ke satu nama font-family: 'Gilroy'.
+  Browser akan otomatis memilih file yang tepat
+  berdasarkan font-weight (ketebalan) dan font-style (miring).
+*/
+
+/* --- Light --- */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Bold --- */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- ExtraBold --- */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Heavy & Black (Keduanya 900) --- */
+/* Catatan: Heavy dan Black keduanya dipetakan ke weight 900.
+  Ini umum. Browser akan menggunakan salah satunya
+  saat Anda meminta font-weight: 900. 
+*/
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-HeavyItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('font assets/Gilroy-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* ---------------------------------- */
+/* 2. CONTOH PENGGUNAAN FONT        */
+/* ---------------------------------- */
+
+/* Terapkan font ke seluruh halaman */
+body {
+  /* Gunakan 'Gilroy' sebagai font utama. 
+    'sans-serif' adalah font cadangan jika 'Gilroy' gagal dimuat.
+  */
+  font-family: 'Gilroy', sans-serif;
+  line-height: 1.6;
+}
+
+/* Sekarang kita bisa menggunakan kelas atau tag
+  untuk mengatur weight dan style yang berbeda.
+*/
+
+.light {
+  font-weight: 300; /* Akan mengambil Gilroy-Light.ttf */
+}
+
+.light-italic {
+  font-weight: 300;
+  font-style: italic; /* Akan mengambil Gilroy-LightItalic.ttf */
+}
+
+.bold {
+  font-weight: 700; /* Akan mengambil Gilroy-Bold.ttf */
+}
+
+.bold-italic {
+  font-weight: 700;
+  font-style: italic; /* Akan mengambil Gilroy-BoldItalic.ttf */
+}
+
+.extra-bold {
+  font-weight: 800; /* Akan mengambil Gilroy-ExtraBold.ttf */
+}
+
+.extra-bold-italic {
+  font-weight: 800;
+  font-style: italic; /* Akan mengambil Gilroy-ExtraBoldItalic.ttf */
+}
+
+.black {
+  /* Akan mengambil Gilroy-Heavy.ttf atau Gilroy-Black.ttf.
+    Karena keduanya terdaftar dengan weight 900.
+  */
+  font-weight: 900; 
+}
+
+.black-italic {
+  font-weight: 900;
+  font-style: italic; /* Akan mengambil Gilroy-HeavyItalic.ttf atau Gilroy-BlackItalic.ttf */
+}

@@ -1,0 +1,46 @@
+// index.js (type: module)
+import "dotenv/config";
+import express from "express";
+import session from "express-session";
+import routes from "./routes/routes.js";
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+//setup view engine 
+app.set('view engine', 'ejs');
+app.set('views', './private');
+
+// ... (Middleware Global & Session setup, sama seperti sebelumnya) ...
+app.use(express.json());
+
+app.use(express.static("public"));
+
+//secret: Ini adalah Tanda Tangan Digital. String rahasia yang digunakan untuk menyegel cookie sesi agar tidak bisa dipalsukan oleh hacker.
+//resave: false: Efisiensi. Artinya: "Kalau sesi user gak ada yang berubah (dia cuma diem aja), gak usah simpan ulang ke database." Ini menghemat kinerja server.
+//saveUninitialized: false: Hemat Tempat & Privasi. Artinya: "Kalau ada orang asing lewat (visit) tapi belum login (belum ada data sesi yang disimpan), jangan buatkan dia sesi di database." Kita cuma buat sesi kalau dia sudah berhasil login.
+//cookie: { maxAge: ... }: Kedaluwarsa Kartu Tamu. Menentukan berapa lama cookie sesi itu valid di browser user. Di sini diset 24 jam (1000 ms * 60 dtk * 60 mnt * 24 jam).
+app.use(
+    session({
+        secret:
+            process.env.SESSION_SECRET ||
+            "fallback_secret_key_yang_sangat_panjang",
+        resave: false,
+        saveUninitialized: false,
+        cookie: { maxAge: 1000 * 60 * 60 },
+    }),
+);
+
+// Route Utama & Start Server
+app.get("/", (req, res) => {
+    if (req.session.isLoggedIn) {
+        return res.redirect("/dashboard");
+    }
+    return res.redirect("/login");
+});
+
+app.use(routes);
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server berjalan di http://localhost:${PORT}`);
+});

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Permintaan Bimbingan</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styleView.css" />
+  <link rel="stylesheet" href="/css/font.css" />
+  <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon" />
+  <script src="../js/scriptPermintaan.js" defer></script>
+</head>
+
+<body>
+  <div class="nav glass-box">
+    <div class="nav-left">
+      <img src="/assets/HeaderUnpar.png" alt id="unpar" />
+      <img src="/assets/HeaderIF.png" alt id="if" />
+      <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+    </div>
+    <div class="nav-middle">
+      <div id="nav-beranda">
+        <a href="/dashboard">Beranda</a>
+      </div>
+      <div id="nav-riwayat">
+        <a href="/riwayat">Riwayat</a>
+      </div>
+      <div id="nav-pengajuan">
+        <a href="/pengajuan">Pengajuan</a>
+      </div>
+      <div id="nav-permintaan">
+        <a href="/persetujuan">Permintaan</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div id="notif">
+        <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
+      </div>
+      <div id="profile">
+        <a href><i class="ri-account-circle-line"></i></a>
+      </div>
+      <div id="logout">
+        <a href="/logout" id="btn-logout-action"><i class="ri-logout-box-r-line"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="content-wrapper">
+      <h2 class="page-title">Permintaan Bimbingan Saya </h2>
+
+      <div class="glass-box requests-container">
+        <p style="text-align:center; padding:2rem; opacity:0.6;">Memuat data...</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
