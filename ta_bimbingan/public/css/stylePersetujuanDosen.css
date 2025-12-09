@@ -317,12 +317,12 @@ main {
 }
 
 .tolak {
-  background: #004CBD01;
+  background: #1d2b9301!important;
   border: 1.5px solid rgba(255, 255, 255, 0.4);
 }
 
 .terima {
-  background: #004CBD95;
+  background: #00bd4895;
   color: white;
   backdrop-filter: none;
 }

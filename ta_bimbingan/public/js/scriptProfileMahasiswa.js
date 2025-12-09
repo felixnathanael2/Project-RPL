@@ -1,0 +1,45 @@
+// public/js/scriptProfileMahasiswa.js
+
+document.addEventListener("DOMContentLoaded", async () => {
+    
+
+    const setText = (elementId, text, fallback = 'Belum Tersedia') => {
+        const element = document.getElementById(elementId);
+
+        if (element) {
+            element.innerText = text || fallback; 
+        }
+    };
+
+    try {
+        // Fetch data dari API endpoint 
+        const response = await fetch('/api/profile');
+        
+        if (!response.ok) {
+            throw new Error(`Gagal mengambil data profil Mahasiswa. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        setText("profile-nama", data.nama);
+        setText("profile-role-id", `Sarjana | ${data.id_users}`);
+        setText("profile-email", data.email);
+
+        if (data.pembimbing) {
+
+            setText("dosbim-1", data.pembimbing.pembimbing1 || 'Belum Ditentukan');
+            setText("dosbim-2", data.pembimbing.pembimbing2 || 'Belum Ditentukan');
+        } else {
+            setText("dosbim-1", 'Belum Ditentukan');
+            setText("dosbim-2", 'Belum Ditentukan');
+        }
+        
+
+
+    } catch (error) {
+        console.error("Error loading profile data (Mahasiswa):", error);
+        setText("profile-nama", "Gagal Memuat Data");
+        setText("profile-role-id", "Cek Koneksi atau API Server");
+        setText("profile-email", "Error");
+    }
+});
