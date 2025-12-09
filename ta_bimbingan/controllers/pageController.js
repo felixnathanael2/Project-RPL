@@ -152,3 +152,7 @@ export const riwayatAdmin = (req, res) => {
 export const penjadwalan = (req, res) => {
   res.sendFile(path.join(__dirname, "../private/PengajuanBimbinganDosen.html"));
 };
+
+export const lupaPassword = (req, res) => {
+    res.sendFile(path.join(__dirname, "../private/LupaPasswordPage.html"));
+};
