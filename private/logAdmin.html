@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Log Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/logAdmin.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon">
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="/js/scriptLogAdmin.js" defer></script>
+    <script src="/js/scriptLogout.js" defer></script></head>
+
+<!-- HEADER -->
+
+<body>
+    <div class="nav glass-box">
+      <div class="nav-left">
+        <img src="/assets/HeaderUnpar.png" alt id="unpar" />
+        <img src="/assets/HeaderIF.png" alt id="if" />
+        <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+      </div>
+      <div class="nav-middle">
+        <div id="nav-beranda">
+          <a href="/dashboard" class="nav-active">Beranda</a>
+        </div>
+        <div id="nav-area-admin">
+          <a href="/manajemenPengguna">Area Admin</a>
+        </div>
+        <div id="nav-log"><a href="/logAdmin">Log</a></div>
+        <div id="nav-riwayat"><a href="/riwayatAdmin">Riwayat</a></div>
+      </div>
+      <div class="nav-right">
+        <div id="btn-logout-action">
+          <a href="/logout"><i class="ri-logout-box-r-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <div class="glass-box table">
+            <div class="log-header">
+                <h2>Log</h2>
+                <button class="btn-download" onclick="downloadLog()">
+                    <i class="ri-download-2-line"></i>
+                <!-- </button> -->
+            </div>
+            <div class="table-wrapper">
+                <table class="log-table">
+                    <thead>
+                        <tr>
+                            <th>Email Account</th>
+                            <th>Activity</th>
+                            <th>Date Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logTableBody">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div class="footer glass-box">
+        <div class="footer-left">
+            <img src="/assets/LogoMonokromUnpar.png" alt>
+        </div>
+        <div class="footer-right">
+            <p>&copy; 2025 Kelompok 8-A RPL</p>
+        </div>
+    </div>
+</body>
+
+</html>
