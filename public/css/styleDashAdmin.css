@@ -1,0 +1,382 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gilroy', 'Poppins', sans-serif;
+    font-weight: normal;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("../assets/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    overflow: hidden;
+}
+
+.hidden {
+    visibility: hidden;
+    display: none;
+}
+
+/* Efek Blur */
+.glass-box {
+    background: #A3C0EB45;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HEADER */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+}
+
+.nav-left,
+.nav-middle,
+.nav-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-left {
+    gap: 15px;
+    padding-right: 25px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-left img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-middle {
+    gap: 70px;
+}
+
+.nav-middle a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-middle a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Header Kanan */
+.nav-right {
+    gap: 7px;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.nav-right a:hover {
+    transform: scale(1.1);
+}
+
+.nav-right div {
+    padding: 0px 6px;
+}
+
+#nav-beranda {
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    padding: 5px 10px 5px 10px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+}
+
+#nav-beranda a {
+    color: white;
+    font-weight: 700;
+}
+
+/* Main Content */
+main.admin-layout {
+    height: calc(100vh - 140px);
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: grid;
+    grid-template-columns: 1.2fr 1.2fr 0.8fr;
+    gap: 20px;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+/* Kalender */
+.col-kiri {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.calendar-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+#header-kalender {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+#header-kalender h3 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.kalender-bulanan {
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* TOMBOL UPLOAD */
+.upload-btn-admin {
+    height: 60px;
+    width: 100%;
+    background: #004CBD;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: none;
+    box-shadow: 0 4px 15px rgba(0, 76, 189, 0.4);
+    transition: 0.2s;
+}
+
+.upload-btn-admin:hover {
+    background: #003a91;
+    transform: translateY(-2px);
+}
+
+.upload-btn-admin i,
+.upload-btn-admin span {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    transition: 0.3s;
+}
+
+/* Kolom Reminder */
+.col-tengah {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 25px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.riwayat-header {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.riwayat-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.reminder-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 5px;
+    scrollbar-width: none;
+}
+
+.reminder-item {
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 15px;
+}
+
+/* --- KOLOM 3 --- */
+.col-kanan {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* STATS BOX (Grid 2x2) */
+.stats-box {
+    height: 180px;
+    /* Tinggi fix */
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-item h1 {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stat-item span {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* GARIS PEMISAH STATISTIK */
+.divider-v {
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 50%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.divider-h {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 50%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* NOTIF BOX */
+.notif-box {
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.notif-header h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    justify-self: end;
+    align-items: center;
+    padding: 0 2rem;
+    height: 60px !important;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+}
+
+.footer p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.footer-left img {
+    height: 35px;
+    width: auto;
+}
+
+.month_calendar {
+    width: 100% !important;
+    height: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+    grid-template-rows: 30px repeat(6, 1fr) !important;
+    /* Header + 6 Baris Tanggal */
+    border: none !important;
+}
+
+.date-cell {
+    min-height: 0 !important;
+    /* Biarkan menyusut */
+    font-size: 12px;
+}
+
+.schedule-grid {
+    height: 100% !important;
+    overflow-y: auto !important;
+}

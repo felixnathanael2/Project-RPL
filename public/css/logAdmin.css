@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gilroy', 'Poppins', sans-serif;
+    font-weight: normal;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url("../assets/Background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+.glass-box {
+    background: #A3C0EB45;
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 18px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* HEADER */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+}
+
+.nav-left,
+.nav-middle,
+.nav-right {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-left {
+    gap: 15px;
+    padding-right: 25px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-left img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-middle {
+    gap: 70px;
+}
+
+.nav-middle a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+    position: relative;
+}
+
+.nav-middle a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Header Kanan */
+.nav-right {
+    gap: 7px;
+    padding-left: 25px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.nav-right a:hover {
+    transform: scale(1.1);
+}
+
+.nav-right div {
+    padding: 0px 6px;
+}
+
+#nav-log {
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 13px;
+    box-shadow: 0 1px 15px rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 7px;
+}
+
+/* MAIN CONTENT */
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.glass-box.table {
+    width: 60vw;
+    height: 60vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 30px 40px;
+}
+
+.log-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.log-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    text-shadow: 1px 1px 6px white;
+}
+
+.btn-download {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Styling Tabel */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+.log-table th, .log-table td {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: left;
+}
+
+.log-table thead th {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px;
+    text-align: left;
+}
+
+.log-table tbody td {
+    padding: 12px 15px;
+    font-size: 14px;
+    font-weight: 300;
+    vertical-align: middle;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    justify-self: end;
+    align-items: center;
+    padding: 0 2rem;
+    height: 60px !important;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0px !important;
+}
+
+.footer p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.footer-left img {
+    height: 35px;
+    width: auto;
+}
