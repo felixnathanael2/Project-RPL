@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styleProfile.css" />
+    <link rel="stylesheet" href="/css/font.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/MBTA-Icon.png"
+      type="image/x-icon"
+    />
+
+    <script src="/js/scriptProfileMahasiswa.js"></script>
+  </head>
+
+  <body>
+    <div class="nav glass-box">
+      <div class="nav-left">
+        <img src="/assets/HeaderUnpar.png" alt id="UNPAR-Logo" />
+        <img src="/assets/HeaderIF.png" alt id="IF-Logo" />
+        <img src="/assets/MBTA.png" alt="MBTA" id="mbta-Logo" />
+      </div>
+
+      <div class="nav-middle">
+        <div id="nav-beranda">
+          <a href="/dashboard">Beranda</a>
+        </div>
+        <div id="nav-riwayat">
+          <a href="/riwayat">Riwayat</a>
+        </div>
+        <div id="nav-pengajuan">
+          <a href="/pengajuan">Pengajuan</a>
+        </div>
+        <div id="nav-permintaan">
+          <a href="/persetujuan">Permintaan</a>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <div id="notif">
+          <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
+        </div>
+        <div id="profile">
+          <a href="/profile"><i class="ri-account-circle-line"></i></a>
+        </div>
+        <div id="logout">
+          <a href="/login"><i class="ri-logout-box-r-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="content glass-box">
+        <i class="ri-account-circle-line" id="profileLogo"></i>
+        <div id="content-profile1">
+          <div id="information">
+            <!-- biar format bagus aja, hidden -->
+            <h1 id="dummyText">a</h1>
+
+            <h3 id="profile-nama">Michael Gunawan</h3>
+            <p id="profile-role-id">Sarjana | 6182301099</p>
+            <p id="profile-prodi">Informatika</p>
+            <p id="profile-fakultas">Sains</p>
+          </div>
+        </div>
+        <br />
+        <div id="content-profile2"></div>
+        <div id="content-profile3">
+          <div id="contact">
+            <p id="profile-email">6182301099@student.unpar.ac.id</p>
+          </div>
+          <div id="dosbim">
+            <p>Dosen Pembimbing 1</p>
+            <p id="dosbim-1">Raymond</p>
+            <p>Dosen Pembimbing 2</p>
+            <p id="dosbim-2">Vania Natali</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="footer glass-box">
+      <div class="footer-left">
+        <img src="/assets/LogoMonokromUnpar.png" alt />
+      </div>
+      <div class="footer-right">
+        <p>&copy; 2025 Kelompok 8-A RPL</p>
+      </div>
+    </div>
+  </body>
+</html>

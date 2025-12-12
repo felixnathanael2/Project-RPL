@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Riwayat Bimbingan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="/assets/MBTA-Icon.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/styleRiwayat.css" />
+    <link rel="stylesheet" href="/css/font.css" />
+    <script src="/js/scriptLogout.js"></script>
+    <script src="/js/scriptRiwayat.js" defer></script>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="nav glass-box">
+      <div class="nav-left">
+        <img src="/assets/HeaderUnpar.png" alt id="unpar" />
+        <img src="/assets/HeaderIF.png" alt id="if" />
+        <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+      </div>
+      <div class="nav-middle">
+        <div id="nav-beranda">
+          <a href="/">Beranda</a>
+        </div>
+        <div id="nav-riwayat">
+          <a href="/riwayat">Riwayat</a>
+        </div>
+        <div id="nav-pengajuan">
+          <a href="/pengajuan">Pengajuan</a>
+        </div>
+        <div id="nav-permintaan">
+          <a href="/persetujuan">Permintaan</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <div id="notif">
+          <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
+        </div>
+        <div id="profile">
+          <a href="/profile"><i class="ri-account-circle-line"></i></a>
+        </div>
+        <div id="logout">
+          <a href="/logout" id="btn-logout-action"
+            ><i class="ri-logout-box-r-line"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+      <div class="content-wrapper">
+        <h2 class="page-title">Riwayat Bimbingan</h2>
+
+        <div class="glass-container main-card">
+          <h2 style="font-weight: 600">Tugas Akhir 1</h2>
+          <div class="bimbingan-list">
+            <div class="bimbingan-item" data-id="1">
+              <div class="bimbingan-header" onclick="toggleAccordion(this)">
+                <div class="header-info">
+                  <h3>Bimbingan 1</h3>
+                  <span class="date">9 Maret 2025</span>
+                </div>
+                <i class="ri-arrow-down-s-line arrow"></i>
+              </div>
+              <div class="bimbingan-body">
+                <div class="body-content">
+                  <div class="info">
+                    <h3 class="subContent">Tanggal:</h3>
+                  </div>
+
+                  <div class="info">
+                    <h3 class="subContent">Dosen:</h3>
+                  </div>
+
+                  <div class="info">
+                    <h3 class="subContent">Jam:</h3>
+                  </div>
+
+                  <div class="info">
+                    <h3 class="subContent">Lokasi:</h3>
+                  </div>
+
+                  <div class="info">
+                    <h3 class="subContent">Topik:</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <div class="footer glass-box">
+      <div class="footer-left">
+        <img src="/assets/LogoMonokromUnpar.png" alt />
+      </div>
+      <div class="footer-right">
+        <p>&copy; 2025 Kelompok 8-A RPL</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Form Pengajuan Bimbingan Rutin</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="/assets/MBTA-Icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/css/stylePengajuanBimbinganDosen.css" />
+  <link rel="stylesheet" href="/css/font.css" />
+  <script src="/js/scriptPengajuanBimbinganDosen.js" defer></script>
+  <script src="/js/scriptLogout.js" defer></script>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <div class="nav glass-box">
+    <div class="nav-left">
+      <img src="/assets/HeaderUnpar.png" alt id="unpar" />
+      <img src="/assets/HeaderIF.png" alt id="if" />
+      <img src="/assets/MBTA.png" alt="MBTA" id="mbta-logo" />
+    </div>
+    <div class="nav-middle">
+      <div id="nav-beranda">
+        <a href="/">Beranda</a>
+      </div>
+      <div id="nav-riwayat">
+        <a href="/riwayat">Riwayat</a>
+      </div>
+      <div id="nav-pengajuan">
+        <a href="/persetujuan">Persetujuan</a>
+      </div>
+      <div id="nav-permintaan">
+        <a href="/pengajuan">Penjadwalan</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div id="notif">
+        <a href="/notifikasi"><i class="ri-notification-4-line"></i></a>
+      </div>
+      <div id="profile">
+        <a href="/profile"><i class="ri-account-circle-line"></i></a>
+      </div>
+      <div id="logout">
+        <a href="/logout" id="btn-logout-action"><i class="ri-logout-box-r-line"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="glass-container main-card">
+        <h1 class="page-title">Form Pengajuan Bimbingan Rutin</h1>
+
+        <div class="description">
+          Dosen dapat mengisi form ini untuk menjadwalkan bimbingan rutin
+          dengan mahasiswa bimbingannya.
+        </div>
+
+        <div class="custom-select-wrapper">
+          <label>Nama Lengkap</label>
+          <div class="custom-select" id="NamaLengkap">
+            <div class="select-trigger">--Nama Mahasiswa--</div>
+            <div class="select-options">
+              <span class="option">Joseph Davin</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="custom-select-wrapper">
+          <label>Lokasi</label>
+          <div class="custom-select" id="lokasiSelect">
+            <div class="select-trigger">--Lokasi--</div>
+            <div class="select-options">
+              <span class="option">Lab Skripsi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="custom-select-wrapper">
+          <label>Hari Bimbingan</label>
+          <div class="custom-select" id="hariSelect">
+            <div class="select-trigger">--Hari--</div>
+            <div class="select-options">
+              <span class="option">Senin</span>
+              <span class="option">Selasa</span>
+              <span class="option">Rabu</span>
+              <span class="option">Kamis</span>
+              <span class="option">Jumat</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="custom-select-wrapper">
+          <label>Jam</label>
+          <div class="custom-select" id="jamSelect">
+            <div class="select-trigger">--Waktu Bimbingan--</div>
+            <div class="select-options">
+              <span class="option">08:00-09:00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUTTON -->
+        <button class="btn-update">Kirim</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer glass-box">
+    <div class="footer-left">
+      <img src="/assets/LogoMonokromUnpar.png" alt />
+    </div>
+    <div class="footer-right">
+      <p>&copy; 2025 Kelompok 8-A RPL</p>
+    </div>
+  </div>
+</body>
+
+</html>
