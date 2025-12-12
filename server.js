@@ -3,6 +3,8 @@ import "dotenv/config";
 import express from "express";
 import session from "express-session";
 import routes from "./routes/routes.js";
+import { connectDB } from "./db/db.js";
+import * as dosenService from "./services/dosenService.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,49 +23,59 @@ app.use(express.static("public"));
 //saveUninitialized: false: Hemat Tempat & Privasi. Artinya: "Kalau ada orang asing lewat (visit) tapi belum login (belum ada data sesi yang disimpan), jangan buatkan dia sesi di database." Kita cuma buat sesi kalau dia sudah berhasil login.
 //cookie: { maxAge: ... }: Kedaluwarsa Kartu Tamu. Menentukan berapa lama cookie sesi itu valid di browser user. Di sini diset 24 jam (1000 ms * 60 dtk * 60 mnt * 24 jam).
 app.use(
-  session({
-    secret:
-      process.env.SESSION_SECRET || "fallback_secret_key_yang_sangat_panjang",
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 },
-  })
+    session({
+        secret:
+            process.env.SESSION_SECRET || "fallback_secret_key_yang_sangat_panjang",
+        resave: false,
+        saveUninitialized: false,
+        cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 24 Jam
+    })
 );
 
 // Route Utama & Start Server
 app.get("/", (req, res) => {
-  if (req.session.isLoggedIn) {
-    return res.redirect("/dashboard");
-  }
-  return res.redirect("/login");
+    cekBimbinganExpired();
+
+    if (req.session.isLoggedIn) {
+        return res.redirect("/dashboard");
+    }
+    return res.redirect("/login");
 });
 
 app.use(routes);
 
 async function cekBimbinganExpired() {
-  console.log("⏳ Sedang mengecek bimbingan yang sudah lewat...");
-
-  try {
-    // Query: Ubah status jadi 'selesai' jika waktu < SEKARANG dan status masih 'dijadwalkan'
-    const query = `
-        UPDATE bimbingan 
-        SET status = 'Selesai' 
-        WHERE TIMESTAMP(tanggal, waktu) < NOW() 
+    //kalo bimbingan udah lewat waktunya maka akan diset jadi selesai
+    try {
+        const pool = await connectDB();
+        const query = `
+            UPDATE bimbingan
+            SET status = 'Selesai'
+            WHERE TIMESTAMP(tanggal, waktu) < NOW() 
         AND status = 'Disetujui';
-    `;
+        `;
 
-    // Eksekusi Query
-    // (Syntax db.query mungkin beda dikit tergantung library yg kamu pakai: mysql2/pg/sequelize)
-    const [result] = await db.promise().query(query);
+        const [result] = await pool.execute(query);
 
-    console.log(
-      `✅ Selesai! Ada ${result.affectedRows} bimbingan yang statusnya diupdate.`
-    );
-  } catch (error) {
-    console.error("❌ Gagal update bimbingan:", error);
-  }
+        // [FIX] Mengganti fetch dengan logika langsung
+        // Alasan: Fetch ke localhost sering gagal karena butuh token Auth & URL lengkap.
+        // Kita panggil logika update eligible langsung disini.
+
+        const allDosen = await dosenService.getAllDosen();
+
+        // Gunakan Promise.all agar update berjalan paralel untuk semua dosen
+        const updatePromises = allDosen.map(dosen =>
+            dosenService.getStatistikKelayakan(dosen.id_users)
+        );
+
+        await Promise.all(updatePromises);
+        // console.log("System Update: Data Eligible berhasil diperbarui.");
+
+    } catch (error) {
+        console.error(" Gagal update bimbingan:", error);
+    }
 }
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server berjalan di http://localhost:${PORT}`);
+    console.log(`Server berjalan di http://localhost:${PORT}`);
 });
