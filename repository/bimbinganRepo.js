@@ -371,8 +371,8 @@ export async function createBimbinganRutin(listJadwal, dataMhs) {
 
       // 2. Insert ke tabel bimbingan_dosen
       await connection.execute(
-        `INSERT INTO bimbingan_dosen (id_bimbingan, nik, status, catatan_bimbingan) 
-         VALUES (?, ?, 'Disetujui', '-')`,
+        `INSERT INTO bimbingan_dosen (id_bimbingan, nik, status) 
+         VALUES (?, ?, 'Disetujui')`,
         [newId, dataMhs.dosen_id]
       );
     }

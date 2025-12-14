@@ -55,10 +55,6 @@ async function cekBimbinganExpired() {
     // Eksekusi Query
     // (Syntax db.query mungkin beda dikit tergantung library yg kamu pakai: mysql2/pg/sequelize)
     const [result] = await db.promise().query(query);
-
-    console.log(
-      `✅ Selesai! Ada ${result.affectedRows} bimbingan yang statusnya diupdate.`
-    );
   } catch (error) {
     console.error("❌ Gagal update bimbingan:", error);
   }
