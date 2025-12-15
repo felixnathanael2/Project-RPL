@@ -95,12 +95,25 @@ async function loadBimbinganByStudent(npm) {
     const bimbinganList = json.data;
 
     const totalBimbingan = bimbinganList.length;
-
-    container.innerHTML = ""; 
+    const statusEl = document.querySelector('#statusEligible')
+    container.innerHTML = "";
 
     if (!bimbinganList || bimbinganList.length === 0) {
       container.innerHTML =
         "<p style='text-align:center; padding: 20px;'>Belum ada riwayat bimbingan.</p>";
+
+      const isEligible = bimbinganList[0].status_eligible;
+      if (isEligible) {
+        //kalo layak sidang
+        statusEl.style.color = "#10b981"; 
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-checkbox-circle-line"></i> Layak Sidang`;
+      } else {
+        //kalo ga layak sidang 
+        statusEl.style.color = "#ef4444"; 
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-close-circle-line"></i> Tidak Layak Sidang`;
+      }
       return;
     }
 
@@ -131,20 +144,16 @@ async function loadBimbinganByStudent(npm) {
         <div class="bimbingan-body">
           <div class="body-content">
             <label>Catatan</label>
-            <textarea id="note-${
-              bimbingan.id_bimbingan
-            }" placeholder="Masukkan catatan bimbingan.">${catatanAman}</textarea>
+            <textarea id="note-${bimbingan.id_bimbingan
+        }" placeholder="Masukkan catatan bimbingan.">${catatanAman}</textarea>
             <div class="action-btn">
-              <button class="btn-update" onclick="updateCatatan(${
-                bimbingan.id_bimbingan
-              })">Update</button>
+              <button class="btn-update" onclick="updateCatatan(${bimbingan.id_bimbingan
+        })">Update</button>
             </div>
-            <div class="status-bimbingan">Status: ${
-              bimbingan.status || "-"
-            }</div>
-            <div class="dosen-info">Pembimbing: ${
-              bimbingan.nama_dosen || "-"
-            } | Ruangan: ${bimbingan.nama_ruangan || "-"}</div>
+            <div class="status-bimbingan">Status: ${bimbingan.status || "-"
+        }</div>
+            <div class="dosen-info">Pembimbing: ${bimbingan.nama_dosen || "-"
+        } | Ruangan: ${bimbingan.nama_ruangan || "-"}</div>
           </div>
         </div>
       `;

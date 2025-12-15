@@ -17,7 +17,10 @@ import { pengajuanInit } from "../controllers/referensiController.js";
 import * as pageController from "../controllers/pageController.js";
 import * as lupapassController from "../controllers/lupapassController.js";
 import * as lokasiController from "../controllers/lokasiController.js";
-import { showNotifikasi } from "../controllers/notifikasiController.js";
+import {
+  showNotifikasi,
+  markReadNotifikasi,
+} from "../controllers/notifikasiController.js";
 
 const router = express.Router();
 
@@ -59,7 +62,7 @@ router.get("/lupa-password", pageController.lupaPassword);
 
 router.use(protectRoute);
 
-// API ROUTES (JSON Data) 
+// API ROUTES (JSON Data)
 router.post(
   "/api/upload-jadwal",
   upload.single("file_excel"),
@@ -97,6 +100,7 @@ router.get("/api/get-all-dosen", dosenController.getAllDosen);
 //dashboard admin
 router.get("/api/pengajuan-init", pengajuanInit);
 router.get("/api/get-notifikasi", showNotifikasi);
+router.post("/api/mark-read", markReadNotifikasi);
 router.get("/api/manajemen-pengguna", adminController.getAllUsers);
 router.get("/api/log-data", adminController.getLogData);
 
@@ -118,7 +122,7 @@ router.post(
 
 router.get("/api/get-lokasi", lokasiController.getLokasi);
 
-// buat render html 
+// buat render html
 router.get("/dashboard", pageController.dashboard);
 router.get("/pengajuan", pageController.pengajuan);
 router.get("/riwayat", pageController.riwayat);

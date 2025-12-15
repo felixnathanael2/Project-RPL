@@ -21,14 +21,15 @@ export async function getRiwayatBimbingan(userId, role) {
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan, 
-                B.status
+                B.status,
+                DTA.status_eligible
             FROM bimbingan B
             JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
             LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
             JOIN data_ta DTA ON B.id_data = DTA.id_data
             JOIN users U ON BD.nik = U.id_users
             WHERE DTA.id_users = ? 
-            GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status
+            GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status, DTA.status_eligible
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
   } else if (userRole === ROLE_DOSEN) { //kalo role dosen
@@ -87,7 +88,6 @@ export async function getRiwayatBimbingan(userId, role) {
 }
 
 export async function createPengajuan(data) {
-  console.log(data);
   let connection;
   try {
     // konek ke db kek sebelum nya
