@@ -1,5 +1,6 @@
 import { connectDB } from "../db/db.js";
 
+//ambil mahasiswa dengan dosen tertentu
 export async function getMahasiswa(nik) {
   const pool = await connectDB();
   const query = `

@@ -141,7 +141,7 @@ export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
     "16:00",
   ];
 
-  //ambil data kapan saja Dosen & Mhs SIBUK
+  // Ambil data kapan saja Dosen & Mhs SIBUK
   const busySchedules = await jadwalRepo.getBusySlots(
     dosenId,
     mahasiswaId,
@@ -158,6 +158,7 @@ export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
     return !isBusy; // Return true jika TIDAK sibuk
   });
 
+  // Format data untuk dikirim ke Frontend (Dropdown)
   return availableSlots.map((jam) => ({
     label: `${jam} - ${addOneHour(jam)}`, // Contoh: "08:00 - 09:00"
     value: jam, // Value yang akan disimpan ke DB: "08:00"
