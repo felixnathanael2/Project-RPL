@@ -1,7 +1,7 @@
 const modal = document.getElementById("confirmModal");
 const form = document.getElementById("submissionForm");
 
-// Membuka Pop-up (Validasi input)
+//validasi input
 function showModal() {
   const lokasi = document.getElementById("lokasi").value;
   const tanggal = document.getElementById("tanggal").value;
@@ -17,7 +17,7 @@ function showModal() {
   }
 }
 
-// Tutup Pop-up
+
 function closePopUp() {
   modal.classList.remove("show");
 }
@@ -46,7 +46,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const locSelect = document.getElementById("lokasi");
     locSelect.innerHTML = "<option>--Pilih Ruangan--</option>";
 
-    console.log("data lokasi:", data.lokasi);
     data.lokasi.forEach((l) => {
       locSelect.innerHTML += `<option value="${l.id_lokasi}">${l.nama_ruangan}</option>`;
     });
@@ -139,7 +138,7 @@ async function updateSlots() {
     const [h, m] = start.split(":").map(Number);
     const endHour = h + 1;
 
-    // Format biar tetap 2 digit
+    // Format biar jadi 2 digit
     const formatted = `${String(endHour).padStart(2, "0")}:${String(m).padStart(
       2,
       "0"

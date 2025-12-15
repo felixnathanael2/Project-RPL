@@ -2,34 +2,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectWrapper = document.querySelector(".custom-select");
   const selectTrigger = document.querySelector(".select-trigger");
 
-  // 1. Logic Toggle Dropdown (UI)
   selectTrigger.addEventListener("click", function (e) {
     e.stopPropagation();
     selectWrapper.classList.toggle("open");
   });
 
-  // 2. Tutup dropdown jika klik di luar
   document.addEventListener("click", function (e) {
     if (!selectWrapper.contains(e.target)) {
       selectWrapper.classList.remove("open");
     }
   });
 
-  // 3. Load data awal
   loadStudents();
 });
 
-// --- FUNGSI GLOBAL ---
 
-// Toggle accordion (Dipanggil via onclick di HTML)
 function toggleAccordion(headerElement) {
   const item = headerElement.parentElement;
   item.classList.toggle("active");
 }
 
-// Load mahasiswa untuk dropdown
 async function loadStudents() {
-  // Ambil elemen DOM lagi di sini agar scope-nya terbaca
   const selectWrapper = document.querySelector(".custom-select");
   const selectedText = document.getElementById("selectedStudent");
   const selectOptions = document.querySelector(".select-options");
@@ -74,7 +67,7 @@ async function loadStudents() {
       });
     });
 
-    // Default: Pilih mahasiswa pertama saat load awal
+    // defaultnuya pilih mahasiswa pertama saat load awal
     if (students.length > 0) {
       const first = students[0];
       selectedText.textContent = `${first.id_users} - ${first.nama}`;
@@ -91,7 +84,6 @@ async function loadStudents() {
   }
 }
 
-// Load bimbingan mahasiswa
 async function loadBimbinganByStudent(npm) {
   const container = document.querySelector(".bimbingan-list");
   container.innerHTML =
@@ -104,7 +96,7 @@ async function loadBimbinganByStudent(npm) {
 
     const totalBimbingan = bimbinganList.length;
 
-    container.innerHTML = ""; // Hapus loader
+    container.innerHTML = ""; 
 
     if (!bimbinganList || bimbinganList.length === 0) {
       container.innerHTML =
@@ -165,13 +157,11 @@ async function loadBimbinganByStudent(npm) {
   }
 }
 
-// Update catatan
 async function updateCatatan(bimbinganID) {
   const noteElement = document.getElementById(`note-${bimbinganID}`);
   const note = noteElement.value;
   const btn = noteElement.nextElementSibling.querySelector("button");
 
-  // UX: Disable button saat loading
   const originalText = btn.textContent;
   btn.textContent = "Menyimpan...";
   btn.disabled = true;
@@ -189,7 +179,7 @@ async function updateCatatan(bimbinganID) {
     const result = await res.json();
 
     if (result.success || res.ok) {
-      // Cek res.ok juga untuk jaga-jaga
+      // Cek res.ok untuk jaga-jaga
       alert("Catatan berhasil diperbarui!");
     } else {
       alert("Gagal update catatan: " + (result.message || "Unknown error"));

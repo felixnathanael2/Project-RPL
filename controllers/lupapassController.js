@@ -1,19 +1,17 @@
 import * as lupapassService from "../services/lupapassService.js";
 
-// Request OTP
+//req otp 
 export const requestOTP = async (req, res) => {
   try {
     const { email } = req.body;
-    // Panggil Service
     const token = await lupapassService.requestOTPService(email);
-    // Kirim Response Sukses
     return res.status(200).json({
       status: "success",
       message: "OTP berhasil dibuat",
       token: token,
     });
   } catch (error) {
-    // Kalau Email ga terdaftar
+    // kalo email ga terdaftar
     if (error.message.includes("Email tidak terdaftar")) {
       return res.status(404).json({ message: error.message });
     }
@@ -23,22 +21,21 @@ export const requestOTP = async (req, res) => {
   }
 };
 
-// Reset Password
 export const resetPassword = async (req, res) => {
   try {
     const { email, token, newPassword } = req.body;
-    // Validasi input dasar
+
+    // validasi input
     if (!email || !token || !newPassword) {
       return res.status(400).json({ message: "Data tidak lengkap!" });
     }
-    // Panggil Service
     await lupapassService.resetPasswordService(email, token, newPassword);
     return res.status(200).json({
       status: "success",
       message: "Password berhasil diganti! Silakan login.",
     });
   } catch (error) {
-    // Error Handling Token Salah/Expired
+    // kalo token salah/expired
     if (
       error.message.includes("Token") ||
       error.message.includes("permintaan")

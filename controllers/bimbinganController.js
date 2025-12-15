@@ -213,11 +213,10 @@ export const updateStatus = async (req, res) => {
       });
     }
 
-    // Panggil Service (Service akan panggil Repo)
     await bimbinganService.updateStatusBimbingan({
       id_bimbingan,
       nik,
-      button: parseInt(button), // Pastikan jadi integer (1 atau 0)
+      button: parseInt(button),
       notes: notes || "",
     });
 

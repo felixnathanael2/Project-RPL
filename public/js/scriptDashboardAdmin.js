@@ -234,7 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // C. Navigation Logic (Next/Prev Month)
   const btnNext = document.querySelector(".ri-arrow-right-s-line");
   const btnPrev = document.querySelector(".ri-arrow-left-s-line");
 
@@ -246,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
         currentYear++;
       }
 
-      // Update UI dengan fungsi dari scriptCalender.js
       updateCalendarHeader();
       generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
     });
@@ -260,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
         currentYear--;
       }
 
-      // Update UI dengan fungsi dari scriptCalender.js
       updateCalendarHeader();
       generateCalendarGrid(currentYear, currentMonth, globalDataJadwal);
     });

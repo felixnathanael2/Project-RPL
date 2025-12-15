@@ -5,10 +5,9 @@ export const getDashboardDosenStats = async (req, res) => {
     try {
         const nik = req.user.id;
 
-        // Logic UTS/UAS dan perhitungan gabungan TA sudah otomatis di handle Service ini
+        // cari yang layak sidang yang mana aja
         const strLayakSidang = await dosenService.getStatistikKelayakan(nik);
 
-        // 2. Total mahasiswa yang dibimbing (helper service baru)
         const totalMahasiswa = await dosenService.getAllMahasiswaByDosen(nik);
 
         // total pertemuan bimbingan dengan semua mahasiswa (blm difilter)
@@ -84,7 +83,7 @@ export const updateAllEligible = async (req, res) => {
     try {
         const rawData = await dosenService.getAllDosen();
 
-        // Loop satu per satu (Sequential)
+        // ini tuh biar kalo ada yang login ntar tuh dia ngeupdate semua kelayakan sidang atau ngga untuk semua dosen
         for (const dosen of rawData) {
             await dosenService.getStatistikKelayakan(dosen.id_users);
         }

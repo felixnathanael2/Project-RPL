@@ -110,19 +110,15 @@ export const getMyJadwal = async (req, res) => {
     res.status(500).json({ message: "Gagal mengambil jadwal kuliah" });
   }
 };
-//-------------------------------------------------------
 // INI YANG BARU BUAT PENGAJUAN DOSEN
 
 export const getAvailability = async (req, res) => {
   try {
-    // 1. Ambil data dari query params (?npm=...&hari=...)
     const { npm, hari } = req.query;
 
-    // Ambil ID Dosen dari session login (Middleware Auth)
-    // GANTI 'req.session.user.id' sesuai cara kamu simpan user login
     const dosenId = req.session?.user?.id || "D001_HARDCODED_TEST";
 
-    // Validasi input
+    //validasi input 
     if (!npm || !hari) {
       return res.status(400).json({
         success: false,
@@ -130,16 +126,14 @@ export const getAvailability = async (req, res) => {
       });
     }
 
-    // 2. Panggil Service
     const availableSlots = await jadwalService.checkTimeAvailability(
       dosenId,
       npm,
       hari
     );
 
-    // 3. Kirim hasil
     if (availableSlots.length === 0) {
-      return res.json([]); // Array kosong artinya penuh semua
+      return res.json([]); 
     }
 
     return res.json(availableSlots);

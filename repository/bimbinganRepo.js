@@ -3,13 +3,11 @@ import { connectDB } from "../db/db.js";
 export async function getRiwayatBimbingan(userId, role) {
   const pool = await connectDB();
 
-  // 1. [FIX] Konversi role ke Number agar aman (Jaga-jaga kalau dari session string)
   const userRole = Number(role);
   const ROLE_MAHASISWA = 1;
   const ROLE_DOSEN = 2;
   const ROLE_ADMIN = 3;
-  let query = ""; // Inisialisasi string kosong
-
+  let query = ""; 
   if (userRole === ROLE_MAHASISWA) {
     query = `
             SELECT 
@@ -96,7 +94,6 @@ export async function createPengajuan(data) {
 
     const [id_data] = await connection.execute(queryDataTA, [data.npm]);
 
-    // A. Insert Bimbingan
     const queryInsert = `
           INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, catatan_bimbingan, status)
           VALUES (?, ?, ?, ?, '-', 'Menunggu')
@@ -140,6 +137,12 @@ export async function createPengajuan(data) {
         nik,
       ]);
     }
+
+    const logQuery = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await connection.execute(logQuery, [
+      data.npm,
+      `Pengajuan bimbingan`
+    ]);
 
     // nah ini commit baru masukin data data tadi ke db
     await connection.commit();
@@ -213,9 +216,13 @@ export async function updateStatusBimbingan(data) {
         SET status = ?
         WHERE id_bimbingan = ? AND nik = ?
     `;
-
+  const logQuery = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
   if (button === 1) {
     await pool.execute(queryAlter, ["Disetujui", id_bimbingan, nik]);
+    await pool.execute(logQuery, [
+      nik,
+      `Menyetujui bimbingan`
+    ]);
   } else {
     await pool.execute(queryAlter, ["Ditolak", id_bimbingan, nik]);
     await pool.execute(
@@ -231,7 +238,13 @@ export async function updateStatusBimbingan(data) {
       `UPDATE bimbingan SET catatan_bimbingan = ? WHERE id_bimbingan = ?`,
       [notes, id_bimbingan]
     );
+
+    await pool.execute(logQuery, [
+      nik,
+      `Menolak bimbingan mahasiswa ${npm} untuk tanggal ${tanggal}. Alasan: ${notes || '-'}`
+    ]);
     return true;
+
   }
 
   const queryNotif = `
@@ -332,23 +345,21 @@ export async function getEndSemesterDate() {
   const [rows] = await pool.execute(query);
 
   if (rows.length === 0) {
-    // Fallback: Jika tidak ada di DB, return null (nanti di service dilimit manual misal 4 bulan)
+    // klo ga ada di DB, return null (nanti di service dilimit manual misal 4 bulan)
     return null;
   }
   return rows[0].tanggal_UAS_selesai; // Return object Date
 }
 
-// 2. Insert Banyak (Bulk Transaction)
 export async function createBimbinganRutin(listJadwal, dataMhs) {
-  // listJadwal: Array of dates ['2024-10-01', '2024-10-08', ...]
+  // listJadwal: ['2024-10-01', '2024-10-08', ...]
   // dataMhs: { npm, id_lokasi, waktu, dosen_id }
   const pool = await connectDB();
   const connection = await pool.getConnection();
 
   try {
-    await connection.beginTransaction(); // Mulai Transaksi
+    await connection.beginTransaction();
 
-    // A. Cari ID Data TA Mahasiswa (Cukup sekali query)
     const [mhsRows] = await connection.execute(
       `SELECT id_data FROM data_ta WHERE id_users = ? LIMIT 1`,
       [dataMhs.npm]
@@ -357,10 +368,9 @@ export async function createBimbinganRutin(listJadwal, dataMhs) {
     if (mhsRows.length === 0) throw new Error("Mahasiswa belum ambil TA");
     const idData = mhsRows[0].id_data;
 
-    // B. LOOPING INSERT
-    // Kita loop setiap tanggal yang sudah digenerate Service
+    const logQuery = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+
     for (const tanggal of listJadwal) {
-      // 1. Insert ke tabel bimbingan
       const [resBim] = await connection.execute(
         `INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, status) 
          VALUES (?, ?, ?, ?, 'Disetujui')`,
@@ -369,7 +379,6 @@ export async function createBimbinganRutin(listJadwal, dataMhs) {
 
       const newId = resBim.insertId;
 
-      // 2. Insert ke tabel bimbingan_dosen
       await connection.execute(
         `INSERT INTO bimbingan_dosen (id_bimbingan, nik, status) 
          VALUES (?, ?, 'Disetujui')`,
@@ -377,10 +386,16 @@ export async function createBimbinganRutin(listJadwal, dataMhs) {
       );
     }
 
-    await connection.commit(); // Simpan permanen semua jadwal
-    return listJadwal.length; // Return berapa banyak jadwal yang dibuat
+    await connection.execute(logQuery, [
+        dataMhs.dosen_id,
+        `Membuat jadwal rutin (${listJadwal.length} pertemuan) untuk mahasiswa ${dataMhs.npm}`
+      ]);
+
+
+    await connection.commit(); // simpen semua jadwal
+    return listJadwal.length; 
   } catch (error) {
-    await connection.rollback(); // Batalkan SEMUA jika ada 1 error
+    await connection.rollback(); // kalo ada eror 1 batalin semua krn pake transaction
     throw new Error(error.message);
   } finally {
     connection.release();
