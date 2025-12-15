@@ -38,7 +38,7 @@ export async function getStatistikKelayakanAdmin() {
     //ambil semua mahasiswa eligible
     const dataMahasiswa = await adminRepo.getAllMahasiswaEligible();
 
-    // Kalau misal ga ada mahasiswa, set dlu aja ke 0/0
+    // kalo misal ga ada mahasiswa, set dlu aja ke 0/0
     if (!dataMahasiswa || dataMahasiswa.length === 0) {
         return "0 / 0";
     }
@@ -51,7 +51,6 @@ export async function getStatistikKelayakanAdmin() {
     const tanggalUTS = new Date(dataMahasiswa[0].tanggal_UTS_selesai);
     const isPreUTS = today <= tanggalUTS;
 
-    // Loop setiap mahasiswanya
     dataMahasiswa.forEach((mhs) => {
         const tipe = parseInt(mhs.jenis_ta_final); // 1 (TA1), 2 (TA2), 3 (2" nya)
         const bimbinganPreUTS = parseInt(mhs.total_bimbingan_pre_uts || 0);

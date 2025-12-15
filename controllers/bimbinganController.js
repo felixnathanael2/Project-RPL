@@ -52,6 +52,13 @@ export const ajukanBimbingan = async (req, res) => {
     // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
     const { tanggal, waktu, lokasiId, nik } = req.body;
 
+    if (!tanggal || !waktu || !lokasiId || !nik || nik.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Data tidak lengkap. Harap isi tanggal, waktu, lokasi, dan dosen."
+      });
+    }
+
     await bimbinganService.createPengajuan({
       tanggal,
       waktu,
@@ -206,11 +213,10 @@ export const updateStatus = async (req, res) => {
       });
     }
 
-    // Panggil Service (Service akan panggil Repo)
     await bimbinganService.updateStatusBimbingan({
       id_bimbingan,
       nik,
-      button: parseInt(button), // Pastikan jadi integer (1 atau 0)
+      button: parseInt(button),
       notes: notes || "",
     });
 

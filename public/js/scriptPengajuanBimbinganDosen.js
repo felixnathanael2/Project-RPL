@@ -7,14 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     timeSlot: null,
   };
 
-  // --- DOM ELEMENTS ---
   const studentSelect = document.getElementById("NamaLengkap");
   const locationSelect = document.getElementById("lokasiSelect");
   const daySelect = document.getElementById("hariSelect");
   const timeSelect = document.getElementById("jamSelect");
   const btnSubmit = document.querySelector(".btn-update");
 
-  // --- INITIALIZATION ---
   init();
 
   function init() {
@@ -23,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadLocations();
   }
 
-  // --- UI LOGIC ---
   function setupDropdownUI() {
     const selects = document.querySelectorAll(".custom-select");
     selects.forEach((select) => {
@@ -76,11 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- DATA LOADING ---
   async function loadStudents() {
     try {
-      // Pastikan URL endpoint backend benar
-      const response = await fetch("/api/get-mahasiswa"); // Sesuaikan URL
+      const response = await fetch("/api/get-mahasiswa"); 
       const json = await response.json();
-      const data = json.data || json; // Handle struktur response {data: []} atau langsung []
-
+      const data = json.data || json; 
       const formattedData = data.map((mhs) => ({
         label: `${mhs.nama}`,
         value: mhs.id_users,
@@ -114,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- EVENT LISTENER HARI ---
   const dayOptions = daySelect.querySelectorAll(".option");
   dayOptions.forEach((opt) => {
     opt.addEventListener("click", function () {
@@ -125,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- CHECK AVAILABILITY ---
   async function checkAvailability() {
     const timeTrigger = timeSelect.querySelector(".select-trigger");
     timeTrigger.textContent = "-- Loading Jadwal... --";
@@ -141,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
         hari: formData.day,
       });
 
-      // Pastikan route backend ini benar
       const response = await fetch(`/api/check-availability-dosen?${params}`);
       const availableSlots = await response.json();
 
@@ -160,11 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // --- SINGLE SUBMISSION LISTENER (Gunakan logic Rutin) ---
   btnSubmit.addEventListener("click", async function (e) {
     e.preventDefault();
 
-    // 1. Validasi
     if (
       !formData.studentId ||
       !formData.locationId ||
@@ -175,7 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 2. Konfirmasi UX
     const isConfirmed = confirm(
       `Apakah Anda yakin ingin menjadwalkan bimbingan RUTIN setiap hari ${formData.day} ` +
         `jam ${formData.timeSlot} sampai akhir semester?`
@@ -183,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isConfirmed) return;
 
-    // 3. Payload
     const payload = {
       npm: formData.studentId,
       id_lokasi: formData.locationId,
@@ -191,14 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
       jam_mulai: formData.timeSlot,
     };
 
-    // 4. Loading UI
     const originalText = btnSubmit.innerText;
     btnSubmit.innerText = "Sedang Memproses...";
     btnSubmit.disabled = true;
 
     try {
-      // NOTE: Pastikan URL ini sama dengan yang ada di routes/index.js backend kamu
-      // Kalau di backend kamu pakai '/api/submit-bimbingan', gunakan itu.
       const response = await fetch("/api/submit-bimbingan-rutin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

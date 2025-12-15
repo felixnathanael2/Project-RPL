@@ -30,7 +30,7 @@ export async function getUnavailableJadwal(date, nik, npm) {
 
   const dosenPlaceholders = nik.map(() => "?").join(",");
 
-  // -----------------------------------------------------------------
+  // 
   // Sekarang cek jadwal user juga, yang ada matkul matkul atau dosen sibuk
   // ubah dulu tanggal nya jadi hari, misal tgl nov 22 jadi hari sabtu
   const dateObj = new Date(date);

@@ -9,5 +9,5 @@ export async function getLokasi() {
     "SELECT id_lokasi, nama_ruangan FROM lokasi",
   );
 
-  return rows; // Kembalikan array lokasi
+  return rows; 
 }

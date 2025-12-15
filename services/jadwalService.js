@@ -105,7 +105,6 @@ export async function processJadwalExcel(filePath, id_users) {
   }
 }
 
-// --- Helper Functions (Private di file ini) ---
 
 // Fungsi nambah 1 jam untuk label (08:00 -> 09:00)
 const addOneHour = (timeStr) => {
@@ -127,10 +126,9 @@ const isTimeOverlap = (targetJam, start, end) => {
   return target >= s && target < e;
 };
 
-// --- Main Service Function ---
 
 export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
-  // Definisikan Slot Waktu Bimbingan yang tersedia secara umum
+  // bikin slot Waktu Bimbingan yang tersedia secara umum
   const allSlots = [
     "08:00",
     "09:00",
@@ -150,9 +148,9 @@ export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
     hari
   );
 
-  // Filter: Hanya ambil slot yang TIDAK bentrok
+  //  ambil slot yang TIDAK bentrok aja
   const availableSlots = allSlots.filter((slotJam) => {
-    // Cek apakah slotJam ini overlap dengan salah satu jadwal sibuk
+    // cek apakah slotJam ini overlap dengan salah satu jadwal sibuk
     const isBusy = busySchedules.some((schedule) => {
       return isTimeOverlap(slotJam, schedule.jam_mulai, schedule.jam_akhir);
     });

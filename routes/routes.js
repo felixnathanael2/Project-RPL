@@ -21,9 +21,6 @@ import { showNotifikasi } from "../controllers/notifikasiController.js";
 
 const router = express.Router();
 
-// ==========================================
-// KONFIGURASI MULTER (UPLOAD EXCEL)
-// ==========================================
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads");
 }
@@ -62,7 +59,7 @@ router.get("/lupa-password", pageController.lupaPassword);
 
 router.use(protectRoute);
 
-// --- API ROUTES (JSON Data) ---
+// API ROUTES (JSON Data) 
 router.post(
   "/api/upload-jadwal",
   upload.single("file_excel"),
@@ -121,7 +118,7 @@ router.post(
 
 router.get("/api/get-lokasi", lokasiController.getLokasi);
 
-// --- PAGE ROUTES (Render HTML) ---
+// buat render html 
 router.get("/dashboard", pageController.dashboard);
 router.get("/pengajuan", pageController.pengajuan);
 router.get("/riwayat", pageController.riwayat);

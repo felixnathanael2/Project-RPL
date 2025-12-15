@@ -34,6 +34,10 @@ function getInputDataMahasiswa(email, roleStr) {
     alert("NPM dan Nama wajib diisi!");
     return null;
   }
+  if (dosbing1Select.value === '-' ) {
+    alert("Minimah harus ada 1 dosen pembimbing!");
+    return null;
+  }
 
   return {
     id_users: npmInput.value,

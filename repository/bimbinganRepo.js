@@ -149,6 +149,12 @@ export async function createPengajuan(data) {
       ]);
     }
 
+    const logQuery = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+    await connection.execute(logQuery, [
+      data.npm,
+      `Pengajuan bimbingan`
+    ]);
+
     // nah ini commit baru masukin data data tadi ke db
     await connection.commit();
 
@@ -223,10 +229,14 @@ export async function updateStatusBimbingan(data) {
         SET status = ?
         WHERE id_bimbingan = ? AND nik = ?
     `;
-
-  if (button === 1) { //kalo button value 1 artinya tombol disetujui dipencet
+  const logQuery = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+  if (button === 1) {
     await pool.execute(queryAlter, ["Disetujui", id_bimbingan, nik]);
-  } else {  //kalo button value bukan 1 artinya tombol tolak dipencet
+    await pool.execute(logQuery, [
+      nik,
+      `Menyetujui bimbingan`
+    ]);
+  } else {
     await pool.execute(queryAlter, ["Ditolak", id_bimbingan, nik]);
     await pool.execute(
       `UPDATE bimbingan SET status = ? WHERE id_bimbingan = ?`,
@@ -244,7 +254,13 @@ export async function updateStatusBimbingan(data) {
       `UPDATE bimbingan SET catatan_bimbingan = ? WHERE id_bimbingan = ?`,
       [notes, id_bimbingan]
     );
+
+    await pool.execute(logQuery, [
+      nik,
+      `Menolak bimbingan mahasiswa ${npm} untuk tanggal ${tanggal}. Alasan: ${notes || '-'}`
+    ]);
     return true;
+
   }
 
   const queryNotif = `
@@ -355,7 +371,7 @@ export async function getEndSemesterDate() {
   const [rows] = await pool.execute(query);
 
   if (rows.length === 0) {
-    // Fallback: Jika tidak ada di DB, return null (nanti di service dilimit manual misal 4 bulan)
+    // klo ga ada di DB, return null (nanti di service dilimit manual misal 4 bulan)
     return null;
   }
   return rows[0].tanggal_UAS_selesai; // Return object Date
@@ -363,13 +379,13 @@ export async function getEndSemesterDate() {
 
 //Insert Banyak (Bulk Transaction)
 export async function createBimbinganRutin(listJadwal, dataMhs) {
-  // listJadwal: Array of dates ['2024-10-01', '2024-10-08', ...]
+  // listJadwal: ['2024-10-01', '2024-10-08', ...]
   // dataMhs: { npm, id_lokasi, waktu, dosen_id }
   const pool = await connectDB();
   const connection = await pool.getConnection();
 
   try {
-    await connection.beginTransaction(); // Mulai Transaksi
+    await connection.beginTransaction();
 
     //Cari ID Data TA Mahasiswa (Cukup sekali query)
     const [mhsRows] = await connection.execute(
@@ -380,10 +396,9 @@ export async function createBimbinganRutin(listJadwal, dataMhs) {
     if (mhsRows.length === 0) throw new Error("Mahasiswa belum ambil TA");
     const idData = mhsRows[0].id_data;
 
-    //LOOPING INSERT
-    // Kita loop setiap tanggal yang sudah digenerate Service
+    const logQuery = `INSERT INTO log_aktivitas (id_users, aksi) VALUES (?, ?)`;
+
     for (const tanggal of listJadwal) {
-      //Insert ke tabel bimbingan
       const [resBim] = await connection.execute(
         `INSERT INTO bimbingan (id_data, id_lokasi, tanggal, waktu, status) 
          VALUES (?, ?, ?, ?, 'Disetujui')`,
@@ -394,16 +409,22 @@ export async function createBimbinganRutin(listJadwal, dataMhs) {
 
       //Insert ke tabel bimbingan_dosen
       await connection.execute(
-        `INSERT INTO bimbingan_dosen (id_bimbingan, nik, status, catatan_bimbingan) 
-         VALUES (?, ?, 'Disetujui', '-')`,
+        `INSERT INTO bimbingan_dosen (id_bimbingan, nik, status) 
+         VALUES (?, ?, 'Disetujui')`,
         [newId, dataMhs.dosen_id]
       );
     }
 
-    await connection.commit(); // Simpan permanen semua jadwal
-    return listJadwal.length; // Return berapa banyak jadwal yang dibuat
+    await connection.execute(logQuery, [
+        dataMhs.dosen_id,
+        `Membuat jadwal rutin (${listJadwal.length} pertemuan) untuk mahasiswa ${dataMhs.npm}`
+      ]);
+
+
+    await connection.commit(); // simpen semua jadwal
+    return listJadwal.length; 
   } catch (error) {
-    await connection.rollback(); // Batalkan SEMUA jika ada 1 error
+    await connection.rollback(); // kalo ada eror 1 batalin semua krn pake transaction
     throw new Error(error.message);
   } finally {
     connection.release();
