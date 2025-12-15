@@ -1,4 +1,7 @@
+// Variabel global untuk menyimpan data pengguna
 let dataUsers = [];
+
+// Ambil data dari Backend
 async function fetchDataUsers() {
   try {
     const response = await fetch("/api/manajemen-pengguna");
@@ -12,6 +15,7 @@ async function fetchDataUsers() {
   }
 }
 
+// masukin data ke tabel
 async function renderTabel() {
   const tableBody = document.getElementById("mpTableBody");
 
@@ -35,6 +39,7 @@ async function renderTabel() {
   }
 }
 
+// Fungsi add user nanti di pindah ke halaman nambah user
 function addUsers() {
   try {
     window.location.href = "/addUser";

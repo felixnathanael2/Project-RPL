@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const tableBody = document.getElementById("logTableBody");
 
-    if (tableBody) {
+    if (tableBody) { 
         tableBody.innerHTML = "";
         mockLogs.forEach(log => {
             const row = document.createElement("tr");
-
+            // Masukin variabelnya 
             row.innerHTML = `
                 <td>${log.email}</td>
                 <td>${log.activity}</td>

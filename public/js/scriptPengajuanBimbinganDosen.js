@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- STATE MANAGEMENT ---
+
+  // STATE MANAGEMENT
   const formData = {
     studentId: null,
     locationId: null,
@@ -7,39 +8,45 @@ document.addEventListener("DOMContentLoaded", () => {
     timeSlot: null,
   };
 
+  // Refernsi buat dropdown sama sumbut button
   const studentSelect = document.getElementById("NamaLengkap");
   const locationSelect = document.getElementById("lokasiSelect");
   const daySelect = document.getElementById("hariSelect");
   const timeSelect = document.getElementById("jamSelect");
   const btnSubmit = document.querySelector(".btn-update");
 
-  init();
-
+  init(); // Inisialisasi
   function init() {
     setupDropdownUI();
     loadStudents();
     loadLocations();
   }
 
+  // Buku/Tutup dropdown
   function setupDropdownUI() {
     const selects = document.querySelectorAll(".custom-select");
     selects.forEach((select) => {
       const trigger = select.querySelector(".select-trigger");
+
+      // Klik trigger
       trigger.addEventListener("click", (e) => {
         e.stopPropagation();
         closeAllSelects(select);
         select.classList.toggle("open");
       });
     });
+    // Menutup semua dropdown kalo klik d luar area utama
     window.addEventListener("click", () => closeAllSelects(null));
   }
 
+  // Tutup dropdown kecuali yg di butuhkan
   function closeAllSelects(except) {
     document.querySelectorAll(".custom-select").forEach((s) => {
       if (s !== except) s.classList.remove("open");
     });
   }
 
+  // Buat dropdown berdasarkan DB
   function populateDropdown(selectElement, items, onSelectCallback) {
     const optionsContainer = selectElement.querySelector(".select-options");
     const trigger = selectElement.querySelector(".select-trigger");
@@ -70,12 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- DATA LOADING ---
+  // ambil daftar mahasiswa bimbingan
   async function loadStudents() {
     try {
-      const response = await fetch("/api/get-mahasiswa"); 
+      const response = await fetch("/api/get-mahasiswa");
       const json = await response.json();
-      const data = json.data || json; 
+      const data = json.data || json;
       const formattedData = data.map((mhs) => ({
         label: `${mhs.nama}`,
         value: mhs.id_users,
@@ -90,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Ambil daftar lokasi/ruangan
   async function loadLocations() {
     try {
       const response = await fetch("/api/get-lokasi"); // Sesuaikan URL
@@ -119,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ambil slot jam yang tersedia
   async function checkAvailability() {
     const timeTrigger = timeSelect.querySelector(".select-trigger");
     timeTrigger.textContent = "-- Loading Jadwal... --";
@@ -152,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Submit event listener
   btnSubmit.addEventListener("click", async function (e) {
     e.preventDefault();
 
@@ -167,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isConfirmed = confirm(
       `Apakah Anda yakin ingin menjadwalkan bimbingan RUTIN setiap hari ${formData.day} ` +
-        `jam ${formData.timeSlot} sampai akhir semester?`
+      `jam ${formData.timeSlot} sampai akhir semester?`
     );
 
     if (!isConfirmed) return;
@@ -195,9 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (result.success) {
         alert(
           `SUKSES!\n\n` +
-            `${result.message}\n` +
-            `Rentang: ${result.data.rentang}\n\n` +
-            `Silakan cek menu Riwayat.`
+          `${result.message}\n` +
+          `Rentang: ${result.data.rentang}\n\n` +
+          `Silakan cek menu Riwayat.`
         );
         window.location.href = "/riwayat";
       } else {
