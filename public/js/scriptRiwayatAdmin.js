@@ -1,4 +1,4 @@
-// Variabel global untuk menyimpan data agar bisa didownload
+// Variabel global untuk nyimpen data agar bisa didownload
 let historyData = [];
 
 async function fetchRiwayatAdmin() {
@@ -9,7 +9,6 @@ async function fetchRiwayatAdmin() {
 
     const result = await response.json();
 
-    // Simpan data ke variabel global untuk fitur download
     historyData = result.data || [];
 
     renderHistory(historyData);
@@ -134,7 +133,6 @@ function downloadHistory() {
 document.addEventListener("DOMContentLoaded", () => {
   fetchRiwayatAdmin();
 
-  // Bind tombol download jika belum ada di HTML onclick
   const btnDownload = document.getElementById("downloadButton");
   if (btnDownload) {
     btnDownload.onclick = downloadHistory;

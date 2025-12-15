@@ -56,7 +56,7 @@ body {
     height: 100%;
 }
 
-/* Logo (Ukuran, posisi, DLL) */
+
 .nav-left {
     gap: 15px;
     padding-right: 25px;
@@ -145,12 +145,10 @@ body {
     padding-left: 5px;
 }
 
-/* CONTAINER KACA BESAR */
 .glass-container.main-card {
     background: rgba(255, 255, 255, 0.1);
-    /* Transparan kebiruan sesuai gambar */
+    
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
     border-radius: 20px;
@@ -164,11 +162,10 @@ body {
     overflow-x: hidden;
 }
 
-/* --- DROPDOWN CUSTOM (Sesuai Gambar 1) --- */
+/*dropdown*/
 .custom-select-wrapper {
     position: relative;
     width: fit-content;
-    /* Lebar menyesuaikan isi */
     z-index: 50;
     margin-bottom: 10px;
 }
@@ -178,7 +175,7 @@ body {
     cursor: pointer;
 }
 
-/* Trigger (Tombol yang terlihat awal) */
+
 .select-trigger {
     display: flex;
     justify-content: space-between;
@@ -187,11 +184,9 @@ body {
     padding: 10px 20px;
 
     background: rgba(255, 255, 255, 0.15);
-    /* Glassy Pill */
+
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50px;
-    /* Bentuk Pill */
-
     font-weight: 600;
     font-size: 15px;
     color: white;
@@ -204,18 +199,14 @@ body {
     border-color: white;
 }
 
-/* List Opsi (Saat dibuka) */
 .select-options {
     position: absolute;
     top: 0;
     left: 0;
-    /* Menumpuk di atas trigger */
     width: 100%;
 
     background: rgba(86, 154, 218, 0.9);
-    /* Warna biru kaca sesuai gambar */
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
 
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -225,11 +216,11 @@ body {
     visibility: hidden;
     transform: scale(0.95);
     transform-origin: top left;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);/*animasi*/
     overflow: hidden;
 }
 
-/* State Open */
+
 .custom-select.open .select-options {
     opacity: 1;
     visibility: visible;
@@ -249,11 +240,10 @@ body {
 .option:last-child {
     border-bottom: none;
 }
-
+/*agar geser sedikit pas di hover*/
 .option:hover {
     background: rgba(255, 255, 255, 0.3);
     padding-left: 25px;
-    /* Animasi geser sedikit */
 }
 
 .option.selected {
@@ -261,13 +251,12 @@ body {
     font-weight: 700;
 }
 
-/* Header di dalam dropdown opsi (agar terlihat seperti gambar) */
+/*agar tidak dobel*/
 .custom-select.open .select-trigger {
     opacity: 0;
-    /* Sembunyikan trigger asli saat menu terbuka agar tidak double */
 }
 
-/* --- LIST BIMBINGAN (Accordion) --- */
+
 .bimbingan-list {
     display: flex;
     flex-direction: column;
@@ -313,12 +302,12 @@ body {
     font-size: 20px;
 }
 
-/* STATE ACTIVE (Saat item dibuka - Gambar 2) */
+/* STATE ACTIVE */
 .bimbingan-item.active {
     background: rgba(255, 255, 255, 0.15);
     /* Lebih terang */
     border: 1px solid rgba(255, 255, 255, 0.6);
-    /* Outline menyala */
+    /* Outline glow */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
@@ -326,18 +315,17 @@ body {
     transform: rotate(180deg);
 }
 
-/* BODY (Konten Tersembunyi) */
+/* BODY  */
 .bimbingan-body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease-out, padding 0.3s ease;
     background: rgba(0, 0, 0, 0.05);
-    /* Sedikit gelap di dalam */
+    /* warna lebih gelap di dalam */
 }
 
 .bimbingan-item.active .bimbingan-body {
     max-height: 400px;
-    /* Cukup tinggi */
     padding-bottom: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }

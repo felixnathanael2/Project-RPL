@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  loadStudents();
+  loadStudents(); //load semua mahasiswa
 });
 
 
@@ -99,12 +99,25 @@ async function loadBimbinganByStudent(npm) {
     const bimbinganList = json.data;
 
     const totalBimbingan = bimbinganList.length;
-
-    container.innerHTML = "";  // Bersihkan konten sebelumnya
+    const statusEl = document.querySelector('#statusEligible')
+    container.innerHTML = "";
 
     if (!bimbinganList || bimbinganList.length === 0) {
       container.innerHTML =
         "<p style='text-align:center; padding: 20px;'>Belum ada riwayat bimbingan.</p>";
+
+      const isEligible = bimbinganList[0].status_eligible;
+      if (isEligible) {
+        //kalo layak sidang
+        statusEl.style.color = "#10b981"; 
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-checkbox-circle-line"></i> Layak Sidang`;
+      } else {
+        //kalo ga layak sidang 
+        statusEl.style.color = "#ef4444"; 
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-close-circle-line"></i> Tidak Layak Sidang`;
+      }
       return;
     }
 
@@ -137,20 +150,16 @@ async function loadBimbinganByStudent(npm) {
         <div class="bimbingan-body">
           <div class="body-content">
             <label>Catatan</label>
-            <textarea id="note-${
-              bimbingan.id_bimbingan
-            }" placeholder="Masukkan catatan bimbingan.">${catatanAman}</textarea>
+            <textarea id="note-${bimbingan.id_bimbingan
+        }" placeholder="Masukkan catatan bimbingan.">${catatanAman}</textarea>
             <div class="action-btn">
-              <button class="btn-update" onclick="updateCatatan(${
-                bimbingan.id_bimbingan
-              })">Update</button>
+              <button class="btn-update" onclick="updateCatatan(${bimbingan.id_bimbingan
+        })">Update</button>
             </div>
-            <div class="status-bimbingan">Status: ${
-              bimbingan.status || "-"
-            }</div>
-            <div class="dosen-info">Pembimbing: ${
-              bimbingan.nama_dosen || "-"
-            } | Ruangan: ${bimbingan.nama_ruangan || "-"}</div>
+            <div class="status-bimbingan">Status: ${bimbingan.status || "-"
+        }</div>
+            <div class="dosen-info">Pembimbing: ${bimbingan.nama_dosen || "-"
+        } | Ruangan: ${bimbingan.nama_ruangan || "-"}</div>
           </div>
         </div>
       `;
@@ -166,7 +175,7 @@ async function loadBimbinganByStudent(npm) {
 // Mengirim permintaan update
 async function updateCatatan(bimbinganID) {
   const noteElement = document.getElementById(`note-${bimbinganID}`);
-  const note = noteElement.value;
+  const note = noteElement.value; //ambil isi input catatan
   const btn = noteElement.nextElementSibling.querySelector("button");
 
   const originalText = btn.textContent;
@@ -177,7 +186,7 @@ async function updateCatatan(bimbinganID) {
     const res = await fetch(`/api/bimbingan/update-catatan`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      body: JSON.stringify({ // Kirim ID bimbingan dan catatan yang baru di-edit
         id_bimbingan: bimbinganID,
         catatan_bimbingan: note,
       }),
@@ -185,7 +194,7 @@ async function updateCatatan(bimbinganID) {
 
     const result = await res.json();
 
-    if (result.success || res.ok) {
+    if (result.success || res.ok) { //Kalo berhasil
       // Cek res.ok untuk jaga-jaga
       alert("Catatan berhasil diperbarui!");
     } else {
@@ -196,7 +205,7 @@ async function updateCatatan(bimbinganID) {
     alert("Terjadi kesalahan koneksi.");
   } finally {
     // Balikin tombol
-    btn.textContent = originalText;
+    btn.textContent = originalText; // Balikin teks tombol ke semula
     btn.disabled = false;
   }
 }

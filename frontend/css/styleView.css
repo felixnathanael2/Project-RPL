@@ -305,7 +305,7 @@ main.container {
     display: flex;
     opacity: 1;
 }
-
+/*menghilangkan*/
 .hide{
   display: none;
 }

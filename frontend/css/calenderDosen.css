@@ -75,15 +75,15 @@
   text-align: right;
 }
 
-/* Logika Animasi Switch */
+ /*menggeser posisi ketika aktif*/
 input:checked~.slider .knob {
   transform: translate(-40px, -50%);
 }
-
+/*menyembunyikan label month*/
 input:checked~.slider .label-month {
   opacity: 0;
 }
-
+/*menampilkan label week*/
 input:checked~.slider .label-week {
   opacity: 1;
 }
@@ -271,6 +271,7 @@ input:checked~.slider .label-week {
   overflow: hidden; 
 }
 
+/* untuk menampilkan schedule container jika mingguan aktif*/
 .kalender-mingguan:not(.hidden) .schedule-container,
 .schedule-container.active {
     display: flex;

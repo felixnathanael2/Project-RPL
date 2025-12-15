@@ -228,7 +228,7 @@ input[type="date"] {
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
     transition: all 0.2s ease-in-out;
 }
-
+/*naik sedikit dan lebih nyala ketika di hover*/
 .btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);

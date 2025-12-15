@@ -192,6 +192,7 @@ input[type="date"] {
     transition: all 0.2s ease-in-out;
 }
 
+/*animasi ketika di hover, sedikit naik dan nyala */
 .btn-submit:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
@@ -299,7 +300,7 @@ input[type="date"] {
     cursor: pointer;
     color: #333;
 }
-
+/*membesar sedikit dan berubah cursor agar pennguna tahu bisa di klik*/
 .dosen-item input[type="checkbox"] {
     margin-right: 8px;
     cursor: pointer;

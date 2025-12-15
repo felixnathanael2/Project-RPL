@@ -143,7 +143,6 @@ main.container {
     opacity: 0.9;
 }
 
-/* Bagian Notif */
 .notificationContainer {
     width: 60vw;
     height: 50vh;
@@ -165,7 +164,6 @@ main.container {
     transition: background 0.3s;
 }
 
-/* Hover Effect */
 .notif-item:hover {
     background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
@@ -179,7 +177,6 @@ main.container {
     line-height: 1.5;
 }
 
-/* --- BAGIAN KANAN: WAKTU & TANGGAL --- */
 .notif-meta {
     display: flex;
     flex-direction: column;
