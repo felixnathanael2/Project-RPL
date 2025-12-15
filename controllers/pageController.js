@@ -9,6 +9,8 @@ const ROLE_MAHASISWA = 1;
 const ROLE_DOSEN = 2;
 const ROLE_ADMIN = 3;
 
+
+// Dashboard
 export const dashboard = (req, res) => {
   const role = req.user.role;
 
@@ -23,6 +25,7 @@ export const dashboard = (req, res) => {
   }
 };
 
+// Pengajuan Bimbingan (Dosen dan Mahasiswa)
 export const pengajuan = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_MAHASISWA) {
@@ -36,6 +39,7 @@ export const pengajuan = (req, res) => {
   }
 };
 
+// Profile (Dosen dan Mahasiswa)
 export const profile = (req, res) => {
   const role = req.user.role;
 
@@ -48,10 +52,12 @@ export const profile = (req, res) => {
   }
 };
 
+// Login
 export const login = (req, res) => {
   res.sendFile(path.join(__dirname, "../public/page/LoginPage.html"));
 };
 
+// Semua Notifikasi
 export const notifikasi = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_MAHASISWA) {
@@ -63,6 +69,7 @@ export const notifikasi = (req, res) => {
   }
 };
 
+// Riwayat Bimbingan (Mahasiswa dan Dosen)
 export const riwayat = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_MAHASISWA) {
@@ -74,6 +81,7 @@ export const riwayat = (req, res) => {
   }
 };
 
+// Manajemen pengguna Admin
 export const manajemenPengguna = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
@@ -83,6 +91,7 @@ export const manajemenPengguna = (req, res) => {
   }
 };
 
+// Add user Admin (tombol + manajemen pengguna)
 export const addUser = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
@@ -92,6 +101,7 @@ export const addUser = (req, res) => {
   }
 };
 
+// Nambah Dosen
 export const addDosen = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
@@ -102,6 +112,8 @@ export const addDosen = (req, res) => {
     return res.status(403).json({ message: "Role tidak valid." });
   }
 };
+
+// Nambah mahasiswa
 export const addMahasiswa = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
@@ -115,10 +127,13 @@ export const addMahasiswa = (req, res) => {
     return res.status(403).json({ message: "Role tidak valid." });
   }
 };
+
+// View Permintaan
 export const debugging = (req, res) => {
   res.sendFile(path.join(__dirname, "../private/viewPermintaan.html"));
 };
 
+// Persetujuan Bimbingan Dosen
 export const persetujuan = (req, res) => {
   const role = req.user.role;
 
@@ -132,6 +147,8 @@ export const persetujuan = (req, res) => {
     return res.status(403).json({ message: "Role tidak valid." });
   }
 };
+
+// Log Admin
 export const logAdmin = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
@@ -140,6 +157,8 @@ export const logAdmin = (req, res) => {
     return res.status(403).json({ message: "Role tidak valid." });
   }
 };
+
+// Riwayat sisi Admin (Semua bimbingan kliatan)
 export const riwayatAdmin = (req, res) => {
   const role = req.user.role;
   if (role === ROLE_ADMIN) {
@@ -149,6 +168,7 @@ export const riwayatAdmin = (req, res) => {
   }
 };
 
+// Forgot Pass
 export const lupaPassword = (req, res) => {
   res.sendFile(path.join(__dirname, "../private/LupaPasswordPage.html"));
 };
