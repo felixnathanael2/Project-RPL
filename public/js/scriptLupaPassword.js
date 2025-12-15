@@ -4,14 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const step2Container = document.getElementById("step2Container");
   const actionButton = document.getElementById("actionButton");
 
-  console.log("aaaa");
+  // console.log("aaaa");
 
+  // kasih step agar tau dah nyampe mana
   let currentStep = 1;
   if (!form) {
     console.error("Form not found");
     return;
   }
 
+ // Dipanggil ketika tombol 'submit
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 

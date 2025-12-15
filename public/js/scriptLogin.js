@@ -1,5 +1,5 @@
-const loginForm = document.getElementById("loginForm");
-const messageEl = document.getElementById("message");
+const loginForm = document.getElementById("loginForm"); // Ambil elemen form login
+const messageEl = document.getElementById("message"); // Ambil elemem feedback dari frontend
 
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -7,6 +7,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     const userInput = document.querySelectorAll(".userInput");
 
+    // Ambil nilai dari input Email dan Password
     const email = userInput[0].value.trim();
     const password = userInput[1].value.trim();
 
@@ -19,6 +20,7 @@ loginForm.addEventListener("submit", async (e) => {
 
         const result = await response.json();
 
+        // // Simpan data user
         if (response.ok) {
             localStorage.setItem("userName", result.user.name);
             localStorage.setItem("userRole", result.user.role);

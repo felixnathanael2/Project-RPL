@@ -1,5 +1,6 @@
 // public/js/scriptProfileMahasiswa.js
 
+// mengatur innerText dari HTML
 document.addEventListener("DOMContentLoaded", async () => {
   const setText = (elementId, text, fallback = "Belum Tersedia") => {
     const element = document.getElementById(elementId);
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await response.json();
 
+    // Menampilkan Data ke HTML
     setText("profile-nama", data.nama);
     setText("profile-role-id", `Dosen | ${data.id_users}`);
     setText("profile-email", data.email);
@@ -34,7 +36,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     //     setText("dosbim-1", 'Belum Ditentukan');
     //     setText("dosbim-2", 'Belum Ditentukan');
     // }
-  } catch (error) {
+    
+  } catch (error) { //Menangani Error
     console.error("Error loading profile data (Mahasiswa):", error);
     setText("profile-nama", "Gagal Memuat Data");
     setText("profile-role-id", "Cek Koneksi atau API Server");

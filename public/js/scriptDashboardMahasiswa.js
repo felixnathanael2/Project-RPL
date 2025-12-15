@@ -1,3 +1,4 @@
+// Variabel global buat data
 let globalDataJadwal = {};
 
 function updateCurrentDate() {
@@ -29,6 +30,7 @@ function updateCurrentDate() {
   }
 }
 
+// Ambil data jadwal bimbingan dan masukin ke kalender
 async function fetchJadwalBimbingan() {
   try {
     const response = await fetch("/api/jadwal-bimbingan");
@@ -95,6 +97,7 @@ async function fetchJadwalMingguan() {
   }
 }
 
+// Mengambil jadwal kuliah/jadwal rutin
 async function fetchRiwayatBimbingan() {
   try {
     const response = await fetch("/api/riwayat");
@@ -126,7 +129,7 @@ async function fetchRiwayatBimbingan() {
       if (item.status === "Menunggu") statusColor = "#f59e0b";
       if (item.status === "Ditolak") statusColor = "#ef4444";
       if (item.status === "Disetujui") statusColor = "#10b981";
-
+      // Inner HTML
       const cardHTML = `
                 <div class="history-card">
                     <div class="card-header">
@@ -159,6 +162,7 @@ async function fetchRiwayatBimbingan() {
   }
 }
 
+// Buat dan download XLSX
 function downloadTemplate() {
   const data = [
     { Hari: "Senin", Jam_Mulai: "07:00", Jam_Akhir: "09:30" },
