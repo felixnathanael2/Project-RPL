@@ -17,14 +17,15 @@ export async function getRiwayatBimbingan(userId, role) {
                 B.tanggal, 
                 B.waktu, 
                 B.catatan_bimbingan, 
-                B.status
+                B.status,
+                DTA.status_eligible
             FROM bimbingan B
             JOIN bimbingan_dosen BD ON B.id_bimbingan = BD.id_bimbingan
             LEFT JOIN lokasi L ON B.id_lokasi = L.id_lokasi
             JOIN data_ta DTA ON B.id_data = DTA.id_data
             JOIN users U ON BD.nik = U.id_users
             WHERE DTA.id_users = ? 
-            GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status
+            GROUP BY B.id_bimbingan, L.nama_ruangan, B.tanggal, B.waktu, B.catatan_bimbingan, B.status, DTA.status_eligible
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
   } else if (userRole === ROLE_DOSEN) {
@@ -67,19 +68,16 @@ export async function getRiwayatBimbingan(userId, role) {
             ORDER BY B.tanggal DESC, B.waktu DESC;
         `;
   } else {
-    // [FIX] Jika role tidak dikenali, kembalikan array kosong (jangan biarkan query undefined)
     return [];
   }
 
-  // 3. [FIX] Gunakan Destructuring Array [rows]
-  // Ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
+  // ini standar mysql2 agar yang diambil datanya saja, bukan metadata fieldnya.
   const [rows] = await pool.execute(query, [userId]);
 
   return rows;
 }
 
 export async function createPengajuan(data) {
-  console.log(data);
   let connection;
   try {
     // konek ke db kek sebelum nya
@@ -125,7 +123,6 @@ export async function createPengajuan(data) {
     // ambil id bimbingan, karena autoincrement jadi bisa ambil dari InsertId
     const newId = res[0].insertId;
 
-    // B. Insert Dosen Peserta, pake id bimbingan nya pake id yang udah diambil tadi
     for (const nik of data.nik) {
       await connection.execute(
         `INSERT INTO bimbingan_dosen (id_bimbingan, nik) VALUES (?, ?)`,
@@ -331,9 +328,7 @@ export async function getAllRiwayatBimbingan() {
   return rows;
 }
 
-// 1. Ambil Tanggal Selesai Semester Aktif
 export async function getEndSemesterDate() {
-  // Asumsi: Mengambil semester yang sedang berjalan hari ini
   const pool = await connectDB();
   const query = `
     SELECT tanggal_UAS_selesai 
