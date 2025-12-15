@@ -1,6 +1,5 @@
 // EXTEND
 function toggleAccordion(headerElement) {
-  // Ambil parent item (.bimbingan-item)
   const item = headerElement.parentElement;
   item.classList.toggle("active");
   y;

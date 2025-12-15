@@ -3,7 +3,7 @@ import * as adminService from "../services/adminService.js";
 const ROLE_MAHASISWA = 1;
 const ROLE_DOSEN = 2;
 const ROLE_ADMIN = 3;
-
+//ini buat di managemen pengguna ngeshow user nya ada siapa aja 
 export const getAllUsers = async (req, res) => {
   try {
     const allUsers = await adminService.getAllUsers();
@@ -29,7 +29,7 @@ export const getAllUsers = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+//ini buat masukin data baru mahasiswa atau dosen
 export const createUser = async (req, res) => {
   try {
     const inputData = req.body;
@@ -39,7 +39,7 @@ export const createUser = async (req, res) => {
     res.status(201).json({ message: "User berhasil dibuat" });
   } catch (error) {
     console.error("Create User Error:", error);
-    // Cek jika error duplicate entry (kode SQL)
+
     if (error.code === "ER_DUP_ENTRY") {
       return res
         .status(400)

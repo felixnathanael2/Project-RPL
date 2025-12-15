@@ -2,8 +2,6 @@ import { connectDB } from "../db/db.js";
 
 // controller ketika login
 export const login = async (req, res) => {
-  //debugging
-  console.log("REQ.BODY =", req.body);
 
   const { email, password } = req.body;
   let connection;
@@ -49,6 +47,7 @@ export const login = async (req, res) => {
   }
 };
 
+//hapus cookie kalo logout
 export const logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
