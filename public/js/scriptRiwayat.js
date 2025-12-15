@@ -8,6 +8,7 @@ function toggleAccordion(headerElement) {
 document.addEventListener("DOMContentLoaded", async function () {
   const bimbinganListContainer = document.querySelector(".bimbingan-list");
 
+  // buka/tutup accrodion
   function toggleAccordion(headerElement) {
     const item = headerElement.parentElement;
     item.classList.toggle("active");
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   window.toggleAccordion = toggleAccordion;
 
   try {
+    // ambil data riwayat bimbingan
     const response = await fetch("/api/riwayat");
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const result = await response.json();
@@ -39,6 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Nomor bimbingan = dari bawah ke atas
       const bimbinganNumber = totalBimbingan - index;
 
+      // Buat struktur Accrodionnya
       item.innerHTML = `
         <div class="bimbingan-header" onclick="toggleAccordion(this)">
           <div class="header-info">
@@ -89,6 +92,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       bimbinganListContainer.appendChild(item);
     });
   } catch (err) {
+    // Catch Error
     console.error("Gagal fetch data riwayat:", err);
     bimbinganListContainer.innerHTML = `<p>Gagal memuat data riwayat.</p>`;
   }

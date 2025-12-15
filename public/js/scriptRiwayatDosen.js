@@ -17,12 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// buka/tutup accrodion
 function toggleAccordion(headerElement) {
   const item = headerElement.parentElement;
   item.classList.toggle("active");
 }
 
+// Ambil data mahasiswa bimbingan
 async function loadStudents() {
+  // Ambil semua elemen dropdown
   const selectWrapper = document.querySelector(".custom-select");
   const selectedText = document.getElementById("selectedStudent");
   const selectOptions = document.querySelector(".select-options");
@@ -84,6 +87,7 @@ async function loadStudents() {
   }
 }
 
+// Mengambil riwayat bimbingan mahasiswa sesuai NPM
 async function loadBimbinganByStudent(npm) {
   const container = document.querySelector(".bimbingan-list");
   container.innerHTML =
@@ -96,7 +100,7 @@ async function loadBimbinganByStudent(npm) {
 
     const totalBimbingan = bimbinganList.length;
 
-    container.innerHTML = ""; 
+    container.innerHTML = "";  // Bersihkan konten sebelumnya
 
     if (!bimbinganList || bimbinganList.length === 0) {
       container.innerHTML =
@@ -111,6 +115,7 @@ async function loadBimbinganByStudent(npm) {
 
       const bimbinganNumber = totalBimbingan - index;
 
+      // Format tanggal
       const tanggal = new Date(bimbingan.tanggal).toLocaleDateString("id-ID", {
         day: "numeric",
         month: "long",
@@ -120,6 +125,7 @@ async function loadBimbinganByStudent(npm) {
       // Gunakan escape HTML untuk mencegah XSS jika perlu, tapi untuk textarea aman
       const catatanAman = bimbingan.catatan_bimbingan || "";
 
+      // Buat struktur Accrodionnya
       div.innerHTML = `
         <div class="bimbingan-header" onclick="toggleAccordion(this)">
           <div class="header-info">
@@ -157,6 +163,7 @@ async function loadBimbinganByStudent(npm) {
   }
 }
 
+// Mengirim permintaan update
 async function updateCatatan(bimbinganID) {
   const noteElement = document.getElementById(`note-${bimbinganID}`);
   const note = noteElement.value;
