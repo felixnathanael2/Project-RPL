@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  loadStudents();
+  loadStudents(); //load semua mahasiswa
 });
 
 
@@ -159,7 +159,7 @@ async function loadBimbinganByStudent(npm) {
 
 async function updateCatatan(bimbinganID) {
   const noteElement = document.getElementById(`note-${bimbinganID}`);
-  const note = noteElement.value;
+  const note = noteElement.value; //ambil isi input catatan
   const btn = noteElement.nextElementSibling.querySelector("button");
 
   const originalText = btn.textContent;
@@ -170,7 +170,7 @@ async function updateCatatan(bimbinganID) {
     const res = await fetch(`/api/bimbingan/update-catatan`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      body: JSON.stringify({ // Kirim ID bimbingan dan catatan yang baru di-edit
         id_bimbingan: bimbinganID,
         catatan_bimbingan: note,
       }),
@@ -178,7 +178,7 @@ async function updateCatatan(bimbinganID) {
 
     const result = await res.json();
 
-    if (result.success || res.ok) {
+    if (result.success || res.ok) { //Kalo berhasil
       // Cek res.ok untuk jaga-jaga
       alert("Catatan berhasil diperbarui!");
     } else {
@@ -189,7 +189,7 @@ async function updateCatatan(bimbinganID) {
     alert("Terjadi kesalahan koneksi.");
   } finally {
     // Balikin tombol
-    btn.textContent = originalText;
+    btn.textContent = originalText; // Balikin teks tombol ke semula
     btn.disabled = false;
   }
 }

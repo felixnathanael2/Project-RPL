@@ -3,6 +3,7 @@ document.getElementById("lanjutButton").onclick = function () {
   const status = document.getElementById("status").value;
 
   if (!email || !status) {
+    //munculkan alert untuk user
     alert("Harap isi Email dan Status terlebih dahulu!");
     return;
   }
@@ -13,11 +14,12 @@ document.getElementById("lanjutButton").onclick = function () {
   try {
     //redirect ke halaman lanjut
     if (status === "Dosen") {
-      window.location.href = "/addUser/dosen";
+      window.location.href = "/addUser/dosen"; //jika dosen maka pindah ke url dosen
     } else if (status === "Mahasiswa") {
-      window.location.href = "/addUser/mahasiswa";
+      window.location.href = "/addUser/mahasiswa"; //jika mahasiswa maka pindah ke url mahasiswa
     }
   } catch (error) {
+    //kalo ada error
     console.error("Error saat tambah akun:", error);
     alert("Terjadi kesalahan koneksi.");
   }

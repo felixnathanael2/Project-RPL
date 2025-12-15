@@ -75,7 +75,7 @@
     text-align: right;
 }
 
-/* Logika Animasi Switch */
+/* Animasi Switch */
 input:checked~.slider .knob {
     transform: translate(-40px, -50%);
 }
@@ -197,7 +197,6 @@ input:checked~.slider .label-week {
     font-weight: 800;
     font-size: 0.6rem;
     color: inherit;
-    /* Mengikut warna teks parent */
     line-height: 1.2;
 }
 
@@ -288,7 +287,7 @@ input:checked~.slider .label-week {
 /* --- HEADER HARI (Sticky) --- */
 .days-header {
     display: grid;
-    /* Kolom pertama 50px*/
+
     grid-template-columns: 50px repeat(5, 1fr);
 
     margin: 0;

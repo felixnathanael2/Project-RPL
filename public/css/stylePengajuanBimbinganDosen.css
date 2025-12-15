@@ -146,7 +146,6 @@ body {
   line-height: 1.4;
 }
 
-/* MAIN FORM CARD */
 .glass-container.main-card {
   background: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(15px);
@@ -184,7 +183,7 @@ body {
   width: 100%;
 }
 
-/* DROPDOWN TRIGGER */
+/* DROPdDOWN TRIGGER */
 .select-trigger {
   padding: 12px 20px;
   background: #FFFFFF;
@@ -265,7 +264,7 @@ body {
   background: #e6f2ff;
 }
 
-/* BUTTON */
+/* BUTTONS */
 .btn-update {
   background: #4A7BC8;
   color: white;

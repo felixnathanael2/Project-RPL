@@ -20,6 +20,8 @@ if (batalBtn) {
 }
 
 function getInputDataMahasiswa(email, roleStr) {
+
+  //selector buat semua input di form html
   const namaInput = document.getElementById("nama");
   const npmInput = document.getElementById("npm");
   const semesterInput = document.getElementById("semester");
@@ -28,13 +30,13 @@ function getInputDataMahasiswa(email, roleStr) {
   const dosbing1Select = document.getElementById("dosbing1");
   const dosbing2Select = document.getElementById("dosbing2");
 
-  if (!namaInput || !npmInput) return null;
+  if (!namaInput || !npmInput) return null; //jaga jaga aja ini
 
-  if (!npmInput.value || !namaInput.value) {
+  if (!npmInput.value || !namaInput.value) { //kalo belom isi nama ato npm
     alert("NPM dan Nama wajib diisi!");
     return null;
   }
-  if (dosbing1Select.value === '-' ) {
+  if (dosbing1Select.value === '-' ) { //kalo dosbing belom dipilih salah 1
     alert("Minimah harus ada 1 dosen pembimbing!");
     return null;
   }
@@ -43,7 +45,7 @@ function getInputDataMahasiswa(email, roleStr) {
     id_users: npmInput.value,
     email: email,
     nama: namaInput.value,
-    password: "pass123",
+    password: "pass123", //ini pass awal default
     role: 1,
 
     semester: semesterInput ? semesterInput.value : 7,
@@ -62,12 +64,13 @@ function getInputDataMahasiswa(email, roleStr) {
 }
 
 function getInputDataDosen(email, roleStr) {
+  //selector buat semua input di form html
   const namaInput = document.getElementById("nama");
   const nikInput = document.getElementById("nik");
 
-  if (!namaInput || !nikInput) return null;
+  if (!namaInput || !nikInput) return null; //jaga jaga aja ini
 
-  if (!nikInput.value || !namaInput.value) {
+  if (!nikInput.value || !namaInput.value) {  //kalo belom isi nama ato nik
     alert("NIK dan Nama wajib diisi!");
     return null;
   }
@@ -76,7 +79,7 @@ function getInputDataDosen(email, roleStr) {
     id_users: nikInput.value,
     email: email,
     nama: namaInput.value,
-    password: "pass123",
+    password: "pass123", //default password 
     role: 2,
   };
 }
@@ -91,11 +94,11 @@ async function sendDataToBackend(inputData) {
 
     const result = await response.json();
 
-    if (response.ok) {
+    if (response.ok) { //berhasil tambah akun
       alert("Berhasil menambahkan akun!");
-      sessionStorage.clear();
-      window.location.href = "/manajemenPengguna";
-    } else {
+      sessionStorage.clear(); 
+      window.location.href = "/manajemenPengguna"; //redirect ke halaman awal manajemen pengguna sebelom klik icon + akun
+    } else { //gagal tambah akun
       alert("Gagal: " + (result.message || "Terjadi kesalahan server"));
       const modal = document.getElementById("confirmPopup");
       if (modal) modal.classList.remove("show");
@@ -149,7 +152,7 @@ async function fetchAllDosen() {
   }
 }
 
-function setupDosenDropdownLogic() {
+function setupDosenDropdownLogic() { //buat tampilin dropdown dosen pembimbing
   const dropdown1 = document.querySelector("#dosbing1");
   const dropdown2 = document.querySelector("#dosbing2");
 

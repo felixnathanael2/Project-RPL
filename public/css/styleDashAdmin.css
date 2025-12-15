@@ -254,7 +254,6 @@ main.admin-layout {
     font-size: 15px;
 }
 
-/* --- KOLOM 3 --- */
 .col-kanan {
     display: flex;
     flex-direction: column;
@@ -263,10 +262,8 @@ main.admin-layout {
     overflow: hidden;
 }
 
-/* STATS BOX (Grid 2x2) */
 .stats-box {
     height: 180px;
-    /* Tinggi fix */
     position: relative;
     padding: 0;
     overflow: hidden;
@@ -301,7 +298,7 @@ main.admin-layout {
     opacity: 0.9;
 }
 
-/* GARIS PEMISAH STATISTIK */
+
 .divider-v {
     position: absolute;
     top: 15%;
@@ -320,7 +317,6 @@ main.admin-layout {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* NOTIF BOX */
 .notif-box {
     flex: 1;
     flex-direction: column;
@@ -366,13 +362,11 @@ main.admin-layout {
     display: grid !important;
     grid-template-columns: repeat(7, 1fr) !important;
     grid-template-rows: 30px repeat(6, 1fr) !important;
-    /* Header + 6 Baris Tanggal */
     border: none !important;
 }
 
 .date-cell {
     min-height: 0 !important;
-    /* Biarkan menyusut */
     font-size: 12px;
 }
 

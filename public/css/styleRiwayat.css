@@ -148,10 +148,8 @@ body {
     padding-left: 5px;
 }
 
-/* CONTAINER KACA BESAR */
 .glass-container.main-card {
     background: rgba(255, 255, 255, 0.1);
-    /* Transparan kebiruan sesuai gambar */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -167,11 +165,9 @@ body {
     overflow-x: hidden;
 }
 
-/* --- DROPDOWN CUSTOM (Sesuai Gambar 1) --- */
 .custom-select-wrapper {
     position: relative;
     width: fit-content;
-    /* Lebar menyesuaikan isi */
     z-index: 50;
     margin-bottom: 10px;
 }
@@ -181,7 +177,6 @@ body {
     cursor: pointer;
 }
 
-/* Trigger (Tombol yang terlihat awal) */
 .select-trigger {
     display: flex;
     justify-content: space-between;
@@ -190,10 +185,8 @@ body {
     padding: 10px 20px;
 
     background: rgba(255, 255, 255, 0.15);
-    /* Glassy Pill */
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50px;
-    /* Bentuk Pill */
 
     font-weight: 600;
     font-size: 15px;
@@ -207,16 +200,13 @@ body {
     border-color: white;
 }
 
-/* List Opsi (Saat dibuka) */
 .select-options {
     position: absolute;
     top: 0;
     left: 0;
-    /* Menumpuk di atas trigger */
     width: 100%;
 
     background: rgba(86, 154, 218, 0.9);
-    /* Warna biru kaca sesuai gambar */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 
@@ -228,7 +218,7 @@ body {
     visibility: hidden;
     transform: scale(0.95);
     transform-origin: top left;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
     overflow: hidden;
 }
 
@@ -256,7 +246,6 @@ body {
 .option:hover {
     background: rgba(255, 255, 255, 0.3);
     padding-left: 25px;
-    /* Animasi geser sedikit */
 }
 
 .option.selected {
@@ -264,13 +253,10 @@ body {
     font-weight: 700;
 }
 
-/* Header di dalam dropdown opsi (agar terlihat seperti gambar) */
 .custom-select.open .select-trigger {
     opacity: 0;
-    /* Sembunyikan trigger asli saat menu terbuka agar tidak double */
 }
 
-/* --- LIST BIMBINGAN (Accordion) --- */
 .bimbingan-list {
     display: flex;
     flex-direction: column;
@@ -281,7 +267,6 @@ body {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
-    /* Rounded corner sesuai gambar General */
     overflow: hidden;
     transition: all 0.3s ease;
 }
@@ -290,7 +275,6 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* HEADER ITEM */
 .bimbingan-header {
     display: flex;
     justify-content: space-between;
