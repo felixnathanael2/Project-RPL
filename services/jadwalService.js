@@ -130,7 +130,7 @@ const isTimeOverlap = (targetJam, start, end) => {
 // --- Main Service Function ---
 
 export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
-  // 1. Definisikan Slot Waktu Bimbingan yang tersedia secara umum
+  // Definisikan Slot Waktu Bimbingan yang tersedia secara umum
   const allSlots = [
     "08:00",
     "09:00",
@@ -143,14 +143,14 @@ export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
     "16:00",
   ];
 
-  // 2. Ambil data kapan saja Dosen & Mhs SIBUK
+  // Ambil data kapan saja Dosen & Mhs SIBUK
   const busySchedules = await jadwalRepo.getBusySlots(
     dosenId,
     mahasiswaId,
     hari
   );
 
-  // 3. Filter: Hanya ambil slot yang TIDAK bentrok
+  // Filter: Hanya ambil slot yang TIDAK bentrok
   const availableSlots = allSlots.filter((slotJam) => {
     // Cek apakah slotJam ini overlap dengan salah satu jadwal sibuk
     const isBusy = busySchedules.some((schedule) => {
@@ -160,7 +160,7 @@ export async function checkTimeAvailability(dosenId, mahasiswaId, hari) {
     return !isBusy; // Return true jika TIDAK sibuk
   });
 
-  // 4. Format data untuk dikirim ke Frontend (Dropdown)
+  // Format data untuk dikirim ke Frontend (Dropdown)
   return availableSlots.map((jam) => ({
     label: `${jam} - ${addOneHour(jam)}`, // Contoh: "08:00 - 09:00"
     value: jam, // Value yang akan disimpan ke DB: "08:00"

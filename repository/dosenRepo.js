@@ -17,6 +17,7 @@ export async function getDosen(npm) {
 
 export async function getAllDosen() {
     const pool = await connectDB();
+    //ambil data semua dosen
     const query = `SELECT users.nama, users.id_users FROM users WHERE role = 2;`;
     const [rows] = await pool.execute(query);
     return rows;
@@ -24,6 +25,7 @@ export async function getAllDosen() {
 
 export async function getAllMahasiswaByDosen(nik) {
     const pool = await connectDB();
+    //itung mahasiswa yang dibimbing oleh dosen tertentu
     const query =
         "SELECT COUNT(npm) AS total FROM plotting_pembimbing WHERE nik = ?;";
     const [rows] = await pool.execute(query, [nik]);
@@ -32,6 +34,7 @@ export async function getAllMahasiswaByDosen(nik) {
 
 export async function getAllMahasiswa() {
     const pool = await connectDB();
+    //itung semua mahasiswa
     const query = "SELECT COUNT(id_users) AS total FROM users WHERE role = 1;";
     const [rows] = await pool.execute(query);
     return rows[0].total;
@@ -40,6 +43,7 @@ export async function getAllMahasiswa() {
 export async function getAllEligibleSidang() {
     const pool = await connectDB();
     const query =
+    //itung semua mahasiswa yang sudah elligible
         "SELECT COUNT(id_users) AS total FROM data_ta WHERE status_eligible = true;";
     const [rows] = await pool.execute(query);
     return rows[0].total;
@@ -48,6 +52,7 @@ export async function getAllEligibleSidang() {
 export async function getEligibleSidangByDosen(nik) {
     const pool = await connectDB();
     const query =
+    //itung jumlah mahasiswa eligible dosen tertentu
         "SELECT COUNT(PB.npm) AS total FROM data_ta DTA JOIN plotting_pembimbing PB ON DTA.id_users = PB.npm  WHERE status_eligible = true AND PB.nik = ?;";
     const [rows] = await pool.execute(query, [nik]);
     return rows[0].total;
@@ -95,6 +100,7 @@ export async function getMahasiswaEligible(nik) {
 
 export async function updateStatusEligible(npm, isEligible) {
     const pool = await connectDB();
+    //update status eligible setelah bimbingan selesai
     const query = `
     UPDATE data_ta 
     SET status_eligible = ? 

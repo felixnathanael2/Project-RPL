@@ -29,11 +29,13 @@ export const createNewUser = async (data) => {
     return await adminRepo.insertUser(userData);
 };
 
+//panggil fungsi ambil log dari repo admin
 export async function getLogData() {
     return await adminRepo.getLogData();
 }
 
 export async function getStatistikKelayakanAdmin() {
+    //ambil semua mahasiswa eligible
     const dataMahasiswa = await adminRepo.getAllMahasiswaEligible();
 
     // Kalau misal ga ada mahasiswa, set dlu aja ke 0/0
@@ -75,10 +77,12 @@ export async function getStatistikKelayakanAdmin() {
     return `${totalEligible} / ${totalMahasiswa}`;
 }
 
+//pnggil ambil semua dosen dari admin repo
 export async function getAllDosen() {
     return await adminRepo.getAllDosen();
 }
 
+//pnggil ambil semua mahasiswa dari admin repo
 export async function getAllMahasiswa() {
     return await adminRepo.getAllMahasiswa();
 }

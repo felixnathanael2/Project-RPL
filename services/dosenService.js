@@ -1,26 +1,31 @@
 import * as dosenRepo from "../repository/dosenRepo.js";
 
-// ini function buat dapetin dosbing maneh siapa aja, berdasarkan npm
+// ini function buat dapetin dosbing npm tertentu
 export async function getDosen(npm) {
     return await dosenRepo.getDosen(npm);
 }
 
+//fungsi ambil semua dosen
 export async function getAllDosen() {
     return await dosenRepo.getAllDosen();
 }
 
+//fungsi ambil semua mahasiswa yang dibimbing dosen tertentu
 export async function getAllMahasiswaByDosen(nik) {
     return await dosenRepo.getAllMahasiswaByDosen(nik);
 }
 
+//fungsi ambil semua mahasiwa
 export async function getAllMahasiswa() {
     return await dosenRepo.getAllMahasiswa();
 }
 
+//fungsi ambil semua mahasiwa eligible
 export async function getAllEligibleSidang() {
     return await dosenRepo.getAllEligibleSidang();
 }
 
+//fungsi ambil semua mahasiwa eligible berdasarkan dosen tertentu
 export async function getEligibleSidangByDosen(nik) {
     return await dosenRepo.getEligibleSidangByDosen(nik);
 }

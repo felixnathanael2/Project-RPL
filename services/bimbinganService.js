@@ -61,13 +61,13 @@ const getNextDateObject = (dayName) => {
 };
 
 export async function submitJadwalRutin(payload) {
-  // 1. Tentukan Tanggal Mulai (Hari X terdekat)
+  // Tentukan Tanggal Mulai (Hari X terdekat)
   let currentDate = getNextDateObject(payload.hari);
 
-  // 2. Tentukan Tanggal Akhir (Dari DB Semester)
+  // Tentukan Tanggal Akhir (Dari DB Semester)
   let endDate = await bimbinganRepo.getEndSemesterDate();
 
-  // Fallback: Jika admin lupa set semester di DB, set manual 4 bulan kedepan
+  // Jika admin lupa set semester di DB, set manual 4 bulan kedepan
   if (!endDate) {
     endDate = new Date();
     endDate.setMonth(endDate.getMonth() + 4);
@@ -75,7 +75,7 @@ export async function submitJadwalRutin(payload) {
     endDate = new Date(endDate); // Pastikan jadi object Date
   }
 
-  // 3. GENERATE LIST TANGGAL (Looping +7 hari)
+  // GENERATE LIST TANGGAL (Looping +7 hari)
   const listTanggalToInsert = [];
 
   // Selama tanggal sekarang <= tanggal akhir semester
@@ -93,7 +93,7 @@ export async function submitJadwalRutin(payload) {
     throw new Error("Semester sudah berakhir, tidak bisa buat jadwal rutin.");
   }
 
-  // 4. Kirim ke Repository untuk Bulk Insert
+  // Kirim ke Repository untuk Bulk Insert
   const count = await bimbinganRepo.createBimbinganRutin(listTanggalToInsert, {
     npm: payload.npm,
     id_lokasi: payload.id_lokasi,
