@@ -2,6 +2,7 @@ import { connectDB } from "../db/db.js";
 
 export async function getAllUsers() {
   const pool = await connectDB();
+  //ambil data semua user dari db
   const query = `SELECT U.email, U.id_users, U.role ,MAX(DTA.semester) as semester FROM data_ta DTA RIGHT JOIN users U on U.id_users = DTA.id_users GROUP BY U.id_users;`;
   const [rows] = await pool.execute(query);
   return rows;
@@ -69,6 +70,7 @@ export async function insertUser(data) {
 
 export async function getLogData() {
   const pool = await connectDB();
+  //ambil data log dari db, dari waktu terbaru paling atas
   const query = `SELECT U.email, LA.aksi, LA.waktu FROM log_aktivitas LA JOIN users U ON LA.id_users = U.id_users ORDER BY waktu DESC;`;
   const [rows] = await pool.execute(query);
   return rows;
