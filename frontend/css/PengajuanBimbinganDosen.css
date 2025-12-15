@@ -190,13 +190,13 @@ body {
   align-items: center;
 }
 
-.select-trigger::after {
-  content: "▼";
+.select-trigger::after { 
+  content: "▼"; /*ngasih panah bawah*/
   font-size: 12px;
   transition: transform 0.2s ease;
 }
 
-.custom-select.open .select-trigger::after {
+.custom-select.open .select-trigger::after { /*panahnya muter ke atas*/
   transform: rotate(180deg);
 }
 

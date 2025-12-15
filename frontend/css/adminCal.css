@@ -74,15 +74,15 @@
     opacity: 0;
     text-align: right;
 }
-
+ /*menggeser posisi ketika aktif*/
 input:checked~.slider .knob {
     transform: translate(-40px, -50%);
 }
-
+/*menyembunyikan label month*/
 input:checked~.slider .label-month {
     opacity: 0;
 }
-
+/*menampilkan label week*/
 input:checked~.slider .label-week {
     opacity: 1;
 }
@@ -176,7 +176,7 @@ input:checked~.slider .label-week {
     border-bottom: 1px solid #eee;
     overflow: hidden;
     height: 100%;
-    /* Pastikan sel memenuhi grid */
+    /*untuk memastikan sel memenuhi grid */
 }
 
 /* Event Styles */
@@ -191,7 +191,7 @@ input:checked~.slider .label-week {
     font-weight: 800;
     font-size: 9px;
     line-height: 1.1;
-    white-space: nowrap;
+    white-space: nowrap; /*biar ga turun baris*/
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -272,7 +272,7 @@ input:checked~.slider .label-week {
     scrollbar-width: none;
 }
 
-/* Logic Tampil */
+/* untuk menampilkan schedule container jika mingguan aktif*/
 .kalender-mingguan:not(.hidden) .schedule-container,
 .schedule-container.active {
     display: flex;

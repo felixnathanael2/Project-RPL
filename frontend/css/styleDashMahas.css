@@ -147,7 +147,7 @@ main {
   font-size: 20px;
 }
 
-/* 2. Riwayat (Lebar Menengah) */
+/*Riwayat (Lebar Menengah) */
 .riwayat {
   flex: 1.5 1 300px;
   min-height: 35rem;
@@ -192,15 +192,17 @@ main {
   gap: 10px;
 }
 
+/*setting lebar scrollbar*/
 .riwayat-list::-webkit-scrollbar {
   width: 5px;
 }
-
+/*setting jalur scrollbar/background scrollbar*/
 .riwayat-list::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
 
+/*setting tombol scrollbar*/
 .riwayat-list::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
@@ -339,7 +341,6 @@ main {
 .upload-box {
   height: 6rem;
   width: 100%;
-
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
@@ -363,18 +364,17 @@ main {
 .upload-content i {
   font-size: 45px;
   color: white;
-
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
     0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 .text-group {
   display: flex;
-  flex-direction: column;
-  /* Teks disusun vertikal */
+  flex-direction: column;/* Teks disusun vertikal */
+  
   justify-content: center;
-  align-items: flex-start;
-  /* Rata kiri */
+  align-items: flex-start; /* Rata kiri */
+ 
   color: white;
 }
 

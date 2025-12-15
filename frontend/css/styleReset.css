@@ -64,7 +64,7 @@ nav {
 }
 
 .mbta-logo {
-  height: clamp(40px, 6vw, 80px);
+    height: clamp(40px, 6vw, 80px);/*agar fleksibel*/
   width: auto;
   object-fit: contain;
 }
@@ -156,7 +156,7 @@ main form button {
   background: #004CBD01;
   border: 1.5px solid rgba(255, 255, 255, 0.4);
 }
-
+/*agar membesar ketika di hover*/
 main form button:hover {
   transform: scale(1.02);
 }
