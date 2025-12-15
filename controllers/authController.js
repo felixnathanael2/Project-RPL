@@ -9,6 +9,7 @@ export const login = async (req, res) => {
     const pool = await connectDB();
     connection = await pool.getConnection();
 
+    // Ambil data yang diperlukan sesuai dengan email input
     const [rows] = await connection.execute(
       `SELECT id_users, password, nama, role FROM users WHERE email = ?`,
       [email]
@@ -16,6 +17,7 @@ export const login = async (req, res) => {
 
     const user = rows[0];
 
+    // Jika pass nya beda
     if (!user || password !== user.password) {
       return res.status(401).json({ message: "ID atau Password salah." });
     }

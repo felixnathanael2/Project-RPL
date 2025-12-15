@@ -47,9 +47,10 @@ export const getRiwayatByNPM = async (req, res) => {
   }
 };
 
+// Fungsi untuk mahasiswa nya 
 export const ajukanBimbingan = async (req, res) => {
   try {
-    // masukin hasil dari form itu ke variabel, ini sama aja kek manual const tanggal = req.body.tanggal, dst
+    // masukin hasil dari form ke variabel, logikanya sama aja kek manual const tanggal = req.body.tanggal, dst
     const { tanggal, waktu, lokasiId, nik } = req.body;
 
     if (!tanggal || !waktu || !lokasiId || !nik || nik.length === 0) {
@@ -78,6 +79,7 @@ export const ajukanBimbingan = async (req, res) => {
 export const getJadwalBimbingan = async (req, res) => {
   try {
     const id_student = req.user.id;
+    // 1 as roleId
     const data = await bimbinganService.getRiwayatBimbingan(id_student, 1);
 
     // formatting data biar tanggalnya "YYYY-MM-DD" untuk frontend pake en-CA
@@ -172,6 +174,7 @@ export const getJadwalBimbinganToday = async (req, res) => {
 export const getTotalPermintaanByDosen = async (req, res) => {
   try {
     const formattedData = await fetchJadwalDosen(req);
+    // Cari yang statusnya menunggu
     const totalPermintaan = formattedData.filter(
       (item) => item.status === "Menunggu"
     );
@@ -184,9 +187,11 @@ export const getTotalPermintaanByDosen = async (req, res) => {
       .json({ message: "Gagal mengambil total permintaan by dosen" });
   }
 };
+
 export const getTotalBimbinganByDosen = async (req, res) => {
   try {
     const formattedData = await fetchJadwalDosen(req);
+    // Hitung yang data bimbingannya selesai
     const totalSelesai = formattedData.filter(
       (item) => item.status === "Selesai"
     );
