@@ -90,7 +90,7 @@ body {
 }
 
 .nav-right a {
-    text-decoration: none;
+    text-decoration: none;/*menghilangkan garis bawah*/
     color: white;
     font-size: 22px;
     transition: transform 0.2s;

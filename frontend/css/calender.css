@@ -46,7 +46,7 @@
   transform: translateY(-50%);
   background-color: #ecf0f1;
   border-radius: 50%;
-  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /*animasi perubahan posisi*/
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
@@ -75,15 +75,15 @@
   text-align: right;
 }
 
-/* Logika Animasi Switch */
+ /*menggeser posisi ketika aktif*/
 input:checked~.slider .knob {
   transform: translate(-40px, -50%);
 }
-
+/*menyembunyikan label month*/
 input:checked~.slider .label-month {
   opacity: 0;
 }
-
+/*menampilkan label week*/
 input:checked~.slider .label-week {
   opacity: 1;
 }
@@ -252,10 +252,7 @@ input:checked~.slider .label-week {
   color: #1e40af;
 }
 
-/* ============================================================ */
-/* --- WEEKLY SCHEDULE (DIMENSI DISAMAKAN DENGAN BULANAN) --- */
-/* ============================================================ */
-
+/*weekly schedul container*/ 
 .schedule-container {
   width: 32rem;  
   height: 30rem; 
@@ -282,13 +279,13 @@ input:checked~.slider .label-week {
   display: grid;
   /* Kolom pertama 50px*/
   grid-template-columns: 50px repeat(5, 1fr);
-  
+
   margin: 0;
   padding: 10px 0;
   border-bottom: 2px solid #eee;
   background: white;
   z-index: 5;
-  flex-shrink: 0;
+  flex-shrink: 0; /*biar ga mengceil*/
   
   font-weight: bold;
   font-size: 0.9rem;

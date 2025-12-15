@@ -155,7 +155,7 @@ main form button[type="submit"] {
   background: #004CBD01;
   border: 1.5px solid rgba(255, 255, 255, 0.4);
 }
-
+/*membesar ketika di hover*/
 main form button:hover {
   transform: scale(1.02);
 }
