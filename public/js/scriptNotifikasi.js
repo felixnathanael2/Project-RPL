@@ -58,13 +58,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
       })
       .join("");
+    await markAllNotifikasiRead();
   } catch (error) {
     console.error(error);
     container.innerHTML = `<p style="text-align:center; opacity:0.8">Terjadi kesalahan saat memuat notifikasi.</p>`;
   }
 });
 
-// 🔧 Format tanggal (opsional, biar rapi)
 function formatDate(dateString) {
   const d = new Date(dateString);
 
@@ -75,4 +75,15 @@ function formatDate(dateString) {
     hour: "2-digit",
     minute: "2-digit",
   });
+}
+
+async function markAllNotifikasiRead() {
+  try {
+    await fetch("/api/mark-read", {
+      method: "POST",
+      credentials: "include",
+    });
+  } catch (err) {
+    console.error("Gagal mark notifikasi:", err);
+  }
 }

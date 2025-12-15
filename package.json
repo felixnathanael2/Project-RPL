@@ -1,11 +1,11 @@
 {
   "name": "ta_bimbingan",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sistem Informasi Bimbingan TA",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node server.js"
   },
   "keywords": [],
@@ -15,9 +15,15 @@
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.2.1",
-    "express-session": "^1.18.2",
-    "multer": "^2.0.2",
-    "mysql2": "^3.15.3",
+    "express-session": "^1.18.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.7",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {}
   }
 }

@@ -45,17 +45,16 @@ async function fetchJadwalBimbingan() {
 //memanggil api dari backend untuk menampilkan ke frontend untuk stat di kanan
 async function fetchStatistik() {
   try {
-    // Ambil Token
+    //ambil token
     const token = localStorage.getItem("token");
-    // Fetch dengan Header Authorization
     const response = await fetch("/api/dashboard-dosen-stats", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Header token yang kamu tambahkan
+        Authorization: `Bearer ${token}`, 
       },
     });
-    // Cek jika response error (misal token expired 401)
+    //kalo responsenya eror
     if (!response.ok) {
       throw new Error("Gagal mengambil data statistik");
     }

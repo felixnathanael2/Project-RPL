@@ -1,11 +1,14 @@
 import * as adminService from "../services/adminService.js";
 
+// Kode role untuk setiap jenis pengguna
 const ROLE_MAHASISWA = 1;
 const ROLE_DOSEN = 2;
 const ROLE_ADMIN = 3;
 
+//ini buat di managemen pengguna ngeshow user nya ada siapa aja 
 export const getAllUsers = async (req, res) => {
   try {
+    // Mengambil data dari DB
     const allUsers = await adminService.getAllUsers();
     const formattedData = allUsers.map((item) => {
       let role = "Mahasiswa";
@@ -14,6 +17,8 @@ export const getAllUsers = async (req, res) => {
       } else if (item.role === ROLE_ADMIN) {
         role = "Administrator";
       }
+
+      // Ketika semester null maka tampilan "-"
       const semester = item.semester || "-";
 
       return {
@@ -30,6 +35,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+//ini buat masukin data baru mahasiswa atau dosen
 export const createUser = async (req, res) => {
   try {
     const inputData = req.body;
@@ -39,7 +45,8 @@ export const createUser = async (req, res) => {
     res.status(201).json({ message: "User berhasil dibuat" });
   } catch (error) {
     console.error("Create User Error:", error);
-    // Cek jika error duplicate entry (kode SQL)
+
+    // Error handling untuk user yang sudah terdaftar
     if (error.code === "ER_DUP_ENTRY") {
       return res
         .status(400)
@@ -49,14 +56,16 @@ export const createUser = async (req, res) => {
   }
 };
 
+// Memasukan log data untuk ke tabel log nanti
 export const getLogData = async (req, res) => {
   try {
     const rawData = await adminService.getLogData();
     const formattedData = rawData.map((item) => {
-      // formatting waktu agar menjadi seperti yang diinginkan
+
+      // formatting waktu
       const dateObj = new Date(item.waktu);
 
-      const tanggal = dateObj.getDate(); // 1-31
+      const tanggal = dateObj.getDate(); // 1-31 (ambil 31 Hari)
       const bulan = String(dateObj.getMonth() + 1).padStart(2, "0"); // bulan dibikin format 01 - 12
       const tahun = String(dateObj.getFullYear());
 

@@ -1,6 +1,5 @@
 import { connectDB } from "../db/db.js";
 
-// Cek email
 export const findUserByEmail = async (email) => {
   const db = await connectDB();
   const query = `
@@ -11,10 +10,8 @@ export const findUserByEmail = async (email) => {
   return rows[0];
 };
 
-// Simpan Token Reset Password
 export const saveResetToken = async (email, token) => {
   const db = await connectDB();
-  // Hapus token lama
   await db.query("DELETE FROM password_resets WHERE email = ?", [email]);
   const query = `
         INSERT INTO password_resets (email, token, created_at)
@@ -23,7 +20,6 @@ export const saveResetToken = async (email, token) => {
   return await db.query(query, [email, token]);
 };
 
-// Ambil Token untuk Validasi
 export const getTokenByEmail = async (email) => {
   const db = await connectDB();
   const query = `
@@ -36,7 +32,6 @@ export const getTokenByEmail = async (email) => {
   return rows[0];
 };
 
-// Update Password Baru
 export const updatePassword = async (email, newHashedPassword) => {
   const db = await connectDB();
   const query = `
@@ -44,10 +39,18 @@ export const updatePassword = async (email, newHashedPassword) => {
         SET password = ?
         WHERE email = ?
     `;
-  return await db.query(query, [newHashedPassword, email]);
+  await db.query(query, [newHashedPassword, email]);
+
+  const queryLog = `
+        INSERT INTO log_aktivitas (id_users, aksi)
+        SELECT id_users, 'Berhasil mereset password via Lupa Password'
+        FROM users
+        WHERE email = ?
+  `;
+
+  return await db.query(queryLog, [email]);
 };
 
-// Hapus Token setelah password berhasil diganti
 export const deleteToken = async (email) => {
   const db = await connectDB();
   const query = `DELETE FROM password_resets WHERE email = ?`;

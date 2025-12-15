@@ -30,7 +30,7 @@ export async function getUnavailableJadwal(date, nik, npm) {
 
   const dosenPlaceholders = nik.map(() => "?").join(",");
 
-  // -----------------------------------------------------------------
+  // 
   // Sekarang cek jadwal user juga, yang ada matkul matkul atau dosen sibuk
   // ubah dulu tanggal nya jadi hari, misal tgl nov 22 jadi hari sabtu
   const dateObj = new Date(date);
@@ -79,17 +79,21 @@ export async function deleteJadwalByUser(id_users) {
 }
 
 // data - [hari, jam_mulai, jam_akhir_, npm]
+//ini ga dipake sebenernya
 export async function uploadJadwalMahasiswa(data) {
   const query = "INSERT INTO Jadwal_User (Jam_Mulai, Jam_Akhir, Hari, NPM)";
 }
 
+
 export async function getJadwalByUser(id_users) {
   const pool = await connectDB();
+  //ambil semua jadwal user tertentu
   const query = "SELECT * FROM jadwal_user WHERE id_users = ?";
   const [rows] = await pool.execute(query, [id_users]);
   return rows;
 }
 
+//ini yang dipake
 export async function createBulkJadwal(jadwalList) {
   if (jadwalList.length === 0) return;
 
@@ -109,7 +113,7 @@ export async function createBulkJadwal(jadwalList) {
 export async function getBusySlots(dosenId, mahasiswaId, hari) {
   const pool = await connectDB();
   const query = `
-    -- 1. Cek Jadwal Rutin (Kuliah/Dosen) dari tabel jadwal_user
+    --Cek Jadwal Rutin (Kuliah/Dosen) dari tabel jadwal_user
     SELECT jam_mulai, jam_akhir, 'Jadwal Rutin' as keterangan 
     FROM jadwal_user 
     WHERE hari = ? 
@@ -117,13 +121,13 @@ export async function getBusySlots(dosenId, mahasiswaId, hari) {
 
     UNION ALL
 
-    -- 2. Cek Jadwal Bimbingan yang sudah ada (status Menunggu/Disetujui)
+    --Cek Jadwal Bimbingan yang sudah ada (status Menunggu/Disetujui)
     -- Asumsi: Kita cek bimbingan di hari yang sama (berdasarkan nama hari)
     SELECT b.waktu as jam_mulai, ADDTIME(b.waktu, '01:00:00') as jam_akhir, 'Bimbingan Lain' as keterangan
     FROM bimbingan b
     JOIN bimbingan_dosen bd ON b.id_bimbingan = bd.id_bimbingan
     JOIN data_ta dt ON b.id_data = dt.id_data
-    WHERE DATE_FORMAT(b.tanggal, '%W') = ? -- Cek Hari (Pastikan locale DB sesuai atau konversi input)
+    WHERE DATE_FORMAT(b.tanggal, '%W') = ? -- Cek Hari
     AND (
         dt.id_users = ? -- Cek bentrok Mahasiswa
         OR 

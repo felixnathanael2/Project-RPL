@@ -1,6 +1,9 @@
 import { getDosenPembimbing } from "../services/profileService.js";
 import { getProfile } from "../services/profileService.js";
+
+// Untuk Mahasiswa
 const ROLE_MAHASISWA = 1;
+
 export const getMyProfileApi = async (req, res) => {
   try {
     const id_users = req.user.id;
@@ -19,6 +22,7 @@ export const getMyProfileApi = async (req, res) => {
       pembimbing: null,
     };
 
+    // Pastikan user adalah mahasiswa, jika ya ambil NPM dan Dosem pembimbing nya
     if (userRole === ROLE_MAHASISWA) {
       const npm = userData.id_users;
       const dosen = await getDosenPembimbing(npm);

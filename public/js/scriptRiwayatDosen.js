@@ -2,34 +2,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectWrapper = document.querySelector(".custom-select");
   const selectTrigger = document.querySelector(".select-trigger");
 
-  // 1. Logic Toggle Dropdown (UI)
   selectTrigger.addEventListener("click", function (e) {
     e.stopPropagation();
     selectWrapper.classList.toggle("open");
   });
 
-  // 2. Tutup dropdown jika klik di luar
   document.addEventListener("click", function (e) {
     if (!selectWrapper.contains(e.target)) {
       selectWrapper.classList.remove("open");
     }
   });
 
-  // 3. Load data awal
   loadStudents();
 });
 
-// --- FUNGSI GLOBAL ---
 
-// Toggle accordion (Dipanggil via onclick di HTML)
 function toggleAccordion(headerElement) {
   const item = headerElement.parentElement;
   item.classList.toggle("active");
 }
 
-// Load mahasiswa untuk dropdown
 async function loadStudents() {
-  // Ambil elemen DOM lagi di sini agar scope-nya terbaca
   const selectWrapper = document.querySelector(".custom-select");
   const selectedText = document.getElementById("selectedStudent");
   const selectOptions = document.querySelector(".select-options");
@@ -74,7 +67,7 @@ async function loadStudents() {
       });
     });
 
-    // Default: Pilih mahasiswa pertama saat load awal
+    // defaultnuya pilih mahasiswa pertama saat load awal
     if (students.length > 0) {
       const first = students[0];
       selectedText.textContent = `${first.id_users} - ${first.nama}`;
@@ -91,7 +84,6 @@ async function loadStudents() {
   }
 }
 
-// Load bimbingan mahasiswa
 async function loadBimbinganByStudent(npm) {
   const container = document.querySelector(".bimbingan-list");
   container.innerHTML =
@@ -103,12 +95,25 @@ async function loadBimbinganByStudent(npm) {
     const bimbinganList = json.data;
 
     const totalBimbingan = bimbinganList.length;
-
-    container.innerHTML = ""; // Hapus loader
+    const statusEl = document.querySelector('#statusEligible')
+    container.innerHTML = "";
 
     if (!bimbinganList || bimbinganList.length === 0) {
       container.innerHTML =
         "<p style='text-align:center; padding: 20px;'>Belum ada riwayat bimbingan.</p>";
+
+      const isEligible = bimbinganList[0].status_eligible;
+      if (isEligible) {
+        //kalo layak sidang
+        statusEl.style.color = "#10b981"; 
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-checkbox-circle-line"></i> Layak Sidang`;
+      } else {
+        //kalo ga layak sidang 
+        statusEl.style.color = "#ef4444"; 
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-close-circle-line"></i> Tidak Layak Sidang`;
+      }
       return;
     }
 
@@ -139,20 +144,16 @@ async function loadBimbinganByStudent(npm) {
         <div class="bimbingan-body">
           <div class="body-content">
             <label>Catatan</label>
-            <textarea id="note-${
-              bimbingan.id_bimbingan
-            }" placeholder="Masukkan catatan bimbingan.">${catatanAman}</textarea>
+            <textarea id="note-${bimbingan.id_bimbingan
+        }" placeholder="Masukkan catatan bimbingan.">${catatanAman}</textarea>
             <div class="action-btn">
-              <button class="btn-update" onclick="updateCatatan(${
-                bimbingan.id_bimbingan
-              })">Update</button>
+              <button class="btn-update" onclick="updateCatatan(${bimbingan.id_bimbingan
+        })">Update</button>
             </div>
-            <div class="status-bimbingan">Status: ${
-              bimbingan.status || "-"
-            }</div>
-            <div class="dosen-info">Pembimbing: ${
-              bimbingan.nama_dosen || "-"
-            } | Ruangan: ${bimbingan.nama_ruangan || "-"}</div>
+            <div class="status-bimbingan">Status: ${bimbingan.status || "-"
+        }</div>
+            <div class="dosen-info">Pembimbing: ${bimbingan.nama_dosen || "-"
+        } | Ruangan: ${bimbingan.nama_ruangan || "-"}</div>
           </div>
         </div>
       `;
@@ -165,13 +166,11 @@ async function loadBimbinganByStudent(npm) {
   }
 }
 
-// Update catatan
 async function updateCatatan(bimbinganID) {
   const noteElement = document.getElementById(`note-${bimbinganID}`);
   const note = noteElement.value;
   const btn = noteElement.nextElementSibling.querySelector("button");
 
-  // UX: Disable button saat loading
   const originalText = btn.textContent;
   btn.textContent = "Menyimpan...";
   btn.disabled = true;
@@ -189,7 +188,7 @@ async function updateCatatan(bimbinganID) {
     const result = await res.json();
 
     if (result.success || res.ok) {
-      // Cek res.ok juga untuk jaga-jaga
+      // Cek res.ok untuk jaga-jaga
       alert("Catatan berhasil diperbarui!");
     } else {
       alert("Gagal update catatan: " + (result.message || "Unknown error"));

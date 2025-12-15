@@ -1,6 +1,5 @@
 // EXTEND
 function toggleAccordion(headerElement) {
-  // Ambil parent item (.bimbingan-item)
   const item = headerElement.parentElement;
   item.classList.toggle("active");
   y;
@@ -27,9 +26,29 @@ document.addEventListener("DOMContentLoaded", async function () {
     const result = await response.json();
 
     let data = result.data; // asumsikan sudah descending tanggal
+
+    const statusEl = document.querySelector('#statusEligible')
     const totalBimbingan = data.length;
 
-    // Kosongkan container dulu
+    if (data && data.length > 0) {
+      bimbinganListContainer.innerHTML =
+        "<p style='text-align:center; padding: 20px;'>Belum ada riwayat bimbingan.</p>";
+
+      const isEligible = data[0].status_eligible;
+      if (isEligible) {
+        //kalo layak sidang
+        statusEl.style.color = "#10b981";
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-checkbox-circle-line"></i> Layak Sidang`;
+      } else {
+        //kalo ga layak sidang 
+        statusEl.style.color = "#ef4444";
+        statusEl.style.fontWeight = "bold";
+        statusEl.innerHTML = `<i class="ri-close-circle-line"></i> Tidak Layak Sidang`;
+      }
+      // return;
+    }
+
     bimbinganListContainer.innerHTML = "";
 
     data.forEach((bimbingan, index) => {
@@ -45,13 +64,13 @@ document.addEventListener("DOMContentLoaded", async function () {
           <div class="header-info">
             <h3>Bimbingan ${bimbinganNumber}</h3>
             <span class="date">${new Date(bimbingan.tanggal).toLocaleDateString(
-              "id-ID",
-              {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              }
-            )}</span>
+        "id-ID",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      )}</span>
           </div>
           <i class="ri-arrow-down-s-line arrow"></i>
         </div>
@@ -60,8 +79,8 @@ document.addEventListener("DOMContentLoaded", async function () {
               <div class="info">
                 <h3 style="display:inline-block; width:80px; font-weight:bold;">Tanggal :</h3>
                 <span>${new Date(bimbingan.tanggal).toLocaleDateString(
-                  "id-ID"
-                )}</span>
+        "id-ID"
+      )}</span>
               </div>
               <div class="info">
                 <h3 style="display:inline-block; width:80px; font-weight:bold;">Dosen :</h3>

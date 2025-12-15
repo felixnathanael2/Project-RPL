@@ -2,8 +2,6 @@ import { connectDB } from "../db/db.js";
 
 // controller ketika login
 export const login = async (req, res) => {
-  //debugging
-  console.log("REQ.BODY =", req.body);
 
   const { email, password } = req.body;
   let connection;
@@ -11,6 +9,7 @@ export const login = async (req, res) => {
     const pool = await connectDB();
     connection = await pool.getConnection();
 
+    // Ambil data yang diperlukan sesuai dengan email input
     const [rows] = await connection.execute(
       `SELECT id_users, password, nama, role FROM users WHERE email = ?`,
       [email]
@@ -18,6 +17,7 @@ export const login = async (req, res) => {
 
     const user = rows[0];
 
+    // Jika pass nya beda
     if (!user || password !== user.password) {
       return res.status(401).json({ message: "ID atau Password salah." });
     }
@@ -49,6 +49,7 @@ export const login = async (req, res) => {
   }
 };
 
+//hapus cookie kalo logout
 export const logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) {
